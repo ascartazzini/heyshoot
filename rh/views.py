@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from rh.models import Colaborador
+from rh.models import Colaborador, Fornecedores
 
 
 class ColaboradoresView(ListView):
@@ -8,7 +8,8 @@ class ColaboradoresView(ListView):
     template_name = "colaboradores.html"
     model = Colaborador
 
-
-class ColaboradoresNegrosView(ColaboradoresView):
-
-    queryset = Colaborador.objects.filter(eh_negra=True)
+class FornecedoresView(ListView):
+    
+    context_object_name = "fornecedores"
+    template_name = "fornecedores.html"
+    model = Fornecedores
