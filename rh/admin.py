@@ -5,7 +5,8 @@ from rh.models import Colaborador, Fornecedores
 
 class ColaboradorAdmin(admin.ModelAdmin):
 
-    list_display = ("nome", "emaildapessoa", "funcaodobrother", "cpf", "data_do_nascimento", "thumbnail")
+    list_display = ("nome", "emaildapessoa", "funcaodobrother", "cpf", "data_do_nascimento", "thumbnail", "desligado")
+    list_filter = ("desligado", )
 
     def data_do_nascimento(self, obj):
         if obj.data_nascimento:
@@ -22,7 +23,8 @@ class ColaboradorAdmin(admin.ModelAdmin):
 
 class FornecedoresAdmin(admin.ModelAdmin):
 
-    list_display = ("titulo","oque", "datafornecedor")
+    list_display = ("titulo", "oque", "quem_indicou")
+    list_filter = ("quem_indicou", )
 
 
 admin.site.register(Colaborador, ColaboradorAdmin)

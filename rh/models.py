@@ -13,6 +13,7 @@ class Colaborador(models.Model):
     foto_x = models.PositiveSmallIntegerField("Foto X", default=0, editable=False)
     foto_y = models.PositiveSmallIntegerField("Foto Y", default=0, editable=False)
     foto = models.ImageField(upload_to="colaboradores/fotos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
+    desligado = models.BooleanField("Desligado?", default=False, db_index=True)
 
     def __str__(self):
         return self.nome
@@ -28,7 +29,7 @@ class Fornecedores(models.Model):
     updated = models.DateTimeField(auto_now=True)
     titulo = models.CharField("Nome do Fornecedor", max_length=100)
     oque = models.CharField("O que faz", max_length=200)
-    datafornecedor = models.DateField(auto_now_add=True)
+    quem_indicou = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Quem indicou?")
 
     def __str__(self):
         return self.titulo
