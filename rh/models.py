@@ -10,6 +10,9 @@ class Colaborador(models.Model):
     funcaodobrother = models.CharField("Qual a função", max_length=100, blank=True)
     cpf = models.CharField("CPF", max_length=14, blank=True, unique=True)
     data_nascimento = models.DateField("Data de Nascimento", blank=True)
+    foto_x = models.PositiveSmallIntegerField("Foto X", default=0, editable=False)
+    foto_y = models.PositiveSmallIntegerField("Foto Y", default=0, editable=False)
+    foto = models.ImageField(upload_to="colaboradores/fotos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
 
     def __str__(self):
         return self.nome
