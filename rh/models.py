@@ -29,3 +29,8 @@ class Fornecedores(models.Model):
 
     def __str__(self):
         return self.titulo
+
+    class Meta:
+
+        verbose_name = "Fornecedor"
+        verbose_name_plural = "Fornecedores"
