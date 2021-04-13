@@ -1,10 +1,11 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 from rh.models import Colaborador, Fornecedores
 
 
 class ColaboradorAdmin(admin.ModelAdmin):
 
-    list_display = ("nome", "emaildapessoa", "funcaodobrother", "cpf", "data_do_nascimento")
+    list_display = ("nome", "emaildapessoa", "funcaodobrother", "cpf", "data_do_nascimento", "thumbnail")
 
     def data_do_nascimento(self, obj):
         if obj.data_nascimento:
@@ -12,10 +13,17 @@ class ColaboradorAdmin(admin.ModelAdmin):
         return "-"
     data_do_nascimento.short_description = 'Data Nasc.'
 
-admin.site.register(Colaborador, ColaboradorAdmin)
+    def thumbnail(self, obj):
+        if obj.foto:
+            return mark_safe('<img src="%s" />' % obj.foto.url)
+        return "-"
+    thumbnail.short_description = 'Fotinhoooo'
+
 
 class FornecedoresAdmin(admin.ModelAdmin):
 
     list_display = ("titulo","oque", "datafornecedor")
 
+
+admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
