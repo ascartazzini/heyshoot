@@ -1,10 +1,12 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from rh.forms import ColaboradorForm
 from rh.models import Colaborador, Fornecedores
 
 
 class ColaboradorAdmin(admin.ModelAdmin):
 
+    form = ColaboradorForm
     list_display = ("nome", "emaildapessoa", "funcaodobrother", "cpf", "data_do_nascimento", "thumbnail", "desligado")
     list_filter = ("desligado", )
 
