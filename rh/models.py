@@ -88,6 +88,7 @@ class Projeto(models.Model):
     valor_final = models.DecimalField("Valor final", max_digits=9, decimal_places=2, blank=True, null=True)
     ativismo = models.IntegerField("Ativismo", blank=True)
     lucro = models.IntegerField("Lucro", blank=True)
+    colaboradores = models.ManyToManyField(Colaborador, blank=True)
 
     def __str__(self):
         return self.nome
