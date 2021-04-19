@@ -1,7 +1,7 @@
 
 from django import forms
-from rh.models import Colaborador
-from validate_docbr import CPF
+from rh.models import Colaborador, Cliente, Projeto
+from validate_docbr import CPF, CNPJ
 
 
 class ColaboradorForm(forms.ModelForm):
@@ -27,4 +27,57 @@ class ColaboradorForm(forms.ModelForm):
     class Meta:
 
         model = Colaborador
-        fields = ["nome", "emaildapessoa", "funcaodobrother", "cpf", "data_nascimento", "foto", "desligado"]
+        fields = ["nome", "data_nascimento", "cpf", "cpffile", "errege", "rgfile", "endereco", "cidade", "estado", "pais", "telefone", "banco", "conta", "emailpessoal", "emailshoot", "foto", "funcaodobrother", "salario", "desligado"]
+
+
+
+class ClienteForm(forms.ModelForm):
+    
+    def clean_cnpj(self):
+        print("tô passando aqui")
+        cnpj_digitado = self.cleaned_data.get("cnpj")
+        cnpj_validador = CNPJ()
+        if not cnpj_validador.validate(cnpj_digitado):
+            raise forms.ValidationError("O CNPJ informado não é válido!")
+        return cnpj_validador.mask(cnpj_digitado)
+
+
+    def clean_nome(self):
+        nome = self.cleaned_data.get('nome')
+        caracteres_nao_permitidos = '!"#$%&\'()*+/:;<=>?@[\\]^_`{|}~'
+        for c in caracteres_nao_permitidos:
+            if c in nome:
+                raise forms.ValidationError("O campo nome não pode ter o caracter '%s'!" % c)
+        nomes = nome.split()
+        if len(nomes) == 1:
+            raise forms.ValidationError("O campo nome tem que ter nome e sobrenome!")
+        return nome
+
+
+    class Meta:
+    
+        model = Cliente
+        fields = ["nome", "cnpj", "razaosocial", "logo", "nomecontato", "emailcontato", "fonecontato"]
+
+
+
+
+class ProjetoForm(forms.ModelForm):
+    
+    def clean_nome(self):
+        nome = self.cleaned_data.get('nome')
+        caracteres_nao_permitidos = '!"#$%&\'()*+/:;<=>?@[\\]^_`{|}~'
+        for c in caracteres_nao_permitidos:
+            if c in nome:
+                raise forms.ValidationError("O campo nome não pode ter o caracter '%s'!" % c)
+        nomes = nome.split()
+        if len(nomes) == 1:
+            raise forms.ValidationError("O campo nome tem que ter nome e sobrenome!")
+        return nome
+
+
+    class Meta:
+    
+        model = Projeto
+        fields = ["nome", "cliente", "numero", "valortotal", "desconto", "valorfinal", "ativismo", "lucro"]
+

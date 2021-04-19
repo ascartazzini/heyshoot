@@ -5,14 +5,26 @@ class Colaborador(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Nome Completo", max_length=100)
-    emaildapessoa = models.EmailField("Qual o email do malandro", max_length=200)
-    funcaodobrother = models.CharField("Qual a função", max_length=100, blank=True)
+    nome = models.CharField("Nome completo", max_length=100)
+    data_nascimento = models.DateField("Data de nascimento", blank=True)
     cpf = models.CharField("CPF", max_length=14, blank=True, unique=True)
-    data_nascimento = models.DateField("Data de Nascimento", blank=True)
+    cpffile = models.FileField(upload_to="colaboradores/docs", max_length=600, blank=True)
+    errege = models.CharField("RG", max_length=14, blank=True)
+    rgfile = models.FileField(upload_to="colaboradores/docs", max_length=600, blank=True)
+    endereco = models.CharField("Endereço", max_length=200, blank=True)
+    cidade = models.CharField("Cidade", max_length=100, blank=True)
+    estado = models.CharField("Estado", max_length=100, blank=True)
+    pais = models.CharField("País", max_length=200, blank=True)
+    telefone = models.CharField("Fone", max_length=200, blank=True)
+    banco = models.CharField("Banco", max_length=200, blank=True)
+    conta = models.CharField("Conta", max_length=200, blank=True)
+    emailpessoal = models.EmailField("Qual o email pessoal", max_length=200, blank=True)
+    emailshoot = models.EmailField("Qual o email da Shoot", max_length=200, blank=True)
     foto_x = models.PositiveSmallIntegerField("Foto X", default=0, editable=False)
     foto_y = models.PositiveSmallIntegerField("Foto Y", default=0, editable=False)
     foto = models.ImageField(upload_to="colaboradores/fotos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
+    funcaodobrother = models.CharField("Qual a função", max_length=100, blank=True)
+    salario = models.CharField("Salário", max_length=200, blank=True)
     desligado = models.BooleanField("Desligado?", default=False, db_index=True)
 
     def __str__(self):
@@ -21,6 +33,7 @@ class Colaborador(models.Model):
     class Meta:
         verbose_name_plural = "Colaboradores"
         ordering = ("nome", )
+
 
 
 class Fornecedores(models.Model):
@@ -38,3 +51,42 @@ class Fornecedores(models.Model):
 
         verbose_name = "Fornecedor"
         verbose_name_plural = "Fornecedores"
+
+
+
+class Cliente(models.Model):
+    
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Empresa", max_length=100)
+    cnpj = models.CharField("CNPJ", max_length=18, blank=True)
+    razaosocial = models.CharField("Razão Social", max_length=200, blank=True)
+    foto_x = models.PositiveSmallIntegerField("Foto X", default=0, editable=False)
+    foto_y = models.PositiveSmallIntegerField("Foto Y", default=0, editable=False)
+    logo = models.ImageField(upload_to="clientes/logos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
+    nomecontato = models.CharField("Líder no cliente", max_length=200, blank=True)
+    emailcontato = models.CharField("E-mail de contato", max_length=200, blank=True)
+    fonecontato = models.CharField("Fone do contato", max_length=200, blank=True)
+    lidershoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot")
+
+    def __str__(self):
+        return self.nome
+
+
+class Projeto(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
+    numero = models.CharField("Número da Proposta", max_length=100, blank=True)
+    cliente = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
+    valortotal = models.IntegerField("Valor total", blank=True)
+    desconto = models.IntegerField("Desconto", blank=True)
+    valorfinal = models.IntegerField("Valor final", blank=True)
+    ativismo = models.IntegerField("Ativismo", blank=True)
+    lucro = models.IntegerField("Lucro", blank=True)
+
+    def __str__(self):
+        return self.nome
+
+
