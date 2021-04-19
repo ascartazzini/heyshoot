@@ -30,7 +30,6 @@ class ColaboradorForm(forms.ModelForm):
         fields = ["nome", "data_nascimento", "cpf", "cpffile", "errege", "rgfile", "endereco", "cidade", "estado", "pais", "telefone", "banco", "conta", "emailpessoal", "emailshoot", "foto", "funcaodobrother", "salario", "desligado"]
 
 
-
 class ClienteForm(forms.ModelForm):
 
     def clean_cnpj(self):
@@ -40,7 +39,6 @@ class ClienteForm(forms.ModelForm):
         if not cnpj_validador.validate(cnpj_digitado):
             raise forms.ValidationError("O CNPJ informado não é válido!")
         return cnpj_validador.mask(cnpj_digitado)
-
 
     def clean_nome(self):
         nome = self.cleaned_data.get('nome')
@@ -53,13 +51,10 @@ class ClienteForm(forms.ModelForm):
             raise forms.ValidationError("O campo nome tem que ter nome e sobrenome!")
         return nome
 
-
     class Meta:
 
         model = Cliente
         fields = ["nome", "cnpj", "razaosocial", "logo", "nomecontato", "emailcontato", "fonecontato"]
-
-
 
 
 class ProjetoForm(forms.ModelForm):
@@ -75,7 +70,6 @@ class ProjetoForm(forms.ModelForm):
             raise forms.ValidationError("O campo nome tem que ter nome e sobrenome!")
         return nome
 
-
     class Meta:
 
         model = Projeto
@@ -83,4 +77,3 @@ class ProjetoForm(forms.ModelForm):
         widgets = {
             "colaboradores": forms.CheckboxSelectMultiple,
         }
-
