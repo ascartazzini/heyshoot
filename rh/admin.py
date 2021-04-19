@@ -33,7 +33,7 @@ class ClienteAdmin(admin.ModelAdmin):
 
     form = ClienteForm
     list_display = ("nome", "thumbnail", "cnpj", "razaosocial", "nomecontato", "emailcontato", "fonecontato")
-    list_filter = ("lidershoot", )
+    list_filter = ("lider_shoot", )
 
     def thumbnail(self, obj):
         if obj.logo:

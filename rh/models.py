@@ -67,7 +67,7 @@ class Cliente(models.Model):
     nomecontato = models.CharField("Líder no cliente", max_length=200, blank=True)
     emailcontato = models.CharField("E-mail de contato", max_length=200, blank=True)
     fonecontato = models.CharField("Fone do contato", max_length=200, blank=True)
-    lidershoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot")
+    lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot")
 
     def __str__(self):
         return self.nome
@@ -88,9 +88,8 @@ class Projeto(models.Model):
     valor_final = models.DecimalField("Valor final", max_digits=9, decimal_places=2, blank=True, null=True)
     ativismo = models.IntegerField("Ativismo", blank=True)
     lucro = models.IntegerField("Lucro", blank=True)
+    lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
     colaboradores = models.ManyToManyField(Colaborador, blank=True)
 
     def __str__(self):
         return self.nome
-
-
