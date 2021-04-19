@@ -79,5 +79,5 @@ class ProjetoForm(forms.ModelForm):
     class Meta:
 
         model = Projeto
-        fields = ["nome", "cliente", "numero", "valor_total", "desconto", "valor_final", "ativismo", "lucro"]
+        fields = ["nome", "cliente", "numero", "valor_total", "desconto", "valor_final", "ativismo", "lucro", "colaboradores"]
 

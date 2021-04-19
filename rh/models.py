@@ -6,7 +6,7 @@ class Colaborador(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome completo", max_length=100)
-    data_nascimento = models.DateField("Data de nascimento", blank=True)
+    data_nascimento = models.DateField("Data de nascimento", blank=True, null=True)
     cpf = models.CharField("CPF", max_length=14, blank=True, unique=True)
     cpffile = models.FileField(upload_to="colaboradores/docs", max_length=600, blank=True)
     errege = models.CharField("RG", max_length=14, blank=True)
