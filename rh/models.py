@@ -55,7 +55,7 @@ class Fornecedores(models.Model):
 
 
 class Cliente(models.Model):
-    
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Empresa", max_length=100)
@@ -80,9 +80,12 @@ class Projeto(models.Model):
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
     numero = models.CharField("Número da Proposta", max_length=100, blank=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
-    valortotal = models.IntegerField("Valor total", blank=True)
+    # Quando for utilizar dinheiro, ou alguma coisa que tenha um número de casas decimais fixas (por exemplo duas)
+    # pode-se utilizar o campo "DecimalField". max_digitas é o tamanho total do campo, e o decimal_places são o número de
+    # casas que o número terá depois da ","
+    valor_total = models.DecimalField("Valor total", max_digits=9, decimal_places=2, blank=True, null=True)
     desconto = models.IntegerField("Desconto", blank=True)
-    valorfinal = models.IntegerField("Valor final", blank=True)
+    valor_final = models.DecimalField("Valor final", max_digits=9, decimal_places=2, blank=True, null=True)
     ativismo = models.IntegerField("Ativismo", blank=True)
     lucro = models.IntegerField("Lucro", blank=True)
 

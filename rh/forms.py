@@ -32,7 +32,7 @@ class ColaboradorForm(forms.ModelForm):
 
 
 class ClienteForm(forms.ModelForm):
-    
+
     def clean_cnpj(self):
         print("tô passando aqui")
         cnpj_digitado = self.cleaned_data.get("cnpj")
@@ -55,7 +55,7 @@ class ClienteForm(forms.ModelForm):
 
 
     class Meta:
-    
+
         model = Cliente
         fields = ["nome", "cnpj", "razaosocial", "logo", "nomecontato", "emailcontato", "fonecontato"]
 
@@ -63,7 +63,7 @@ class ClienteForm(forms.ModelForm):
 
 
 class ProjetoForm(forms.ModelForm):
-    
+
     def clean_nome(self):
         nome = self.cleaned_data.get('nome')
         caracteres_nao_permitidos = '!"#$%&\'()*+/:;<=>?@[\\]^_`{|}~'
@@ -77,7 +77,7 @@ class ProjetoForm(forms.ModelForm):
 
 
     class Meta:
-    
+
         model = Projeto
-        fields = ["nome", "cliente", "numero", "valortotal", "desconto", "valorfinal", "ativismo", "lucro"]
+        fields = ["nome", "cliente", "numero", "valor_total", "desconto", "valor_final", "ativismo", "lucro"]
 

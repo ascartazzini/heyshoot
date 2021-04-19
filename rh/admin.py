@@ -15,7 +15,7 @@ class ColaboradorAdmin(admin.ModelAdmin):
             return obj.data_nascimento.strftime("%d/%m/%Y")
         return "-"
     data_do_nascimento.short_description = 'Data Nasc.'
-    
+
     def thumbnail(self, obj):
         if obj.foto:
             return mark_safe('<img src="%s" width=100 height=100 />' % obj.foto.url)
@@ -30,7 +30,7 @@ class FornecedoresAdmin(admin.ModelAdmin):
 
 
 class ClienteAdmin(admin.ModelAdmin):
-    
+
     form = ClienteForm
     list_display = ("nome", "thumbnail", "cnpj", "razaosocial", "nomecontato", "emailcontato", "fonecontato")
     list_filter = ("lidershoot", )
@@ -43,9 +43,9 @@ class ClienteAdmin(admin.ModelAdmin):
 
 
 class ProjetoAdmin(admin.ModelAdmin):
-    
+
     form = ProjetoForm
-    list_display = ("nome", "cliente", "numero", "valortotal", "desconto", "valorfinal", "ativismo", "lucro")
+    list_display = ("nome", "cliente", "numero", "valor_total", "desconto", "valor_final", "ativismo", "lucro")
     list_filter = ("cliente", )
 
 
