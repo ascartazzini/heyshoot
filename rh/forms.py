@@ -70,6 +70,24 @@ class ProjetoForm(forms.ModelForm):
             raise forms.ValidationError("O campo nome tem que ter nome e sobrenome!")
         return nome
 
+    # Este método será executado sempre que ele terminar todas as validações extras do formulário (neste caso, clean_nome),
+    # e depois vai chamar essa função. Utiliza-se para validar dois ou mais campos ao mesmo tempo.
+    def clean(self):
+        # Primeiro, buscamos todos os campos já validados pela super classe
+        cleaned_data = super().clean()
+        # Agora, buscamos o campo onde está definido quem é o líder
+        lider_shoot = cleaned_data.get("lider_shoot")
+        # Buscamos também, todos os colaboradores selecionados no formulário
+        colaboradores = cleaned_data.get("colaboradores")
+        # Caso tenha sido informado o líder
+        if lider_shoot:
+            # E agora caso o líder esteja na lista dos colaboradores.
+            if lider_shoot in colaboradores:
+                # O primeiro parâmetro, é o campo o erro será informado
+                self.add_error("lider_shoot", "Se a pessoa é líder, ela não pode estar na lista de colaboradores.")
+                self.add_error("colaboradores", "O Tuli mandou dizer que o %s (%s) não pode estar aqui." % (lider_shoot.cpf, lider_shoot.nome))
+        return cleaned_data
+
     class Meta:
 
         model = Projeto
