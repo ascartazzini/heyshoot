@@ -80,4 +80,7 @@ class ProjetoForm(forms.ModelForm):
 
         model = Projeto
         fields = ["nome", "cliente", "numero", "valor_total", "desconto", "valor_final", "ativismo", "lucro", "colaboradores"]
+        widgets = {
+            "colaboradores": forms.CheckboxSelectMultiple,
+        }
 
