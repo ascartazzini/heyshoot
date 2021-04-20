@@ -8,9 +8,9 @@ class Colaborador(models.Model):
     nome = models.CharField("Nome completo", max_length=100)
     data_nascimento = models.DateField("Data de nascimento", blank=True, null=True)
     cpf = models.CharField("CPF", max_length=14, blank=True, unique=True)
-    cpffile = models.FileField(upload_to="colaboradores/docs", max_length=600, blank=True)
+    cpffile = models.FileField("Foto do CPF", upload_to="colaboradores/docs", max_length=600, blank=True)
     errege = models.CharField("RG", max_length=14, blank=True)
-    rgfile = models.FileField(upload_to="colaboradores/docs", max_length=600, blank=True)
+    rgfile = models.FileField("Foto do RG", upload_to="colaboradores/docs", max_length=600, blank=True)
     endereco = models.CharField("Endereço", max_length=200, blank=True)
     cidade = models.CharField("Cidade", max_length=100, blank=True)
     estado = models.CharField("Estado", max_length=100, blank=True)
@@ -25,7 +25,7 @@ class Colaborador(models.Model):
     foto = models.ImageField(upload_to="colaboradores/fotos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
     funcaodobrother = models.CharField("Qual a função", max_length=100, blank=True)
     salario = models.CharField("Salário", max_length=200, blank=True)
-    desligado = models.BooleanField("Desligado?", default=False, db_index=True)
+    desligado = models.BooleanField("Marque aqui se essa pessoa já foi desligada", default=False, db_index=True)
 
     def __str__(self):
         return self.nome
@@ -33,6 +33,7 @@ class Colaborador(models.Model):
     class Meta:
         verbose_name_plural = "Colaboradores"
         ordering = ("nome", )
+        verbose_name = "a pessoa"
 
 
 
@@ -78,7 +79,22 @@ class Projeto(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
-    numero = models.CharField("Número da Proposta", max_length=100, blank=True)
+    numero = models.IntegerField("Número da Proposta", blank=True)
+    cliente = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
+    lucro = models.IntegerField("Lucro", blank=True)
+    lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
+    colaboradores = models.ManyToManyField(Colaborador, blank=True)
+
+    def __str__(self):
+        return self.nome
+
+
+class Proposta(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
+    numero = models.IntegerField("Número da Proposta", blank=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
     # Quando for utilizar dinheiro, ou alguma coisa que tenha um número de casas decimais fixas (por exemplo duas)
     # pode-se utilizar o campo "DecimalField". max_digitas é o tamanho total do campo, e o decimal_places são o número de

@@ -1,6 +1,6 @@
 
 from django import forms
-from rh.models import Colaborador, Cliente, Projeto
+from rh.models import Colaborador, Cliente, Projeto, Proposta
 from validate_docbr import CPF, CNPJ
 
 
@@ -54,10 +54,10 @@ class ClienteForm(forms.ModelForm):
     class Meta:
 
         model = Cliente
-        fields = ["nome", "cnpj", "razaosocial", "logo", "nomecontato", "emailcontato", "fonecontato"]
+        fields = ["nome", "cnpj", "razaosocial", "logo", "nomecontato", "emailcontato", "fonecontato", "lider_shoot"]
 
 
-class ProjetoForm(forms.ModelForm):
+class PropostaForm(forms.ModelForm):
 
     def clean_nome(self):
         nome = self.cleaned_data.get('nome')
