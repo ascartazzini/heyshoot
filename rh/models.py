@@ -96,6 +96,9 @@ class Proposta(models.Model):
     # pode-se utilizar o campo "DecimalField". max_digitas é o tamanho total do campo, e o decimal_places são o número de
     # casas que o número terá depois da ","
     valor_final = models.DecimalField("Valor final", max_digits=9, decimal_places=2, blank=True, null=True)
+    lucro = models.IntegerField("Lucro da Shoot", blank=True, null=True)
+    ativismo = models.IntegerField("Quanto pra ativismo", blank=True, null=True)
+    horas = models.IntegerField("Horas vendidas", blank=True, null=True)
     lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
     colaboradores = models.ManyToManyField(Colaborador, blank=True)
     

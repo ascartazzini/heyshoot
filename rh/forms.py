@@ -1,6 +1,6 @@
 
 from django import forms
-from rh.models import Colaborador, Cliente, Proposta
+from rh.models import Colaborador, Cliente, Projeto
 from validate_docbr import CPF, CNPJ
 
 
@@ -57,7 +57,7 @@ class ClienteForm(forms.ModelForm):
         fields = ["nome", "cnpj", "razaosocial", "logo", "nomecontato", "emailcontato", "fonecontato", "lider_shoot"]
 
 
-class PropostaForm(forms.ModelForm):
+class ProjetoForm(forms.ModelForm):
 
     def clean_nome(self):
         nome = self.cleaned_data.get('nome')
@@ -90,8 +90,8 @@ class PropostaForm(forms.ModelForm):
 
     class Meta:
 
-        model = Proposta
-        fields = ["nome", "cliente", "numero", "valor_final", "lider_shoot", "colaboradores"]
+        model = Projeto
+        fields = ["nome", "numero"]
         widgets = {
             "colaboradores": forms.CheckboxSelectMultiple,
         }
