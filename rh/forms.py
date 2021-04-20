@@ -1,6 +1,6 @@
 
 from django import forms
-from rh.models import Colaborador, Cliente, Projeto, Proposta
+from rh.models import Colaborador, Cliente, Proposta
 from validate_docbr import CPF, CNPJ
 
 
@@ -57,7 +57,7 @@ class ClienteForm(forms.ModelForm):
         fields = ["nome", "cnpj", "razaosocial", "logo", "nomecontato", "emailcontato", "fonecontato", "lider_shoot"]
 
 
-class ProjetoForm(forms.ModelForm):
+class PropostaForm(forms.ModelForm):
 
     def clean_nome(self):
         nome = self.cleaned_data.get('nome')
@@ -90,31 +90,10 @@ class ProjetoForm(forms.ModelForm):
 
     class Meta:
 
-        model = Projeto
-        fields = ["nome", "cliente", "numero", "valor_total", "desconto", "valor_final", "ativismo", "lucro", "lider_shoot", "colaboradores"]
-        widgets = {
-            "colaboradores": forms.CheckboxSelectMultiple,
-        }
-
-
-class PropostaForm(forms.ModelForm):
-    
-    def clean_nome(self):
-        nome = self.cleaned_data.get('nome')
-        caracteres_nao_permitidos = '!"#$%&\'()*+/:;<=>?@[\\]^_`{|}~'
-        for c in caracteres_nao_permitidos:
-            if c in nome:
-                raise forms.ValidationError("O campo nome não pode ter o caracter '%s'!" % c)
-        nomes = nome.split()
-        if len(nomes) == 1:
-            raise forms.ValidationError("O campo nome tem que ter nome e sobrenome!")
-        return nome
-
-    class Meta:
-
         model = Proposta
-        fields = ["nome"]
+        fields = ["nome", "cliente", "numero", "valor_final", "lider_shoot", "colaboradores"]
         widgets = {
             "colaboradores": forms.CheckboxSelectMultiple,
         }
+
 

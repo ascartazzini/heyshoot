@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from rh.forms import ColaboradorForm, ClienteForm, ProjetoForm, PropostaForm
+from rh.forms import ColaboradorForm, ClienteForm, PropostaForm
 from rh.models import Colaborador, Fornecedores, Cliente, Projeto, Proposta
 
 
@@ -42,17 +42,17 @@ class ClienteAdmin(admin.ModelAdmin):
     thumbnail.short_description = 'Logo'
 
 
-class ProjetoAdmin(admin.ModelAdmin):
-
-    form = ProjetoForm
-    list_display = ("nome", "cliente", "numero", "valor_total", "desconto", "valor_final", "ativismo", "lucro")
+class PropostaAdmin(admin.ModelAdmin):
+    
+    list_display = ("nome", "cliente", "numero", "valor_final")
     list_filter = ("cliente", )
 
 
-class PropostaAdmin(admin.ModelAdmin):
+class ProjetoAdmin(admin.ModelAdmin):
     
     list_display = ("nome","numero")
     list_filter = ("numero", )
+
 
 
 admin.site.register(Colaborador, ColaboradorAdmin)
