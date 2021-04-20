@@ -51,12 +51,12 @@ class ProjetoAdmin(admin.ModelAdmin):
 
 class PropostaAdmin(admin.ModelAdmin):
     
-    form = ProjetoForm
-    list_display = ("nome", "cliente", "numero", "valor_total", "desconto", "valor_final", "ativismo", "lucro")
-    list_filter = ("cliente", )
+    list_display = ("nome","numero")
+    list_filter = ("numero", )
 
 
 admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(Projeto, ProjetoAdmin)
+admin.site.register(Proposta, PropostaAdmin)

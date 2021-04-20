@@ -57,7 +57,7 @@ class ClienteForm(forms.ModelForm):
         fields = ["nome", "cnpj", "razaosocial", "logo", "nomecontato", "emailcontato", "fonecontato", "lider_shoot"]
 
 
-class PropostaForm(forms.ModelForm):
+class ProjetoForm(forms.ModelForm):
 
     def clean_nome(self):
         nome = self.cleaned_data.get('nome')
@@ -95,3 +95,26 @@ class PropostaForm(forms.ModelForm):
         widgets = {
             "colaboradores": forms.CheckboxSelectMultiple,
         }
+
+
+class PropostaForm(forms.ModelForm):
+    
+    def clean_nome(self):
+        nome = self.cleaned_data.get('nome')
+        caracteres_nao_permitidos = '!"#$%&\'()*+/:;<=>?@[\\]^_`{|}~'
+        for c in caracteres_nao_permitidos:
+            if c in nome:
+                raise forms.ValidationError("O campo nome não pode ter o caracter '%s'!" % c)
+        nomes = nome.split()
+        if len(nomes) == 1:
+            raise forms.ValidationError("O campo nome tem que ter nome e sobrenome!")
+        return nome
+
+    class Meta:
+
+        model = Proposta
+        fields = ["nome"]
+        widgets = {
+            "colaboradores": forms.CheckboxSelectMultiple,
+        }
+

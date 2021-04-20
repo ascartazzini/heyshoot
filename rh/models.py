@@ -81,21 +81,6 @@ class Projeto(models.Model):
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
     numero = models.IntegerField("Número da Proposta", blank=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
-    lucro = models.IntegerField("Lucro", blank=True)
-    lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
-    colaboradores = models.ManyToManyField(Colaborador, blank=True)
-
-    def __str__(self):
-        return self.nome
-
-
-class Proposta(models.Model):
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
-    numero = models.IntegerField("Número da Proposta", blank=True)
-    cliente = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
     # Quando for utilizar dinheiro, ou alguma coisa que tenha um número de casas decimais fixas (por exemplo duas)
     # pode-se utilizar o campo "DecimalField". max_digitas é o tamanho total do campo, e o decimal_places são o número de
     # casas que o número terá depois da ","
@@ -109,3 +94,15 @@ class Proposta(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class Proposta(models.Model):
+    
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
+    numero = models.IntegerField("Número da Proposta", blank=True)
+    
+    def __str__(self):
+        return self.nome
+
