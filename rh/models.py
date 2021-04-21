@@ -80,9 +80,27 @@ class Projeto(models.Model):
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
     numero = models.IntegerField("Número da Proposta", blank=True)
-
+    lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
+    colaboradores = models.ManyToManyField(Colaborador, blank=True)
+    
     def __str__(self):
         return self.nome
+
+
+class TipoProjeto(models.Model):
+    
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome", max_length=100, blank=True)
+    descri = models.CharField("Descrição", max_length=600, blank=True)
+    tempo = models.IntegerField("Tempo do processo", blank=True)
+    
+    
+    def __str__(self):
+        return self.nome
+    
+    class Meta:
+        verbose_name = "Tipo de Projeto"
 
 
 class Proposta(models.Model):
@@ -92,6 +110,7 @@ class Proposta(models.Model):
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
     numero = models.IntegerField("Número da Proposta", blank=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
+    tipoprojeto = models.ForeignKey(TipoProjeto, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Tipo")
     # Quando for utilizar dinheiro, ou alguma coisa que tenha um número de casas decimais fixas (por exemplo duas)
     # pode-se utilizar o campo "DecimalField". max_digitas é o tamanho total do campo, e o decimal_places são o número de
     # casas que o número terá depois da ","
@@ -99,8 +118,8 @@ class Proposta(models.Model):
     lucro = models.IntegerField("Lucro da Shoot", blank=True, null=True)
     ativismo = models.IntegerField("Quanto pra ativismo", blank=True, null=True)
     horas = models.IntegerField("Horas vendidas", blank=True, null=True)
-    lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
-    colaboradores = models.ManyToManyField(Colaborador, blank=True)
+
+    
     
     def __str__(self):
         return self.nome

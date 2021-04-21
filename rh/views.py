@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from rh.models import Colaborador, Fornecedores, Cliente, Projeto, Proposta
+from rh.models import Colaborador, Fornecedores, Cliente, Projeto, Proposta, TipoProjeto
 
 
 class ColaboradoresView(ListView):
@@ -31,3 +31,9 @@ class PropostaView(ListView):
     context_object_name = "proposta"
     template_name = "propostas.html"
     model = Proposta
+
+class TipoProjetoView(ListView):
+    
+    context_object_name = "TipoProjeto"
+    template_name = "tipo_projeto.html"
+    model = TipoProjeto
