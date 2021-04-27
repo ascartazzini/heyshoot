@@ -82,29 +82,30 @@ class Projeto(models.Model):
     numero = models.IntegerField("Número da Proposta", blank=True)
     lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
     colaboradores = models.ManyToManyField(Colaborador, blank=True)
-    
+    resumo = models.TextField("Um breve resumo do projeto", help_text="Este campo é utilizado na apresentação dos detalhes do projeto no nosso site.", blank=True, default='')
+
     def __str__(self):
         return self.nome
 
 
 class TipoProjeto(models.Model):
-    
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome", max_length=100, blank=True)
     descri = models.CharField("Descrição", max_length=600, blank=True)
     tempo = models.IntegerField("Tempo do processo", blank=True)
-    
-    
+
+
     def __str__(self):
         return self.nome
-    
+
     class Meta:
         verbose_name = "Tipo de Projeto"
 
 
 class Proposta(models.Model):
-    
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
@@ -119,8 +120,8 @@ class Proposta(models.Model):
     ativismo = models.IntegerField("Quanto pra ativismo", blank=True, null=True)
     horas = models.IntegerField("Horas vendidas", blank=True, null=True)
 
-    
-    
+
+
     def __str__(self):
         return self.nome
 
