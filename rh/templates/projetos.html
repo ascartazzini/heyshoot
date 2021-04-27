@@ -17,7 +17,7 @@
 
         <ul>
         {% for projeto in projetos %}
-        <li>{{ projeto.nome }} {% if projeto.lider_shoot %}Liderado por {{ projeto.lider_shoot.nome }}{% endif %}</li>
+        <li>{{ projeto.nome }} {{ projeto.lider_shoot|default_if_none:"(Sem Líder)" }}</li>
         {% endfor %}
         </ul>
 
