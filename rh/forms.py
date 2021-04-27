@@ -11,7 +11,9 @@ class ColaboradorForm(forms.ModelForm):
         cpf_validador = CPF()
         if not cpf_validador.validate(cpf_digitado):
             raise forms.ValidationError("O CPF informado não é válido!")
-        return cpf_validador.mask(cpf_digitado)
+        # Estamos passando somente o only_digits porque zica se utilizarmos o cpf_validator com
+        # os caracters não dígitos. Exemplo: . e -
+        return cpf_validador.mask(cpf_validador._only_digits(cpf_digitado))
 
     def clean_nome(self):
         nome = self.cleaned_data.get('nome')
