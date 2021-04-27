@@ -14,5 +14,14 @@
     </head>
     <body>
         <h1>Projeto {{ projeto.nome }}</h1>
+        <p><a href="{% url 'lista_projeto' %}">Voltar Para Listagem de Projetos</a></p>
     </body>
 </html>
+
+{% comment%}
+Entre chaves e porcentagem, ele é um comando do sistema de template.
+
+Duas vezes chaves é para "escrever" um valor na tela. Ele vai jogar a variável no HTML
+
+E algumas vezes, teremos o | . Esse caracter permite executar alguma ação sobre a variável.
+{% endcomment %}
