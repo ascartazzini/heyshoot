@@ -15,6 +15,14 @@
     <body>
         <h1>Projeto{{ projetos|pluralize }}</h1>
 
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
         <ul>
         {% for projeto in projetos %}
         <li><a href="{% url 'detalhes_projeto' projeto.pk %}">{{ projeto.nome }}</a> {{ projeto.lider_shoot|default_if_none:"(Sem Líder)" }}</li>

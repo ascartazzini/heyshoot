@@ -1,7 +1,9 @@
-from django.views.generic import DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView
+from django.urls import reverse_lazy
+from django.contrib import messages
 
-from rh.models import (Cliente, Colaborador, Fornecedores, Projeto, Proposta,
-                       TipoProjeto)
+from rh.models import (Cliente, Colaborador, Contato, Fornecedores, Projeto,
+                       Proposta, TipoProjeto)
 
 
 class ColaboradoresView(ListView):
@@ -46,3 +48,15 @@ class TipoProjetoView(ListView):
     context_object_name = "TipoProjeto"
     template_name = "tipo_projeto.html"
     model = TipoProjeto
+
+
+class ContatoView(CreateView):
+
+    model = Contato
+    fields = ["nome", "email", "mensagem"]
+    template_name = "contato.html"
+    success_url = reverse_lazy("lista_projeto")
+
+    def form_valid(self, form):
+        messages.success(self.request, "Seu formulário foi enviado. Aguardo o Tuli responder.")
+        return super().form_valid(form)

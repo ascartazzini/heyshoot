@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from rh.forms import ColaboradorForm, ClienteForm, ProjetoForm
-from rh.models import Colaborador, Fornecedores, Cliente, Projeto, Proposta, TipoProjeto
+
+from rh.forms import ClienteForm, ColaboradorForm, ProjetoForm
+from rh.models import (Cliente, Colaborador, Contato, Fornecedores, Projeto,
+                       Proposta, TipoProjeto)
 
 
 class ColaboradorAdmin(admin.ModelAdmin):
@@ -43,25 +45,26 @@ class ClienteAdmin(admin.ModelAdmin):
 
 
 class PropostaAdmin(admin.ModelAdmin):
-    
+
     list_display = ("nome", "cliente", "numero", "valor_final", "lucro", "ativismo", "horas", "tipoprojeto")
     list_filter = ("cliente", )
 
 
 class ProjetoAdmin(admin.ModelAdmin):
-    
+
     form = ProjetoForm
     list_display = ("nome","numero", "lider_shoot")
     list_filter = ("numero", )
 
 
 class TipoProjetoAdmin(admin.ModelAdmin):
-    
+
     list_display = ("nome", "descri", "tempo")
     list_filter = ("tempo", )
 
 
 admin.site.register(Colaborador, ColaboradorAdmin)
+admin.site.register(Contato)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(Projeto, ProjetoAdmin)

@@ -120,8 +120,17 @@ class Proposta(models.Model):
     ativismo = models.IntegerField("Quanto pra ativismo", blank=True, null=True)
     horas = models.IntegerField("Horas vendidas", blank=True, null=True)
 
-
-
     def __str__(self):
         return self.nome
 
+
+class Contato(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome", max_length=100)
+    email = models.EmailField("E-mail")
+    mensagem = models.TextField("Mensagem")
+
+    def __str__(self):
+        return "%s: %s" % (self.nome, self.email)
