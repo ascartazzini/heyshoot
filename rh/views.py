@@ -1,6 +1,7 @@
-from django.views.generic import CreateView, DetailView, ListView
-from django.urls import reverse_lazy
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView
 
 from rh.models import (Cliente, Colaborador, Contato, Fornecedores, Projeto,
                        Proposta, TipoProjeto)
@@ -59,4 +60,22 @@ class ContatoView(CreateView):
 
     def form_valid(self, form):
         messages.success(self.request, "Seu formulário foi enviado. Aguardo o Tuli responder.")
+        mensagem = """
+            Uma nova pessoa entrou no site e mandou um salve.
+
+            Responder o salve é tão importante quanto não usar drogas.
+
+            Quem Enviou: %s
+            Email: %s
+            Mensagem: %s
+
+            Assinado.
+
+            Tuli
+        """
+        nome = form.cleaned_data.get("nome")
+        email = form.cleaned_data.get("email")
+        mensagem_enviada = form.cleaned_data.get("mensagem")
+        mensagem_enviar = mensagem % (nome, email, mensagem_enviada)
+        send_mail("Novo Contato no Site",mensagem_enviar, "contato@heyshoot.cc", ["tuli@heyshoot.cc"])
         return super().form_valid(form)
