@@ -13,11 +13,11 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <h1>Propostas</h1>
+        <h1>Proposta</h1>
 
         <ul>
-        {% for Proposta in Proposta %}
-        <li>{{ proposta.nome }}</li>
+        {% for proposta in proposta %}
+        <li><a href="{% url 'detalhes_proposta' proposta.pk %}">{{ proposta.nome|title }}</a> da {{ proposta.cliente }}</li>
         {% endfor %}
         </ul>
 

@@ -7,24 +7,22 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Projeto {{ projeto.nome }}</title>
+        <title>Propostas {{ proposta.nome }}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <h1>{{ projeto.nome|title }}</h1>
-        <p><strong>Resumo: </strong> {{ projeto.resumo|linebreaks }}</p>
-        <p><strong>Número da proposta: </strong> {{ projeto.numero }}</p>
-        <p><strong>Líder do projeto: </strong> {{ projeto.lider_shoot }}</p>
-        <strong>Colaboradores no projeto: </strong>
-        {% for colaborador in projeto.colaboradores.all %}
-        {{ colaborador.nome|linebreaks }}
-        {% empty %}
-        <p>Não tem colaboradores no projeto</p>
-        {% endfor %}
+        <h1>{{ proposta.nome|title }}</h1>
+        <p>Número da proposta: {{ proposta.numero }}</p>
+        <p>Cliente: {{ proposta.cliente }}</p>
+        <p>Workframe: {{ proposta.tipoprojeto }}</p>
+        <p>Valor da proposta: {{ proposta.valor_final }}</p>
+        <p>Lucro Shoot: {{ proposta.lucro }}</p>
+        <p>Ativismo: {{ proposta.ativismo }}</p>
+        <p>Horas vendidas: {{ proposta.horas }}</p>
         <br>
-        <p><a href="{% url 'lista_projeto' %}">Voltar Para Listagem de Projetos</a> | <a href="{% url 'contato' %}">Contato</a></p>
+        <p><a href="{% url 'lista_proposta' %}">Voltar Para Listagem de Propostas</a></p>
     </body>
 </html>
 

@@ -44,6 +44,12 @@ class PropostaView(ListView):
     template_name = "propostas.html"
     model = Proposta
 
+class PropostaDetalhesView(DetailView):
+    
+    context_object_name = "proposta"
+    template_name = "detalhes_propostas.html"
+    model = Proposta
+
 class TipoProjetoView(ListView):
 
     context_object_name = "TipoProjeto"

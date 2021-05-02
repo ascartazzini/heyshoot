@@ -25,7 +25,7 @@
 
         <ul>
         {% for projeto in projetos %}
-        <li><a href="{% url 'detalhes_projeto' projeto.pk %}">{{ projeto.nome }}</a> {{ projeto.lider_shoot|default_if_none:"(Sem Líder)" }}</li>
+        <li><a href="{% url 'detalhes_projeto' projeto.pk %}">{{ projeto.nome|title }}</a> do {{ projeto.lider_shoot|default_if_none:"(Sem Líder)" }}</li>
         {% endfor %}
         </ul>
 
