@@ -97,5 +97,3 @@ class ProjetoForm(forms.ModelForm):
         widgets = {
             "colaboradores": forms.CheckboxSelectMultiple,
         }
-
-

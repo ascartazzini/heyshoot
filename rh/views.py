@@ -25,12 +25,17 @@ class ClienteView(ListView):
     template_name = "clientes.html"
     model = Cliente
 
+class ClienteDetalhesView(DetailView):
+    
+    context_object_name = "cliente"
+    template_name = "detalhes_clientes.html"
+    model = Cliente
+
 class ProjetoView(ListView):
 
     context_object_name = "projetos"
     template_name = "projetos.html"
     model = Projeto
-
 
 class ProjetoDetalhesView(DetailView):
 
@@ -52,10 +57,9 @@ class PropostaDetalhesView(DetailView):
 
 class TipoProjetoView(ListView):
 
-    context_object_name = "TipoProjeto"
+    context_object_name = "tipoprojeto"
     template_name = "tipo_projeto.html"
     model = TipoProjeto
-
 
 class ContatoView(CreateView):
 

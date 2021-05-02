@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from django.urls import path
 
-from rh.views import (ClienteView, ColaboradoresView, FornecedoresView,
+from rh.views import (ClienteDetalhesView, ClienteView, ColaboradoresView, FornecedoresView,
                       ProjetoDetalhesView, ProjetoView, PropostaDetalhesView, PropostaView,
                       TipoProjetoView, ContatoView)
 
@@ -9,6 +9,7 @@ urlpatterns = [
     path("colaboradores/", ColaboradoresView.as_view(), name="lista_colaboradores"),
     path("fornecedores/", FornecedoresView.as_view(), name="lista_fornecedores"),
     path("clientes/", ClienteView.as_view(), name="lista_cliente"),
+    path("clientes/<int:pk>/", ClienteDetalhesView.as_view(), name="detalhes_cliente"),
     path("", ProjetoView.as_view(), name="lista_projeto"),
     path("projetos/", ProjetoView.as_view(), name="lista_projeto"),
     path("projetos/<int:pk>/", ProjetoDetalhesView.as_view(), name="detalhes_projeto"),

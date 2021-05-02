@@ -56,6 +56,11 @@ class ProjetoAdmin(admin.ModelAdmin):
     list_display = ("nome","numero", "lider_shoot")
     list_filter = ("numero", )
 
+class ContatoAdmin(admin.ModelAdmin):
+    
+    list_display = ("nome","email", "mensagem")
+    list_filter = ("nome", )
+
 
 class TipoProjetoAdmin(admin.ModelAdmin):
 
@@ -64,7 +69,7 @@ class TipoProjetoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Colaborador, ColaboradorAdmin)
-admin.site.register(Contato)
+admin.site.register(Contato, ContatoAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(Projeto, ProjetoAdmin)

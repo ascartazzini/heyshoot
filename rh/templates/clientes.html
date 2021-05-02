@@ -17,7 +17,7 @@
 
         <ul>
         {% for cliente in cliente %}
-        <li>{{ cliente.nome }}</li>
+        <li><a href="{% url 'detalhes_cliente' cliente.pk %}">{{ cliente.nome|title }}</a></li>
         {% endfor %}
         </ul>
 
