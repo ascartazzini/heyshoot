@@ -1,33 +1,11 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Projetos</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <h1>Projeto{{ projetos|pluralize }}</h1>
+{% extends 'base_shoot.html' %}
+{% block title %}Projetos{% endblock %}
+{% block content %}
+<h1>Projeto{{ projetos|pluralize }}</h1>
 
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-
-        <ul>
-        {% for projeto in projetos %}
-        <li><a href="{% url 'detalhes_projeto' projeto.pk %}">{{ projeto.nome|title }}</a> do {{ projeto.lider_shoot|default_if_none:"(Sem Líder)" }}</li>
-        {% endfor %}
-        </ul>
-
-    </body>
-</html>
+<ul>
+    {% for projeto in projetos %}
+    <li><a href="{% url 'detalhes_projeto' projeto.pk %}">{{ projeto.nome|title }}</a> do {{ projeto.lider_shoot|default_if_none:"(Sem Líder)" }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
