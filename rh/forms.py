@@ -1,8 +1,15 @@
 
 from django import forms
-from rh.models import Colaborador, Cliente, Projeto
+from rh.models import Colaborador, Contato, Cliente, Projeto
 from validate_docbr import CPF, CNPJ
 
+
+class ContatoForm(forms.ModelForm):
+
+    class Meta:
+
+        fields = ["nome", "email", "mensagem"]
+        model = Contato
 
 class ColaboradorForm(forms.ModelForm):
 

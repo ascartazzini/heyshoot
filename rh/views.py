@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
+from rh.forms import ContatoForm
 from rh.models import (Cliente, Colaborador, Contato, Fornecedores, Projeto,
                        Proposta, TipoProjeto)
 
@@ -38,6 +39,7 @@ class ClienteDetalhesView(DetailView):
 class ProjetoView(ListView):
 
     context_object_name = "projetos"
+    extra_context = {"form_contato": ContatoForm()}
     template_name = "projetos.html"
     model = Projeto
 
