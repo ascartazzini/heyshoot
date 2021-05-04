@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}{% endblock %} - Impacto Social!</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
@@ -25,6 +25,9 @@
         {% endif %}
 
         {% block content %}{% endblock %}
+
+        <h2>Principais Links</h2>
+        <p>Home | <a href="{% url 'contato' %}">Contato</a> | <a href="{% url 'lista_fornecedores' %}">Fornecedores</a> | <a href="{% url 'lista_projeto' %}">Projetos</a></p>
 
         <script src="" async defer></script>
     </body>

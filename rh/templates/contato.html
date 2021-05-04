@@ -1,34 +1,13 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Contato no Site Shoot The Shit</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <h1>Contato no Site Shoot The Shit</h1>
+{% extends 'base_shoot.html' %}
+{% block title %}Contato{% endblock %}
+{% block content %}
+    <h1>Contato no Site Shoot The Shit</h1>
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="Submit" value="Enviar" />
-        </form>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="Submit" value="Enviar" />
+    </form>
 
-        <p><a href="{% url 'lista_projeto' %}">Voltar Para Listagem de Projetos</a></p>
-    </body>
-</html>
-
-{% comment%}
-Entre chaves e porcentagem, ele é um comando do sistema de template.
-
-Duas vezes chaves é para "escrever" um valor na tela. Ele vai jogar a variável no HTML
-
-E algumas vezes, teremos o | . Esse caracter permite executar alguma ação sobre a variável.
-{% endcomment %}
+    <p><a href="{% url 'lista_projeto' %}">Voltar Para Listagem de Projetos</a></p>
+{% endblock %}
