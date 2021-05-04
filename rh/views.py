@@ -1,11 +1,15 @@
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from rh.models import (Cliente, Colaborador, Contato, Fornecedores, Projeto,
                        Proposta, TipoProjeto)
 
+
+class IndexView(TemplateView):
+
+    template_name = "index.html"
 
 class ColaboradoresView(ListView):
 
@@ -26,7 +30,7 @@ class ClienteView(ListView):
     model = Cliente
 
 class ClienteDetalhesView(DetailView):
-    
+
     context_object_name = "cliente"
     template_name = "detalhes_clientes.html"
     model = Cliente
@@ -50,7 +54,7 @@ class PropostaView(ListView):
     model = Proposta
 
 class PropostaDetalhesView(DetailView):
-    
+
     context_object_name = "proposta"
     template_name = "detalhes_propostas.html"
     model = Proposta
