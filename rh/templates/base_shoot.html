@@ -25,20 +25,42 @@
             {% endfor %}
         </ul>
         {% endif %}
-
-        {% block content %}{% endblock %}
-
-        <hr>
-        <footer>
-            <h2>Principais Links</h2>
-            <a href="{% url 'index' %}">Home</a> |
-            <a href="{% url 'contato' %}">Contato</a> |
-            <a href="{% url 'lista_cliente' %}">Clientes</a> |
-            <a href="{% url 'lista_fornecedores' %}">Fornecedores</a> |
-            <a href="{% url 'lista_colaboradores' %}">Colaboradores</a> | 
-            <a href="{% url 'lista_TipoProjeto' %}">Tipos de Projetos</a> | 
-            <a href="{% url 'lista_projeto' %}">Projetos</a></p>
-        </footer>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'lista_projeto' %}">Projetos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'lista_TipoProjeto' %}">Tipos de Projetos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'lista_colaboradores' %}">Colaboradores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'lista_fornecedores' %}">Fornecedores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'lista_cliente' %}">Clientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'contato' %}">Contato</a>
+                            </li>
+                        </ul>        
+                    </div>
+                </div>
+            </nav>
+            {% block content %}{% endblock %}
+        </div>
+    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     </body>
 </html>
