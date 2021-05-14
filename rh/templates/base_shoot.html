@@ -26,9 +26,15 @@
 
         {% block content %}{% endblock %}
 
+        <hr>
         <h2>Principais Links</h2>
-        <p>Home | <a href="{% url 'contato' %}">Contato</a> | <a href="{% url 'lista_fornecedores' %}">Fornecedores</a> | <a href="{% url 'lista_projeto' %}">Projetos</a></p>
+        <a href="{% url 'index' %}">Home</a> |
+        <a href="{% url 'contato' %}">Contato</a> |
+        <a href="{% url 'lista_cliente' %}">Clientes</a> |
+        <a href="{% url 'lista_fornecedores' %}">Fornecedores</a> |
+        <a href="{% url 'lista_colaboradores' %}">Colaboradores</a> | 
+        <a href="{% url 'lista_TipoProjeto' %}">Tipos de Projetos</a> | 
+        <a href="{% url 'lista_projeto' %}">Projetos</a></p>
 
-        <script src="" async defer></script>
     </body>
 </html>

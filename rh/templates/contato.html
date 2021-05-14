@@ -1,7 +1,7 @@
 {% extends 'base_shoot.html' %}
 {% block title %}Contato{% endblock %}
 {% block content %}
-    <h1>Contato no Site Shoot The Shit</h1>
+    <h1>Contato</h1>
 
     <form method="POST">
         {% csrf_token %}
@@ -9,5 +9,4 @@
         <input type="Submit" value="Enviar" />
     </form>
 
-    <p><a href="{% url 'lista_projeto' %}">Voltar Para Listagem de Projetos</a></p>
 {% endblock %}
