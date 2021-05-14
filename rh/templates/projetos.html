@@ -2,13 +2,9 @@
 {% block title %}Projetos{% endblock %}
 {% block content %}
 <h1>Projeto{{ projetos|pluralize }}</h1>
-
 <ul>
     {% for projeto in projetos %}
     <li><a href="{% url 'detalhes_projeto' projeto.pk %}">{{ projeto.nome|title }}</a> do {{ projeto.lider_shoot|default_if_none:"(Sem Líder)" }}</li>
     {% endfor %}
 </ul>
-<hr>
-{% include "partials/form_contato.html" %}
-
 {% endblock %}

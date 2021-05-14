@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -10,7 +11,8 @@
         <title>{% block title %}{% endblock %} - Impacto Social!</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -27,14 +29,16 @@
         {% block content %}{% endblock %}
 
         <hr>
-        <h2>Principais Links</h2>
-        <a href="{% url 'index' %}">Home</a> |
-        <a href="{% url 'contato' %}">Contato</a> |
-        <a href="{% url 'lista_cliente' %}">Clientes</a> |
-        <a href="{% url 'lista_fornecedores' %}">Fornecedores</a> |
-        <a href="{% url 'lista_colaboradores' %}">Colaboradores</a> | 
-        <a href="{% url 'lista_TipoProjeto' %}">Tipos de Projetos</a> | 
-        <a href="{% url 'lista_projeto' %}">Projetos</a></p>
-
+        <footer>
+            <h2>Principais Links</h2>
+            <a href="{% url 'index' %}">Home</a> |
+            <a href="{% url 'contato' %}">Contato</a> |
+            <a href="{% url 'lista_cliente' %}">Clientes</a> |
+            <a href="{% url 'lista_fornecedores' %}">Fornecedores</a> |
+            <a href="{% url 'lista_colaboradores' %}">Colaboradores</a> | 
+            <a href="{% url 'lista_TipoProjeto' %}">Tipos de Projetos</a> | 
+            <a href="{% url 'lista_projeto' %}">Projetos</a></p>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     </body>
 </html>
