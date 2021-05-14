@@ -1,35 +1,14 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Propostas {{ proposta.nome }}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <h1>{{ proposta.nome|title }}</h1>
-        <p>Número da proposta: {{ proposta.numero }}</p>
-        <p>Cliente: {{ proposta.cliente }}</p>
-        <p>Workframe: {{ proposta.tipoprojeto }}</p>
-        <p>Valor da proposta: {{ proposta.valor_final }}</p>
-        <p>Lucro Shoot: {{ proposta.lucro }}</p>
-        <p>Ativismo: {{ proposta.ativismo }}</p>
-        <p>Horas vendidas: {{ proposta.horas }}</p>
-        <br>
-        <p><a href="{% url 'lista_proposta' %}">Voltar Para Listagem de Propostas</a></p>
-    </body>
-</html>
-
-{% comment%}
-Entre chaves e porcentagem, ele é um comando do sistema de template.
-
-Duas vezes chaves é para "escrever" um valor na tela. Ele vai jogar a variável no HTML
-
-E algumas vezes, teremos o | . Esse caracter permite executar alguma ação sobre a variável.
-{% endcomment %}
+{% extends 'base_shoot.html' %}
+{% block title %}<h1>{{ proposta.nome|title }}</h1>{% endblock %}
+{% block content %}
+    <h1>Shoot</h1>
+    <p>Número da proposta: {{ proposta.numero }}</p>
+    <p>Cliente: {{ proposta.cliente }}</p>
+    <p>Workframe: {{ proposta.tipoprojeto }}</p>
+    <p>Valor da proposta: {{ proposta.valor_final }}</p>
+    <p>Lucro Shoot: {{ proposta.lucro }}</p>
+    <p>Ativismo: {{ proposta.ativismo }}</p>
+    <p>Horas vendidas: {{ proposta.horas }}</p>
+    <br>
+    <p><a href="{% url 'lista_proposta' %}">Voltar Para Listagem de Propostas</a></p>
+{% endblock %}

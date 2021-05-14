@@ -1,37 +1,16 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Projeto {{ projeto.nome }}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <h1>{{ projeto.nome|title }}</h1>
-        <p><strong>Resumo: </strong> {{ projeto.resumo|linebreaks }}</p>
-        <p><strong>Número da proposta: </strong> {{ projeto.numero }}</p>
-        <p><strong>Líder do projeto: </strong> {{ projeto.lider_shoot }}</p>
-        <strong>Colaboradores no projeto: </strong>
-        {% for colaborador in projeto.colaboradores.all %}
-        {{ colaborador.nome|linebreaks }}
-        {% empty %}
-        <p>Não tem colaboradores no projeto</p>
-        {% endfor %}
-        <br>
-        <p><a href="{% url 'lista_projeto' %}">Voltar Para Listagem de Projetos</a> | <a href="{% url 'contato' %}">Contato</a></p>
-    </body>
-</html>
-
-{% comment%}
-Entre chaves e porcentagem, ele é um comando do sistema de template.
-
-Duas vezes chaves é para "escrever" um valor na tela. Ele vai jogar a variável no HTML
-
-E algumas vezes, teremos o | . Esse caracter permite executar alguma ação sobre a variável.
-{% endcomment %}
+{% extends 'base_shoot.html' %}
+{% block title %}<h1>{{ projeto.nome|title }}</h1>{% endblock %}
+{% block content %}
+    <h1>Shoot</h1>
+    <p><strong>Resumo: </strong> {{ projeto.resumo|linebreaks }}</p>
+    <p><strong>Número da proposta: </strong> {{ projeto.numero }}</p>
+    <p><strong>Líder do projeto: </strong> {{ projeto.lider_shoot }}</p>
+    <strong>Colaboradores no projeto: </strong>
+    {% for colaborador in projeto.colaboradores.all %}
+    {{ colaborador.nome|linebreaks }}
+    {% empty %}
+    <p>Não tem colaboradores no projeto</p>
+    {% endfor %}
+    <br>
+    <p><a href="{% url 'lista_projeto' %}">Voltar Para Listagem de Projetos</a> | <a href="{% url 'contato' %}">Contato</a></p>
+{% endblock %}
