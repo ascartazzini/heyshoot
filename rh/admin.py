@@ -31,8 +31,8 @@ class ColaboradorAdmin(admin.ModelAdmin):
 
 class FornecedoresAdmin(admin.ModelAdmin):
 
-    list_display = ("titulo", "fone", "email", "cidade", "observ", "quem_indicou")
-    list_filter = ("fone", )
+    list_display = ("titulo", "email", "cidade", "observ", "atividade", "iniciativanaobranca")
+    list_filter = ("atividade", "iniciativanaobranca", )
 
 
 class ClienteAdmin(admin.ModelAdmin):

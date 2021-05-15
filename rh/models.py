@@ -6,6 +6,11 @@ class Atividadecomercial(models.Model):
     nome = models.CharField("Qual a atividade Comercial", max_length=100, blank=True)
     desc = models.CharField("Alguma descrição?", max_length=100, blank=True)
 
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name = "Atividade"
 
 class Colaborador(models.Model):
 
@@ -53,6 +58,8 @@ class Fornecedores(models.Model):
     cidade = models.CharField("Cidade", max_length=200, blank=True)
     observ = models.CharField("Observação", max_length=200, blank=True)
     quem_indicou = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Quem indicou?")
+    atividade = models.ForeignKey(Atividadecomercial, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Atividade")
+    iniciativanaobranca = models.BooleanField("Iniciativa não-branca", default=False, db_index=True)
 
     def __str__(self):
         return self.titulo
