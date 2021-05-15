@@ -1,5 +1,11 @@
 from django.db import models
 
+class Atividadecomercial(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Qual a atividade Comercial", max_length=100, blank=True)
+    desc = models.CharField("Alguma descrição?", max_length=100, blank=True)
+
 
 class Colaborador(models.Model):
 
@@ -25,7 +31,7 @@ class Colaborador(models.Model):
     foto = models.ImageField(upload_to="colaboradores/fotos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
     funcaodobrother = models.CharField("Qual a função", max_length=100, blank=True)
     salario = models.CharField("Salário", max_length=200, blank=True)
-    desligado = models.BooleanField("Marque aqui se essa pessoa já foi desligada", default=False, db_index=True)
+    desligado = models.BooleanField("Status na empresa", default=False, db_index=True)
 
     def __str__(self):
         return self.nome
@@ -36,13 +42,16 @@ class Colaborador(models.Model):
         verbose_name = "a pessoa"
 
 
-
 class Fornecedores(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    titulo = models.CharField("Nome do Fornecedor", max_length=100)
-    oque = models.CharField("O que faz", max_length=200)
+    titulo = models.CharField("Empresa", max_length=100, blank=True)
+    oque = models.CharField("Contato", max_length=200, blank=True)
+    fone = models.CharField("Fone", max_length=100, blank=True)
+    email = models.CharField("Email", max_length=200, blank=True)
+    cidade = models.CharField("Cidade", max_length=200, blank=True)
+    observ = models.CharField("Observação", max_length=200, blank=True)
     quem_indicou = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Quem indicou?")
 
     def __str__(self):

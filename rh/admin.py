@@ -2,9 +2,13 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from rh.forms import ClienteForm, ColaboradorForm, ProjetoForm
-from rh.models import (Cliente, Colaborador, Contato, Fornecedores, Projeto,
+from rh.models import (Atividadecomercial, Cliente, Colaborador, Contato, Fornecedores, Projeto,
                        Proposta, TipoProjeto)
 
+
+class AtividadecomercialAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "desc")
 
 class ColaboradorAdmin(admin.ModelAdmin):
 
@@ -22,13 +26,13 @@ class ColaboradorAdmin(admin.ModelAdmin):
         if obj.foto:
             return mark_safe('<img src="%s" width=100 height=100 />' % obj.foto.url)
         return "-"
-    thumbnail.short_description = 'Fotinhoooo'
+    thumbnail.short_description = 'Foto'
 
 
 class FornecedoresAdmin(admin.ModelAdmin):
 
-    list_display = ("titulo", "oque", "quem_indicou")
-    list_filter = ("quem_indicou", )
+    list_display = ("titulo", "fone", "email", "cidade", "observ", "quem_indicou")
+    list_filter = ("fone", )
 
 
 class ClienteAdmin(admin.ModelAdmin):
@@ -68,6 +72,7 @@ class TipoProjetoAdmin(admin.ModelAdmin):
     list_filter = ("tempo", )
 
 
+admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
 admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Contato, ContatoAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
