@@ -7,9 +7,14 @@ from validate_docbr import CPF, CNPJ
 class ContatoForm(forms.ModelForm):
 
     class Meta:
-
-        fields = ["nome", "email", "mensagem"]
         model = Contato
+        fields = ["nome", "email", "mensagem"]
+        
+        widgets = {
+            'nome': forms.TextInput(attrs={'class':'form-control'}),
+            'email': forms.TextInput(attrs={'class':'form-control'}),
+            'mensagem': forms.Textarea(attrs={'class':'form-control'}),
+        }
 
 class ColaboradorForm(forms.ModelForm):
 

@@ -2,9 +2,24 @@
 {% block title %}Colaboradores{% endblock %}
 {% block content %}
 <h1>Colaboradores</h1>
-<ul>
+<table class="table table-borderless table-hover">
+    <thead>
+      <tr class="table-primary">
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Função</th>
+        <th scope="col">Imagem</th>
+      </tr>
+    </thead>
+    <tbody>
     {% for colaborador in colaboradores %}
-    <li>{{ colaborador.nome }}</li>
+      <tr>
+        <th scope="row">{{ colaborador.nome }}</th>
+        <td>{{ colaborador.emailpessoal }}</td>
+        <td>{{ colaborador.funcaodobrother }}</td>
+        <td><img src="{{ colaborador.foto }}" class="img-thumbnail rounded"></td>
+      </tr>
     {% endfor %}
-</ul>
+    </tbody>
+</table>
 {% endblock %}

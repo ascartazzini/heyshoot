@@ -1,12 +1,12 @@
 {% extends 'base_shoot.html' %}
 {% block title %}Contato{% endblock %}
 {% block content %}
-    <h1>Contato</h1>
-
+<h1>Contato</h1>
+<div class="form-group">
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="Submit" value="Enviar" />
+        <input type="Submit" class="btn btn-secondary" value="Enviar" />
     </form>
-
+</div>
 {% endblock %}

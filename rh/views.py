@@ -70,9 +70,10 @@ class TipoProjetoView(ListView):
 class ContatoView(CreateView):
 
     model = Contato
-    fields = ["nome", "email", "mensagem"]
+    #fields = ["nome", "email", "mensagem"]
     template_name = "contato.html"
-    success_url = reverse_lazy("lista_projeto")
+    form_class = ContatoForm
+    success_url = reverse_lazy("index")
 
     def form_valid(self, form):
         messages.success(self.request, "Seu formulário foi enviado. Aguardo o Tuli responder.")
