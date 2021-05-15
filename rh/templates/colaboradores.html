@@ -14,10 +14,14 @@
     <tbody>
     {% for colaborador in colaboradores %}
       <tr>
-        <th scope="row">{{ colaborador.nome }}</th>
+        <th scope="row">
+            <a href="{% url 'detalhes_colaborador' colaborador.pk %}">
+                <img src="{{ colaborador.foto }}" width="100" height="100" class="img-thumbnail rounded">
+            </a>
+        </th>
         <td>{{ colaborador.emailpessoal }}</td>
         <td>{{ colaborador.funcaodobrother }}</td>
-        <td><img src="{{ colaborador.foto }}" class="img-thumbnail rounded"></td>
+        <td>{{ colaborador.nome }}</td>
       </tr>
     {% endfor %}
     </tbody>

@@ -36,6 +36,12 @@ class ClienteDetalhesView(DetailView):
     template_name = "detalhes_clientes.html"
     model = Cliente
 
+class ColaboradoresDetalhesView(DetailView):
+    
+    context_object_name = "colaborador"
+    template_name = "detalhes_colabs.html"
+    model = Colaborador
+
 class ProjetoView(ListView):
 
     context_object_name = "projetos"
