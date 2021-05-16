@@ -5,7 +5,7 @@ from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       ProjetoForm)
 from rh.models import (Atividadecomercial, Cliente, Clima, Colaborador,
                        Contato, Curso, Folguinha, Fornecedores, Hierarquia,
-                       Projeto, Proposta, TipoProjeto)
+                       Projeto, Promocao, Proposta, TipoProjeto)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -100,6 +100,10 @@ class CursoAdmin(admin.ModelAdmin):
     list_display = ("qual", "quando")
     list_filter = ("paraquem", )
     
+class PromocaoAdmin(admin.ModelAdmin):
+    list_display = ("quem", "quando", "paraqual")
+    list_filter = ("quem", )
+
 
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
 admin.site.register(Clima, ClimaAdmin)
@@ -113,3 +117,4 @@ admin.site.register(Hierarquia, HierarquiaAdmin)
 admin.site.register(Projeto, ProjetoAdmin)
 admin.site.register(Proposta, PropostaAdmin)
 admin.site.register(TipoProjeto, TipoProjetoAdmin)
+admin.site.register(Promocao, PromocaoAdmin)

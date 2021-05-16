@@ -201,4 +201,16 @@ class Curso(models.Model):
     paraquem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Para quem")
 
     class Meta:
-        verbose_name = "Cursos"
+        verbose_name = "Curso"
+
+
+class Promocao(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
+    quem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Para quem")
+    quando = models.DateField("Quando", blank=True, null=True)
+    paraqual = models.ForeignKey(Hierarquia, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Para o que")
+
+    class Meta:
+        verbose_name = "Promoção"
+        verbose_name_plural = "Promoções"
