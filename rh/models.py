@@ -12,6 +12,20 @@ class Atividadecomercial(models.Model):
     class Meta:
         verbose_name = "Atividade"
 
+
+
+class Hierarquia(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome da Função", max_length=200, blank=True)
+    salariomin = models.IntegerField("Salário mínimo", blank=True, null=True)
+    salariomax = models.IntegerField("Salário máximo", blank=True, null=True)
+
+    def __str__(self):
+        return self.nome
+
+
 class Colaborador(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
@@ -34,7 +48,8 @@ class Colaborador(models.Model):
     foto_x = models.PositiveSmallIntegerField("Foto X", default=0, editable=False)
     foto_y = models.PositiveSmallIntegerField("Foto Y", default=0, editable=False)
     foto = models.ImageField(upload_to="colaboradores/fotos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
-    funcaodobrother = models.CharField("Qual a função", max_length=100, blank=True)
+    #funcaodobrother = models.CharField("Qual a função", max_length=100, blank=True)
+    funcaodobrother = models.ForeignKey(Hierarquia, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Qual a função atual")
     salario = models.CharField("Salário", max_length=200, blank=True)
     desligado = models.BooleanField("Status na empresa", default=False, db_index=True)
 
@@ -65,10 +80,8 @@ class Fornecedores(models.Model):
         return self.titulo
 
     class Meta:
-
         verbose_name = "Fornecedor"
         verbose_name_plural = "Fornecedores"
-
 
 
 class Cliente(models.Model):

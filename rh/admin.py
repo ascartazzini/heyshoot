@@ -3,7 +3,7 @@ from django.utils.safestring import mark_safe
 
 from rh.forms import ClienteForm, ColaboradorForm, ProjetoForm
 from rh.models import (Atividadecomercial, Cliente, Colaborador, Contato, Fornecedores, Projeto,
-                       Proposta, TipoProjeto)
+                       Proposta, TipoProjeto, Hierarquia)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -47,6 +47,10 @@ class ClienteAdmin(admin.ModelAdmin):
         return "-"
     thumbnail.short_description = 'Logo'
 
+class HierarquiaAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "salariomin", "salariomax")
+    list_filter = ("nome", )
 
 class PropostaAdmin(admin.ModelAdmin):
 
@@ -77,6 +81,7 @@ admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Contato, ContatoAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Cliente, ClienteAdmin)
+admin.site.register(Hierarquia, HierarquiaAdmin)
 admin.site.register(Projeto, ProjetoAdmin)
 admin.site.register(Proposta, PropostaAdmin)
 admin.site.register(TipoProjeto, TipoProjetoAdmin)
