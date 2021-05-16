@@ -1,7 +1,8 @@
 
 from django import forms
-from rh.models import Colaborador, Contato, Cliente, Projeto
-from validate_docbr import CPF, CNPJ
+from validate_docbr import CNPJ, CPF
+
+from rh.models import Cliente, Clima, Colaborador, Contato, Projeto
 
 
 class ContatoForm(forms.ModelForm):
@@ -108,4 +109,15 @@ class ProjetoForm(forms.ModelForm):
         fields = ["nome", "numero","lider_shoot", "colaboradores", "resumo"]
         widgets = {
             "colaboradores": forms.CheckboxSelectMultiple,
+        }
+
+
+class ClimaForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Clima
+        fields = ["nome", "desc", "quando", "paraquem"]
+        widgets = {
+            "paraquem": forms.CheckboxSelectMultiple,
         }

@@ -1,14 +1,16 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from rh.forms import ClienteForm, ColaboradorForm, ProjetoForm
-from rh.models import (Atividadecomercial, Cliente, Colaborador, Folguinha, Contato, Fornecedores, Projeto,
-                       Proposta, TipoProjeto, Hierarquia)
+from rh.forms import ClienteForm, ClimaForm, ColaboradorForm, ProjetoForm
+from rh.models import (Atividadecomercial, Cliente, Clima, Colaborador,
+                       Contato, Folguinha, Fornecedores, Hierarquia, Projeto,
+                       Proposta, TipoProjeto)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "desc")
+
 
 class ColaboradorAdmin(admin.ModelAdmin):
 
@@ -28,10 +30,12 @@ class ColaboradorAdmin(admin.ModelAdmin):
         return "-"
     thumbnail.short_description = 'Foto'
 
+
 class FolguinhaAdmin(admin.ModelAdmin):
 
     list_display = ("quem", "inicio", "fim")
     list_filter = ("quem", )
+
 
 class FornecedoresAdmin(admin.ModelAdmin):
 
@@ -51,10 +55,12 @@ class ClienteAdmin(admin.ModelAdmin):
         return "-"
     thumbnail.short_description = 'Logo'
 
+
 class HierarquiaAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "salariomin", "salariomax")
     list_filter = ("nome", )
+
 
 class PropostaAdmin(admin.ModelAdmin):
 
@@ -80,7 +86,16 @@ class TipoProjetoAdmin(admin.ModelAdmin):
     list_filter = ("tempo", )
 
 
+class ClimaAdmin(admin.ModelAdmin):
+    
+    form = ClimaForm
+    list_display = ("nome", "desc")
+    list_filter = ("nome", )
+    
+
+
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
+admin.site.register(Clima, ClimaAdmin)
 admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Contato, ContatoAdmin)
 admin.site.register(Folguinha, FolguinhaAdmin)

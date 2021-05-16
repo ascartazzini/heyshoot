@@ -19,8 +19,8 @@ class Hierarquia(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome da Função", max_length=200, blank=True)
-    salariomin = models.IntegerField("Salário mínimo", blank=True, null=True)
-    salariomax = models.IntegerField("Salário máximo", blank=True, null=True)
+    salariomin = models.DecimalField("Salário mínimo", max_digits=9, decimal_places=2, blank=True, null=True)
+    salariomax = models.DecimalField("Salário máximo", max_digits=9, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return self.nome
@@ -69,9 +69,9 @@ class Folguinha(models.Model):
     inicio = models.DateField("De quando", blank=True, null=True)
     fim = models.DateField("Até quando", blank=True, null=True)
 
-    def __str__(self):
-        return self.quem
-        
+    class Meta:
+        verbose_name = "Folguinha"
+
 
 class Fornecedores(models.Model):
 
@@ -174,3 +174,19 @@ class Contato(models.Model):
 
     def __str__(self):
         return "%s: %s" % (self.nome, self.email)
+
+
+class Clima(models.Model):
+    
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome da Pesquisa de Clima", max_length=200, blank=True)
+    desc = models.CharField("Descrição da pesquisa", max_length=200, blank=True)
+    quando = models.DateField("Aplicou quando", blank=True, null=True)
+    paraquem = models.ManyToManyField(Colaborador, blank=True)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name = "Pesquisas de clima"
