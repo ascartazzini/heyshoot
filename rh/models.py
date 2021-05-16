@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.base import Model
 
 class Atividadecomercial(models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -190,3 +191,14 @@ class Clima(models.Model):
 
     class Meta:
         verbose_name = "Pesquisas de clima"
+
+
+class Curso(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
+    quando = models.DateField("Quando", blank=True, null=True)
+    qual = models.CharField("Qual curso foi?", max_length=200, blank=True)
+    paraquem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Para quem")
+
+    class Meta:
+        verbose_name = "Cursos"

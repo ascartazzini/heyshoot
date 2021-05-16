@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from rh.forms import ClienteForm, ClimaForm, ColaboradorForm, ProjetoForm
+from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
+                      ProjetoForm)
 from rh.models import (Atividadecomercial, Cliente, Clima, Colaborador,
-                       Contato, Folguinha, Fornecedores, Hierarquia, Projeto,
-                       Proposta, TipoProjeto)
+                       Contato, Curso, Folguinha, Fornecedores, Hierarquia,
+                       Projeto, Proposta, TipoProjeto)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -93,11 +94,18 @@ class ClimaAdmin(admin.ModelAdmin):
     list_filter = ("nome", )
     
 
+class CursoAdmin(admin.ModelAdmin):
+    
+    form = CursoForm
+    list_display = ("qual", "quando")
+    list_filter = ("paraquem", )
+    
 
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
 admin.site.register(Clima, ClimaAdmin)
 admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Contato, ContatoAdmin)
+admin.site.register(Curso, CursoAdmin)
 admin.site.register(Folguinha, FolguinhaAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Cliente, ClienteAdmin)
