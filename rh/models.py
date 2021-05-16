@@ -48,10 +48,10 @@ class Colaborador(models.Model):
     foto_x = models.PositiveSmallIntegerField("Foto X", default=0, editable=False)
     foto_y = models.PositiveSmallIntegerField("Foto Y", default=0, editable=False)
     foto = models.ImageField(upload_to="colaboradores/fotos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
-    #funcaodobrother = models.CharField("Qual a função", max_length=100, blank=True)
     funcaodobrother = models.ForeignKey(Hierarquia, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Qual a função atual")
     salario = models.CharField("Salário", max_length=200, blank=True)
-    desligado = models.BooleanField("Status na empresa", default=False, db_index=True)
+    entrounashoot = models.DateField("Entrou na Shoot que dia", blank=True, null=True)
+    desligado = models.BooleanField("Não trampa mais aqui?", default=False, db_index=True)
 
     def __str__(self):
         return self.nome
@@ -61,6 +61,17 @@ class Colaborador(models.Model):
         ordering = ("nome", )
         verbose_name = "a pessoa"
 
+
+class Folguinha(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
+    quem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Quem")
+    inicio = models.DateField("De quando", blank=True, null=True)
+    fim = models.DateField("Até quando", blank=True, null=True)
+
+    def __str__(self):
+        return self.quem
+        
 
 class Fornecedores(models.Model):
 

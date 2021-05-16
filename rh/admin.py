@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from rh.forms import ClienteForm, ColaboradorForm, ProjetoForm
-from rh.models import (Atividadecomercial, Cliente, Colaborador, Contato, Fornecedores, Projeto,
+from rh.models import (Atividadecomercial, Cliente, Colaborador, Folguinha, Contato, Fornecedores, Projeto,
                        Proposta, TipoProjeto, Hierarquia)
 
 
@@ -13,7 +13,7 @@ class AtividadecomercialAdmin(admin.ModelAdmin):
 class ColaboradorAdmin(admin.ModelAdmin):
 
     form = ColaboradorForm
-    list_display = ("nome", "funcaodobrother", "data_do_nascimento", "thumbnail", "desligado")
+    list_display = ("nome", "funcaodobrother", "data_do_nascimento", "thumbnail", "entrounashoot" , "desligado")
     list_filter = ("desligado", )
 
     def data_do_nascimento(self, obj):
@@ -28,6 +28,10 @@ class ColaboradorAdmin(admin.ModelAdmin):
         return "-"
     thumbnail.short_description = 'Foto'
 
+class FolguinhaAdmin(admin.ModelAdmin):
+
+    list_display = ("quem", "inicio", "fim")
+    list_filter = ("quem", )
 
 class FornecedoresAdmin(admin.ModelAdmin):
 
@@ -79,6 +83,7 @@ class TipoProjetoAdmin(admin.ModelAdmin):
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
 admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Contato, ContatoAdmin)
+admin.site.register(Folguinha, FolguinhaAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(Hierarquia, HierarquiaAdmin)
