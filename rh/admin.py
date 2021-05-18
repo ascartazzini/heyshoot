@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from django.contrib import messages
 
 from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       ProjetoForm)
@@ -102,8 +103,16 @@ class CursoAdmin(admin.ModelAdmin):
 
 
 class PromocaoAdmin(admin.ModelAdmin):
+
     list_display = ("quem", "quando", "paraqual")
     list_filter = ("quem", )
+
+    def save_model(self, request, obj, form, change):
+        r = super().save_model(request, obj, form, change)
+        obj.quem.funcaodobrother = obj.paraqual
+        obj.quem.save()
+        messages.success(request, "O colaborador teve o seu status alterado.")
+        return r
 
 
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
