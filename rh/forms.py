@@ -130,5 +130,5 @@ class CursoForm(forms.ModelForm):
         model = Curso
         fields = ["qual", "quando", "paraquem"]
         widgets = {
-            "paraquem": forms.CheckboxSelectMultiple,
+            "paraquem": forms.RadioSelect,
         }

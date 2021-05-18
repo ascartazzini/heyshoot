@@ -76,7 +76,7 @@ class ProjetoAdmin(admin.ModelAdmin):
     list_filter = ("numero", )
 
 class ContatoAdmin(admin.ModelAdmin):
-    
+
     list_display = ("nome","email", "mensagem")
     list_filter = ("nome", )
 
@@ -88,19 +88,19 @@ class TipoProjetoAdmin(admin.ModelAdmin):
 
 
 class ClimaAdmin(admin.ModelAdmin):
-    
+
     form = ClimaForm
     list_display = ("nome", "desc")
     list_filter = ("nome", )
-    
+
 
 class CursoAdmin(admin.ModelAdmin):
-    
+
     form = CursoForm
     list_display = ("qual", "quando")
     list_filter = ("paraquem", )
-    
-    
+
+
 class PromocaoAdmin(admin.ModelAdmin):
     list_display = ("quem", "quando", "paraqual")
     list_filter = ("quem", )

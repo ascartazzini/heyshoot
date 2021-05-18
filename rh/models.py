@@ -197,11 +197,12 @@ class Clima(models.Model):
 
 
 class Curso(models.Model):
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
     quando = models.DateField("Quando", blank=True, null=True)
     qual = models.CharField("Qual curso foi?", max_length=200, blank=True)
-    paraquem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Para quem")
+    paraquem = models.ForeignKey(Colaborador, verbose_name="Para quem", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Curso"
