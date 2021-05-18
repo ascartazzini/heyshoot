@@ -25,7 +25,8 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <div class="container-fluid">
+        
+        <div class="container-fluid" style="background-image:url({% static 'images/bg.gif' %});height: 100vh;"> 
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{% url 'index' %}">

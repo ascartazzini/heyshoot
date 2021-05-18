@@ -100,6 +100,7 @@ class CursoAdmin(admin.ModelAdmin):
     list_display = ("qual", "quando")
     list_filter = ("paraquem", )
     
+    
 class PromocaoAdmin(admin.ModelAdmin):
     list_display = ("quem", "quando", "paraqual")
     list_filter = ("quem", )
