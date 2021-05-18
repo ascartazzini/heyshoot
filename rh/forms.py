@@ -10,7 +10,7 @@ class ContatoForm(forms.ModelForm):
     class Meta:
         model = Contato
         fields = ["nome", "email", "mensagem"]
-        
+
         widgets = {
             'nome': forms.TextInput(attrs={'class':'form-control'}),
             'email': forms.TextInput(attrs={'class':'form-control'}),
@@ -42,7 +42,7 @@ class ColaboradorForm(forms.ModelForm):
     class Meta:
 
         model = Colaborador
-        fields = ["nome", "data_nascimento", "cpf", "cpffile", "errege", "rgfile", "endereco", "cidade", "estado", "pais", "telefone", "banco", "conta", "emailpessoal", "emailshoot", "foto", "funcaodobrother", "salario", "entrounashoot", "desligado"]
+        fields = ["nome", "user", "data_nascimento", "cpf", "cpffile", "errege", "rgfile", "endereco", "cidade", "estado", "pais", "telefone", "banco", "conta", "emailpessoal", "emailshoot", "foto", "funcaodobrother", "salario", "entrounashoot", "desligado"]
 
 
 class ClienteForm(forms.ModelForm):
@@ -124,7 +124,7 @@ class ClimaForm(forms.ModelForm):
 
 
 class CursoForm(forms.ModelForm):
-    
+
     class Meta:
 
         model = Curso

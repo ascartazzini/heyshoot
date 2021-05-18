@@ -1,5 +1,7 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.base import Model
+
 
 class Atividadecomercial(models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -31,6 +33,7 @@ class Colaborador(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    user = models.OneToOneField(User, null=True, blank=True, verbose_name="Usuário no sistema", on_delete=models.PROTECT)
     nome = models.CharField("Nome completo", max_length=100)
     data_nascimento = models.DateField("Data de nascimento", blank=True, null=True)
     cpf = models.CharField("CPF", max_length=14, blank=True, unique=True)
@@ -178,7 +181,7 @@ class Contato(models.Model):
 
 
 class Clima(models.Model):
-    
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome da Pesquisa de Clima", max_length=200, blank=True)
