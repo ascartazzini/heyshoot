@@ -12,9 +12,31 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+        <style>
+            @font-face {
+                font-family: 'Tusker';
+                src: url("{% static 'images/tuskerfont.otf' %}");
+                src: url("{% static 'images/tuskerfont.otf?#iefix' %}") format('embedded-opentype'),
+                url("{% static 'images/tuskerfont.otf' %}") format('woff'),
+                url('{% static "images/tuskerfont.otf" %}') format('truetype'),
+                font-weight: normal;
+                font-style: normal;
+            }
+            .titulo{
+                font-family: "Tusker";
+            }
+            .botaofont{
+                font-family: 'Roboto', sans-serif;
+                letter-spacing: .2rem;
+                padding: 10px;
+                font-size: 15px;
+            }
+        </style>           
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
-    <body>
+    <body style="background-image:url({% static 'images/bg.gif' %});height: 100vh;">
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -26,7 +48,7 @@
         </ul>
         {% endif %}
         
-        <div class="container-fluid" style="background-image:url({% static 'images/bg.gif' %});height: 100vh;"> 
+        <div class="container-fluid"> 
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{% url 'index' %}">
