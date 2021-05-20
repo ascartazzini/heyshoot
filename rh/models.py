@@ -73,6 +73,9 @@ class Folguinha(models.Model):
     inicio = models.DateField("De quando", blank=True, null=True)
     fim = models.DateField("Até quando", blank=True, null=True)
 
+    def __str__(self):
+        return str(self.quem)
+
     class Meta:
         verbose_name = "Folguinha"
 
@@ -203,6 +206,9 @@ class Curso(models.Model):
     quando = models.DateField("Quando", blank=True, null=True)
     qual = models.CharField("Qual curso foi?", max_length=200, blank=True)
     paraquem = models.ForeignKey(Colaborador, verbose_name="Para quem", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.paraquem)
 
     class Meta:
         verbose_name = "Curso"
