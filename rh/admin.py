@@ -5,7 +5,7 @@ from django.contrib import messages
 from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       ProjetoForm)
 from rh.models import (Atividadecomercial, Cliente, Clima, Colaborador,
-                       Contato, Curso, Folguinha, Fornecedores, Hierarquia,
+                       Contato, Curso, Feedback, Folguinha, Fornecedores, Hierarquia,
                        Projeto, Promocao, Proposta, TipoProjeto)
 
 
@@ -19,6 +19,8 @@ class ColaboradorAdmin(admin.ModelAdmin):
     form = ColaboradorForm
     list_display = ("nome", "funcaodobrother", "data_do_nascimento", "thumbnail", "entrounashoot" , "desligado")
     list_filter = ("desligado", )
+    search_fields = ("nome", )
+    
 
     def data_do_nascimento(self, obj):
         if obj.data_nascimento:
@@ -43,6 +45,7 @@ class FornecedoresAdmin(admin.ModelAdmin):
 
     list_display = ("titulo", "email", "cidade", "observ", "atividade", "iniciativanaobranca")
     list_filter = ("atividade", "iniciativanaobranca", )
+    search_fields = ("titulo", )
 
 
 class ClienteAdmin(admin.ModelAdmin):
@@ -50,6 +53,7 @@ class ClienteAdmin(admin.ModelAdmin):
     form = ClienteForm
     list_display = ("nome", "thumbnail", "cnpj", "razaosocial", "nomecontato", "emailcontato", "fonecontato")
     list_filter = ("lider_shoot", )
+    search_fields = ("nome", )
 
     def thumbnail(self, obj):
         if obj.logo:
@@ -68,6 +72,7 @@ class PropostaAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "cliente", "numero", "valor_final", "lucro", "ativismo", "horas", "tipoprojeto")
     list_filter = ("cliente", )
+    search_fields = ("nome", )
 
 
 class ProjetoAdmin(admin.ModelAdmin):
@@ -75,6 +80,7 @@ class ProjetoAdmin(admin.ModelAdmin):
     form = ProjetoForm
     list_display = ("nome","numero", "lider_shoot")
     list_filter = ("numero", )
+
 
 class ContatoAdmin(admin.ModelAdmin):
 
@@ -91,8 +97,9 @@ class TipoProjetoAdmin(admin.ModelAdmin):
 class ClimaAdmin(admin.ModelAdmin):
 
     form = ClimaForm
-    list_display = ("nome", "desc")
+    list_display = ("nome", "desc", "quando")
     list_filter = ("nome", )
+    search_fields = ("nome", )
 
 
 class CursoAdmin(admin.ModelAdmin):
@@ -100,12 +107,21 @@ class CursoAdmin(admin.ModelAdmin):
     form = CursoForm
     list_display = ("qual", "quando")
     list_filter = ("paraquem", )
+    search_fields = ("paraquem", )
+
+
+class FeedbackAdmin(admin.ModelAdmin):
+    
+    list_display = ("quando", "comquem", "analise")
+    list_filter = ("comquem", )
+    search_fields = ("analise", )
 
 
 class PromocaoAdmin(admin.ModelAdmin):
 
     list_display = ("quem", "quando", "paraqual")
     list_filter = ("quem", )
+    search_fields = ("quem", )
 
     def save_model(self, request, obj, form, change):
         r = super().save_model(request, obj, form, change)
@@ -121,6 +137,7 @@ admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Contato, ContatoAdmin)
 admin.site.register(Curso, CursoAdmin)
 admin.site.register(Folguinha, FolguinhaAdmin)
+admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(Hierarquia, HierarquiaAdmin)

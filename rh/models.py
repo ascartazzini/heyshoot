@@ -52,7 +52,7 @@ class Colaborador(models.Model):
     foto_x = models.PositiveSmallIntegerField("Foto X", default=0, editable=False)
     foto_y = models.PositiveSmallIntegerField("Foto Y", default=0, editable=False)
     foto = models.ImageField(upload_to="colaboradores/fotos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
-    funcaodobrother = models.ForeignKey(Hierarquia, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Qual a função atual")
+    funcaodobrother = models.ForeignKey(Hierarquia, null=True, on_delete=models.SET_NULL, verbose_name="Qual a função atual")
     salario = models.CharField("Salário", max_length=200, blank=True)
     entrounashoot = models.DateField("Entrou na Shoot que dia", blank=True, null=True)
     desligado = models.BooleanField("Não trampa mais aqui?", default=False, db_index=True)
@@ -77,7 +77,7 @@ class Folguinha(models.Model):
         return str(self.quem)
 
     class Meta:
-        verbose_name = "Folguinha"
+        verbose_name_plural = "Férias e folgas"
 
 
 class Fornecedores(models.Model):
@@ -187,16 +187,16 @@ class Clima(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Nome da Pesquisa de Clima", max_length=200, blank=True)
-    desc = models.CharField("Descrição da pesquisa", max_length=200, blank=True)
-    quando = models.DateField("Aplicou quando", blank=True, null=True)
-    paraquem = models.ManyToManyField(Colaborador, blank=True)
+    nome = models.CharField("Nome do documento para leitura", max_length=200, blank=True)
+    desc = models.TextField("Descrição do que é", max_length=200, blank=True)
+    quando = models.DateField("Quando foi enviado", blank=True, null=True)
+    paraquem = models.ManyToManyField(Colaborador, blank=True, verbose_name="Quem confirmou leitura:")
 
     def __str__(self):
         return self.nome
 
     class Meta:
-        verbose_name = "Pesquisas de clima"
+        verbose_name_plural = "Comunicados oficiais"
 
 
 class Curso(models.Model):
@@ -227,3 +227,17 @@ class Promocao(models.Model):
     class Meta:
         verbose_name = "Promoção"
         verbose_name_plural = "Promoções"
+
+
+class Feedback(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
+    quando = models.DateField("Quando", blank=True, null=True)
+    comquem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Com quem" )
+    analise = models.TextField("Análise feita", max_length=200, blank=True)
+    
+    def __str__(self):
+        return "%s" % (self.comquem)
+
+    class Meta:
+        verbose_name_plural = "Feedbacks"
