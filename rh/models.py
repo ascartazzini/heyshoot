@@ -215,9 +215,8 @@ class Promocao(models.Model):
     quando = models.DateField("Quando", blank=True, null=True)
     paraqual = models.ForeignKey(Hierarquia, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Para o que")
 
-    # TODO: alterar o método para apresentar uma instância da classe. Por exemplo, o nome do colaborador e a função.
-    # def __str__(self):
-    #     return "%s: %s" % (self.nome, self.email)
+    def __str__(self):
+        return "%s | %s" % (self.quem, self.paraqual)
 
     class Meta:
         verbose_name = "Promoção"
