@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from rh.forms import ContatoForm
-from rh.models import (Cliente, Colaborador, Contato, Fornecedores, Projeto,
+from rh.models import (Cliente, Clima, Colaborador, Contato, Curso, Feedback, Folguinha, Fornecedores, Hierarquia, Projeto, Promocao,
                        Proposta, TipoProjeto)
 
 
@@ -12,17 +12,6 @@ class IndexView(TemplateView):
 
     template_name = "index.html"
 
-class ColaboradoresView(ListView):
-
-    context_object_name = "colaboradores"
-    template_name = "colaboradores.html"
-    model = Colaborador
-
-class FornecedoresView(ListView):
-
-    context_object_name = "fornecedores"
-    template_name = "fornecedores.html"
-    model = Fornecedores
 
 class ClienteView(ListView):
 
@@ -30,11 +19,27 @@ class ClienteView(ListView):
     template_name = "clientes.html"
     model = Cliente
 
-class ClienteDetalhesView(DetailView):
 
+class ClienteDetalhesView(DetailView):
+    
     context_object_name = "cliente"
     template_name = "detalhes_clientes.html"
     model = Cliente
+
+
+class ClimaView(ListView):
+    
+    context_object_name = "clima"
+    template_name = "clima.html"
+    model = Clima
+
+
+class ColaboradoresView(ListView):
+    
+    context_object_name = "colaboradores"
+    template_name = "colaboradores.html"
+    model = Colaborador
+
 
 class ColaboradoresDetalhesView(DetailView):
     
@@ -42,36 +47,6 @@ class ColaboradoresDetalhesView(DetailView):
     template_name = "detalhes_colabs.html"
     model = Colaborador
 
-class ProjetoView(ListView):
-
-    context_object_name = "projetos"
-    extra_context = {"form_contato": ContatoForm()}
-    template_name = "projetos.html"
-    model = Projeto
-
-class ProjetoDetalhesView(DetailView):
-
-    context_object_name = "projeto"
-    template_name = "detalhes_projetos.html"
-    model = Projeto
-
-class PropostaView(ListView):
-
-    context_object_name = "proposta"
-    template_name = "propostas.html"
-    model = Proposta
-
-class PropostaDetalhesView(DetailView):
-
-    context_object_name = "proposta"
-    template_name = "detalhes_propostas.html"
-    model = Proposta
-
-class TipoProjetoView(ListView):
-
-    context_object_name = "tipoprojeto"
-    template_name = "tipo_projeto.html"
-    model = TipoProjeto
 
 class ContatoView(CreateView):
 
@@ -102,3 +77,81 @@ class ContatoView(CreateView):
         mensagem_enviar = mensagem % (nome, email, mensagem_enviada)
         send_mail("Novo Contato no Site",mensagem_enviar, "contato@heyshoot.cc", ["tuli@heyshoot.cc"])
         return super().form_valid(form)
+
+
+class CursoView(ListView):
+    
+    context_object_name = "curso"
+    template_name = "cursos.html"
+    model = Curso
+
+
+class FeedbackView(ListView):
+    
+    context_object_name = "feedback"
+    template_name = "feedbacks.html"
+    model = Feedback
+    
+
+class FolguinhaView(ListView):
+    
+    context_object_name = "folguinha"
+    template_name = "folgas.html"
+    model = Folguinha
+
+
+class FornecedoresView(ListView):
+
+    context_object_name = "fornecedores"
+    template_name = "fornecedores.html"
+    model = Fornecedores
+
+
+class HierarquiaView(ListView):
+    
+    context_object_name = "hierarquia"
+    template_name = "hierarquias.html"
+    model = Hierarquia
+
+
+class ProjetoView(ListView):
+
+    context_object_name = "projetos"
+    extra_context = {"form_contato": ContatoForm()}
+    template_name = "projetos.html"
+    model = Projeto
+
+
+class ProjetoDetalhesView(DetailView):
+
+    context_object_name = "projeto"
+    template_name = "detalhes_projetos.html"
+    model = Projeto
+
+
+class PromocaoView(ListView):
+    
+    context_object_name = "promocao"
+    template_name = "promocoes.html"
+    model = Promocao
+
+
+class PropostaView(ListView):
+
+    context_object_name = "proposta"
+    template_name = "propostas.html"
+    model = Proposta
+
+
+class PropostaDetalhesView(DetailView):
+
+    context_object_name = "proposta"
+    template_name = "detalhes_propostas.html"
+    model = Proposta
+
+
+class TipoProjetoView(ListView):
+
+    context_object_name = "tipoprojeto"
+    template_name = "tipo_projeto.html"
+    model = TipoProjeto

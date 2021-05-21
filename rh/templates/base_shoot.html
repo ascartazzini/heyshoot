@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <style>
             @font-face {
@@ -25,6 +26,7 @@
                 font-weight: normal;
                 font-style: normal;
             }
+           
         </style>           
     </head>
     <body style="background-image:url({% static 'images/bg.gif' %});height: 100vh;">
@@ -51,25 +53,26 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{% url 'lista_colaboradores' %}">Colaboradores</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{% url 'lista_fornecedores' %}">Fornecedores</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{% url 'lista_cliente' %}">Clientes</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{% url 'contato' %}">Contato</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  Projetos
+                                  Recursos Humanos
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <li><a class="dropdown-item" href="{% url 'lista_projeto' %}">Todos Projetos</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'lista_colaboradores' %}">Colaboradores</a></li>
                                   <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" href="{% url 'lista_TipoProjeto' %}">Tipos de Projetos</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'clima' %}">Comunicados Oficiais</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="{% url 'curso' %}">Cursos</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="{% url 'feedback' %}">Feedbacks</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="{% url 'folguinha' %}">Folgas e Férias</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="{% url 'hierarquia' %}">Hierarquias</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="{% url 'promocao' %}">Promoções</a></li>
                                 </ul>
                               </li>
                         </ul>        
