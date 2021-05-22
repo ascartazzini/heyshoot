@@ -55,15 +55,13 @@
                     </a>
                 </div>
             </div>
-            
             <div class="px-5">
                 <a class="navbar-brand" style="margin-top: 20px;" href="{% url 'index' %}">
                     <img src="{% static 'images/logoshootblack.png' %}" alt="Shoot" width="150" height="38" class="d-inline-block align-text-top">
                 </a>
                 <div class="text-center title" style="margin-top: 20px;"><p>Plataforma de Gestão</p></div>
                 <hr>
-                <ul class="list_load">
-                    
+                <ul class="list_load">       
                     <div class="spacer_box">
                         <p><strong>Recursos Humanos</strong></p>
                         <div class="menuzin"><a href="{% url 'lista_colaboradores' %}">Colaboradores</a></div>
@@ -82,9 +80,9 @@
                         <div class="menuzin"><a href="{% url 'curso' %}">Cursos</a></div>
                         <div class="menuzin"><a href="{% url 'feedback' %}">Feedback</a></div>
                     </div>
+                </ul>
             </div>
         </div>
-
             {% block content %}{% endblock %}
         </div>
         <script src="{% static 'js/scripts.js' %}"></script>
