@@ -60,32 +60,28 @@
                 <a class="navbar-brand" style="margin-top: 20px;" href="{% url 'index' %}">
                     <img src="{% static 'images/logoshootblack.png' %}" alt="Shoot" width="150" height="38" class="d-inline-block align-text-top">
                 </a>
-                <div class="text-center title" style="margin-top: 20px;"><p>Faz o corre ai</p></div>
+                <div class="text-center title" style="margin-top: 20px;"><p>Plataforma de Gestão</p></div>
+                <hr>
                 <ul class="list_load">
-                    <a href="{% url 'contato' %}">Contato</a>
-                    <li>
-                        <a class="dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Recursos Humanos
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!-- <li><hr class="dropdown-divider"></li> -->
-                            <li><a class="dropdown-item" href="{% url 'lista_colaboradores' %}">Colaboradores</a></li>
-                            
-                            <li><a class="dropdown-item" href="{% url 'clima' %}">Comunicados Oficiais</a></li>
-                            
-                            <li><a class="dropdown-item" href="{% url 'curso' %}">Cursos</a></li>
-                            
-                            <li><a class="dropdown-item" href="{% url 'feedback' %}">Feedbacks</a></li>
-                            
-                            <li><a class="dropdown-item" href="{% url 'folguinha' %}">Folgas e Férias</a></li>
-                            
-                            <li><a class="dropdown-item" href="{% url 'hierarquia' %}">Hierarquias</a></li>
-                            
-                            <li><a class="dropdown-item" href="{% url 'promocao' %}">Promoções</a></li>
-                        </ul>
-                    </li>    
-                </ul>
-                <div class="spacer_box"><p>This is a spacer box.</p></div>
+                    
+                    <div class="spacer_box">
+                        <p><strong>Recursos Humanos</strong></p>
+                        <div class="menuzin"><a href="{% url 'lista_colaboradores' %}">Colaboradores</a></div>
+                        <div class="menuzin"><a href="{% url 'clima' %}">Comunicados</a></div>
+                        <div class="menuzin"><a href="{% url 'curso' %}">Cursos</a></div>
+                        <div class="menuzin"><a href="{% url 'feedback' %}">Feedback</a></div>
+                        <div class="menuzin"><a href="{% url 'folguinha' %}">Férias e Folgas</a></div>
+                        <div class="menuzin"><a href="{% url 'hierarquia' %}">Hierarquia</a></div>
+                        <div class="menuzin"><a href="{% url 'promocao' %}">Promoções</a></div>
+                    </div>
+                    <hr>
+                    <div class="spacer_box" style="margin-top: 20px;">
+                        <p><strong>Relacionamentos</strong></p>
+                        <div class="menuzin"><a href="{% url 'lista_colaboradores' %}">Colaboradores</a></div>
+                        <div class="menuzin"><a href="{% url 'clima' %}">Comunicados</a></div>
+                        <div class="menuzin"><a href="{% url 'curso' %}">Cursos</a></div>
+                        <div class="menuzin"><a href="{% url 'feedback' %}">Feedback</a></div>
+                    </div>
             </div>
         </div>
 

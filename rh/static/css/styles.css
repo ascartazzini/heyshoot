@@ -30,6 +30,38 @@ a,
 		padding: 0 1em;
 	}
 
+
+/* LINKS DO MENU ----- */
+.menuzin{
+    font-size: 13px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: black;
+    text-align: center;
+}
+.menuzin:hover{
+    background:#ebb2c7;
+}
+.menuzin a{
+    text-align: center;
+    color: #000;
+    font-size: 12px;
+}
+.menuzin a:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.spacer_box{
+    text-align: center;
+}
+
+.spacer_box p{
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #485197;
+}
+
 /* HAMBURGER STYLES ----- */
 	.burger_box {
 		display: block;
