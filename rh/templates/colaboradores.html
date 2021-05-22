@@ -28,8 +28,18 @@
                     </div>
                  
                     <ul class="social-links list-inline">
-                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-envelope"></i></a></li>
-                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-instagram"></i></a></li>
+                      {% if colaborador.instagram %} 
+                        <li class="list-inline-item"><a target="_blank" title="Instagram do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="http://www.instagram.com/{{ colaborador.instagram }}" data-original-title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                      {% endif  %}
+                      {% if colaborador.facebook %} 
+                        <li class="list-inline-item"><a target="_blank" title="Facebook do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="http://www.facebook.com/{{ colaborador.facebook }}" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                      {% endif  %}
+                      {% if colaborador.emailpessoal %} 
+                        <li class="list-inline-item"><a target="_blank" title="Email do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="mailto:{{ colaborador.emailpessoal }}" data-original-title="Email"><i class="fa fa-envelope"></i></a></li>
+                      {% endif  %}
+                      {% if colaborador.linkedin %} 
+                        <li class="list-inline-item"><a target="_blank" title="Linkedin do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="https://www.linkedin.com/in/{{ colaborador.linkedin }}" data-original-title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                      {% endif  %}
                     </ul>
                  
                     <p class="title"><strong>Envolvido nos projetos:</strong></p>

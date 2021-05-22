@@ -20,7 +20,6 @@ class ColaboradorAdmin(admin.ModelAdmin):
     list_display = ("nome", "funcaodobrother", "data_do_nascimento", "thumbnail", "entrounashoot" , "desligado")
     list_filter = ("desligado", )
     search_fields = ("nome", )
-    
 
     def data_do_nascimento(self, obj):
         if obj.data_nascimento:
