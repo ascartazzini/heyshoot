@@ -1,8 +1,146 @@
 {% extends 'base_shoot.html' %}
-{% block title %}<h1>{{ colaborador.nome|title }}</h1>{% endblock %}
+{% block title %}{{ colaborador.nome|title }}{% endblock %}
 {% block content %}
-    <h1>Shoot</h1>
-    <img src="{{ colaborador.foto.url }}" width="100" height="100">
-    <p>Razão Social: {{ colaborador.nome }}</p>
-    <p><a href="{% url 'lista_colaboradores' %}">Voltar Para Listagem de Colabs</a></p>
+
+<div class="content">
+    <div class="container-sm" style="background: white; margin-top: 30px; border-radius: 3px; padding-bottom: 20px;">
+        <div class="row">
+            <div class="col-lg-4 text-muted" style="padding-top:10px;margin-top: 20px; padding-bottom: 30px; text-align: center;">
+                {% if colaborador.foto %}  
+                <img src="{{ colaborador.foto.url }}" width="310" height="300" class="img-thumbnail">
+                {% else  %}
+                <img src="/static/images/semfoto.jpg" width="310" height="300" class="img-thumbnail">
+                {% endif  %}</a>
+                
+                <br>
+                <table class="table text-muted" style="margin-top: 10px;">
+                    <tr>
+                        <td class="align-middle" style="border: 0;">
+                            <a href="#" class="fa fa-linkedin col-2"></a>
+                            <a href="#" class="fa fa-envelope col-2"></a>
+                            <a href="#" class="fa fa-facebook col-2"></a>
+                            <a href="#" class="fa fa-instagram col-2"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle" style="border: 0;">
+                            Atualmente é {{ colaborador.funcaodobrother }} <br>
+                            e recebe R$ {{ colaborador.salario }} mensais
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-lg-7" style="padding-top:10px;margin-top: 30px;">
+                <table class="table text-muted">
+                    <thead>
+                      <tr>
+                        <th scope="col" colspan="3" class="text-pink">{{ colaborador.nome }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="2">Lorem ipsum potenti nam amet a sodales nec donec, suscipit interdum sodales habitant vivamus habitant quisque, urna dapibus velit donec consectetur sociosqu curabitur. aliquam ullamcorper nisl imperdiet vel per a diam eros, massa cras hac nostra tempor nibh varius netus, donec phasellus posuere vitae in dictum himenaeos. leo vel conubia elementum condimentum ornare praesent in, inceptos pulvinar eget etiam tempor proin faucibus, blandit vehicula augue ut metus duis. mattis </td>
+                      </tr>
+                      <tr>
+                        <td><a href="{{ colaborador.cpffile }}">CPF {{ colaborador.cpf }}</a></td>
+                        <td><a href="{{ colaborador.rgfile }}">RG {{ colaborador.errege }}</a></td>
+                      </tr>
+                      <tr>
+                        <td>{{ colaborador.endereco }}</td>
+                        <td>{{ colaborador.cidade }}/{{ colaborador.estado }} - {{ colaborador.pais }}</td>
+                      </tr>
+                      <tr>
+                        <td>Nasceu em {{ colaborador.data_nascimento }}</td>
+                        <td>Entrou na Shoot {{ colaborador.entrounashoot }}</td>
+                      </tr>
+                      <tr>
+                        <td>Fone {{ colaborador.telefone }}</td>
+                        <td>Email pessoal {{ colaborador.emailpessoal }}</td>
+                      </tr>
+                      <tr>
+                        <td>Banco {{ colaborador.banco }}</td>
+                        <td>Conta {{ colaborador.conta }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col text-center">
+                <p class="text-pink"><strong>Projetos</strong></p>    
+                <table class="table text-muted">
+                    <tr>
+                        <td class="align-middle">00.00.0000</td>
+                        <td class="align-middle">Nome do projeto</td>
+                        <td class="align-middle">Nome do cliente</td>
+                    </tr>
+                </table>   
+            </div>
+        </div>
+
+        <hr>
+        
+        <div class="row">
+            <div class="col-md-3 text-pink text-center">
+                <p class="text-pink"><strong>Promoções</strong></p>
+                <table class="table text-muted">
+                    <tr>
+                        <td>Promovido para</td>
+                        <td>00.00.0000</td>
+                    </tr>
+                    <tr>
+                        <td>Contratado no dia</td>
+                        <td>00.00.0000</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3 text-pink text-center">
+                <p class="text-pink"><strong>Salários</strong></p>
+                <table class="table text-muted">
+                    <tr>
+                        <td>R$ 000000</td>
+                        <td>00.00.0000</td>
+                    </tr>
+                    <tr>
+                        <td>R$ 000000</td>
+                        <td>00.00.0000</td>
+                    </tr>
+                </table>
+            </div>
+           
+            <div class="col-md-3 text-pink text-center">
+                <p class="text-pink"><strong>Cursos</strong></p>
+                <table class="table text-muted">
+                    <tr>
+                        <td>Nome do curso</td>
+                        <td>00.00.0000</td>
+                    </tr>
+                    <tr>
+                        <td>Nome do curso</td>
+                        <td>00.00.0000</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-md-3 text-pink text-center">
+                <p class="text-pink"><strong>Folgas e férias</strong></p>
+                <table class="table text-muted">
+                    <tr>
+                        <td>De 00.00.0000</td>
+                        <td>Até 00.00.0000</td>
+                    </tr>
+                    <tr>
+                        <td>De 00.00.0000</td>
+                        <td>Até 00.00.0000</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+
+</div>
 {% endblock %}
