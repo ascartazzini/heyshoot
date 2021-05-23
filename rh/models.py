@@ -54,6 +54,7 @@ class Colaborador(models.Model):
     foto = models.ImageField(upload_to="colaboradores/fotos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
     funcaodobrother = models.ForeignKey(Hierarquia, null=True, on_delete=models.SET_NULL, verbose_name="Qual a função atual")
     salario = models.CharField("Salário", max_length=200, blank=True)
+    bio = models.TextField("Mini bio", null=True)
     instagram = models.CharField("Instagram", max_length=100, blank=True)
     linkedin = models.CharField("Linkedin", max_length=100, blank=True)
     facebook = models.CharField("Facebook", max_length=100, blank=True)
