@@ -1,0 +1,28 @@
+{% extends 'base_shoot.html' %}
+{% block title %}{{ lista_climas.nome|title }}{% endblock %}
+{% block content %}
+
+<div class="content">
+    <div class="container-sm" style="background: white; margin-top: 30px; border-radius: 3px; padding-bottom: 20px;">
+        <div class="row">
+            <div class="col-lg-12" style="padding-top:10px;margin-top: 30px;">
+                <h4 class="text-center">{{ lista_climas.nome }}</h4>
+                <br>
+                <table class="table text-muted text-center">
+                      <tr>
+                        <td><strong>Realizada no dia</strong> {{ lista_climas.quando }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ lista_climas.desc }}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Quem leu:</strong>
+                        {{ lista_climas.paraquem }}
+                        </td>
+                      </tr>
+                  </table>
+            </div>
+        </div>
+</div>       
+
+{% endblock %}

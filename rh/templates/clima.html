@@ -3,19 +3,56 @@
 {% block content %}
 
 <div class="content">
-    <div class="container-sm" style="background: white; margin-top: 30px; border-radius: 3px; padding-bottom: 20px;">
-        <div class="row">
-            <div class="col-lg-4" style="background-color: white;">
-                <p>Clima</p>
+    <div class="container-sm">
+
+    <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CadPessoa">
+          Fazer novo comunicado
+        </button>
+    </div>
+
+      <div class="modal fade" id="CadPessoa" tabindex="-1" aria-labelledby="CadPessoa" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="CadPessoa">Formulário</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="col-lg-4" style="background-color: white;">
-                <p>Clima</p>
+            <div class="modal-body">
+              Aqui formzinho irado
             </div>
-            <div class="col-lg-4" style="background-color: white;">
-                <p>Clima</p>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-warning">Inserir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="content">
+<div class="container-sm" style="background-color:white; margin-top: 20px;">
+        <div class="row" style="padding: 30px;">
+            <h5>Comunicados oficiais da Shoot</h5>
+        </div>
+        <div class="row" style="padding-bottom: 30px;">
+            <div class="col-lg-4">
+                <p style="padding-left: 15px;">A gente faz comunicados oficiais porque é preza e vale a pena deixar registrado quais são as nossas políticas e opiniões sobre coisas que podem ser importantes para as pessoas e para o negócio.</p>
+            </div>
+            <div class="col-md-8">
+                <ul class="timeline" style="padding-right: 20px;">
+                    {% for comu in lista_climas %}
+                    <li class="text-muted" style="text-align: left;">
+                        <a href="{% url 'clima' comu.pk %}">{{ comu.nome }}</a>
+                        <p class="float-right">{{ comu.quando }}</p>    
+                        <p>{{ comu.desc }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
-        
+            
+
     </div>
 </div>
 

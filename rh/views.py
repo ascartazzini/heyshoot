@@ -29,8 +29,15 @@ class ClienteDetalhesView(DetailView):
 
 class ClimaView(ListView):
     
-    context_object_name = "clima"
+    context_object_name = "lista_climas"
     template_name = "clima.html"
+    model = Clima
+
+
+class ClimaDetalhesView(DetailView):
+    
+    context_object_name = "lista_climas"
+    template_name = "detalhes_comunicados.html"
     model = Clima
 
 

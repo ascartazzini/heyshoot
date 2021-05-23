@@ -1,15 +1,18 @@
 from django.conf.urls import include, url
 from django.urls import path
 
-from rh.views import (ClienteDetalhesView, ColaboradoresDetalhesView, ClienteView, ClimaView, ColaboradoresView,
-                      ContatoView, CursoView, FeedbackView, FolguinhaView, FornecedoresView, HierarquiaView, IndexView,
-                      ProjetoDetalhesView, ProjetoView, PromocaoView, PropostaDetalhesView,
-                      PropostaView, TipoProjetoView)
+from rh.views import (ClienteDetalhesView, ClienteView, ClimaDetalhesView,
+                      ClimaView, ColaboradoresDetalhesView, ColaboradoresView,
+                      ContatoView, CursoView, FeedbackView, FolguinhaView,
+                      FornecedoresView, HierarquiaView, IndexView,
+                      ProjetoDetalhesView, ProjetoView, PromocaoView,
+                      PropostaDetalhesView, PropostaView, TipoProjetoView)
 
 urlpatterns = [
     path("clientes/", ClienteView.as_view(), name="lista_cliente"),
     path("clientes/<int:pk>/", ClienteDetalhesView.as_view(), name="detalhes_cliente"),
-    path("clima/", ClimaView.as_view(), name="clima"),
+    path("clima/", ClimaView.as_view(), name="lista_climas"),
+    path("clima/<int:pk>/", ClimaDetalhesView.as_view(), name="clima"),
     path("colaboradores/", ColaboradoresView.as_view(), name="lista_colaboradores"),
     path("colaboradores/<int:pk>/", ColaboradoresDetalhesView.as_view(), name="detalhes_colaborador"),
     path("contato/", ContatoView.as_view(), name="contato"),
