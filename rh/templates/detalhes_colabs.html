@@ -66,11 +66,29 @@
                   </table>
             </div>
         </div>
-        
-        <div class="row">
-            <div class="col text-center">
-                <p class="text-pink"><strong>Projetos</strong></p>    
+</div>       
+
+<div class="container">
+
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-8 text-center" style="padding-top: 30px; padding-bottom: 20px; background-color: white;">
+                <p class="text-pink"><strong>Projetos que a pessoa tá liderando</strong></p>    
                 <table class="table text-muted">
+                    <tr>
+                        <td class="align-middle">00.00.0000</td>
+                        <td class="align-middle">Nome do projeto</td>
+                        <td class="align-middle">Nome do cliente</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">00.00.0000</td>
+                        <td class="align-middle">Nome do projeto</td>
+                        <td class="align-middle">Nome do cliente</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">00.00.0000</td>
+                        <td class="align-middle">Nome do projeto</td>
+                        <td class="align-middle">Nome do cliente</td>
+                    </tr>
                     <tr>
                         <td class="align-middle">00.00.0000</td>
                         <td class="align-middle">Nome do projeto</td>
@@ -78,25 +96,8 @@
                     </tr>
                 </table>   
             </div>
-        </div>
-
-        <hr>
-        
-        <div class="row">
-            <div class="col-md-3 text-pink text-center">
-                <p class="text-pink"><strong>Promoções</strong></p>
-                <table class="table text-muted">
-                    <tr>
-                        <td>Promovido para</td>
-                        <td>00.00.0000</td>
-                    </tr>
-                    <tr>
-                        <td>Contratado no dia</td>
-                        <td>00.00.0000</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-md-3 text-pink text-center">
+            
+            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; padding-bottom: 20px; background-color: white;">
                 <p class="text-pink"><strong>Salários</strong></p>
                 <table class="table text-muted">
                     <tr>
@@ -109,8 +110,26 @@
                     </tr>
                 </table>
             </div>
+        </div>
+
+        
+        <div class="row" style="margin-top: 20px; padding-bottom: 30px;">
+            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white;">
+                <p class="text-pink"><strong>Carreira na Shoot</strong></p>
+                <ul class="timeline" style="padding-right: 20px;">
+                    <li class="text-muted" style="text-align: left;">
+                        {{ colaborador.funcaodobrother }}
+                        <p class="float-right">00.00.0000</p>
+                    </li>
+                    <li class="text-muted" style="text-align: left;">
+                        Assistente de Arte
+                        <p class="float-right">00.00.0000</p>
+                    </li>
+                </ul>
+            </div>
+            
            
-            <div class="col-md-3 text-pink text-center">
+            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white;">
                 <p class="text-pink"><strong>Cursos</strong></p>
                 <table class="table text-muted">
                     <tr>
@@ -124,8 +143,8 @@
                 </table>
             </div>
 
-            <div class="col-md-3 text-pink text-center">
-                <p class="text-pink"><strong>Folgas e férias</strong></p>
+            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white;">
+                <p class="text-pink"><strong>Folgas e Férias</strong></p>
                 <table class="table text-muted">
                     <tr>
                         <td>De 00.00.0000</td>
@@ -141,6 +160,5 @@
     </div>
 
     
-
 </div>
 {% endblock %}

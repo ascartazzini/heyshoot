@@ -5,6 +5,30 @@
 
 <div class="content">
     <div class="container">
+      <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CadPessoa">
+          Cadastrar nova pessoa
+        </button>
+      </div>
+
+      <div class="modal fade" id="CadPessoa" tabindex="-1" aria-labelledby="CadPessoa" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="CadPessoa">Formulário</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Aqui formzinho irado
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-warning">Inserir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div class="row" style="margin-top: 30px;">
         {% for colaborador in colaboradores %}
         <div class="col-lg-4">
@@ -15,7 +39,7 @@
                         {% if colaborador.foto %}  
                         <img src="{{ colaborador.foto.url }}" class="rounded-circle img-thumbnail" alt="{{ colaborador.nome }}">
                         {% else  %}
-                        <img src="../static/images/semfoto.jpg" class="rounded-circle img-thumbnail" alt="">
+                        <img src="../static/images/semfoto.jpg" class="rounded-circle img-thumbnail" alt="{{ colaborador.nome }}">
                         {% endif  %}</a>
                     </div>
                       
@@ -59,7 +83,6 @@
         {% endfor %}
     </div>
     <!-- end row -->  
-        
         
     </div>
     <!-- container -->
