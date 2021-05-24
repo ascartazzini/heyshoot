@@ -2,12 +2,129 @@
 {% block title %}{{ colaborador.nome|title }}{% endblock %}
 {% block content %}
 
-<div class="content">
-    <div class="container-sm">
-        <div class="d-flex justify-content-end" style="text-align: center; margin-top: 30px;">
-            <a href="{% url 'lista_colaboradores' %}" class="btn btn-success">Voltar</a>
+<div class="modal fade" id="CadFerias" tabindex="-1" aria-labelledby="CadFerias" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="CadFerias">Cadastrando Férias</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
         </div>
-        <div class="row" style="background: white; margin-top: 40px; border-radius: 3px; padding-bottom: 20px;">
+        <div class="modal-body">
+            <form>
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="form5Example1" class="form-control" />
+                  <label class="form-label" for="form5Example1">Quem</label>
+                </div>
+              
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">De quando</label>
+                </div>
+              
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Até quando</label>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning">Inserir</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="CadCursos" tabindex="-1" aria-labelledby="CadCursos" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="CadCursos">Cadastrando Curso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="form5Example1" class="form-control" />
+                  <label class="form-label" for="form5Example1">Nome do curso</label>
+                </div>
+              
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Quando</label>
+                </div>
+              
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Quem</label>
+                </div>
+
+                <!-- Date input -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <span class="input-group-text">,00</span>
+                  </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning">Inserir</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="CadCarreira" tabindex="-1" aria-labelledby="CadCarreira" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="CadCarreira">Promovendo a pessoa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="form5Example1" class="form-control" />
+                  <label class="form-label" for="form5Example1">Quem</label>
+                </div>
+              
+                <div class="input-group mb-4">
+                    <label class="input-group-text" for="inputGroupSelect01">Nova função</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                      <option selected>Selecione...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                </div>
+                <br>
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Quando</label>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning">Inserir</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="content" style="padding-bottom: 160px;">
+    <div class="container-sm">
+        <div class="row" style="background: white; margin-top: 20px; border-radius: 3px; padding-bottom: 20px;">
             <div class="col-lg-4 text-muted" style="padding-top:10px;margin-top: 20px; padding-bottom: 30px; text-align: center;">
                 {% if colaborador.foto %}  
                 <img src="{{ colaborador.foto.url }}" width="310" height="300" class="img-thumbnail">
@@ -73,8 +190,78 @@
 
 <div class="container">
 
-        <div class="row" style="margin-top: 20px">
-            <div class="col-md-8 text-center" style="padding-top: 30px; padding-bottom: 20px; background-color: white;">
+        
+        
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
+                <div class="row">
+                    <div class="col">
+                        <p class="text-pink" style="margin-top:10px"><strong>Carreira</strong></p>
+                    </div>
+                    <div class="d-grid justify-content-md-end" style="margin-right: 40px; margin-bottom: 20px;">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CadCarreira">+</button>
+                    </div>
+                </div>
+                <ul class="timeline" style="padding-right: 20px;">
+                    <li class="text-muted" style="text-align: left;">
+                        {{ colaborador.funcaodobrother }}
+                        <p class="float-right">00.00.0000</p>
+                    </li>
+                    <li class="text-muted" style="text-align: left;">
+                        Assistente de Arte
+                        <p class="float-right">00.00.0000</p>
+                    </li>
+                </ul>
+                
+                    
+            </div>
+            
+           
+            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
+                <div class="row">
+                    <div class="col">
+                        <p class="text-pink" style="margin-top:10px"><strong>Cursos realizados</strong></p>
+                    </div>
+                    <div class="d-grid justify-content-md-end" style="margin-right: 40px; margin-bottom: 20px;">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CadCursos">+</button>
+                    </div>
+                </div>
+                <table class="table text-muted">
+                    <tr>
+                        <td>Nome do curso</td>
+                        <td>00.00.0000</td>
+                    </tr>
+                    <tr>
+                        <td>Nome do curso</td>
+                        <td>00.00.0000</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
+                <div class="row">
+                    <div class="col">
+                        <p class="text-pink" style="margin-top:10px"><strong>Folgas e Férias</strong></p>
+                    </div>
+                    <div class="d-grid justify-content-md-end" style="margin-right: 40px; margin-bottom: 20px;">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CadFerias">+</button>
+                    </div>
+                </div>
+                <table class="table text-muted">
+                    <tr>
+                        <td>De 00.00.0000</td>
+                        <td>Até 00.00.0000</td>
+                    </tr>
+                    <tr>
+                        <td>De 00.00.0000</td>
+                        <td>Até 00.00.0000</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 30px">
+            <div class="col-md-8 text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
                 <p class="text-pink"><strong>Projetos que a pessoa tá liderando</strong></p>    
                 <table class="table text-muted">
                     <tr>
@@ -100,7 +287,7 @@
                 </table>   
             </div>
             
-            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; padding-bottom: 20px; background-color: white;">
+            <div class="col-md-4 text-pink text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
                 <p class="text-pink"><strong>Salários</strong></p>
                 <table class="table text-muted">
                     <tr>
@@ -115,53 +302,13 @@
             </div>
         </div>
 
-        
-        <div class="row" style="margin-top: 20px; padding-bottom: 30px;">
-            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white;">
-                <p class="text-pink"><strong>Carreira na Shoot</strong></p>
-                <ul class="timeline" style="padding-right: 20px;">
-                    <li class="text-muted" style="text-align: left;">
-                        {{ colaborador.funcaodobrother }}
-                        <p class="float-right">00.00.0000</p>
-                    </li>
-                    <li class="text-muted" style="text-align: left;">
-                        Assistente de Arte
-                        <p class="float-right">00.00.0000</p>
-                    </li>
-                </ul>
-            </div>
-            
-           
-            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white;">
-                <p class="text-pink"><strong>Cursos</strong></p>
-                <table class="table text-muted">
-                    <tr>
-                        <td>Nome do curso</td>
-                        <td>00.00.0000</td>
-                    </tr>
-                    <tr>
-                        <td>Nome do curso</td>
-                        <td>00.00.0000</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white;">
-                <p class="text-pink"><strong>Folgas e Férias</strong></p>
-                <table class="table text-muted">
-                    <tr>
-                        <td>De 00.00.0000</td>
-                        <td>Até 00.00.0000</td>
-                    </tr>
-                    <tr>
-                        <td>De 00.00.0000</td>
-                        <td>Até 00.00.0000</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
     </div>
 
+    <div class="d-flex justify-content-center" style="text-align: center; margin-top: 80px;">
+        <p class="text-muted"><a href="{% url 'lista_colaboradores' %}" style="color: rgba(246,203,71)">Colaboradores </a>
+            <span style="color: white;"> | {{ colaborador.nome }}</span></p>
+    </div>
     
 </div>
 {% endblock %}
+

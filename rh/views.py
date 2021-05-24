@@ -93,6 +93,12 @@ class CursoView(ListView):
     model = Curso
 
 
+class CursoDetalhesView(DetailView):
+    
+    context_object_name = "cursos"
+    template_name = "detalhes_cursos.html"
+    model = Curso
+
 class FeedbackView(ListView):
     
     context_object_name = "feedback"

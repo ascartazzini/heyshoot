@@ -1,6 +1,57 @@
 {% extends 'base_shoot.html' %}
 {% block title %}Feedback{% endblock %}
 {% block content %}
-<h1>Feedback</h1>
+
+<div class="content">
+    <div class="container-sm">
+
+    <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CadFeed">
+          Fazer feedback
+        </button>
+    </div>
+
+      <div class="modal fade" id="CadFeed" tabindex="-1" aria-labelledby="CadFeed" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="CadPessoa">Formulário</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+              Aqui formzinho irado
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-warning">Inserir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="content">
+<div class="container-sm" style="background-color:white; margin-top: 20px;">
+        <div class="row" style="padding: 30px;">
+            <h5>Feeeeeedback</h5>
+        </div>
+        <div class="row" style="padding-bottom: 30px;">
+            <div class="col-lg-4">
+                <p style="padding-left: 15px;">Aqui um registro dos feedbacks feitos com as pessoas da Shoot.</p>
+            </div>
+            <div class="col-md-8">
+                <ul class="timeline" style="padding-right: 20px;">
+                    {% for feed in feedback %}
+                    <li class="text-muted" style="text-align: left;">
+                        {{ feed.comquem }}
+                        <p class="float-right">{{ feed.quando }}</p>    
+                        <p>{{ feed.analise }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

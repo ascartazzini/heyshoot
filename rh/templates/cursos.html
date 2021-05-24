@@ -43,7 +43,7 @@
                 <ul class="timeline" style="padding-right: 20px;">
                     {% for cu in curso %}
                     <li class="text-muted" style="text-align: left;">
-                        <a href="">{{ cu.qual }}</a>
+                        <a href="{% url 'lista_curso' cu.pk %}">{{ cu.qual }}</a>
                         <p class="float-right">{{ cu.quando }}</p>    
                         <p>O {{ cu.paraquem }} fez o curso que custou R$ {{ cu.verba }}  </p>
                     </li>

@@ -1,6 +1,57 @@
 {% extends 'base_shoot.html' %}
-{% block title %}Folgas{% endblock %}
+{% block title %}Férias e Folgas{% endblock %}
 {% block content %}
-<h1>Folgas e Férias</h1>
+
+<div class="content">
+    <div class="container-sm">
+
+    <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CadFolga">
+          Cadastrar Férias ou Folgas
+        </button>
+    </div>
+
+      <div class="modal fade" id="CadFolga" tabindex="-1" aria-labelledby="CadFolga" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="CadPessoa">Formulário</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+              Aqui formzinho irado
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-warning">Inserir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="content">
+<div class="container-sm" style="background-color:white; margin-top: 20px;">
+        <div class="row" style="padding: 30px;">
+            <h5>Geral tem o direito de descansar</h5>
+        </div>
+        <div class="row" style="padding-bottom: 30px;">
+            <div class="col-lg-4">
+                <p style="padding-left: 15px;">Aqui um registro de folgas e férias das pessoas da Shoot.</p>
+            </div>
+            <div class="col-md-8">
+                <ul class="timeline" style="padding-right: 20px;">
+                    {% for fol in folguinha %}
+                    <li class="text-muted" style="text-align: left;">
+                        {{ fol.quem }}
+                        <p class="float-right">{{ fol.inicio }} até {{ fol.fim }}</p>    
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}

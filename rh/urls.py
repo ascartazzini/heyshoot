@@ -3,10 +3,11 @@ from django.urls import path
 
 from rh.views import (ClienteDetalhesView, ClienteView, ClimaDetalhesView,
                       ClimaView, ColaboradoresDetalhesView, ColaboradoresView,
-                      ContatoView, CursoView, FeedbackView, FolguinhaView,
-                      FornecedoresView, HierarquiaView, IndexView,
-                      ProjetoDetalhesView, ProjetoView, PromocaoView,
-                      PropostaDetalhesView, PropostaView, TipoProjetoView)
+                      ContatoView, CursoDetalhesView, CursoView, FeedbackView,
+                      FolguinhaView, FornecedoresView, HierarquiaView,
+                      IndexView, ProjetoDetalhesView, ProjetoView,
+                      PromocaoView, PropostaDetalhesView, PropostaView,
+                      TipoProjetoView)
 
 urlpatterns = [
     path("clientes/", ClienteView.as_view(), name="lista_cliente"),
@@ -17,6 +18,7 @@ urlpatterns = [
     path("colaboradores/<int:pk>/", ColaboradoresDetalhesView.as_view(), name="detalhes_colaborador"),
     path("contato/", ContatoView.as_view(), name="contato"),
     path("curso/", CursoView.as_view(), name="curso"),
+    path("curso/<int:pk>/", CursoDetalhesView.as_view(), name="lista_curso"),
     path("feedback/", FeedbackView.as_view(), name="feedback"),
     path("folguinha/", FolguinhaView.as_view(), name="folguinha"),
     path("fornecedores/", FornecedoresView.as_view(), name="lista_fornecedores"),
