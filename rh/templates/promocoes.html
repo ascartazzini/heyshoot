@@ -4,30 +4,10 @@
 
 <div class="content">
     <div class="container-sm">
-
-    <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CadPro">
-          Promover alguém
-        </button>
-    </div>
-
-      <div class="modal fade" id="CadPro" tabindex="-1" aria-labelledby="CadPro" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="CadPessoa">Formulário</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
-            </div>
-            <div class="modal-body">
-              Aqui formzinho irado
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-warning">Inserir</button>
-            </div>
-          </div>
+        <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#CadPro" style="color: rgba(246,203,71); width: 40px; padding-top: 10px; font-size: 2em;">
+                <i class="bi bi-plus-circle-fill"></i></a>
         </div>
-      </div>
     </div>
 </div>
 <div class="content">
@@ -41,11 +21,11 @@
             </div>
             <div class="col-md-8">
                 <ul class="timeline" style="padding-right: 20px;">
-                    {% for feed in feedback %}
+                    {% for promo in promocao %}
                     <li class="text-muted" style="text-align: left;">
-                        {{ feed.comquem }}
-                        <p class="float-right">{{ feed.quando }}</p>    
-                        <p>{{ feed.analise }}</p>
+                        <a href="#">{{ promo.quem }}</a>
+                        <p class="float-right">{{ promo.quando }}</p>    
+                        <p>Promovido a {{ promo.paraqual }}</p>
                     </li>
                     {% endfor %}
                 </ul>
