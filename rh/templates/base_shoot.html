@@ -62,27 +62,107 @@
         <a class="navbar-brand" style="margin-top: 20px;" href="{% url 'index' %}">
             <img src="{% static 'images/logoshootblack.png' %}" alt="Shoot" width="150" height="38" class="d-inline-block align-text-top">
         </a>
-        <div class="text-center title" style="margin-top: 20px;"><p>Plataforma de Gestão</p></div>
+            <div class="text-center title" style="margin-top: 20px;"><p>Plataforma de Gestão</p></div>
         <hr>
-        <ul class="list_load">       
-            <div class="spacer_box">
-                <p><strong>Recursos Humanos</strong></p>
-                <div class="menuzin"><a href="{% url 'lista_colaboradores' %}">Shooters</a></div>
-                <div class="menuzin"><a href="{% url 'lista_climas' %}">Pesquisas e Comunicados</a></div>
-                <div class="menuzin"><a href="{% url 'curso' %}">Cursos</a></div>
-                <div class="menuzin"><a href="{% url 'feedback' %}">Feedback</a></div>
-                <div class="menuzin"><a href="{% url 'folguinha' %}">Férias e Folgas</a></div>
-                <div class="menuzin"><a href="{% url 'hierarquia' %}">Carreira</a></div>
-                <div class="menuzin"><a href="{% url 'promocao' %}">Promoções</a></div>
+        <ul class="list_load justify-content-between text-center"> 
+            
+            <div class="accordion" id="recursosHumanos">
+                <div class="accordion-item">
+                    <p class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" style="border:0; width: 100%; color: white; font-size: 11px; background-color: #47519b; padding: 10px;" type="button" data-bs-toggle="collapse" data-bs-target="#menurecursoshumanos" aria-expanded="false" aria-controls="menurecursoshumanos">
+                        Recursos Humanos
+                        </button>
+                    </p>
+                    <div id="menurecursoshumanos" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#recursosHumanos">
+                        <div class="accordion-body">
+                            <li><a class="menuzin" href="{% url 'lista_colaboradores' %}">Shooters</a></li>
+                            <li><a class="menuzin" href="{% url 'lista_climas' %}">Pesquisas e Comunicados</a></li>
+                            <li><a class="menuzin" href="{% url 'curso' %}">Cursos</a></li>
+                            <li><a class="menuzin" href="{% url 'feedback' %}">Feedback</a></li>
+                            <li><a class="menuzin" href="{% url 'folguinha' %}">Férias e Folgas</a></li>
+                            <li><a class="menuzin" href="{% url 'hierarquia' %}">Carreira</a></li>
+                            <li><a class="menuzin" href="{% url 'promocao' %}">Promoções</a></li>
+                        </div>
+                    </div>
+                </div>
             </div>
             <hr>
-            <div class="spacer_box" style="margin-top: 20px;">
-                <p><strong>Relacionamentos</strong></p>
-                <div class="menuzin"><a href="{% url 'lista_colaboradores' %}">Colaboradores</a></div>
-                <div class="menuzin"><a href="{% url 'lista_climas' %}">Comunicados</a></div>
-                <div class="menuzin"><a href="{% url 'curso' %}">Cursos</a></div>
-                <div class="menuzin"><a href="{% url 'feedback' %}">Feedback</a></div>
+            <div class="accordion" id="menurelacionamentos">
+                <div class="accordion-item">
+                    <p class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" style="border:0; width: 100%; color: white; font-size: 11px; background-color: #47519b; padding: 10px;"  type="button" data-bs-toggle="collapse" data-bs-target="#relacionamentos" aria-expanded="false" aria-controls="relacionamentos">
+                            Relacionamentos
+                        </button>
+                    </p>
+                    <div id="relacionamentos" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#menurelacionamentos">
+                        <div class="accordion-body">
+                            <li><a class="menuzin" href="#">Relações ativas</a></a></li>
+                            <li><a class="menuzin" href="#">Parceiros Sustentáveis</a></li>
+                            <li><a class="menuzin" href="#">Relações antigas</a></li>
+                            <li><a class="menuzin" href="#">Novas relações</a></li>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <hr>
+            <div class="accordion" id="educação">
+                <div class="accordion-item">
+                    <p class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" style="border:0; width: 100%; color: white; font-size: 11px; background-color: #47519b; padding: 10px;"  type="button" data-bs-toggle="collapse" data-bs-target="#menueducação" aria-expanded="false" aria-controls="menueducação">
+                            Educação
+                        </button>
+                    </p>
+                    <div id="menueducação" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#educação">
+                        <div class="accordion-body">
+                            <li><a class="menuzin" href="#">Biblioteca</a></a></li>
+                            <li><a class="menuzin" href="#">Mesa Redonda</a></li>
+                            <li><a class="menuzin" href="#">Palestras</a></li>
+                            <li><a class="menuzin" href="#">Workshops</a></li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="accordion" id="institucional">
+                <div class="accordion-item">
+                    <p class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" style="border:0; width: 100%; color: white; font-size: 11px; background-color: #47519b; padding: 10px;"  type="button" data-bs-toggle="collapse" data-bs-target="#menuinstitucional" aria-expanded="false" aria-controls="menuinstitucional">
+                            Institucional
+                        </button>
+                    </p>
+                    <div id="menuinstitucional" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#institucional">
+                        <div class="accordion-body">
+                            <li><a class="menuzin" href="#">Canais Proprietários</a></a></li>
+                            <li><a class="menuzin" href="#">Premiações</a></li>
+                            <li><a class="menuzin" href="#">Certificações</a></li>
+                            <li><a class="menuzin" href="#">Métricas</a></li>
+                            <li><a class="menuzin" href="#">Newsletter</a></li>
+                            <li><a class="menuzin" href="#">Ferramentas de trabalho</a></li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="accordion" id="administração">
+                <div class="accordion-item">
+                    <p class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" style="border:0; width: 100%; color: white; font-size: 11px; background-color: #47519b; padding: 10px;"  type="button" data-bs-toggle="collapse" data-bs-target="#menuadministração" aria-expanded="false" aria-controls="menuadministração">
+                            Administração
+                        </button>
+                    </p>
+                    <div id="menuadministração" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#administração">
+                        <div class="accordion-body">
+                            <li><a class="menuzin" href="#">Visão da empresa</a></a></li>
+                            <li><a class="menuzin" href="#">Financeiro</a></li>
+                            <li><a class="menuzin" href="#">Contabilidade</a></li>
+                            <li><a class="menuzin" href="#">Jurídico</a></li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            
+            
         </ul>
     </div>
 </div>
@@ -237,11 +317,11 @@
 
 
 <!-- PROMOÇÕES FEITOS | FORMULÁRIO PRA CADASTRAR -->
-<div class="modal fade" id="CadPro" tabindex="-1" aria-labelledby="CadPro" aria-hidden="true">
+<div class="modal fade" id="CadCarreira" tabindex="-1" aria-labelledby="CadCarreira" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="CadPro">Formulário</h5>
+                <h5 class="modal-title" id="CadCarreira">Formulário</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
@@ -257,11 +337,11 @@
 </div>
 
 <!-- CARREIRAS DA SHOOT | FORMULÁRIO PRA CADASTRAR -->
-<div class="modal fade" id="CadCarreira" tabindex="-1" aria-labelledby="CadCarreira" aria-hidden="true">
+<div class="modal fade" id="CadPro" tabindex="-1" aria-labelledby="CadPro" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="CadCarreira">Promovendo a pessoa</h5>
+          <h5 class="modal-title" id="CadPro">Promovendo a pessoa</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
         </div>
         <div class="modal-body">
