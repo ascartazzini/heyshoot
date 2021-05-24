@@ -17,7 +17,12 @@
                       </tr>
                       <tr>
                         <td><strong>Quem leu:</strong>
-                        {{ lista_climas.paraquem }}
+                        {% if lista_climas.paraquem.all %}  
+                        {{ lista_climas.paraquem.all|join:", " }}
+                        {% else  %}
+                        Ninguém leu ainda
+                        {% endif  %}</a>
+                        
                         </td>
                       </tr>
                   </table>

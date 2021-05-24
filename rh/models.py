@@ -209,6 +209,7 @@ class Curso(models.Model):
     updated = models.DateField(auto_now=True)
     quando = models.DateField("Quando", blank=True, null=True)
     qual = models.CharField("Qual curso foi?", max_length=200, blank=True)
+    verba = models.DecimalField("Verba", max_digits=9, decimal_places=2, blank=True, null=True)
     paraquem = models.ForeignKey(Colaborador, verbose_name="Para quem", on_delete=models.CASCADE)
 
     def __str__(self):

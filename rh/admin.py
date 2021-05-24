@@ -104,7 +104,7 @@ class ClimaAdmin(admin.ModelAdmin):
 class CursoAdmin(admin.ModelAdmin):
 
     form = CursoForm
-    list_display = ("qual", "quando")
+    list_display = ("qual", "quando", "verba")
     list_filter = ("paraquem", )
     search_fields = ("paraquem", )
 

@@ -128,7 +128,7 @@ class CursoForm(forms.ModelForm):
     class Meta:
 
         model = Curso
-        fields = ["qual", "quando", "paraquem"]
+        fields = ["qual", "quando", "paraquem", "verba"]
         widgets = {
             "paraquem": forms.RadioSelect,
         }

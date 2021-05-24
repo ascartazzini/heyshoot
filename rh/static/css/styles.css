@@ -274,9 +274,22 @@ ul.timeline > li:before {
     display: inline-block;
     position: absolute;
     border-radius: 50%;
-    border: 3px solid #22c0e8;
+    border: 3px solid rgba(246,203,71);
     left: 20px;
     width: 20px;
     height: 20px;
     z-index: 400;
+}
+
+
+.btn-close{
+    width: 20px;
+    height: 20px;
+    background-color: rgba(246,203,71);
+    border-radius: 5px;
+    border:0;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
 }
