@@ -65,8 +65,8 @@
                 <ul class="list_load">       
                     <div class="spacer_box">
                         <p><strong>Recursos Humanos</strong></p>
-                        <div class="menuzin"><a href="{% url 'lista_colaboradores' %}">Colaboradores</a></div>
-                        <div class="menuzin"><a href="{% url 'lista_climas' %}">Comunicados</a></div>
+                        <div class="menuzin"><a href="{% url 'lista_colaboradores' %}">Shooters</a></div>
+                        <div class="menuzin"><a href="{% url 'lista_climas' %}">Pesquisas e Comunicados</a></div>
                         <div class="menuzin"><a href="{% url 'curso' %}">Cursos</a></div>
                         <div class="menuzin"><a href="{% url 'feedback' %}">Feedback</a></div>
                         <div class="menuzin"><a href="{% url 'folguinha' %}">Férias e Folgas</a></div>
@@ -84,6 +84,202 @@
                 </ul>
             </div>
         </div>
+
+
+
+<div class="modal fade" id="CadFerias" tabindex="-1" aria-labelledby="CadFerias" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="CadFerias">Cadastrando Férias</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="form5Example1" class="form-control" />
+                  <label class="form-label" for="form5Example1">Quem</label>
+                </div>
+              
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">De quando</label>
+                </div>
+              
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Até quando</label>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning">Inserir</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="CadCursos" tabindex="-1" aria-labelledby="CadCursos" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="CadCursos">Cadastrando Curso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="form5Example1" class="form-control" />
+                  <label class="form-label" for="form5Example1">Nome do curso</label>
+                </div>
+              
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Quando</label>
+                </div>
+              
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Quem</label>
+                </div>
+
+                <!-- Date input -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <span class="input-group-text">,00</span>
+                  </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning">Inserir</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="CadComunicado" tabindex="-1" aria-labelledby="CadComunicado" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="CadComunicado">Fazendo comunicado ou pesquisa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="form5Example1" class="form-control" />
+                  <label class="form-label" for="form5Example1">Quem</label>
+                </div>
+              
+               
+
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning">Inserir</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="CadCarreira" tabindex="-1" aria-labelledby="CadCarreira" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="CadCarreira">Promovendo a pessoa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="form5Example1" class="form-control" />
+                  <label class="form-label" for="form5Example1">Quem</label>
+                </div>
+              
+                <div class="input-group mb-4">
+                    <label class="input-group-text" for="inputGroupSelect01">Nova função</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                      <option selected>Selecione...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                </div>
+                <br>
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Quando</label>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning">Inserir</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="CadPessoa" tabindex="-1" aria-labelledby="CadPessoa" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="CadPessoa">Editando perfil da pessoa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="form5Example1" class="form-control" />
+                  <label class="form-label" for="form5Example1">Nome do curso</label>
+                </div>
+              
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Quando</label>
+                </div>
+              
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Quem</label>
+                </div>
+
+                <!-- Date input -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <span class="input-group-text">,00</span>
+                  </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning">Inserir</button>
+        </div>
+      </div>
+    </div>
+</div>
+
             {% block content %}{% endblock %}
         </div>
         <script src="{% static 'js/scripts.js' %}"></script>

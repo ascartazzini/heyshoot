@@ -2,125 +2,6 @@
 {% block title %}{{ colaborador.nome|title }}{% endblock %}
 {% block content %}
 
-<div class="modal fade" id="CadFerias" tabindex="-1" aria-labelledby="CadFerias" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="CadFerias">Cadastrando Férias</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <!-- Name input -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="form5Example1" class="form-control" />
-                  <label class="form-label" for="form5Example1">Quem</label>
-                </div>
-              
-                <!-- Date input -->
-                <div class="form-outline mb-4">
-                    <input type="text" id="form5Example1" class="form-control" />
-                    <label class="form-label" for="form5Example1">De quando</label>
-                </div>
-              
-                <!-- Date input -->
-                <div class="form-outline mb-4">
-                    <input type="text" id="form5Example1" class="form-control" />
-                    <label class="form-label" for="form5Example1">Até quando</label>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-warning">Inserir</button>
-        </div>
-      </div>
-    </div>
-</div>
-
-<div class="modal fade" id="CadCursos" tabindex="-1" aria-labelledby="CadCursos" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="CadCursos">Cadastrando Curso</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <!-- Name input -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="form5Example1" class="form-control" />
-                  <label class="form-label" for="form5Example1">Nome do curso</label>
-                </div>
-              
-                <!-- Date input -->
-                <div class="form-outline mb-4">
-                    <input type="text" id="form5Example1" class="form-control" />
-                    <label class="form-label" for="form5Example1">Quando</label>
-                </div>
-              
-                <!-- Date input -->
-                <div class="form-outline mb-4">
-                    <input type="text" id="form5Example1" class="form-control" />
-                    <label class="form-label" for="form5Example1">Quem</label>
-                </div>
-
-                <!-- Date input -->
-                <div class="input-group mb-3">
-                    <span class="input-group-text">$</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-text">,00</span>
-                  </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-warning">Inserir</button>
-        </div>
-      </div>
-    </div>
-</div>
-
-<div class="modal fade" id="CadCarreira" tabindex="-1" aria-labelledby="CadCarreira" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="CadCarreira">Promovendo a pessoa</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <!-- Name input -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="form5Example1" class="form-control" />
-                  <label class="form-label" for="form5Example1">Quem</label>
-                </div>
-              
-                <div class="input-group mb-4">
-                    <label class="input-group-text" for="inputGroupSelect01">Nova função</label>
-                    <select class="form-select" id="inputGroupSelect01">
-                      <option selected>Selecione...</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                </div>
-                <br>
-                <!-- Date input -->
-                <div class="form-outline mb-4">
-                    <input type="text" id="form5Example1" class="form-control" />
-                    <label class="form-label" for="form5Example1">Quando</label>
-                </div>
-
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-warning">Inserir</button>
-        </div>
-      </div>
-    </div>
-</div>
 
 <div class="content" style="padding-bottom: 160px;">
     <div class="container-sm">
@@ -155,28 +36,31 @@
                 <table class="table text-muted">
                     <thead>
                       <tr>
-                        <th scope="col" colspan="3" class="text-pink">{{ colaborador.nome }}</th>
+                        <td colspan="7">
+                            <span class="text-pink"><strong>{{ colaborador.nome }}</strong></span>
+                            <a href="#" style="color:black" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#CadPessoa"></a>
+                        </td>   
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td colspan="2">{{ colaborador.bio }}</td>
+                        <td colspan="4">{{ colaborador.bio }}</td>
                       </tr>
                       <tr>
-                        <td><a href="{{ colaborador.cpffile }}">CPF {{ colaborador.cpf }}</a></td>
-                        <td><a href="{{ colaborador.rgfile }}">RG {{ colaborador.errege }}</a></td>
+                        <td colspan="1"><a href="{{ colaborador.cpffile }}">CPF {{ colaborador.cpf }}</a></td>
+                        <td colspan="3"><a href="{{ colaborador.rgfile }}">RG {{ colaborador.errege }}</a></td>
                       </tr>
                       <tr>
-                        <td>{{ colaborador.endereco }}</td>
-                        <td>{{ colaborador.cidade }}/{{ colaborador.estado }} - {{ colaborador.pais }}</td>
+                        <td colspan="1">{{ colaborador.endereco }}</td>
+                        <td colspan="3">{{ colaborador.cidade }}/{{ colaborador.estado }} - {{ colaborador.pais }}</td>
                       </tr>
                       <tr>
-                        <td>Nasceu em {{ colaborador.data_nascimento }}</td>
-                        <td>Entrou na Shoot {{ colaborador.entrounashoot }}</td>
+                        <td colspan="1">Nasceu em {{ colaborador.data_nascimento }}</td>
+                        <td colspan="3">Entrou na Shoot {{ colaborador.entrounashoot }}</td>
                       </tr>
                       <tr>
-                        <td>Fone {{ colaborador.telefone }}</td>
-                        <td>Email pessoal {{ colaborador.emailpessoal }}</td>
+                        <td colspan="1">Fone {{ colaborador.telefone }}</td>
+                        <td colspan="3">Email pessoal {{ colaborador.emailpessoal }}</td>
                       </tr>
                       <tr>
                         <td>Banco {{ colaborador.banco }}</td>
@@ -301,7 +185,20 @@
                 </table>
             </div>
         </div>
+    </div>
 
+    <div class="container-md" style="background-color: white; margin-top: 30px; padding-top: 30px; padding-bottom: 10px;">
+        <div class="row justify-content-center">
+            <p class="text-pink"><strong>Já visualizou os comunicados sobre</strong></p>
+        </div>
+        <div class="row">
+        <ul style="text-align: left;">
+            <li class="text-muted"><strong>23/05/2021</strong> - Politicas de homeoffice</li>
+            <p class="text-muted">Update dos nossos acordos em relação ao homeoffice e como ele deve ser tratado</p>
+            <li class="text-muted"><strong>23/05/2021</strong> - Politicas de homeoffice</li>
+            <p class="text-muted">Update dos nossos acordos em relação ao homeoffice e como ele deve ser tratado</p>
+        </ul>
+        </div>
     </div>
 
     <div class="d-flex justify-content-center" style="text-align: center; margin-top: 80px;">
