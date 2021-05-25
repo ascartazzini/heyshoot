@@ -1,10 +1,53 @@
 {% extends 'base_shoot.html' %}
 {% block title %}Fornecedores{% endblock %}
 {% block content %}
-<h1>Fornecedores</h1>
-<ul>
-    {% for fornecedores in fornecedores %}
-    <li>{{ fornecedores.titulo }}</li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#CadParceiros" style="color: rgba(246,203,71); width: 40px; padding-top: 10px; font-size: 2em;">
+            <i class="bi bi-plus-circle-fill"></i></a>
+    </div>
+
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px;">Parceiros da Shoot</p>
+   
+    <div class="row" style="padding-bottom: 30px; padding-top: 30px;">
+        <div class="col-md-4" style="background-color: #f5c2d8; padding: 50px; margin-bottom: 30px;border-top-left-radius: 10px;border-bottom-left-radius: 10px;">
+            <h5 style="color: #47529c;">Parceiro bom é parceiro sustentável</h5>
+            <p style="margin-top: 20px; color: #47529c;">Aqui a gente coloca a lista inteira de parceiros que temos. </p>
+        </div>
+        <div class="col-md-8" style="background-color:white; padding-top: 30px; margin-bottom: 30px; border-top-right-radius: 10px;border-bottom-right-radius: 10px;">
+            
+            <div class="accordion" id="parceirosfornecedores">
+                <div class="accordion-item">
+                
+                    <p class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" style="border:0; width: 100%; border-radius: 5px; color: white; font-size: 11px; background-color: #47519b; padding: 10px;"  type="button" data-bs-toggle="collapse" data-bs-target="#menuparceirosfornecedores" aria-expanded="false" aria-controls="menuparceirosfornecedores">
+                            <i class="bi bi-piggy-bank"></i> NOME DA ATIVIDADE <span class="badge badge-danger" style="color: white;">42 Parceiros</span>
+                        </button>
+                    </p>
+                    {% for forne in fornecedores %}
+                    <div id="menuparceirosfornecedores" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#parceirosfornecedores">
+                        <div class="accordion-body">
+                            <div class="row text-muted">
+                                <div class="col-md-3">{{ forne.titulo }}</div>
+                                <div class="col-md-3">{{ forne.atividade }}</div>
+                                <div class="col-md-3">{{ forne.oque }}</div>
+                                <div class="col-md-3">
+                                    {% if forne.iniciativanaobranca %}
+                                        Sim
+                                        {% else %}
+                                        Não
+                                    {% endif  %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
