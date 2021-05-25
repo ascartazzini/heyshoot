@@ -14,8 +14,8 @@
     
     {% for cliente in cliente %}
     <div class="col" style="margin-bottom: 30px;">
-      <div class="card h-100">
-        <img src="{{ cliente.logo.url }}" class="card-img-top">
+      <div class="text-center card-box">
+        <img src="{{ cliente.logo.url }}" class="img-thumbnail" width="100">
         <div class="card-body">
           <h5 class="card-title">{{ cliente.nome|title }}</h5>
           <p class="card-text text-muted">
@@ -28,7 +28,7 @@
         </div>
         <div class="card-footer">
           <small class="text-muted">
-            {{ cliente.inicio }} - {{ cliente.fim }}
+            Do dia {{ cliente.inicio|date:"d/m/Y" }} até o dia {{ cliente.fim|date:"d/m/Y" }}
           </small>
         </div>
       </div>
