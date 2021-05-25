@@ -99,8 +99,8 @@ class PropostaAdmin(admin.ModelAdmin):
 class ProjetoAdmin(admin.ModelAdmin):
 
     form = ProjetoForm
-    list_display = ("nome","numero", "lider_shoot")
-    list_filter = ("numero", )
+    list_display = ("nome","numero", "cliente", "lider_shoot", "ativo")
+    list_filter = ("numero", "ativo")
 
 
 class ContatoAdmin(admin.ModelAdmin):
