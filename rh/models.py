@@ -120,6 +120,8 @@ class Cliente(models.Model):
     emailcontato = models.CharField("E-mail de contato", max_length=200, blank=True)
     fonecontato = models.CharField("Fone do contato", max_length=200, blank=True)
     lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot")
+    inicio = models.DateField("Início da relação", blank=True, null=True)
+    fim = models.DateField("Fim da relação", blank=True, null=True)
 
     def __str__(self):
         return self.nome

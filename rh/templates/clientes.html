@@ -1,35 +1,44 @@
 {% extends 'base_shoot.html' %}
 {% block title %}Clientes{% endblock %}
 {% block content %}
-<h1>Clientes</h1>
-<table class="table table-borderless table-hover">
-    <thead>
-      <tr class="table-primary">
-        <th scope="col">Nome</th>
-        <th scope="col">Logo</th>
-        <th scope="col">CNPJ</th>
-        <th scope="col">Razão Social</th>
-        <th scope="col">Nome do Contato</th>
-        <th scope="col">Email do Contato</th>
-        <th scope="col">Líder Shoot</th>
-      </tr>
-    </thead>
-    <tbody>
+
+<div class="container">
+  <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
+      <a href="#" data-bs-toggle="modal" data-bs-target="#CadCliente" style="color: rgba(246,203,71); width: 40px; padding-top: 10px; font-size: 2em;">
+          <i class="bi bi-plus-circle-fill"></i></a>
+  </div>
+
+  <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px;">Clientes e relações</p>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    
     {% for cliente in cliente %}
-      <tr>
-        <th scope="row">
-            <a href="{% url 'detalhes_cliente' cliente.pk %}">
-                <img src="{{ cliente.logo.url }}" width="100" height="100" class="img-thumbnail rounded">
-            </a>
-        </th>
-        <td>{{ cliente.nome|title }}</a></td>
-        <td>{{ cliente.cnpj }}</td>
-        <td>{{ cliente.razaosocial }}</td>
-        <td>{{ cliente.nomecontato }}</td>
-        <td>{{ cliente.emailcontato }}</td>
-        <td>{{ cliente.lider_shoot }}</td>
-      </tr>
+    <div class="col">
+      <div class="card h-100">
+        <img src="{{ cliente.logo.url }}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ cliente.nome|title }}</h5>
+          <p class="card-text text-muted">
+            CNPJ: {{ cliente.cnpj }} <br>
+            Razão Social: {{ cliente.razaosocial }}<br>
+            Contato: {{ cliente.nomecontato }}<br>
+            E-mail: {{ cliente.emailcontato }}<br>
+            Líder Shoot: {{ cliente.lider_shoot }}<br>
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            {{ cliente.inicio }} - {{ cliente.fim }}
+          </small>
+        </div>
+      </div>
+    </div>
     {% endfor %}
-    </tbody>
-</table>
+    
+    
+
+  </div>
+  
+</div>
+
 {% endblock %}

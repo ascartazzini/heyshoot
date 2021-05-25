@@ -51,7 +51,6 @@ class ClienteAdmin(admin.ModelAdmin):
 
     form = ClienteForm
     list_display = ("nome", "thumbnail", "cnpj", "razaosocial", "nomecontato", "emailcontato", "fonecontato")
-    list_filter = ("lider_shoot", )
     search_fields = ("nome", )
 
     def thumbnail(self, obj):
