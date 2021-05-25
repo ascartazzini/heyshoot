@@ -5,9 +5,9 @@ from rh.views import (ClienteDetalhesView, ClienteView, ClimaDetalhesView,
                       ClimaView, ColaboradoresDetalhesView, ColaboradoresView,
                       ContatoView, CursoDetalhesView, CursoView, FeedbackView,
                       FolguinhaView, FornecedoresView, HierarquiaView,
-                      IndexView, ProjetoDetalhesView, ProjetoView,
-                      PromocaoView, PropostaDetalhesView, PropostaView,
-                      TipoProjetoView)
+                      IndexView, MomentoImportanteView, ProjetoDetalhesView,
+                      ProjetoView, PromocaoView, PropostaDetalhesView,
+                      PropostaView, TipoProjetoView)
 
 urlpatterns = [
     path("clientes/", ClienteView.as_view(), name="lista_cliente"),
@@ -24,6 +24,7 @@ urlpatterns = [
     path("fornecedores/", FornecedoresView.as_view(), name="lista_fornecedores"),
     path("hierarquia/", HierarquiaView.as_view(), name="hierarquia"),
     path("", IndexView.as_view(), name="index"),
+    path("momentos/", MomentoImportanteView.as_view(), name="MomentoImportante"),
     path("projetos/", ProjetoView.as_view(), name="lista_projeto"),
     path("projetos/<int:pk>/", ProjetoDetalhesView.as_view(), name="detalhes_projeto"),
     path("promocao/", PromocaoView.as_view(), name="promocao"),

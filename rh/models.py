@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.base import Model
+from django.db.models.fields.related import ForeignKey
 
 
 class Atividadecomercial(models.Model):
@@ -126,6 +127,17 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nome
 
+
+class MomentoImportante(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    titulo = models.CharField("Nome do momento", max_length=100)
+    quem = ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Pessoa")
+    quando = models.DateField("Data", blank=True, null=True)
+
+    def __str__(self):
+        return self.titulo
+        
 
 class Projeto(models.Model):
 

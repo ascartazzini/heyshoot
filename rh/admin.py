@@ -1,12 +1,12 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.utils.safestring import mark_safe
-from django.contrib import messages
 
 from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       ProjetoForm)
 from rh.models import (Atividadecomercial, Cliente, Clima, Colaborador,
-                       Contato, Curso, Feedback, Folguinha, Fornecedores, Hierarquia,
-                       Projeto, Promocao, Proposta, TipoProjeto)
+                       Contato, Curso, Feedback, Folguinha, Fornecedores,
+                       Hierarquia, MomentoImportante, Projeto, Promocao,
+                       Proposta, TipoProjeto)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -59,6 +59,9 @@ class ClienteAdmin(admin.ModelAdmin):
         return "-"
     thumbnail.short_description = 'Logo'
 
+
+class MomentoImportanteAdmin(admin.ModelAdmin):
+    list_display = ("titulo", "quem", "quando")
 
 class HierarquiaAdmin(admin.ModelAdmin):
 
@@ -138,6 +141,7 @@ admin.site.register(Folguinha, FolguinhaAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Cliente, ClienteAdmin)
+admin.site.register(MomentoImportante, MomentoImportanteAdmin)
 admin.site.register(Hierarquia, HierarquiaAdmin)
 admin.site.register(Projeto, ProjetoAdmin)
 admin.site.register(Proposta, PropostaAdmin)

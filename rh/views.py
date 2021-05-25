@@ -4,8 +4,9 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from rh.forms import ContatoForm
-from rh.models import (Cliente, Clima, Colaborador, Contato, Curso, Feedback, Folguinha, Fornecedores, Hierarquia, Projeto, Promocao,
-                       Proposta, TipoProjeto)
+from rh.models import (Cliente, Clima, Colaborador, Contato, Curso, Feedback,
+                       Folguinha, Fornecedores, Hierarquia, MomentoImportante,
+                       Projeto, Promocao, Proposta, TipoProjeto)
 
 
 class IndexView(TemplateView):
@@ -99,6 +100,7 @@ class CursoDetalhesView(DetailView):
     template_name = "detalhes_cursos.html"
     model = Curso
 
+
 class FeedbackView(ListView):
     
     context_object_name = "feedback"
@@ -119,6 +121,13 @@ class FornecedoresView(ListView):
     template_name = "fornecedores.html"
     model = Fornecedores
 
+
+class MomentoImportanteView(ListView):
+    
+    context_object_name = "MomentoImportante"
+    template_name = "momentos.html"
+    model = MomentoImportante
+  
 
 class HierarquiaView(ListView):
     
