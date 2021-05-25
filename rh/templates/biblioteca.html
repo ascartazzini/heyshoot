@@ -1,0 +1,42 @@
+{% extends 'base_shoot.html' %}
+{% block title %}Clientes{% endblock %}
+{% block content %}
+
+<div class="container">
+  <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
+      <a href="#" data-bs-toggle="modal" data-bs-target="#CadBiblioteca" style="color: rgba(246,203,71); width: 40px; padding-top: 10px; font-size: 2em;">
+          <i class="bi bi-plus-circle-fill"></i></a>
+  </div>
+
+  <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px;">Biblioteca</p>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    
+    {% for bibli in biblioteca %}
+    <div class="col" style="margin-bottom: 30px;">
+      <div class="text-center card-box">
+        <img src="{{ bibli.imagem.url }}" class="img-thumbnail" width="200">
+        <div class="card-body">
+          <h5 class="card-title">{{ bibli.titulo|title }}</h5>
+          <span class="text-muted"><i>De quem é: {{ bibli.autor }}</i></span><br><br>
+          <p class="card-text text-muted">
+              <strong>Porque você deveria ler?</strong><br>
+            {{ bibli.desc }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            Recomendado por {{ bibli.recomendado }}
+          </small>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    
+
+  </div>
+  
+</div>
+
+{% endblock %}

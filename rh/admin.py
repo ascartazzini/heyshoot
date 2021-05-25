@@ -3,10 +3,10 @@ from django.utils.safestring import mark_safe
 
 from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       ProjetoForm)
-from rh.models import (Atividadecomercial, Cliente, Clima, Colaborador,
-                       Contato, Curso, Feedback, Folguinha, Fornecedores,
-                       Hierarquia, MomentoImportante, Projeto, Promocao,
-                       Proposta, TipoProjeto)
+from rh.models import (Atividadecomercial, Biblioteca, Cliente, Clima,
+                       Colaborador, Contato, Curso, Feedback, Folguinha,
+                       Fornecedores, Hierarquia, MomentoImportante, Projeto,
+                       Promocao, Proposta, TipoProjeto)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -32,6 +32,19 @@ class ColaboradorAdmin(admin.ModelAdmin):
             return mark_safe('<img src="%s" width=100 height=100 />' % obj.foto.url)
         return "-"
     thumbnail.short_description = 'Foto'
+
+
+class BibliotecaAdmin(admin.ModelAdmin):
+
+    list_display = ("titulo", "recomendado", "autor", "thumbnail")
+    list_filter = ("titulo", )
+    
+    def thumbnail(self, obj):
+        if obj.imagem:
+            return mark_safe('<img src="%s" width=100 height=100 />' % obj.imagem.url)
+        return "-"
+    thumbnail.short_description = 'Imagem'
+
 
 
 class FolguinhaAdmin(admin.ModelAdmin):
@@ -133,6 +146,7 @@ class PromocaoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
+admin.site.register(Biblioteca, BibliotecaAdmin)
 admin.site.register(Clima, ClimaAdmin)
 admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Contato, ContatoAdmin)

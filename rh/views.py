@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from rh.forms import ContatoForm
-from rh.models import (Cliente, Clima, Colaborador, Contato, Curso, Feedback,
+from rh.models import (Biblioteca, Cliente, Clima, Colaborador, Contato, Curso, Feedback,
                        Folguinha, Fornecedores, Hierarquia, MomentoImportante,
                        Projeto, Promocao, Proposta, TipoProjeto)
 
@@ -12,6 +12,13 @@ from rh.models import (Cliente, Clima, Colaborador, Contato, Curso, Feedback,
 class IndexView(TemplateView):
 
     template_name = "index.html"
+
+
+class BibliotecaView(ListView):
+    
+    context_object_name = "biblioteca"
+    template_name = "biblioteca.html"
+    model = Biblioteca
 
 
 class ClienteView(ListView):

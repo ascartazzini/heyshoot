@@ -71,6 +71,23 @@ class Colaborador(models.Model):
         verbose_name = "a pessoa"
 
 
+
+class Biblioteca(models.Model):
+
+        created = models.DateTimeField(auto_now_add=True)
+        updated = models.DateTimeField(auto_now=True)
+        titulo = models.CharField("Título do livro", max_length=100, blank=True, null=True)
+        recomendado = ForeignKey(Colaborador, null=True, on_delete=models.SET_NULL, verbose_name="Recomendado Por")
+        autor = models.CharField("Autor", max_length=100)
+        desc = models.TextField("Porque você recomenda", null=True)
+        imagem_x = models.PositiveSmallIntegerField("Imagem X", default=0, editable=False)
+        imagem_y = models.PositiveSmallIntegerField("Imagem Y", default=0, editable=False)
+        imagem = models.ImageField(upload_to="bibilioteca/imagens", height_field="imagem_y", width_field="imagem_x", max_length=600, blank=True)
+
+        def __str__(self):
+            return self.titulo
+
+
 class Folguinha(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
@@ -137,7 +154,7 @@ class MomentoImportante(models.Model):
 
     def __str__(self):
         return self.titulo
-        
+
 
 class Projeto(models.Model):
 

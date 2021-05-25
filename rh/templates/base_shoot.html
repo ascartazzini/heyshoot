@@ -114,7 +114,7 @@
                     </p>
                     <div id="menueducação" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#educação">
                         <div class="accordion-body">
-                            <li><a class="menuzin" href="#">Biblioteca</a></a></li>
+                            <li><a class="menuzin" href="{% url 'biblioteca' %}">Biblioteca</a></a></li>
                             <li><a class="menuzin" href="#">Mesa Redonda</a></li>
                             <li><a class="menuzin" href="#">Palestras</a></li>
                             <li><a class="menuzin" href="#">Workshops</a></li>
@@ -529,6 +529,51 @@
       </div>
     </div>
 </div>
+
+
+<!-- BIBLIOTECA | FORMULÁRIO PRA CADASTRAR -->
+<div class="modal fade" id="CadBiblioteca" tabindex="-1" aria-labelledby="CadBiblioteca" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="CadBiblioteca">Cadastro na biblioteca</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="form5Example1" class="form-control" />
+                  <label class="form-label" for="form5Example1">Quem</label>
+                </div>
+              
+                <div class="input-group mb-4">
+                    <label class="input-group-text" for="inputGroupSelect01">Nova função</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                      <option selected>Selecione...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                </div>
+                <br>
+                <!-- Date input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form5Example1" class="form-control" />
+                    <label class="form-label" for="form5Example1">Quando</label>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning">Inserir</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
 
 <!-- CAD MOMENTOS IMPORTANTES | FORMULÁRIO PRA CADASTRAR -->
 <div class="modal fade" id="CadMomento" tabindex="-1" aria-labelledby="CadMomento" aria-hidden="true">
