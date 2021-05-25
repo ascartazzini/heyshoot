@@ -1,17 +1,19 @@
 from django.conf.urls import include, url
 from django.urls import path
 
-from rh.views import (BibliotecaView, ClienteDetalhesView, ClienteView,
-                      ClimaDetalhesView, ClimaView, ColaboradoresDetalhesView,
-                      ColaboradoresView, ContatoView, CursoDetalhesView,
-                      CursoView, FeedbackView, FolguinhaView, FornecedoresView,
-                      HierarquiaView, IndexView, MomentoImportanteView,
-                      ProjetoDetalhesView, ProjetoView, PromocaoView,
-                      PropostaDetalhesView, PropostaView, TipoProjetoView)
+from rh.views import (BibliotecaView, ClienteDetalhesView, ClienteInativosView,
+                      ClienteView, ClimaDetalhesView, ClimaView,
+                      ColaboradoresDetalhesView, ColaboradoresView,
+                      ContatoView, CursoDetalhesView, CursoView, FeedbackView,
+                      FolguinhaView, FornecedoresView, HierarquiaView,
+                      IndexView, MomentoImportanteView, ProjetoDetalhesView,
+                      ProjetoView, PromocaoView, PropostaDetalhesView,
+                      PropostaView, TipoProjetoView)
 
 urlpatterns = [
     path("biblioteca/", BibliotecaView.as_view(), name="biblioteca"),
     path("clientes/", ClienteView.as_view(), name="lista_cliente"),
+    path("clientes/inativos/", ClienteInativosView.as_view(), name="lista_cliente_inativos"),
     path("clientes/<int:pk>/", ClienteDetalhesView.as_view(), name="detalhes_cliente"),
     path("clima/", ClimaView.as_view(), name="lista_climas"),
     path("clima/<int:pk>/", ClimaDetalhesView.as_view(), name="clima"),
@@ -32,5 +34,5 @@ urlpatterns = [
     path("propostas/", PropostaView.as_view(), name="lista_proposta"),
     path("propostas/<int:pk>/", PropostaDetalhesView.as_view(), name="detalhes_proposta"),
     path("tipo_projeto/", TipoProjetoView.as_view(), name="lista_TipoProjeto"),
-    
+
 ]

@@ -1,0 +1,44 @@
+{% extends 'base_shoot.html' %}
+{% block title %}Clientes Inativos{% endblock %}
+{% block content %}
+
+<div class="container">
+  <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
+      <a href="#" data-bs-toggle="modal" data-bs-target="#CadCliente" style="color: rgba(246,203,71); width: 40px; padding-top: 10px; font-size: 2em;">
+          <i class="bi bi-plus-circle-fill"></i></a>
+  </div>
+
+  <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px;">Clientes e relações inativas</p>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    {% for cliente in cliente %}
+    <div class="col" style="margin-bottom: 30px;">
+      <div class="text-center card-box">
+        {% if cliente.logo %}<img src="{{ cliente.logo.url }}" class="img-thumbnail" width="100">{% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ cliente.nome|title }}</h5>
+          <p class="card-text text-muted">
+            CNPJ: {{ cliente.cnpj }} <br>
+            Razão Social: {{ cliente.razaosocial }}<br>
+            Contato: {{ cliente.nomecontato }}<br>
+            E-mail: {{ cliente.emailcontato }}<br>
+            Líder Shoot: {{ cliente.lider_shoot }}<br>
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            Do dia {{ cliente.inicio|date:"d/m/Y" }} até o dia {{ cliente.fim|date:"d/m/Y" }}
+          </small>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+
+
+  </div>
+
+</div>
+
+{% endblock %}

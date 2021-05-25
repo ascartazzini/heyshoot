@@ -28,6 +28,21 @@ class ClienteView(ListView):
     template_name = "clientes.html"
     model = Cliente
 
+    def get_queryset(self):
+        queryset =  super().get_queryset()
+        return queryset.filter(projeto__ativo=True)
+
+
+class ClienteInativosView(ListView):
+
+    context_object_name = "cliente"
+    template_name = "clientes-inativos.html"
+    model = Cliente
+
+    def get_queryset(self):
+        queryset =  super().get_queryset()
+        return queryset.filter(projeto__ativo=False)
+
 
 class ClienteDetalhesView(DetailView):
 
