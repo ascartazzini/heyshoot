@@ -4,9 +4,10 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from rh.forms import ContatoForm
-from rh.models import (Biblioteca, Cliente, Clima, Colaborador, Contato, Curso, Feedback,
-                       Folguinha, Fornecedores, Hierarquia, MomentoImportante,
-                       Projeto, Promocao, Proposta, TipoProjeto)
+from rh.models import (Atividadecomercial, Biblioteca, Cliente, Clima,
+                       Colaborador, Contato, Curso, Feedback, Folguinha,
+                       Fornecedores, Hierarquia, MomentoImportante, Projeto,
+                       Promocao, Proposta, TipoProjeto)
 
 
 class IndexView(TemplateView):
@@ -15,7 +16,7 @@ class IndexView(TemplateView):
 
 
 class BibliotecaView(ListView):
-    
+
     context_object_name = "biblioteca"
     template_name = "biblioteca.html"
     model = Biblioteca
@@ -29,35 +30,35 @@ class ClienteView(ListView):
 
 
 class ClienteDetalhesView(DetailView):
-    
+
     context_object_name = "cliente"
     template_name = "detalhes_clientes.html"
     model = Cliente
 
 
 class ClimaView(ListView):
-    
+
     context_object_name = "lista_climas"
     template_name = "clima.html"
     model = Clima
 
 
 class ClimaDetalhesView(DetailView):
-    
+
     context_object_name = "lista_climas"
     template_name = "detalhes_comunicados.html"
     model = Clima
 
 
 class ColaboradoresView(ListView):
-    
+
     context_object_name = "colaboradores"
     template_name = "colaboradores.html"
     model = Colaborador
 
 
 class ColaboradoresDetalhesView(DetailView):
-    
+
     context_object_name = "colaborador"
     template_name = "detalhes_colabs.html"
     model = Colaborador
@@ -95,28 +96,28 @@ class ContatoView(CreateView):
 
 
 class CursoView(ListView):
-    
+
     context_object_name = "curso"
     template_name = "cursos.html"
     model = Curso
 
 
 class CursoDetalhesView(DetailView):
-    
+
     context_object_name = "cursos"
     template_name = "detalhes_cursos.html"
     model = Curso
 
 
 class FeedbackView(ListView):
-    
+
     context_object_name = "feedback"
     template_name = "feedbacks.html"
     model = Feedback
-    
+
 
 class FolguinhaView(ListView):
-    
+
     context_object_name = "folguinha"
     template_name = "folgas.html"
     model = Folguinha
@@ -128,16 +129,21 @@ class FornecedoresView(ListView):
     template_name = "fornecedores.html"
     model = Fornecedores
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["atividades"] = Atividadecomercial.objects.all()
+        return context
+
 
 class MomentoImportanteView(ListView):
-    
+
     context_object_name = "MomentoImportante"
     template_name = "momentos.html"
     model = MomentoImportante
-  
+
 
 class HierarquiaView(ListView):
-    
+
     context_object_name = "hierarquia"
     template_name = "hierarquias.html"
     model = Hierarquia
@@ -159,7 +165,7 @@ class ProjetoDetalhesView(DetailView):
 
 
 class PromocaoView(ListView):
-    
+
     context_object_name = "promocao"
     template_name = "promocoes.html"
     model = Promocao

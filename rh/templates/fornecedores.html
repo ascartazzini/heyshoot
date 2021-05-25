@@ -17,15 +17,15 @@
         <div class="col-md-8" style="background-color:white; padding-top: 30px; margin-bottom: 30px; border-top-right-radius: 10px;border-bottom-right-radius: 10px;">
 
             <div class="accordion" id="parceirosfornecedores">
+                {% for atividade in atividades %}
                 <div class="accordion-item">
-
                     <p class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" style="border:0; width: 100%; color: white; font-size: 11px; background-color: #47519b; padding: 10px;"  type="button" data-bs-toggle="collapse" data-bs-target="#menuparceirosfornecedores" aria-expanded="false" aria-controls="menuparceirosfornecedores">
-                            NOME DA ATIVIDADE <span class="badge badge-danger" style="color: white;">42 Parceiros</span>
+                        <button class="accordion-button collapsed" style="border:0; width: 100%; color: white; font-size: 11px; background-color: #47519b; padding: 10px;"  type="button" data-bs-toggle="collapse" data-bs-target="#menuparceirosfornecedores-{{ atividade.id }}" aria-expanded="false" aria-controls="menuparceirosfornecedores-{{ atividade.id }}">
+                            {{ atividade.nome|upper }} <span class="badge badge-danger" style="color: white;">{{ atividade.fornecedores_set.count }} Parceiro{{ atividade.fornecedores_set.count|pluralize }}</span>
                         </button>
                     </p>
-                    {% for forne in fornecedores %}
-                    <div id="menuparceirosfornecedores" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#parceirosfornecedores">
+                    {% for forne in atividade.fornecedores_set.all %}
+                    <div id="menuparceirosfornecedores-{{ atividade.id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#parceirosfornecedores">
                         <div class="accordion-body">
                             <div class="row text-muted">
                                 <div class="col-md-3"><a href="#" class="text-pink">{{ forne.titulo }}</a></div>
@@ -38,6 +38,7 @@
                     </div>
                     {% endfor %}
                 </div>
+                {% endfor %}
             </div>
 
         </div>
