@@ -7,10 +7,10 @@
   <div class="d-flex justify-content-end" style="text-align: center; margin-top: 20px;">
     <a href="#" data-bs-toggle="modal" data-bs-target="#CadPeople" style="color: rgba(246,203,71); width: 40px; padding-top: 10px; font-size: 2em;">
       <i class="bi bi-plus-circle-fill"></i></a>
-  </div>  
+  </div>
 
   <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px;">As pessoas da Shoot</p>
-  
+
   <div class="row" style="margin-top: 30px;">
   {% for colaborador in colaboradores %}
     <div class="col-lg-4">
@@ -18,7 +18,7 @@
           <div class="member-card pt-2 pb-2">
             <div class="thumb-lg member-thumb mx-auto">
               <a href="{% url 'detalhes_colaborador' colaborador.pk %}">
-              {% if colaborador.foto %}  
+              {% if colaborador.foto %}
               <img src="{{ colaborador.foto.url }}" class="rounded-circle img-thumbnail" alt="{{ colaborador.nome }}">
               {% else  %}
               <img src="../static/images/semfoto.jpg" class="rounded-circle img-thumbnail" alt="{{ colaborador.nome }}">
@@ -32,30 +32,65 @@
               </span>
               <p><span class="text-pink">Entrou na Shoot dia {{ colaborador.entrounashoot|date:"d/m/Y" }}</span></p>
             </div>
-                 
+
             <ul class="social-links list-inline">
-              {% if colaborador.instagram %} 
+              {% if colaborador.instagram %}
               <li class="list-inline-item"><a target="_blank" title="Instagram do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="http://www.instagram.com/{{ colaborador.instagram }}" data-original-title="Instagram"><i class="fa fa-instagram"></i></a></li>
               {% endif  %}
-              {% if colaborador.facebook %} 
+              {% if colaborador.facebook %}
               <li class="list-inline-item"><a target="_blank" title="Facebook do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="http://www.facebook.com/{{ colaborador.facebook }}" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
               {% endif  %}
-              {% if colaborador.emailpessoal %} 
+              {% if colaborador.emailpessoal %}
               <li class="list-inline-item"><a target="_blank" title="Email do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="mailto:{{ colaborador.emailpessoal }}" data-original-title="Email"><i class="fa fa-envelope"></i></a></li>
               {% endif  %}
-              {% if colaborador.linkedin %} 
+              {% if colaborador.linkedin %}
               <li class="list-inline-item"><a target="_blank" title="Linkedin do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="https://www.linkedin.com/in/{{ colaborador.linkedin }}" data-original-title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
               {% endif  %}
             </ul>
-                 
-            <p class="title text-pink"><strong>Presente nos projetos:</strong></p>
-                    
+
+            {% comment %} # TODO: Deixar o título pluralize :) {% endcomment %}
+            <p class="title text-pink"><strong>Líder nos projetos:</strong></p>
             <table class="table text-muted">
-              <tr>
-                  <td class="align-middle">00.00.0000</td>
-                  <td class="align-middle">Projeto</td>
-                  <td class="align-middle">Cliente</td>
-              </tr>
+              <thead>
+                <tr>
+                  <th class="align-middle">Início</th>
+                  <th class="align-middle">Projeto</th>
+                  <th class="align-middle">Cliente</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for projeto in colaborador.lider.all %}
+                <tr>
+                    <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-" }}</td>
+                    <td class="align-middle">{{ projeto.nome }}</td>
+                    <td class="align-middle">{{ projeto.cliente|default_if_none:"-" }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <p class="title text-pink"><strong>Presente nos projetos:</strong></p>
+            <table class="table text-muted">
+              <thead>
+                <tr>
+                  <th class="align-middle">Início</th>
+                  <th class="align-middle">Projeto</th>
+                  <th class="align-middle">Cliente</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for projeto in colaborador.projeto_set.all %}
+                <tr>
+                    <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-" }}</td>
+                    <td class="align-middle">{{ projeto.nome }}</td>
+                    <td class="align-middle">{{ projeto.cliente|default_if_none:"-" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td class="align-middle" colspan="3">Nenhum projeto vinculado</td>
+                </tr>
+                {% endfor %}
+              </tbody>
             </table>
           </div>
         </div>
@@ -63,7 +98,7 @@
       <!-- end col -->
       {% endfor %}
     </div>
-  <!-- end row -->     
+  <!-- end row -->
   </div>
 <!-- container -->
 </div>

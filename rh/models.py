@@ -162,6 +162,8 @@ class Projeto(models.Model):
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
     numero = models.IntegerField("Número da Proposta", blank=True)
+    data_inicio = models.DateField("Data de Início", blank=True, null=True)
+    cliente = models.ForeignKey(Cliente, null=True, on_delete=models.PROTECT, verbose_name="Cliente")
     lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
     colaboradores = models.ManyToManyField(Colaborador, blank=True)
     resumo = models.TextField("Um breve resumo do projeto", help_text="Este campo é utilizado na apresentação dos detalhes do projeto no nosso site.", blank=True, default='')
@@ -271,7 +273,7 @@ class Feedback(models.Model):
     quando = models.DateField("Quando", blank=True, null=True)
     comquem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Com quem" )
     analise = models.TextField("Análise feita", max_length=200, blank=True)
-    
+
     def __str__(self):
         return "%s" % (self.comquem)
 
