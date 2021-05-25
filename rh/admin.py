@@ -14,8 +14,15 @@ class AtividadecomercialAdmin(admin.ModelAdmin):
     list_display = ("nome", "desc")
 
 
+class ProjetoInlineAdmin(admin.TabularInline):
+
+    model = Projeto
+    extra = 1
+
+
 class ColaboradorAdmin(admin.ModelAdmin):
 
+    inlines = [ProjetoInlineAdmin]
     form = ColaboradorForm
     list_display = ("nome", "funcaodobrother", "data_do_nascimento", "thumbnail", "entrounashoot" , "desligado")
     list_filter = ("desligado", )
@@ -38,7 +45,7 @@ class BibliotecaAdmin(admin.ModelAdmin):
 
     list_display = ("titulo", "recomendado", "autor", "thumbnail")
     list_filter = ("titulo", )
-    
+
     def thumbnail(self, obj):
         if obj.imagem:
             return mark_safe('<img src="%s" width=100 height=100 />' % obj.imagem.url)
@@ -125,7 +132,7 @@ class CursoAdmin(admin.ModelAdmin):
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    
+
     list_display = ("quando", "comquem", "analise")
     list_filter = ("comquem", )
     search_fields = ("analise", )
