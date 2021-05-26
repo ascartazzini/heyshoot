@@ -42,7 +42,7 @@ class ColaboradorForm(forms.ModelForm):
     class Meta:
 
         model = Colaborador
-        fields = ["nome", "user", "bio", "data_nascimento", "cpf", "cpffile", "errege", "rgfile", "endereco", "cidade", "estado", "pais", "telefone", "banco", "conta", "emailpessoal", "emailshoot", "foto", "funcaodobrother", "salario", "instagram","linkedin","facebook", "entrounashoot", "desligado"]
+        fields = ["nome", "user", "bio", "data_nascimento", "cpf", "cpffile", "errege", "rgfile", "endereco", "bairro", "cep", "cidade", "estado", "pais", "telefone", "agencia", "banco", "conta", "emailpessoal", "emailshoot", "foto", "funcaodobrother", "salario", "instagram","linkedin","facebook", "entrounashoot", "desligado"]
 
 
 class ClienteForm(forms.ModelForm):

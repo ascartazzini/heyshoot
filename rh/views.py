@@ -83,6 +83,7 @@ class ColaboradoresDetalhesView(DetailView):
     model = Colaborador
 
 
+
 class ContatoView(CreateView):
 
     model = Contato
@@ -132,6 +133,13 @@ class FeedbackView(ListView):
 
     context_object_name = "feedback"
     template_name = "feedbacks.html"
+    model = Feedback
+
+
+class FeedbackDetalhesView(DetailView):
+    
+    context_object_name = "feedback"
+    template_name = "detalhes_feedback.html"
     model = Feedback
 
 

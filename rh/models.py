@@ -42,10 +42,13 @@ class Colaborador(models.Model):
     errege = models.CharField("RG", max_length=14, blank=True)
     rgfile = models.FileField("Foto do RG", upload_to="colaboradores/docs", max_length=600, blank=True)
     endereco = models.CharField("Endereço", max_length=200, blank=True)
+    bairro = models.CharField("Bairro", max_length=200, blank=True, null=True)
+    cep = models.CharField("CEP", max_length=200, blank=True, null=True)
     cidade = models.CharField("Cidade", max_length=100, blank=True)
     estado = models.CharField("Estado", max_length=100, blank=True)
     pais = models.CharField("País", max_length=200, blank=True)
     telefone = models.CharField("Fone", max_length=200, blank=True)
+    agencia = models.CharField("Agência", max_length=200, blank=True, null=True)
     banco = models.CharField("Banco", max_length=200, blank=True)
     conta = models.CharField("Conta", max_length=200, blank=True)
     emailpessoal = models.EmailField("Qual o email pessoal", max_length=200, blank=True)
@@ -115,6 +118,7 @@ class Fornecedores(models.Model):
     quem_indicou = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Quem indicou?")
     atividade = models.ForeignKey(Atividadecomercial, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Atividade")
     iniciativanaobranca = models.BooleanField("Iniciativa não-branca", default=False, db_index=True)
+    sustentavel = models.BooleanField("Iniciativa sustentável", default=False, db_index=True)
 
     def __str__(self):
         return self.titulo
@@ -238,6 +242,7 @@ class Clima(models.Model):
 
     class Meta:
         verbose_name_plural = "Comunicados oficiais"
+        ordering = ['-quando']
 
 
 class Curso(models.Model):

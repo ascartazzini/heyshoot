@@ -44,39 +44,6 @@
               {% endif  %}
             </ul>
 
-            {% comment %} # TODO: Deixar o título pluralize :) {% endcomment %}
-            <p class="title text-pink">
-              
-              <strong>Líder nos projetos</strong>
-            </p>
-            <table class="table text-muted">
-              <tbody>
-                {% for projeto in colaborador.lider.all %}
-                <tr>
-                    <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
-                    <td class="align-middle">{{ projeto.nome }}</td>
-                    <td class="align-middle">{{ projeto.cliente|default_if_none:"-" }}</td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-
-            <p class="title text-pink"><strong>Presente nos projetos:</strong></p>
-            <table class="table text-muted">
-              <tbody>
-                {% for projeto in colaborador.projeto_set.all %}
-                <tr>
-                    <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
-                    <td class="align-middle">{{ projeto.nome }}</td>
-                    <td class="align-middle">{{ projeto.cliente|default_if_none:"-" }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td class="align-middle" colspan="3">Nenhum projeto vinculado</td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
           </div>
         </div>
       </div>

@@ -1,8 +1,6 @@
 {% extends 'base_shoot.html' %}
 {% block title %}{{ colaborador.nome|title }}{% endblock %}
 {% block content %}
-
-
 <div class="content" style="padding-bottom: 160px;">
     <div class="container-sm">
         <div class="row" style="background: white; margin-top: 20px; border-radius: 3px; padding-bottom: 20px;">
@@ -11,8 +9,7 @@
                 <img src="{{ colaborador.foto.url }}" width="310" height="300" class="img-thumbnail">
                 {% else  %}
                 <img src="/static/images/semfoto.jpg" width="310" height="300" class="img-thumbnail">
-                {% endif  %}</a>
-                
+                {% endif  %}</a>                
                 <br>
                 <table class="table text-muted" style="margin-top: 10px;">
                     <tr>
@@ -31,7 +28,6 @@
                     </tr>
                 </table>
             </div>
-
             <div class="col-lg-7" style="padding-top:10px;margin-top: 30px;">
                 <table class="table text-muted">
                     <thead>
@@ -63,18 +59,14 @@
                       </tr>
                       <tr>
                         <td>Banco {{ colaborador.banco }}</td>
-                        <td>Conta {{ colaborador.conta }}</td>
+                        <td>Ag {{ colaborador.agencia }} | Conta {{ colaborador.conta }}</td>
                       </tr>
                     </tbody>
                   </table>
             </div>
         </div>
 </div>       
-
 <div class="container">
-
-        
-        
         <div class="row" style="margin-top: 30px;">
             <div class="col-md-3 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
                 <div class="row">
@@ -90,11 +82,7 @@
                     </li>
                     {% endfor %}
                 </ul>
-                
-                    
             </div>
-            
-           
             <div class="col-md-5 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
                 <div class="row">
                     <div class="col">
@@ -102,7 +90,7 @@
                     </div>
                 </div>
                 <table class="table text-muted">
-                    {% for cursos in colaborador.curso_set.all %}
+                    {% for cursos in colaborador.curso_set.all|dictsortreversed:"quando" %}
                       <tr>
                           <td class="align-middle">{{ cursos.quando|default_if_none:"-"|date:"d/m/Y" }}</td>
                           <td class="align-middle">{{ cursos.qual }}</td>
@@ -111,7 +99,6 @@
                     {% endfor %}
                 </table>
             </div>
-
             <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
                 <div class="row">
                     <div class="col">
@@ -119,7 +106,7 @@
                     </div>
                 </div>
                 <table class="table text-muted">
-                    {% for folg in colaborador.folguinha_set.all %}
+                    {% for folg in colaborador.folguinha_set.all|dictsortreversed:"fim" %}
                       <tr>
                           <td class="align-middle">De {{ folg.inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
                           <td class="align-middle">Até {{ folg.fim|default_if_none:"-"|date:"d/m/Y" }}</td>
@@ -128,13 +115,12 @@
                 </table>
             </div>
         </div>
-
         <div class="row" style="margin-top: 30px">
             <div class="col-md-8 text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
                 <p class="text-pink"><strong>Projetos que liderou</strong></p>    
                 <table class="table text-muted">
                     <tbody>
-                      {% for projeto in colaborador.lider.all %}
+                      {% for projeto in colaborador.lider.all|dictsortreversed:"data_inicio" %}
                       <tr>
                           <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
                           <td class="align-middle">{{ projeto.nome }}</td>
@@ -144,7 +130,6 @@
                     </tbody>
                   </table>
             </div>
-            
             <div class="col-md-4 text-pink text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
                 <p class="text-pink"><strong>Salários</strong></p>
                 <table class="table text-muted">
@@ -160,26 +145,22 @@
             </div>
         </div>
     </div>
-
     <div class="container-md" style="background-color: white; margin-top: 30px; padding-top: 30px; padding-bottom: 10px;">
         <div class="row justify-content-center">
             <p class="text-pink"><strong>Já visualizou os comunicados sobre</strong></p>
         </div>
         <div class="row">
         <ul style="text-align: left;">
-            <li class="text-muted"><strong>23/05/2021</strong> - Politicas de homeoffice</li>
-            <p class="text-muted">Update dos nossos acordos em relação ao homeoffice e como ele deve ser tratado</p>
-            <li class="text-muted"><strong>23/05/2021</strong> - Politicas de homeoffice</li>
-            <p class="text-muted">Update dos nossos acordos em relação ao homeoffice e como ele deve ser tratado</p>
+            {% for comunica in colaborador.clima_set.all|dictsortreversed:"quando" %}
+            <li class="text-muted"><strong>{{ comunica.quando|date:"d/m/Y" }}</strong> -{{ comunica.nome }}</li>
+            <p class="text-muted">{{ comunica.desc }}</p>
+            {% endfor %}
         </ul>
         </div>
     </div>
-
     <div class="d-flex justify-content-center" style="text-align: center; margin-top: 80px;">
         <p class="text-muted"><a href="{% url 'lista_colaboradores' %}" style="color: rgba(246,203,71)">Colaboradores </a>
             <span style="color: white;"> | {{ colaborador.nome }}</span></p>
     </div>
-    
 </div>
 {% endblock %}
-

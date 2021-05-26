@@ -61,8 +61,8 @@ class FolguinhaAdmin(admin.ModelAdmin):
 
 class FornecedoresAdmin(admin.ModelAdmin):
 
-    list_display = ("titulo", "email", "cidade", "observ", "atividade", "iniciativanaobranca")
-    list_filter = ("atividade", "iniciativanaobranca", )
+    list_display = ("titulo", "email", "cidade", "observ", "atividade", "iniciativanaobranca","sustentavel")
+    list_filter = ("atividade", "iniciativanaobranca", "sustentavel" )
     search_fields = ("titulo", )
 
 
