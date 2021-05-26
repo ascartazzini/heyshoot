@@ -294,7 +294,7 @@ class Feedback(models.Model):
 
 
 class Palestra(models.Model):
-
+    
     created = models.DateTimeField(auto_now_add=True)
     updater = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome da Palestra", max_length=150, blank=True)
