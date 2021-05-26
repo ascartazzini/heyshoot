@@ -2,16 +2,13 @@
 {% block title %}Fornecedores{% endblock %}
 {% block content %}
 <div class="container">
-   
     <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Parceiros da Shoot</p>
-
     <div class="row" style="padding-bottom: 30px; padding-top: 30px;">
         <div class="col-md-4" style="background-color: #f5c2d8; padding: 50px; margin-bottom: 30px;border-top-left-radius: 10px;border-bottom-left-radius: 10px;">
             <h5 style="color: #47529c;">Parceiro bom é parceiro sustentável</h5>
             <p style="margin-top: 20px; color: #47529c;">Aqui a gente coloca a lista inteira de parceiros que temos. </p>
         </div>
         <div class="col-md-8" style="background-color:white; padding-top: 30px; margin-bottom: 30px; border-top-right-radius: 10px;border-bottom-right-radius: 10px;">
-
             <div class="accordion" id="parceirosfornecedores">
                 {% for atividade in atividades %}
                 <div class="accordion-item">
@@ -22,9 +19,15 @@
                     </p>
                     {% for forne in atividade.fornecedores_set.all %}
                     <div id="menuparceirosfornecedores-{{ atividade.id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#parceirosfornecedores">
-                        <div class="accordion-body">
+                        <div class="accordion-body" style="margin-bottom: 20px;">
+                            <div class="row" style="background-color:rgba(246,203,71); color: white; font-size: 12px;">
+                                <div class="col-md-3"><strong>Nome do parceiro</strong></div>
+                                <div class="col-md-3"><strong>Atividade Comercial</strong></div>
+                                <div class="col-md-3"><strong>Quem é o contato</strong></div>
+                                <div class="col-md-3"><strong>Iniciativa Sustentável</strong></div>
+                            </div>
                             <div class="row text-muted">
-                                <div class="col-md-3"><a href="#" class="text-pink">{{ forne.titulo }}</a></div>
+                                <div class="col-md-3"><a href="{% url 'detalhes_fornecedores' forne.pk %}" class="text-pink">{{ forne.titulo }}</a></div>
                                 <div class="col-md-3">{{ forne.atividade }}</div>
                                 <div class="col-md-3">{{ forne.oque }}</div>
                                 <div class="col-md-3">{{ forne.iniciativanaobranca|yesno:"Sim,Não" }}
@@ -40,6 +43,4 @@
         </div>
     </div>
 </div>
-
-
 {% endblock %}

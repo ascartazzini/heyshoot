@@ -15,7 +15,7 @@
             <ul class="timeline" style="padding-right: 20px;">
                 {% for promo in promocao %}
                 <li class="text-muted" style="text-align: left;">
-                    <a href="#">{{ promo.quem }}</a>
+                    {{ promo.quem }}
                     <p class="float-right">{{ promo.quando }}</p>    
                     <p>Promovido a {{ promo.paraqual }}</p>
                 </li>

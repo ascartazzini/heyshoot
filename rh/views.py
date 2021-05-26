@@ -162,6 +162,13 @@ class FornecedoresView(ListView):
         return context
 
 
+class FornecedoresDetalhesView(DetailView):
+    
+    context_object_name = "fornecedores"
+    template_name = "detalhes_fornecedores.html"
+    model = Fornecedores
+
+
 class MomentoImportanteView(ListView):
 
     context_object_name = "MomentoImportante"

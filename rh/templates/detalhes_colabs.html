@@ -1,166 +1,172 @@
 {% extends 'base_shoot.html' %}
 {% block title %}{{ colaborador.nome|title }}{% endblock %}
 {% block content %}
-<div class="content" style="padding-bottom: 160px;">
-    <div class="container-sm">
-        <div class="row" style="background: white; margin-top: 20px; border-radius: 3px; padding-bottom: 20px;">
-            <div class="col-lg-4 text-muted" style="padding-top:10px;margin-top: 20px; padding-bottom: 30px; text-align: center;">
-                {% if colaborador.foto %}  
-                <img src="{{ colaborador.foto.url }}" width="310" height="300" class="img-thumbnail">
-                {% else  %}
-                <img src="/static/images/semfoto.jpg" width="310" height="300" class="img-thumbnail">
-                {% endif  %}</a>                
-                <br>
-                <table class="table text-muted" style="margin-top: 10px;">
-                    <tr>
-                        <td class="align-middle" style="border: 0;">
-                            <a href="#" class="fa fa-linkedin col-2"></a>
-                            <a href="#" class="fa fa-envelope col-2"></a>
-                            <a href="#" class="fa fa-facebook col-2"></a>
-                            <a href="#" class="fa fa-instagram col-2"></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle" style="border: 0;">
-                            Atualmente é {{ colaborador.funcaodobrother }} <br>
-                            e recebe R$ {{ colaborador.salario }} mensais
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-lg-7" style="padding-top:10px;margin-top: 30px;">
-                <table class="table text-muted">
-                    <thead>
-                      <tr>
-                        <td colspan="7">
-                            <span class="text-pink"><strong>{{ colaborador.nome }}</strong></span>
-                        </td>   
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td colspan="4">{{ colaborador.bio }}</td>
-                      </tr>
-                      <tr>
-                        <td colspan="1"><a href="{{ colaborador.cpffile }}">CPF {{ colaborador.cpf }}</a></td>
-                        <td colspan="3"><a href="{{ colaborador.rgfile }}">RG {{ colaborador.errege }}</a></td>
-                      </tr>
-                      <tr>
-                        <td colspan="1">{{ colaborador.endereco }}</td>
-                        <td colspan="3">{{ colaborador.cidade }}/{{ colaborador.estado }} - {{ colaborador.pais }}</td>
-                      </tr>
-                      <tr>
-                        <td colspan="1">Nasceu em {{ colaborador.data_nascimento }}</td>
-                        <td colspan="3">Entrou na Shoot {{ colaborador.entrounashoot }}</td>
-                      </tr>
-                      <tr>
-                        <td colspan="1">Fone {{ colaborador.telefone }}</td>
-                        <td colspan="3">Email pessoal {{ colaborador.emailpessoal }}</td>
-                      </tr>
-                      <tr>
-                        <td>Banco {{ colaborador.banco }}</td>
-                        <td>Ag {{ colaborador.agencia }} | Conta {{ colaborador.conta }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
-</div>       
+<div class="container-sm">
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">{{ colaborador.nome }}</p>
+    <div class="row conteudo">
+        <div class="col-lg-4 text-muted" style="padding-top:10px;margin-top: 20px; padding-bottom: 30px; text-align: center;">
+        {% if colaborador.foto %}  
+        <img src="{{ colaborador.foto.url }}" width="310" height="300" class="img-thumbnail">
+        {% else  %}
+        <img src="/static/images/semfoto.jpg" width="310" height="300" class="img-thumbnail">
+        {% endif  %}</a><br>
+        <table class="table text-muted" style="margin-top: 10px;">
+            <tr>
+                <td class="align-middle" style="border: 0;">
+                    <a href="#" class="fa fa-linkedin col-2"></a>
+                    <a href="#" class="fa fa-envelope col-2"></a>
+                    <a href="#" class="fa fa-facebook col-2"></a>
+                    <a href="#" class="fa fa-instagram col-2"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="align-middle" style="border: 0;">
+                    Atualmente é {{ colaborador.funcaodobrother }} <br>
+                    e recebe R$ {{ colaborador.salario }} mensais
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-7" style="padding-top:10px;margin-top: 30px;">
+        <table class="table text-muted">
+        <thead>
+        <tr>
+            <td colspan="7">
+                <span class="text-pink"><strong>{{ colaborador.nome }}</strong></span>
+            </td>   
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="4">{{ colaborador.bio }}</td>
+        </tr>
+        <tr>
+            <td colspan="1"><a href="{{ colaborador.cpffile }}">CPF {{ colaborador.cpf|default_if_none:"-" }}</a></td>
+            <td colspan="3"><a href="{{ colaborador.rgfile }}">RG {{ colaborador.errege|default_if_none:"-" }}</a></td>
+        </tr>
+        <tr>
+            <td colspan="1">{{ colaborador.endereco }}</td>
+            <td colspan="3">{{ colaborador.cidade }}/{{ colaborador.estado }} - {{ colaborador.pais }}</td>
+        </tr>
+        <tr>
+            <td colspan="1">Bairro {{ colaborador.bairro|default_if_none:"-" }}</td>
+            <td colspan="3">CEP {{ colaborador.cep|default_if_none:"-" }}</td>
+        </tr>
+        <tr>
+            <td colspan="1">Nasceu em {{ colaborador.data_nascimento }}</td>
+            <td colspan="3">Entrou na Shoot {{ colaborador.entrounashoot }}</td>
+        </tr>
+        <tr>
+            <td colspan="1">Fone {{ colaborador.telefone|default_if_none:"-" }}</td>
+            <td colspan="3">Email pessoal {{ colaborador.emailpessoal|default_if_none:"Não sabemos" }}</td>
+        </tr>
+        <tr>
+            <td>Banco {{ colaborador.banco }}</td>
+            <td>Ag {{ colaborador.agencia|default_if_none:"-" }} | Conta {{ colaborador.conta|default_if_none:"-" }}</td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
 <div class="container">
-        <div class="row" style="margin-top: 30px;">
-            <div class="col-md-3 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
-                <div class="row">
-                    <div class="col">
-                        <p class="text-pink" style="margin-top:10px"><strong>Carreira</strong></p>
-                    </div>
+    <div class="row conteudo">
+        <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
+            <div class="row">
+                <div class="col">
+                    <p class="text-pink" style="margin-top:10px"><strong>Carreira</strong></p>
                 </div>
-                <ul class="timeline" style="padding-right: 20px;">
-                    {% for promo in colaborador.promocao_set.all %}
-                    <li class="text-muted" style="text-align: left;">
-                        {{ promo.paraqual }}
-                        <p class="float-right">{{ promo.quando|default_if_none:"-"|date:"d/m/Y" }}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
             </div>
-            <div class="col-md-5 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
-                <div class="row">
-                    <div class="col">
-                        <p class="text-pink" style="margin-top:10px"><strong>Cursos realizados</strong></p>
-                    </div>
+            <ul class="timeline" style="padding-right: 20px;">
+                {% for promo in colaborador.promocao_set.all|dictsortreversed:"quando" %}
+                <li class="text-muted" style="text-align: left;">
+                    {{ promo.paraqual }}
+                    <p class="float-right">{{ promo.quando|default_if_none:"-"|date:"d/m/Y" }}</p>
+                </li>
+                {% empty %}
+                <li class="text-muted" style="text-align: left;">
+                    {{ colaborador.funcaodobrother }}
+                    <p class="float-right">{{ colaborador.entrounashoot|date:"d/m/Y" }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-5 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
+            <div class="row">
+                <div class="col">
+                    <p class="text-pink" style="margin-top:10px"><strong>Cursos realizados</strong></p>
                 </div>
-                <table class="table text-muted">
-                    {% for cursos in colaborador.curso_set.all|dictsortreversed:"quando" %}
-                      <tr>
-                          <td class="align-middle">{{ cursos.quando|default_if_none:"-"|date:"d/m/Y" }}</td>
-                          <td class="align-middle">{{ cursos.qual }}</td>
-                          <td class="align-middle">R$ {{ cursos.verba }}</td>
-                      </tr>
-                    {% endfor %}
-                </table>
             </div>
-            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
-                <div class="row">
-                    <div class="col">
-                        <p class="text-pink" style="margin-top:10px"><strong>Folgas e Férias</strong></p>
-                    </div>
-                </div>
-                <table class="table text-muted">
-                    {% for folg in colaborador.folguinha_set.all|dictsortreversed:"fim" %}
-                      <tr>
-                          <td class="align-middle">De {{ folg.inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
-                          <td class="align-middle">Até {{ folg.fim|default_if_none:"-"|date:"d/m/Y" }}</td>
-                      </tr>
-                    {% endfor %}
-                </table>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 30px">
-            <div class="col-md-8 text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
-                <p class="text-pink"><strong>Projetos que liderou</strong></p>    
-                <table class="table text-muted">
-                    <tbody>
-                      {% for projeto in colaborador.lider.all|dictsortreversed:"data_inicio" %}
-                      <tr>
-                          <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
-                          <td class="align-middle">{{ projeto.nome }}</td>
-                          <td class="align-middle">{{ projeto.cliente|default_if_none:"-" }}</td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
-            </div>
-            <div class="col-md-4 text-pink text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
-                <p class="text-pink"><strong>Salários</strong></p>
-                <table class="table text-muted">
-                    <tr>
-                        <td>R$ 000000</td>
-                        <td>00.00.0000</td>
-                    </tr>
-                    <tr>
-                        <td>R$ 000000</td>
-                        <td>00.00.0000</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="container-md" style="background-color: white; margin-top: 30px; padding-top: 30px; padding-bottom: 10px;">
-        <div class="row justify-content-center">
-            <p class="text-pink"><strong>Já visualizou os comunicados sobre</strong></p>
-        </div>
-        <div class="row">
-        <ul style="text-align: left;">
-            {% for comunica in colaborador.clima_set.all|dictsortreversed:"quando" %}
-            <li class="text-muted"><strong>{{ comunica.quando|date:"d/m/Y" }}</strong> -{{ comunica.nome }}</li>
-            <p class="text-muted">{{ comunica.desc }}</p>
+            <table class="table text-muted">
+            {% for cursos in colaborador.curso_set.all|dictsortreversed:"quando" %}
+            <tr>
+                <td class="align-middle">{{ cursos.quando|default_if_none:"-"|date:"d/m/Y" }}</td>
+                <td class="align-middle">{{ cursos.qual }}</td>
+                <td class="align-middle">R$ {{ cursos.verba }}</td>
+            </tr>
             {% endfor %}
-        </ul>
+            </table>
+        </div>
+        <div class="col-md-3 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
+            <div class="row">
+                <div class="col">
+                    <p class="text-pink" style="margin-top:10px"><strong>Folgas e Férias</strong></p>
+                </div>
+            </div>
+            <table class="table text-muted">
+                {% for folg in colaborador.folguinha_set.all|dictsortreversed:"fim" %}
+                <tr>
+                    <td class="align-middle">De {{ folg.inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
+                    <td class="align-middle">Até {{ folg.fim|default_if_none:"-"|date:"d/m/Y" }}</td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
-    <div class="d-flex justify-content-center" style="text-align: center; margin-top: 80px;">
-        <p class="text-muted"><a href="{% url 'lista_colaboradores' %}" style="color: rgba(246,203,71)">Colaboradores </a>
-            <span style="color: white;"> | {{ colaborador.nome }}</span></p>
+    <div class="row conteudo">
+        <div class="col-md-8 text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
+            <p class="text-pink"><strong>Projetos que liderou</strong></p>    
+            <table class="table text-muted">
+                <tbody>
+                    {% for projeto in colaborador.lider.all|dictsortreversed:"data_inicio" %}
+                    <tr>
+                        <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
+                        <td class="align-middle">{{ projeto.nome }}</td>
+                        <td class="align-middle">{{ projeto.cliente|default_if_none:"-" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+        </div>
+        <div class="col-md-4 text-pink text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
+            <p class="text-pink"><strong>Salários</strong></p>
+            <table class="table text-muted">
+                <tr>
+                    <td>R$ 000000</td>
+                    <td>00.00.0000</td>
+                </tr>
+                <tr>
+                    <td>R$ 000000</td>
+                    <td>00.00.0000</td>
+                </tr>
+            </table>
+        </div>
     </div>
+</div>
+<div class="container-sm" style="background-color: white; margin-top: 30px; padding-top: 10px; padding-bottom: 10px;">
+    <div class="row conteudo justify-content-center">
+        <p class="text-pink"><strong>Já visualizou os comunicados sobre</strong></p>
+    </div>
+    <div class="row">
+    <ul style="text-align: left;">
+        {% for comunica in colaborador.clima_set.all|dictsortreversed:"quando" %}
+        <li class="text-muted"><strong>{{ comunica.quando|date:"d/m/Y" }}</strong> -{{ comunica.nome }}</li>
+        <p class="text-muted">{{ comunica.desc }}</p>
+        {% endfor %}
+    </ul>
+    </div>
+</div>
+<div class="d-flex justify-content-center" style="text-align: center; margin-top: 80px;">
+    <p class="text-muted"><a href="{% url 'lista_colaboradores' %}" style="color: rgba(246,203,71)">Colaboradores </a>
+        <span style="color: white;"> | {{ colaborador.nome }}</span></p>
 </div>
 {% endblock %}

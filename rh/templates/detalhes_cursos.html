@@ -1,32 +1,30 @@
 {% extends 'base_shoot.html' %}
 {% block title %}{{ cursos.qual|title }}{% endblock %}
 {% block content %}
-
-<div class="content">
-    <div class="container-sm">
-        
-        <div class="row" style="background: white; margin-top: 50px; border-radius: 3px; padding-bottom: 20px;">
-            <div class="col-lg-12" style="padding-top:10px;margin-top: 30px;">
-                <h4 class="text-center">{{ cursos.qual }}</h4>
-                <br>
-                <table class="table text-muted text-center">
-                      <tr>
-                        <td><strong>Investido no dia</strong> {{ cursos.quando }}</td>
-                      </tr>
-                      <tr>
-                        <td>Quem fez o curso foi {{ cursos.paraquem }}</td>
-                      </tr>
-                      <tr>
-                        <td>R$ {{ cursos.verba }}</td>
-                      </tr>
-                  </table>
-            </div>
-        </div>
-</div>       
+<div class="container-sm">   
+  <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">{{ cursos.qual }}</p>
+  <div class="row" style="background: white; margin-top: 50px; border-radius: 3px; padding-bottom: 20px;">
+    <div class="col-lg-12" style="padding-top:10px;margin-top: 30px;">
+      <h4 class="text-center">{{ cursos.qual }}</h4><br>
+      <table class="table text-muted text-center">
+        <tr>
+          <td><strong>Investido no dia</strong> {{ cursos.quando }}</td>
+        </tr>
+        <tr>
+          <td>Quem fez o curso foi {{ cursos.paraquem }}</td>
+        </tr>
+        <tr>
+          <td>R$ {{ cursos.verba }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
 
 <div class="d-flex justify-content-center" style="text-align: center; margin-top: 80px;">
-    <p class="text-muted"><a href="{% url 'curso' %}" style="color: rgba(246,203,71)">Cursos </a>
-        <span style="color: white;"> | {{ cursos.qual }}</span></p>
+  <p class="text-muted"><a href="{% url 'curso' %}" style="color: rgba(246,203,71)">Cursos </a>
+    <span style="color: white;"> | {{ cursos.qual }}</span>
+  </p>
 </div>
 
 {% endblock %}

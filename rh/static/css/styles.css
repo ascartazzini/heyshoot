@@ -12,6 +12,13 @@ body{
 	width: 100%;
 }
 
+.conteudo{
+background: white; 
+margin-top: 20px;
+border-radius: 3px;
+padding-bottom: 20px;
+}
+
 /* ===================================== */
 /* Menu Vertical              ========== */
 /* ===================================== */

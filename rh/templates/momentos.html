@@ -15,9 +15,9 @@
             <ul class="timeline" style="padding-right: 20px;">
                 {% for mome in MomentoImportante %}
                 <li class="text-muted" style="text-align: left;">
-                    {{ mome.titulo }}
+                    {{ mome.nome }} | {{ mome.quem }}
                     <p class="float-right">{{ mome.quando }}</p>    
-                    <p>{{ mome.quem }}</p>
+                    <p>{{ mome.desc }}</p>
                 </li>
                 {% endfor %}
                 
