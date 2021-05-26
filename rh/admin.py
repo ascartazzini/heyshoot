@@ -20,15 +20,9 @@ class ProjetoInlineAdmin(admin.TabularInline):
     extra = 1
 
 
-class CursoInlineAdmin(admin.TabularInline):
-    
-    model = Curso
-    extra = 1
-
-
 class ColaboradorAdmin(admin.ModelAdmin):
 
-    inlines = [ProjetoInlineAdmin, CursoInlineAdmin]
+    inlines = [ProjetoInlineAdmin]
     form = ColaboradorForm
     list_display = ("nome", "funcaodobrother", "data_do_nascimento", "thumbnail", "entrounashoot" , "desligado")
     list_filter = ("desligado", )

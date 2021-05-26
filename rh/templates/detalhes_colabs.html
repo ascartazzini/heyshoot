@@ -76,28 +76,26 @@
         
         
         <div class="row" style="margin-top: 30px;">
-            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
+            <div class="col-md-3 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
                 <div class="row">
                     <div class="col">
                         <p class="text-pink" style="margin-top:10px"><strong>Carreira</strong></p>
                     </div>
                 </div>
                 <ul class="timeline" style="padding-right: 20px;">
+                    {% for promo in colaborador.promocao_set.all %}
                     <li class="text-muted" style="text-align: left;">
-                        {{ colaborador.funcaodobrother }}
-                        <p class="float-right">00.00.0000</p>
+                        {{ promo.paraqual }}
+                        <p class="float-right">{{ promo.quando|default_if_none:"-"|date:"d/m/Y" }}</p>
                     </li>
-                    <li class="text-muted" style="text-align: left;">
-                        Assistente de Arte
-                        <p class="float-right">00.00.0000</p>
-                    </li>
+                    {% endfor %}
                 </ul>
                 
                     
             </div>
             
            
-            <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
+            <div class="col-md-5 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
                 <div class="row">
                     <div class="col">
                         <p class="text-pink" style="margin-top:10px"><strong>Cursos realizados</strong></p>
@@ -108,7 +106,7 @@
                       <tr>
                           <td class="align-middle">{{ cursos.quando|default_if_none:"-"|date:"d/m/Y" }}</td>
                           <td class="align-middle">{{ cursos.qual }}</td>
-                          <td class="align-middle">{{ cursos.verba }}</td>
+                          <td class="align-middle">R$ {{ cursos.verba }}</td>
                       </tr>
                     {% endfor %}
                 </table>
@@ -121,14 +119,12 @@
                     </div>
                 </div>
                 <table class="table text-muted">
-                    <tr>
-                        <td>De 00.00.0000</td>
-                        <td>Até 00.00.0000</td>
-                    </tr>
-                    <tr>
-                        <td>De 00.00.0000</td>
-                        <td>Até 00.00.0000</td>
-                    </tr>
+                    {% for folg in colaborador.folguinha_set.all %}
+                      <tr>
+                          <td class="align-middle">De {{ folg.inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
+                          <td class="align-middle">Até {{ folg.fim|default_if_none:"-"|date:"d/m/Y" }}</td>
+                      </tr>
+                    {% endfor %}
                 </table>
             </div>
         </div>
