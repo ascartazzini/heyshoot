@@ -2,11 +2,11 @@ from django.contrib import admin, messages
 from django.utils.safestring import mark_safe
 
 from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
-                      ProjetoForm)
+                      PalestraForm, ProjetoForm)
 from rh.models import (Atividadecomercial, Biblioteca, Cliente, Clima,
                        Colaborador, Contato, Curso, Feedback, Folguinha,
-                       Fornecedores, Hierarquia, MomentoImportante, PapoCabeca,
-                       Projeto, Promocao, Proposta, TipoProjeto)
+                       Fornecedores, Hierarquia, MomentoImportante, Palestra,
+                       PapoCabeca, Projeto, Promocao, Proposta, TipoProjeto)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -84,7 +84,7 @@ class MomentoImportanteAdmin(admin.ModelAdmin):
 
 
 class PapoCabecaAdmin(admin.ModelAdmin):
-    list_display = ("quem", "assunto", "leitura")
+    list_display = ("quem", "assunto", "leitura", "opiniao")
 
 
 class HierarquiaAdmin(admin.ModelAdmin):
@@ -142,6 +142,12 @@ class FeedbackAdmin(admin.ModelAdmin):
     search_fields = ("analise", )
 
 
+class PalestraAdmin(admin.ModelAdmin):
+
+    form = PalestraForm    
+    list_display = ("nome", "desc")
+
+
 class PromocaoAdmin(admin.ModelAdmin):
 
     list_display = ("quem", "quando", "paraqual")
@@ -173,4 +179,5 @@ admin.site.register(Hierarquia, HierarquiaAdmin)
 admin.site.register(Projeto, ProjetoAdmin)
 admin.site.register(Proposta, PropostaAdmin)
 admin.site.register(TipoProjeto, TipoProjetoAdmin)
+admin.site.register(Palestra, PalestraAdmin)
 admin.site.register(Promocao, PromocaoAdmin)

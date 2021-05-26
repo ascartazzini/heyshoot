@@ -293,6 +293,18 @@ class Feedback(models.Model):
         verbose_name_plural = "Feedbacks"
 
 
+class Palestra(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updater = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome da Palestra", max_length=150, blank=True)
+    desc = models.TextField("Descrição da palestra", blank=True)
+    quem = models.ManyToManyField(Colaborador, blank=True, verbose_name="Quem é capaz de dar essa palestra")
+
+    def __str__(self):
+        return self.nome
+
+
 class PapoCabeca(models.Model):
     
     created = models.DateTimeField(auto_now_add=True)
@@ -300,6 +312,10 @@ class PapoCabeca(models.Model):
     quem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Quem tá propondo a conversa")
     assunto = models.CharField("Assunto", max_length=100, blank=True)
     leitura = models.CharField("Link para leitura", max_length=100, blank=True)
+    opiniao = models.TextField("Qual foi seu teto?", blank=True)
 
     def __str__(self):
-        return self.quem
+        return self.assunto
+
+    class Meta:
+        verbose_name_plural = "Papo Cabeça"

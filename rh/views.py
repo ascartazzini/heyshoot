@@ -6,8 +6,8 @@ from django.views.generic import CreateView, DetailView, ListView, TemplateView
 from rh.forms import ContatoForm
 from rh.models import (Atividadecomercial, Biblioteca, Cliente, Clima,
                        Colaborador, Contato, Curso, Feedback, Folguinha,
-                       Fornecedores, Hierarquia, MomentoImportante, Projeto,
-                       Promocao, Proposta, TipoProjeto)
+                       Fornecedores, Hierarquia, MomentoImportante, PapoCabeca,
+                       Projeto, Promocao, Proposta, TipoProjeto)
 
 
 class IndexView(TemplateView):
@@ -167,6 +167,13 @@ class FornecedoresDetalhesView(DetailView):
     context_object_name = "fornecedores"
     template_name = "detalhes_fornecedores.html"
     model = Fornecedores
+
+
+class PapoCabecaView(ListView):
+    
+    context_object_name = "mesaredonda"
+    template_name = "mesaredonda.html"
+    model = PapoCabeca
 
 
 class MomentoImportanteView(ListView):
