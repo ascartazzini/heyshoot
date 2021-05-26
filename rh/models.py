@@ -152,12 +152,13 @@ class Cliente(models.Model):
 class MomentoImportante(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    titulo = models.CharField("Nome do momento", max_length=100)
-    quem = ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Pessoa")
+    nome = models.CharField("Nome do momento", max_length=100, null=True, blank=True)
+    quem = models.CharField("Pessoa/Cliente/Parceiro", max_length=100, null=True, blank=True)
     quando = models.DateField("Data", blank=True, null=True)
+    desc = models.TextField("Descrição", null=True)
 
     def __str__(self):
-        return self.titulo
+        return self.nome
 
 
 class Projeto(models.Model):

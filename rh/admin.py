@@ -80,7 +80,7 @@ class ClienteAdmin(admin.ModelAdmin):
 
 
 class MomentoImportanteAdmin(admin.ModelAdmin):
-    list_display = ("titulo", "quem", "quando")
+    list_display = ("nome", "quem", "desc", "quando")
 
 
 class HierarquiaAdmin(admin.ModelAdmin):
@@ -150,6 +150,7 @@ class PromocaoAdmin(admin.ModelAdmin):
         obj.quem.save()
         messages.success(request, "O colaborador teve o seu status alterado.")
         return r
+
 
 
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
