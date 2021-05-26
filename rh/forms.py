@@ -55,17 +55,6 @@ class ClienteForm(forms.ModelForm):
             raise forms.ValidationError("O CNPJ informado não é válido!")
         return cnpj_validador.mask(cnpj_digitado)
 
-    def clean_nome(self):
-        nome = self.cleaned_data.get('nome')
-        caracteres_nao_permitidos = '!"#$%&\'()*+/:;<=>?@[\\]^_`{|}~'
-        for c in caracteres_nao_permitidos:
-            if c in nome:
-                raise forms.ValidationError("O campo nome não pode ter o caracter '%s'!" % c)
-        nomes = nome.split()
-        if len(nomes) == 1:
-            raise forms.ValidationError("O campo nome tem que ter nome e sobrenome!")
-        return nome
-
     class Meta:
 
         model = Cliente
@@ -106,7 +95,7 @@ class ProjetoForm(forms.ModelForm):
     class Meta:
 
         model = Projeto
-        fields = ["nome", "numero","lider_shoot", "colaboradores", "cliente", "resumo", "ativo"]
+        fields = ["nome", "numero","lider_shoot", "colaboradores", "cliente", "resumo", "ativo", "data_inicio"]
         widgets = {
             "colaboradores": forms.CheckboxSelectMultiple,
         }

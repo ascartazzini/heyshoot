@@ -1,3 +1,7 @@
+/* Sistema Shoot              ========== */
+/* Folha de Estilos           ========== */
+/* By Artur Scartazzini       ========== */
+
 body{
     background-color:#47519c;
     background-image:url("/static/images/bg.png");
@@ -8,8 +12,9 @@ body{
 	width: 100%;
 }
 
-
-/* PEN STYLES ========== */
+/* ===================================== */
+/* Menu Vertical              ========== */
+/* ===================================== */
 a,
 .side_menu {
 	-webkit-transition: all 200ms ease-in-out;
@@ -17,146 +22,148 @@ a,
 }
 
 /* MENU CONTAINER ----- */
-	.side_menu {
-		background: rgba(246,203,71);
-		height: 100vh;
-		left: -250px;
-		position: absolute;
-		top: 0;
-		width: 250px;
-        z-index: 99;
-	}
-	.side_menu .container {
-		padding: 0 1em;
-	}
-
+.side_menu {
+	background: rgba(246,203,71);
+	height: 100vh;
+	left: -250px;
+	position: absolute;
+	top: 0;
+	width: 250px;
+	z-index: 99;
+}
+.side_menu .container {
+	padding: 0 1em;
+}
 
 /* LINKS DO MENU ----- */
 .menuzin{
-    font-size: 11px;
-    color: #000;
+	font-size: 11px;
+	color: #000;
 }
 .menuzin:hover{
-    color: #fff;
-    text-decoration: none;
+	color: #fff;
+	text-decoration: none;
 }
 
 .spacer_box{
-    text-align: center;
+	text-align: center;
 }
 
 .spacer_box p{
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #485197;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #485197;
 }
 
 /* HAMBURGER STYLES ----- */
-	.burger_box {
-		display: block;
-		float: right;
-		margin-right: -45px;
-	}
-	.burger_box a.menu-icon {
-		display: inline-block;
-		float: none;
-		height: 43px;
-		padding: 10px;
-		opacity: 1;
-		width: 45px;
-		z-index: 100;
-	}
-	.burger_box a.menu-icon:hover,
-	.burger_box a.menu-icon.opened {
-		opacity: 1;
-	}
-	.burger_box a.menu-icon.opened {
-		background: rgba(246,203,71);
-	}
-	.burger_box .menu-icon_box {
-		display: inline-block;
-		height: 25px;
-		position: relative;
-		text-align: left;
-		width: 25px;
-	}
-	.burger_box .menu-icon_line {
-		background: #fff;
-		border-radius: 2px;
-		display: inline-block;
-		height: 3px;
-		position: absolute;
-		width: 100%;
-	}
-	.burger_box .menu-icon_line--1 {
-		top: 2px;
-	}
-	.burger_box .menu-icon_line--2 {
-		top: 10px;
-	}
-	.burger_box .menu-icon_line--3 {
-		top: 18px;
-	}
-	.burger_box .menu-icon_line--1 {
-		transition: top 200ms 250ms, transform 200ms;
-		-webkit-transition: top 200ms 250ms, -webkit-transform 200ms;
-	}
-	.burger_box .menu-icon_line--2 {
-		transition: opacity 0ms 300ms;
-		-webkit-transition: opacity 0ms 300ms;
-	}
-	.burger_box .menu-icon_line--3 {
-		transition: top 100ms 300ms, transform 200ms;
-		-webkit-transition: top 100ms 300ms, -webkit-transform 200ms;
-	}
-	.burger_box .menu-icon.opened .menu-icon_box {
-		transform: scale3d(0.9, 0.9, 0.9);
-		-webkit-transform: scale3d(0.9, 0.9, 0.9);
-	}
-	.burger_box .menu-icon.opened .menu-icon_line {
-		top: 10px;
-	}
-	.burger_box .menu-icon.opened .menu-icon_line--1 {
-		transform: rotate3d(0, 0, 1, 45deg);
-		-webkit-transform: rotate3d(0, 0, 1, 45deg);
-		transition: top 100ms, transform 200ms 250ms;
-		-webkit-transition: top 100ms, -webkit-transform 200ms 250ms;
-	}
-	.burger_box .menu-icon.opened .menu-icon_line--2 {
-		opacity: 0;
-		transition: opacity 200ms;
-		-webkit-transition: opacity 200ms;
-	}
-	.burger_box .menu-icon.opened .menu-icon_line--3 {
-		transform: rotate3d(0, 0, 1, -45deg);
-		-webkit-transform: rotate3d(0, 0, 1, -45deg);
-		transition: top 200ms, transform 200ms 250ms;
-		-webkit-transition: top 200ms, -webkit-transform 200ms 250ms;
-	}
+.burger_box {
+	display: block;
+	float: right;
+	margin-right: -45px;
+}
+.burger_box a.menu-icon {
+	display: inline-block;
+	float: none;
+	height: 43px;
+	padding: 10px;
+	opacity: 1;
+	width: 45px;
+	z-index: 100;
+}
+.burger_box a.menu-icon:hover,
+.burger_box a.menu-icon.opened {
+	opacity: 1;
+}
+.burger_box a.menu-icon.opened {
+	background: rgba(246,203,71);
+}
+.burger_box .menu-icon_box {
+	display: inline-block;
+	height: 25px;
+	position: relative;
+	text-align: left;
+	width: 25px;
+}
+.burger_box .menu-icon_line {
+	background: #fff;
+	border-radius: 2px;
+	display: inline-block;
+	height: 3px;
+	position: absolute;
+	width: 100%;
+}
+.burger_box .menu-icon_line--1 {
+	top: 2px;
+}
+.burger_box .menu-icon_line--2 {
+	top: 10px;
+}
+.burger_box .menu-icon_line--3 {
+	top: 18px;
+}
+.burger_box .menu-icon_line--1 {
+	transition: top 200ms 250ms, transform 200ms;
+	-webkit-transition: top 200ms 250ms, -webkit-transform 200ms;
+}
+.burger_box .menu-icon_line--2 {
+	transition: opacity 0ms 300ms;
+	-webkit-transition: opacity 0ms 300ms;
+}
+.burger_box .menu-icon_line--3 {
+	transition: top 100ms 300ms, transform 200ms;
+	-webkit-transition: top 100ms 300ms, -webkit-transform 200ms;
+}
+.burger_box .menu-icon.opened .menu-icon_box {
+	transform: scale3d(0.9, 0.9, 0.9);
+	-webkit-transform: scale3d(0.9, 0.9, 0.9);
+}
+.burger_box .menu-icon.opened .menu-icon_line {
+	top: 10px;
+}
+.burger_box .menu-icon.opened .menu-icon_line--1 {
+	transform: rotate3d(0, 0, 1, 45deg);
+	-webkit-transform: rotate3d(0, 0, 1, 45deg);
+	transition: top 100ms, transform 200ms 250ms;
+	-webkit-transition: top 100ms, -webkit-transform 200ms 250ms;
+}
+.burger_box .menu-icon.opened .menu-icon_line--2 {
+	opacity: 0;
+	transition: opacity 200ms;
+	-webkit-transition: opacity 200ms;
+}
+.burger_box .menu-icon.opened .menu-icon_line--3 {
+	transform: rotate3d(0, 0, 1, -45deg);
+	-webkit-transform: rotate3d(0, 0, 1, -45deg);
+	transition: top 200ms, transform 200ms 250ms;
+	-webkit-transition: top 200ms, -webkit-transform 200ms 250ms;
+}
 
-/* STAGGER LIST ----- */
-	.list_load {
-		display: none;
-		list-style: none;
-		padding: 0;
-	}
-	.list_item {
-		margin-left: -20px;
-		opacity: 0;
-		-webkit-transition: all 200ms ease-in-out;
-		transition: all 200ms ease-in-out;
-	}
-	.list_item a {
-		color: #fff;
-		display: block;
-		padding: 5px 10px;
-		text-decoration: none;
-	}
-	.list_item a:hover {
-		background: rgba(255,255,255,.2);
-	}
+/* CARREGANDO A LISTA ----- */
+.list_load {
+	display: none;
+	list-style: none;
+	padding: 0;
+}
+.list_item {
+	margin-left: -20px;
+	opacity: 0;
+	-webkit-transition: all 200ms ease-in-out;
+	transition: all 200ms ease-in-out;
+}
+.list_item a {
+	color: #fff;
+	display: block;
+	padding: 5px 10px;
+	text-decoration: none;
+}
+.list_item a:hover {
+	background: rgba(255,255,255,.2);
+}
 
-/* HOME */
+
+/* ===================================== */
+/* Home do site               ========== */
+/* ===================================== */
 .titulo{
     font-family: "Tusker";
 }
@@ -176,8 +183,9 @@ a,
 }
 
 
-
- /* COLABORADORES */
+/* ===================================== */
+/* Cards modelos              ========== */
+/* ===================================== */
  .card-box {
     padding: 20px;
     border-radius: 3px;
@@ -224,15 +232,9 @@ a,
 }
 
 
-/*
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*
-*/
-
-/* Timeline holder */
+/* ===================================== */
+/* TIMELINE                   ========== */
+/* ===================================== */
 ul.timeline {
     list-style-type: none;
     position: relative;
@@ -269,7 +271,6 @@ ul.timeline > li:before {
     height: 20px;
     z-index: 400;
 }
-
 
 .btn-close{
     width: 20px;
