@@ -24,9 +24,10 @@ class BibliotecaView(ListView):
 
 class ClienteView(ListView):
 
-    context_object_name = "cliente"
+    context_object_name = "clientes"
     template_name = "clientes.html"
     model = Cliente
+    # TODO: Como fazer tudo na mesma view
 
 
 class ClienteAtivosView(ClienteView):
