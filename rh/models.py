@@ -150,6 +150,7 @@ class Cliente(models.Model):
 
 
 class MomentoImportante(models.Model):
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome do momento", max_length=100, null=True, blank=True)
@@ -159,6 +160,7 @@ class MomentoImportante(models.Model):
 
     def __str__(self):
         return self.nome
+
 
 
 class Projeto(models.Model):
@@ -289,3 +291,15 @@ class Feedback(models.Model):
 
     class Meta:
         verbose_name_plural = "Feedbacks"
+
+
+class PapoCabeca(models.Model):
+    
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    quem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Quem tá propondo a conversa")
+    assunto = models.CharField("Assunto", max_length=100, blank=True)
+    leitura = models.CharField("Link para leitura", max_length=100, blank=True)
+
+    def __str__(self):
+        return self.quem
