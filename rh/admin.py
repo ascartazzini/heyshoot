@@ -20,9 +20,15 @@ class ProjetoInlineAdmin(admin.TabularInline):
     extra = 1
 
 
+class CursoInlineAdmin(admin.TabularInline):
+    
+    model = Curso
+    extra = 1
+
+
 class ColaboradorAdmin(admin.ModelAdmin):
 
-    inlines = [ProjetoInlineAdmin]
+    inlines = [ProjetoInlineAdmin, CursoInlineAdmin]
     form = ColaboradorForm
     list_display = ("nome", "funcaodobrother", "data_do_nascimento", "thumbnail", "entrounashoot" , "desligado")
     list_filter = ("desligado", )
@@ -53,7 +59,6 @@ class BibliotecaAdmin(admin.ModelAdmin):
     thumbnail.short_description = 'Imagem'
 
 
-
 class FolguinhaAdmin(admin.ModelAdmin):
 
     list_display = ("quem", "inicio", "fim")
@@ -82,6 +87,7 @@ class ClienteAdmin(admin.ModelAdmin):
 
 class MomentoImportanteAdmin(admin.ModelAdmin):
     list_display = ("titulo", "quem", "quando")
+
 
 class HierarquiaAdmin(admin.ModelAdmin):
 

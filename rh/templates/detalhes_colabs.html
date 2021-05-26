@@ -104,14 +104,13 @@
                     </div>
                 </div>
                 <table class="table text-muted">
-                    <tr>
-                        <td>Nome do curso</td>
-                        <td>00.00.0000</td>
-                    </tr>
-                    <tr>
-                        <td>Nome do curso</td>
-                        <td>00.00.0000</td>
-                    </tr>
+                    {% for cursos in colaborador.curso_set.all %}
+                      <tr>
+                          <td class="align-middle">{{ cursos.quando|default_if_none:"-"|date:"d/m/Y" }}</td>
+                          <td class="align-middle">{{ cursos.qual }}</td>
+                          <td class="align-middle">{{ cursos.verba }}</td>
+                      </tr>
+                    {% endfor %}
                 </table>
             </div>
 
@@ -136,29 +135,18 @@
 
         <div class="row" style="margin-top: 30px">
             <div class="col-md-8 text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
-                <p class="text-pink"><strong>Projetos que a pessoa tá liderando</strong></p>    
+                <p class="text-pink"><strong>Projetos que liderou</strong></p>    
                 <table class="table text-muted">
-                    <tr>
-                        <td class="align-middle">00.00.0000</td>
-                        <td class="align-middle">Nome do projeto</td>
-                        <td class="align-middle">Nome do cliente</td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle">00.00.0000</td>
-                        <td class="align-middle">Nome do projeto</td>
-                        <td class="align-middle">Nome do cliente</td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle">00.00.0000</td>
-                        <td class="align-middle">Nome do projeto</td>
-                        <td class="align-middle">Nome do cliente</td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle">00.00.0000</td>
-                        <td class="align-middle">Nome do projeto</td>
-                        <td class="align-middle">Nome do cliente</td>
-                    </tr>
-                </table>   
+                    <tbody>
+                      {% for projeto in colaborador.lider.all %}
+                      <tr>
+                          <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
+                          <td class="align-middle">{{ projeto.nome }}</td>
+                          <td class="align-middle">{{ projeto.cliente|default_if_none:"-" }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
             </div>
             
             <div class="col-md-4 text-pink text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
