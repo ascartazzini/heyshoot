@@ -1,17 +1,25 @@
 from django.contrib import admin, messages
+from django.contrib.admin.filters import ListFilter
 from django.utils.safestring import mark_safe
 
 from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       PalestraForm, ProjetoForm)
-from rh.models import (Atividadecomercial, Biblioteca, Cliente, Clima,
-                       Colaborador, Contato, Curso, Feedback, Folguinha,
-                       Fornecedores, Hierarquia, MomentoImportante, Palestra,
-                       PapoCabeca, Projeto, Promocao, Proposta, TipoProjeto)
+from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
+                       Cliente, Clima, Colaborador, Contato, Curso, Feedback,
+                       Folguinha, Fornecedores, Hierarquia, MomentoImportante,
+                       Palestra, Projeto, Promocao, Proposta, TipoProjeto,
+                       Workshop)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "desc")
+
+
+class CanalProprietarioAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "link")
+    list_filter = ("nome", )
 
 
 class ProjetoInlineAdmin(admin.TabularInline):
@@ -81,10 +89,6 @@ class ClienteAdmin(admin.ModelAdmin):
 
 class MomentoImportanteAdmin(admin.ModelAdmin):
     list_display = ("nome", "quem", "desc", "quando")
-
-
-class PapoCabecaAdmin(admin.ModelAdmin):
-    list_display = ("quem", "assunto", "leitura", "opiniao")
 
 
 class HierarquiaAdmin(admin.ModelAdmin):
@@ -162,9 +166,17 @@ class PromocaoAdmin(admin.ModelAdmin):
         return r
 
 
+class WorkshopAdmin(admin.ModelAdmin):
+
+    list_display = ("titulo", "objetivos")
+    list_filter = ("titulo", )
+    
+
+
 
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
 admin.site.register(Biblioteca, BibliotecaAdmin)
+admin.site.register(CanalProprietario, CanalProprietarioAdmin)
 admin.site.register(Clima, ClimaAdmin)
 admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Contato, ContatoAdmin)
@@ -174,10 +186,10 @@ admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(MomentoImportante, MomentoImportanteAdmin)
-admin.site.register(PapoCabeca, PapoCabecaAdmin)
 admin.site.register(Hierarquia, HierarquiaAdmin)
 admin.site.register(Projeto, ProjetoAdmin)
 admin.site.register(Proposta, PropostaAdmin)
 admin.site.register(TipoProjeto, TipoProjetoAdmin)
 admin.site.register(Palestra, PalestraAdmin)
 admin.site.register(Promocao, PromocaoAdmin)
+admin.site.register(Workshop, WorkshopAdmin)

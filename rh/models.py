@@ -4,7 +4,9 @@ from django.db.models.base import Model
 from django.db.models.fields.related import ForeignKey
 
 
+
 class Atividadecomercial(models.Model):
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Qual a atividade Comercial", max_length=100, blank=True)
@@ -17,6 +19,32 @@ class Atividadecomercial(models.Model):
         verbose_name = "Atividade"
 
 
+class CanalProprietario(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome do Canal", max_length=100, blank=True)
+    objetivo = models.TextField("Objetivo do canal", blank=True)
+    link = models.CharField("Link do canal", max_length=200, blank=True)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name_plural = "Canais Proprietários"
+
+
+class Contato(models.Model):
+    
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome", max_length=100)
+    email = models.EmailField("E-mail")
+    mensagem = models.TextField("Mensagem")
+
+    def __str__(self):
+        return "%s: %s" % (self.nome, self.email)
+
 
 class Hierarquia(models.Model):
 
@@ -28,6 +56,50 @@ class Hierarquia(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class MomentoImportante(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome do momento", max_length=100, null=True, blank=True)
+    quem = models.CharField("Pessoa/Cliente/Parceiro", max_length=100, null=True, blank=True)
+    quando = models.DateField("Data", blank=True, null=True)
+    desc = models.TextField("Descrição", null=True)
+
+    def __str__(self):
+        return self.nome
+
+
+class TipoProjeto(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome", max_length=100, blank=True)
+    descri = models.CharField("Descrição", max_length=600, blank=True)
+    tempo = models.IntegerField("Tempo do processo", blank=True)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name = "Tipo de Projeto"
+
+
+class Workshop(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    titulo = models.CharField("Qual o título do workshop?", blank=True, max_length=100)
+    desc = models.TextField("Breve descrição", blank=True)
+    objetivos = models.CharField("Quais os objetivos contemplados", blank=True, max_length=200)
+    roteiro = models.TextField("Qual o roteiro/metodologia", blank=True)
+
+    def __str__(self):
+        return self.titulo
+    
+    class Meta:
+        verbose_name_plural = "Workshops"
 
 
 class Colaborador(models.Model):
@@ -91,7 +163,77 @@ class Biblioteca(models.Model):
             return self.titulo
 
 
+class Cliente(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Empresa", max_length=100)
+    cnpj = models.CharField("CNPJ", max_length=18, blank=True)
+    razaosocial = models.CharField("Razão Social", max_length=200, blank=True)
+    foto_x = models.PositiveSmallIntegerField("Foto X", default=0, editable=False)
+    foto_y = models.PositiveSmallIntegerField("Foto Y", default=0, editable=False)
+    logo = models.ImageField(upload_to="clientes/logos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
+    nomecontato = models.CharField("Líder no cliente", max_length=200, blank=True)
+    emailcontato = models.CharField("E-mail de contato", max_length=200, blank=True)
+    fonecontato = models.CharField("Fone do contato", max_length=200, blank=True)
+    lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot")
+    inicio = models.DateField("Início da relação", blank=True, null=True)
+    fim = models.DateField("Fim da relação", blank=True, null=True)
+
+    def __str__(self):
+        return self.nome
+
+
+class Clima(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome do documento para leitura", max_length=200, blank=True)
+    desc = models.TextField("Descrição do que é", max_length=200, blank=True)
+    quando = models.DateField("Quando foi enviado", blank=True, null=True)
+    paraquem = models.ManyToManyField(Colaborador, blank=True, verbose_name="Quem confirmou leitura:")
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name_plural = "Comunicados oficiais"
+        ordering = ['-quando']
+
+
+class Curso(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
+    quando = models.DateField("Quando", blank=True, null=True)
+    qual = models.CharField("Qual curso foi?", max_length=200, blank=True)
+    verba = models.DecimalField("Verba", max_digits=9, decimal_places=2, blank=True, null=True)
+    paraquem = models.ForeignKey(Colaborador, verbose_name="Para quem", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.paraquem)
+
+    class Meta:
+        verbose_name = "Curso"
+
+
+class Feedback(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
+    quando = models.DateField("Quando", blank=True, null=True)
+    comquem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Com quem" )
+    analise = models.TextField("Análise feita", max_length=200, blank=True)
+
+    def __str__(self):
+        return "%s" % (self.comquem)
+
+    class Meta:
+        verbose_name_plural = "Feedbacks"
+
+
 class Folguinha(models.Model):
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
     quem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Quem")
@@ -128,39 +270,16 @@ class Fornecedores(models.Model):
         verbose_name_plural = "Fornecedores"
 
 
-class Cliente(models.Model):
-
+class Palestra(models.Model):
+    
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Empresa", max_length=100)
-    cnpj = models.CharField("CNPJ", max_length=18, blank=True)
-    razaosocial = models.CharField("Razão Social", max_length=200, blank=True)
-    foto_x = models.PositiveSmallIntegerField("Foto X", default=0, editable=False)
-    foto_y = models.PositiveSmallIntegerField("Foto Y", default=0, editable=False)
-    logo = models.ImageField(upload_to="clientes/logos", height_field="foto_y", width_field="foto_x", max_length=600, blank=True)
-    nomecontato = models.CharField("Líder no cliente", max_length=200, blank=True)
-    emailcontato = models.CharField("E-mail de contato", max_length=200, blank=True)
-    fonecontato = models.CharField("Fone do contato", max_length=200, blank=True)
-    lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot")
-    inicio = models.DateField("Início da relação", blank=True, null=True)
-    fim = models.DateField("Fim da relação", blank=True, null=True)
+    updater = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome da Palestra", max_length=150, blank=True)
+    desc = models.TextField("Descrição da palestra", blank=True)
+    quem = models.ManyToManyField(Colaborador, blank=True, verbose_name="Quem é capaz de dar essa palestra")
 
     def __str__(self):
         return self.nome
-
-
-class MomentoImportante(models.Model):
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Nome do momento", max_length=100, null=True, blank=True)
-    quem = models.CharField("Pessoa/Cliente/Parceiro", max_length=100, null=True, blank=True)
-    quando = models.DateField("Data", blank=True, null=True)
-    desc = models.TextField("Descrição", null=True)
-
-    def __str__(self):
-        return self.nome
-
 
 
 class Projeto(models.Model):
@@ -183,20 +302,20 @@ class Projeto(models.Model):
         return self.nome
 
 
-class TipoProjeto(models.Model):
+class Promocao(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Nome", max_length=100, blank=True)
-    descri = models.CharField("Descrição", max_length=600, blank=True)
-    tempo = models.IntegerField("Tempo do processo", blank=True)
-
+    updated = models.DateField(auto_now=True)
+    quem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Para quem")
+    quando = models.DateField("Quando", blank=True, null=True)
+    paraqual = models.ForeignKey(Hierarquia, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Para o que")
 
     def __str__(self):
-        return self.nome
+        return "%s | %s" % (self.quem, self.paraqual)
 
     class Meta:
-        verbose_name = "Tipo de Projeto"
+        verbose_name = "Promoção"
+        verbose_name_plural = "Promoções"
 
 
 class Proposta(models.Model):
@@ -217,105 +336,3 @@ class Proposta(models.Model):
 
     def __str__(self):
         return self.nome
-
-
-class Contato(models.Model):
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Nome", max_length=100)
-    email = models.EmailField("E-mail")
-    mensagem = models.TextField("Mensagem")
-
-    def __str__(self):
-        return "%s: %s" % (self.nome, self.email)
-
-
-class Clima(models.Model):
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Nome do documento para leitura", max_length=200, blank=True)
-    desc = models.TextField("Descrição do que é", max_length=200, blank=True)
-    quando = models.DateField("Quando foi enviado", blank=True, null=True)
-    paraquem = models.ManyToManyField(Colaborador, blank=True, verbose_name="Quem confirmou leitura:")
-
-    def __str__(self):
-        return self.nome
-
-    class Meta:
-        verbose_name_plural = "Comunicados oficiais"
-        ordering = ['-quando']
-
-
-class Curso(models.Model):
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
-    quando = models.DateField("Quando", blank=True, null=True)
-    qual = models.CharField("Qual curso foi?", max_length=200, blank=True)
-    verba = models.DecimalField("Verba", max_digits=9, decimal_places=2, blank=True, null=True)
-    paraquem = models.ForeignKey(Colaborador, verbose_name="Para quem", on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.paraquem)
-
-    class Meta:
-        verbose_name = "Curso"
-
-
-class Promocao(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
-    quem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Para quem")
-    quando = models.DateField("Quando", blank=True, null=True)
-    paraqual = models.ForeignKey(Hierarquia, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Para o que")
-
-    def __str__(self):
-        return "%s | %s" % (self.quem, self.paraqual)
-
-    class Meta:
-        verbose_name = "Promoção"
-        verbose_name_plural = "Promoções"
-
-
-class Feedback(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
-    quando = models.DateField("Quando", blank=True, null=True)
-    comquem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Com quem" )
-    analise = models.TextField("Análise feita", max_length=200, blank=True)
-
-    def __str__(self):
-        return "%s" % (self.comquem)
-
-    class Meta:
-        verbose_name_plural = "Feedbacks"
-
-
-class Palestra(models.Model):
-    
-    created = models.DateTimeField(auto_now_add=True)
-    updater = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Nome da Palestra", max_length=150, blank=True)
-    desc = models.TextField("Descrição da palestra", blank=True)
-    quem = models.ManyToManyField(Colaborador, blank=True, verbose_name="Quem é capaz de dar essa palestra")
-
-    def __str__(self):
-        return self.nome
-
-
-class PapoCabeca(models.Model):
-    
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    quem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Quem tá propondo a conversa")
-    assunto = models.CharField("Assunto", max_length=100, blank=True)
-    leitura = models.CharField("Link para leitura", max_length=100, blank=True)
-    opiniao = models.TextField("Qual foi seu teto?", blank=True)
-
-    def __str__(self):
-        return self.assunto
-
-    class Meta:
-        verbose_name_plural = "Papo Cabeça"

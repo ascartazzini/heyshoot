@@ -4,10 +4,11 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from rh.forms import ContatoForm
-from rh.models import (Atividadecomercial, Biblioteca, Cliente, Clima,
-                       Colaborador, Contato, Curso, Feedback, Folguinha,
-                       Fornecedores, Hierarquia, MomentoImportante, Palestra,
-                       PapoCabeca, Projeto, Promocao, Proposta, TipoProjeto)
+from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
+                       Cliente, Clima, Colaborador, Contato, Curso, Feedback,
+                       Folguinha, Fornecedores, Hierarquia, MomentoImportante,
+                       Palestra, Projeto, Promocao, Proposta, TipoProjeto,
+                       Workshop)
 
 
 class IndexView(TemplateView):
@@ -21,6 +22,13 @@ class BibliotecaView(ListView):
     template_name = "biblioteca.html"
     model = Biblioteca
 
+
+class CanaisProprietariosView(ListView):
+
+    context_object_name = "canaisproprietarios"
+    template_name = "canais_shoot.html"
+    model = CanalProprietario
+    
 
 class ClienteView(ListView):
 
@@ -81,7 +89,6 @@ class ColaboradoresDetalhesView(DetailView):
     context_object_name = "colaborador"
     template_name = "detalhes_colabs.html"
     model = Colaborador
-
 
 
 class ContatoView(CreateView):
@@ -169,11 +176,11 @@ class FornecedoresDetalhesView(DetailView):
     model = Fornecedores
 
 
-class PapoCabecaView(ListView):
-    
-    context_object_name = "mesaredonda"
-    template_name = "mesaredonda.html"
-    model = PapoCabeca
+class HierarquiaView(ListView):
+
+    context_object_name = "hierarquia"
+    template_name = "hierarquias.html"
+    model = Hierarquia
 
 
 class MomentoImportanteView(ListView):
@@ -181,13 +188,6 @@ class MomentoImportanteView(ListView):
     context_object_name = "MomentoImportante"
     template_name = "momentos.html"
     model = MomentoImportante
-
-
-class HierarquiaView(ListView):
-
-    context_object_name = "hierarquia"
-    template_name = "hierarquias.html"
-    model = Hierarquia
 
 
 class PalestraView(ListView):
@@ -238,3 +238,10 @@ class TipoProjetoView(ListView):
     context_object_name = "tipoprojeto"
     template_name = "tipo_projeto.html"
     model = TipoProjeto
+
+
+class WorkshopView(ListView):
+
+    context_object_name = "workshop"
+    template_name = "workshops.html"
+    model = Workshop

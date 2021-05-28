@@ -1,7 +1,7 @@
 {% extends 'base_shoot.html' %}
 {% block title %}{{ colaborador.nome|title }}{% endblock %}
 {% block content %}
-<div class="container-sm">
+<div class="container">
     <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">{{ colaborador.nome }}</p>
     <div class="row conteudo">
         <div class="col-lg-4 text-muted" style="padding-top:10px;margin-top: 20px; padding-bottom: 30px; text-align: center;">
@@ -68,7 +68,6 @@
         </table>
     </div>
 </div>
-<div class="container">
     <div class="row conteudo">
         <div class="col-md-4 text-pink text-center" style="padding-top: 30px; background-color: white; padding-bottom: 30px;">
             <div class="row">
@@ -151,22 +150,20 @@
             </table>
         </div>
     </div>
-</div>
-<div class="container-sm" style="background-color: white; margin-top: 30px; padding-top: 10px; padding-bottom: 10px;">
-    <div class="row conteudo justify-content-center">
-        <p class="text-pink"><strong>Já visualizou os comunicados sobre</strong></p>
+
+    <div class="row conteudo" style="padding-top: 30px;">
+        <div class="col justify-content-center text-center">
+            <p class="text-pink"><strong>Já visualizou os comunicados sobre</strong></p>
+            {% for comunica in colaborador.clima_set.all|dictsortreversed:"quando" %}
+            <p class="text-muted"><strong>{{ comunica.quando|date:"d/m/Y" }}</strong> -{{ comunica.nome }} <br>{{ comunica.desc }}</p>
+            {% endfor %}
+        </div>
     </div>
-    <div class="row">
-    <ul style="text-align: left;">
-        {% for comunica in colaborador.clima_set.all|dictsortreversed:"quando" %}
-        <li class="text-muted"><strong>{{ comunica.quando|date:"d/m/Y" }}</strong> -{{ comunica.nome }}</li>
-        <p class="text-muted">{{ comunica.desc }}</p>
-        {% endfor %}
-    </ul>
+
+    <div class="row" style="margin-top: 50px; padding-bottom: 100px;">
+        <div class="col justify-content-center text-center">
+            <p class="text-muted"><a href="{% url 'lista_colaboradores' %}" style="color: rgba(246,203,71)">Colaboradores </a>
+            <span style="color: white;"> | {{ colaborador.nome }}</span></p>
+        </div>
     </div>
-</div>
-<div class="d-flex justify-content-center" style="text-align: center; margin-top: 80px;">
-    <p class="text-muted"><a href="{% url 'lista_colaboradores' %}" style="color: rgba(246,203,71)">Colaboradores </a>
-        <span style="color: white;"> | {{ colaborador.nome }}</span></p>
-</div>
 {% endblock %}
