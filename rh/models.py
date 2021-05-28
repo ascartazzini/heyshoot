@@ -73,6 +73,25 @@ class MomentoImportante(models.Model):
         return self.nome
 
 
+class Premiacao(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome da premiação", blank=True, max_length=100)
+    site = models.CharField("Link do site", blank=True, max_length=100)
+    desc = models.TextField("Descrição da premiação", blank=True)
+    periodo = models.CharField("Período de inscrição", blank=True, max_length=100)
+    categorias = models.CharField("Categorias interessantes", max_length=200, blank=False)
+    investimento = models.DecimalField("Investimento médio", max_digits=9, decimal_places=2, blank=True, null=True)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name = "Premiação"
+        verbose_name_plural = "Premiações"
+        
+
 class ResultadoCanal(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
