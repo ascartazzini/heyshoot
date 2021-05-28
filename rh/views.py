@@ -7,7 +7,7 @@ from rh.forms import ContatoForm
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Cliente, Clima, Colaborador, Contato, Curso, Feedback,
                        Folguinha, Fornecedores, Hierarquia, MomentoImportante,
-                       Palestra, Projeto, Promocao, Proposta, TipoProjeto,
+                       Palestra, Projeto, Promocao, Proposta, ResultadoCanal, TipoProjeto,
                        Workshop)
 
 
@@ -232,6 +232,12 @@ class PropostaDetalhesView(DetailView):
     template_name = "detalhes_propostas.html"
     model = Proposta
 
+
+class ResultadoCanalView(ListView):
+
+    context_object_name = "resultadocanal"
+    model = ResultadoCanal
+    
 
 class TipoProjetoView(ListView):
 

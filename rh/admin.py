@@ -7,8 +7,8 @@ from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Cliente, Clima, Colaborador, Contato, Curso, Feedback,
                        Folguinha, Fornecedores, Hierarquia, MomentoImportante,
-                       Palestra, Projeto, Promocao, Proposta, TipoProjeto,
-                       Workshop)
+                       Palestra, Projeto, Promocao, Proposta, ResultadoCanal,
+                       TipoProjeto, Workshop)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -16,10 +16,101 @@ class AtividadecomercialAdmin(admin.ModelAdmin):
     list_display = ("nome", "desc")
 
 
+class BibliotecaAdmin(admin.ModelAdmin):
+
+    list_display = ("titulo", "recomendado", "autor", "thumbnail")
+    list_filter = ("titulo", )
+
+    def thumbnail(self, obj):
+        if obj.imagem:
+            return mark_safe('<img src="%s" width=100 height=100 />' % obj.imagem.url)
+        return "-"
+    thumbnail.short_description = 'Imagem'
+
+
 class CanalProprietarioAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "link")
     list_filter = ("nome", )
+
+
+class ClienteAdmin(admin.ModelAdmin):
+
+    form = ClienteForm
+    list_display = ("nome", "thumbnail", "cnpj", "razaosocial", "nomecontato", "emailcontato", "fonecontato")
+    search_fields = ("nome", )
+
+    def thumbnail(self, obj):
+        if obj.logo:
+            return mark_safe('<img src="%s" width=100 height=100 />' % obj.logo.url)
+        return "-"
+    thumbnail.short_description = 'Logo'
+
+
+class ClimaAdmin(admin.ModelAdmin):
+    
+    form = ClimaForm
+    list_display = ("nome", "desc", "quando")
+    list_filter = ("nome", )
+    search_fields = ("nome", )
+
+
+class ContatoAdmin(admin.ModelAdmin):
+
+    list_display = ("nome","email", "mensagem")
+    list_filter = ("nome", )
+
+
+class CursoAdmin(admin.ModelAdmin):
+
+    form = CursoForm
+    list_display = ("qual", "quando", "verba")
+    list_filter = ("paraquem", )
+    search_fields = ("paraquem", )
+
+
+class FeedbackAdmin(admin.ModelAdmin):
+
+    list_display = ("quando", "comquem", "analise")
+    list_filter = ("comquem", )
+    search_fields = ("analise", )
+
+
+class FolguinhaAdmin(admin.ModelAdmin):
+
+    list_display = ("quem", "inicio", "fim")
+    list_filter = ("quem", )
+
+
+class FornecedoresAdmin(admin.ModelAdmin):
+
+    list_display = ("titulo", "email", "cidade", "observ", "atividade", "iniciativanaobranca","sustentavel")
+    list_filter = ("atividade", "iniciativanaobranca", "sustentavel" )
+    search_fields = ("titulo", )
+
+
+class HierarquiaAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "salariomin", "salariomax")
+    list_filter = ("nome", )
+
+
+class MomentoImportanteAdmin(admin.ModelAdmin):
+    list_display = ("nome", "quem", "desc", "quando")
+
+
+
+class PalestraAdmin(admin.ModelAdmin):
+
+    form = PalestraForm    
+    list_display = ("nome", "desc")
+
+
+class ProjetoAdmin(admin.ModelAdmin):
+
+    form = ProjetoForm
+    list_display = ("nome","numero", "cliente", "lider_shoot", "ativo")
+    list_filter = ("numero", "ativo")
 
 
 class ProjetoInlineAdmin(admin.TabularInline):
@@ -48,110 +139,6 @@ class ColaboradorAdmin(admin.ModelAdmin):
         return "-"
     thumbnail.short_description = 'Foto'
 
-
-class BibliotecaAdmin(admin.ModelAdmin):
-
-    list_display = ("titulo", "recomendado", "autor", "thumbnail")
-    list_filter = ("titulo", )
-
-    def thumbnail(self, obj):
-        if obj.imagem:
-            return mark_safe('<img src="%s" width=100 height=100 />' % obj.imagem.url)
-        return "-"
-    thumbnail.short_description = 'Imagem'
-
-
-class FolguinhaAdmin(admin.ModelAdmin):
-
-    list_display = ("quem", "inicio", "fim")
-    list_filter = ("quem", )
-
-
-class FornecedoresAdmin(admin.ModelAdmin):
-
-    list_display = ("titulo", "email", "cidade", "observ", "atividade", "iniciativanaobranca","sustentavel")
-    list_filter = ("atividade", "iniciativanaobranca", "sustentavel" )
-    search_fields = ("titulo", )
-
-
-class ClienteAdmin(admin.ModelAdmin):
-
-    form = ClienteForm
-    list_display = ("nome", "thumbnail", "cnpj", "razaosocial", "nomecontato", "emailcontato", "fonecontato")
-    search_fields = ("nome", )
-
-    def thumbnail(self, obj):
-        if obj.logo:
-            return mark_safe('<img src="%s" width=100 height=100 />' % obj.logo.url)
-        return "-"
-    thumbnail.short_description = 'Logo'
-
-
-class MomentoImportanteAdmin(admin.ModelAdmin):
-    list_display = ("nome", "quem", "desc", "quando")
-
-
-class HierarquiaAdmin(admin.ModelAdmin):
-
-    list_display = ("nome", "salariomin", "salariomax")
-    list_filter = ("nome", )
-
-
-class PropostaAdmin(admin.ModelAdmin):
-
-    list_display = ("nome", "cliente", "numero", "valor_final", "lucro", "ativismo", "horas", "tipoprojeto")
-    list_filter = ("cliente", )
-    search_fields = ("nome", )
-
-
-class ProjetoAdmin(admin.ModelAdmin):
-
-    form = ProjetoForm
-    list_display = ("nome","numero", "cliente", "lider_shoot", "ativo")
-    list_filter = ("numero", "ativo")
-
-
-class ContatoAdmin(admin.ModelAdmin):
-
-    list_display = ("nome","email", "mensagem")
-    list_filter = ("nome", )
-
-
-class TipoProjetoAdmin(admin.ModelAdmin):
-
-    list_display = ("nome", "descri", "tempo")
-    list_filter = ("tempo", )
-
-
-class ClimaAdmin(admin.ModelAdmin):
-
-    form = ClimaForm
-    list_display = ("nome", "desc", "quando")
-    list_filter = ("nome", )
-    search_fields = ("nome", )
-
-
-class CursoAdmin(admin.ModelAdmin):
-
-    form = CursoForm
-    list_display = ("qual", "quando", "verba")
-    list_filter = ("paraquem", )
-    search_fields = ("paraquem", )
-
-
-class FeedbackAdmin(admin.ModelAdmin):
-
-    list_display = ("quando", "comquem", "analise")
-    list_filter = ("comquem", )
-    search_fields = ("analise", )
-
-
-class PalestraAdmin(admin.ModelAdmin):
-
-    form = PalestraForm    
-    list_display = ("nome", "desc")
-
-
 class PromocaoAdmin(admin.ModelAdmin):
 
     list_display = ("quem", "quando", "paraqual")
@@ -165,6 +152,25 @@ class PromocaoAdmin(admin.ModelAdmin):
         messages.success(request, "O colaborador teve o seu status alterado.")
         return r
 
+
+class PropostaAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "cliente", "numero", "valor_final", "lucro", "ativismo", "horas", "tipoprojeto")
+    list_filter = ("cliente", )
+    search_fields = ("nome", )
+
+
+class ResultadoCanalAdmin(admin.ModelAdmin):
+
+    list_display = ("canal", "base", "engajamento", "quando")
+    list_filter = ("canal", "engajamento")
+
+
+class TipoProjetoAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "descri", "tempo")
+    list_filter = ("tempo", )
+    
 
 class WorkshopAdmin(admin.ModelAdmin):
 
@@ -192,4 +198,5 @@ admin.site.register(Proposta, PropostaAdmin)
 admin.site.register(TipoProjeto, TipoProjetoAdmin)
 admin.site.register(Palestra, PalestraAdmin)
 admin.site.register(Promocao, PromocaoAdmin)
+admin.site.register(ResultadoCanal, ResultadoCanalAdmin)
 admin.site.register(Workshop, WorkshopAdmin)

@@ -2,27 +2,49 @@
 {% block title %}Canais Proprietários da Shoot{% endblock %}
 {% block content %}
 <div class="container">
-    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Canais Proprietários</p>
-    <div class="row" style="padding-bottom: 30px; padding-top: 30px;">
-        <div class="col-md-4" style="background-color: #f5c2d8; padding: 50px; margin-bottom: 30px; border-top-left-radius: 10px;border-bottom-left-radius: 10px;">
-            <h5 style="color: #47529c;">Nossos canais, seus objetivos e links</h5>
-            <p style="margin-top: 20px; color: #47529c;">A ideia é podermos acompanhar como estão os resultados dos canais.</p>
-        </div>
-        <div class="col-md-8" style="background-color:white; padding-top: 30px; margin-bottom: 30px; border-top-right-radius: 10px;border-bottom-right-radius: 10px; padding-left: 30px;">
-            <table class="row"> 
-                <tr>
-                    <td style="width: 140px;"><span class="text-muted"><strong> Nome</strong></span></td>
-                    <td><span class="text-muted"><strong> Objetivo</strong></span></td>
-                </tr>
-                {% for cp in canaisproprietarios %}
-                <tr>
-                    <td><a class="text-pink" href="#">{{ cp.nome }}</a></td>
-                    <td><span class="text-muted">{{ cp.objetivo }}</span></td>
-                </tr>
+<p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Canais Proprietários</p>
+<div class="row" style="padding-bottom: 30px; padding-top: 30px;">
+    <div class="col-md-4 coluninha_left">
+        <h5 style="color: #47529c;">Nossos canais e resultados</h5>
+        <p style="margin-top: 20px; color: #47529c;">Aqui a gente coloca a lista inteira de resultados. </p>
+    </div>
+    <div class="col-md-8 coluninha_direita">
+        <div class="accordion" id="canaisprpri">
+            {% for cp in canaisproprietarios %}
+            <div class="accordion-item">
+                <p class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menuresultados-{{ cp.id }}" aria-expanded="false" aria-controls="menuresultados-{{ cp.id }}">
+                        {{ cp.nome }} <span class="badge badge-danger" style="color: white;">{{ cp.resultadocanal_set.count }} resultados{{ cp.resultadocanal_set.count|pluralize }}</span>
+                    </button>
+                </p>
+                {% for resu in cp.resultadocanal_set.all %}
+                <div id="menuresultados-{{ cp.id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#canaisprpri">
+                    <div class="accordion-body" style="margin-bottom: 20px;">
+                        <div class="row justify-content-center" style="margin-bottom: 10px;">
+                            <span class="text-muted">{{ cp.objetivo }}</span>
+                        </div>
+                        <div class="row" style="background-color:rgba(246,203,71); color: white; font-size: 12px; padding: 5px; margin-bottom: 10px;">
+                            <div class="col-md-4"><strong>Dia</strong></div>
+                            <div class="col-md-4"><strong>Base</strong></div>
+                            <div class="col-md-4"><strong>Engajamento</strong></div>
+                        </div>
+                        <div class="row text-muted">
+                            <div class="col-md-4"><span class="text-pink">{{ resu.quando|date:"d/m/Y" }}</span></div>
+                            <div class="col-md-4">{{ resu.base }}</div>
+                            <div class="col-md-4">{{ resu.engajamento }}</div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center" style="margin-bottom: 20px; padding-top: 10px; margin-top: 20px; border-top: 1px dotted #47519b;">
+                            <a href="http://{{ cp.link }}" target="_blank" class="text-pink">{{ cp.link }}</a>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
-            </table>
+            </div>
+            {% endfor %}
         </div>
+
     </div>
 </div>
-
+</div>
 {% endblock %}

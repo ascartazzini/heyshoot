@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import base
 from django.db.models.base import Model
+from django.db.models.fields import DateField, DateTimeField
 from django.db.models.fields.related import ForeignKey
 
 
@@ -69,6 +71,19 @@ class MomentoImportante(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class ResultadoCanal(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    base = models.IntegerField("Número total de base", blank=True)
+    engajamento = models.DecimalField("Engajamento do canal", max_digits=4, decimal_places=2, blank=True, null=True)
+    quando = DateField("Informação do dia", blank=True, null=True)
+    canal = models.ForeignKey(CanalProprietario, null=True, on_delete=models.SET_NULL, verbose_name="Canal")
+
+    def __str__(self):
+        return "%s" % (self.canal)
 
 
 class TipoProjeto(models.Model):
