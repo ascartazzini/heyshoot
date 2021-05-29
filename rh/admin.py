@@ -5,11 +5,11 @@ from django.utils.safestring import mark_safe
 from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       PalestraForm, ProjetoForm)
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
-                       Cliente, Clima, Colaborador, Contato, Curso, Feedback,
-                       Folguinha, Fornecedores, Hierarquia, Inscricao,
-                       MomentoImportante, Palestra, Premiacao, Projeto,
-                       Promocao, Proposta, ResultadoCanal, TipoProjeto,
-                       Workshop)
+                       Certificacao, Cliente, Clima, Colaborador, Contato,
+                       Curso, Feedback, Folguinha, Fornecedores, Hierarquia,
+                       Inscricao, MomentoImportante, Palestra, Premiacao,
+                       Projeto, Promocao, Proposta, ResultadoCanal,
+                       TipoProjeto, Workshop)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -33,6 +33,17 @@ class CanalProprietarioAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "link")
     list_filter = ("nome", )
+
+
+class CertificacaoAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "desc", "thumbnail", "preco", "quando")
+    
+    def thumbnail(self, obj):
+        if obj.selo:
+            return mark_safe('<img src="%s" width=100 height=100 />' % obj.selo.url)
+        return "-"
+    thumbnail.short_description = 'Selo'
 
 
 class ClienteAdmin(admin.ModelAdmin):
@@ -193,6 +204,7 @@ class WorkshopAdmin(admin.ModelAdmin):
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
 admin.site.register(Biblioteca, BibliotecaAdmin)
 admin.site.register(CanalProprietario, CanalProprietarioAdmin)
+admin.site.register(Certificacao, CertificacaoAdmin)
 admin.site.register(Clima, ClimaAdmin)
 admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Contato, ContatoAdmin)

@@ -36,6 +36,26 @@ class CanalProprietario(models.Model):
         verbose_name_plural = "Canais Proprietários"
 
 
+class Certificacao(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome da certificação", blank=True, max_length=150)
+    selo_x = models.PositiveSmallIntegerField("Selo X", default=0, editable=False)
+    selo_y = models.PositiveSmallIntegerField("Selo Y", default=0, editable=False)
+    selo = models.ImageField(upload_to="certificacoes/logos", height_field="selo_y", width_field="selo_x", max_length=600, blank=True)
+    desc = models.TextField("Descrição da certificação", blank=True)
+    preco = models.DecimalField("Investimento", blank=True, max_digits=9, decimal_places=2, null=True)
+    quando = DateField("Quando certificamos", blank=True, null=True)
+
+    def __str__(self):
+        return self.nome
+    
+    class Meta:
+        verbose_name = "Certificação"
+        verbose_name_plural = "Certificações"
+
+
 class Contato(models.Model):
     
     created = models.DateTimeField(auto_now_add=True)

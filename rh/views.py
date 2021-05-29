@@ -6,11 +6,11 @@ from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from rh.forms import ContatoForm
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
-                       Cliente, Clima, Colaborador, Contato, Curso, Feedback,
-                       Folguinha, Fornecedores, Hierarquia, Inscricao,
-                       MomentoImportante, Palestra, Premiacao, Projeto,
-                       Promocao, Proposta, ResultadoCanal, TipoProjeto,
-                       Workshop)
+                       Certificacao, Cliente, Clima, Colaborador, Contato,
+                       Curso, Feedback, Folguinha, Fornecedores, Hierarquia,
+                       Inscricao, MomentoImportante, Palestra, Premiacao,
+                       Projeto, Promocao, Proposta, ResultadoCanal,
+                       TipoProjeto, Workshop)
 
 
 class IndexView(TemplateView):
@@ -31,6 +31,13 @@ class CanaisProprietariosView(ListView):
     template_name = "canais_shoot.html"
     model = CanalProprietario
     
+
+class CertificacaoView(ListView):
+
+    context_object_name = "certificacoes"
+    template_name = "certificacoes.html"
+    model = Certificacao
+
 
 class ClienteView(ListView):
 

@@ -2,7 +2,7 @@ from django.conf.urls import include, url
 from django.urls import path
 
 from rh.views import (BibliotecaView, CanaisProprietariosView,
-                      ClienteAtivosView, ClienteDetalhesView,
+                      CertificacaoView, ClienteAtivosView, ClienteDetalhesView,
                       ClienteInativosView, ClienteView, ClimaDetalhesView,
                       ClimaView, ColaboradoresDetalhesView, ColaboradoresView,
                       ContatoView, CursoDetalhesView, CursoView,
@@ -17,6 +17,7 @@ from rh.views import (BibliotecaView, CanaisProprietariosView,
 urlpatterns = [
     path("biblioteca/", BibliotecaView.as_view(), name="biblioteca"),
     path("canais/", CanaisProprietariosView.as_view(), name ="canaisproprietarios"),
+    path("certificacoes/", CertificacaoView.as_view(), name ="certificacoes"),
     path("clientes/", ClienteView.as_view(), name="lista_cliente"),
     path("clientes/ativos/", ClienteAtivosView.as_view(), name="lista_cliente_ativos"),
     path("clientes/inativos/", ClienteInativosView.as_view(), name="lista_cliente_inativos"),
