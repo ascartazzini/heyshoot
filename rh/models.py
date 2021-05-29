@@ -99,11 +99,25 @@ class Newsletter(models.Model):
     updater = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome da base", blank=True, max_length=100, null=True)
     objetivo = models.TextField("Objetivo da base", blank=True, null=True)
-    inscritos = models.IntegerField("Inscritos", blank=True)
     
     def __str__(self):
         return self.nome
 
+
+class NewsletterTotal(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updater = models.DateTimeField(auto_now=True)
+    news = models.ForeignKey(Newsletter, null=True, on_delete=models.SET_NULL, verbose_name="Base")
+    quando = models.DateField("Quando", blank=True, null=True)
+    inscritos = models.IntegerField("Inscritos", blank=True)
+
+    def __str__(self):
+        return "%s" % (self.news)
+
+    class Meta:
+        verbose_name = "Resultados Newsletter"
+        
 
 class Premiacao(models.Model):
 
