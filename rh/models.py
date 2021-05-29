@@ -90,7 +90,7 @@ class Premiacao(models.Model):
     class Meta:
         verbose_name = "Premiação"
         verbose_name_plural = "Premiações"
-        
+
 
 class ResultadoCanal(models.Model):
 
@@ -370,3 +370,22 @@ class Proposta(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class Inscricao(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    premio = models.ForeignKey(Premiacao, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Qual Prêmio")
+    projeto = models.ForeignKey(Projeto, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Projeto inscrito")
+    categoria = models.CharField("Categoria que concorremos", blank=True, max_length=200)
+    posicao = models.CharField("Posição final", blank=True, max_length=200)
+    investimento = models.DecimalField("Investimento", max_digits=9, decimal_places=2, blank=True, null=True)
+    quando = models.DateField("Quando", blank=True, null=True)
+
+    def __str__(self):
+        return "%s" % (self.premio)
+
+    class Meta:
+        verbose_name = "Inscrição"
+        verbose_name_plural = "Inscrições"

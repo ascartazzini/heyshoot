@@ -14,7 +14,7 @@
         <div class="col-md-8 coluninha_direita">
             <ul class="list-group" style="padding-top: 20px; padding-bottom: 20px;">
                 {% for hiera in hierarquia %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <li class="list-group-item d-flex justify-content-between align-items-center text-muted" style="border: 0;">
                     {{ hiera.nome }}
                     <span class="badge bg-warning rounded-pill" style="color: white; padding: 10px;">Entre R$ {{ hiera.salariomin }} e R$ {{ hiera.salariomax }}</span>
                 </li>

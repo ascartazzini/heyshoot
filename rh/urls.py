@@ -1,16 +1,18 @@
 from django.conf.urls import include, url
 from django.urls import path
 
-from rh.views import (BibliotecaView, ClienteAtivosView, ClienteDetalhesView,
+from rh.views import (BibliotecaView, CanaisProprietariosView,
+                      ClienteAtivosView, ClienteDetalhesView,
                       ClienteInativosView, ClienteView, ClimaDetalhesView,
                       ClimaView, ColaboradoresDetalhesView, ColaboradoresView,
                       ContatoView, CursoDetalhesView, CursoView,
                       FeedbackDetalhesView, FeedbackView, FolguinhaView,
                       FornecedoresDetalhesView, FornecedoresView,
-                      HierarquiaView, IndexView, MomentoImportanteView,
-                      PalestraView, ProjetoDetalhesView, ProjetoView,
-                      PromocaoView, PropostaDetalhesView, PropostaView, ResultadoCanalView,
-                      TipoProjetoView, WorkshopView, CanaisProprietariosView)
+                      HierarquiaView, IndexView, InscricaoView,
+                      MomentoImportanteView, PalestraView, PremiacaoView,
+                      ProjetoDetalhesView, ProjetoView, PromocaoView,
+                      PropostaDetalhesView, PropostaView, ResultadoCanalView,
+                      TipoProjetoView, WorkshopView)
 
 urlpatterns = [
     path("biblioteca/", BibliotecaView.as_view(), name="biblioteca"),
@@ -32,9 +34,11 @@ urlpatterns = [
     path("fornecedores/", FornecedoresView.as_view(), name="lista_fornecedores"),
     path("fornecedores/<int:pk>/", FornecedoresDetalhesView.as_view(), name="detalhes_fornecedores"),
     path("hierarquia/", HierarquiaView.as_view(), name="hierarquia"),
+    path("inscricao/", InscricaoView.as_view(), name = "inscricao"),
     path("", IndexView.as_view(), name="index"),
     path("momentos/", MomentoImportanteView.as_view(), name="MomentoImportante"),
     path("palestra/", PalestraView.as_view(), name="palestras"),
+    path("premiacao/", PremiacaoView.as_view(), name="premiacoes"),
     path("projetos/", ProjetoView.as_view(), name="lista_projeto"),
     path("projetos/<int:pk>/", ProjetoDetalhesView.as_view(), name="detalhes_projeto"),
     path("promocao/", PromocaoView.as_view(), name="promocao"),

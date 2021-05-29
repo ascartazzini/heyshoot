@@ -6,9 +6,10 @@ from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       PalestraForm, ProjetoForm)
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Cliente, Clima, Colaborador, Contato, Curso, Feedback,
-                       Folguinha, Fornecedores, Hierarquia, MomentoImportante,
-                       Palestra, Premiacao, Projeto, Promocao, Proposta,
-                       ResultadoCanal, TipoProjeto, Workshop)
+                       Folguinha, Fornecedores, Hierarquia, Inscricao,
+                       MomentoImportante, Palestra, Premiacao, Projeto,
+                       Promocao, Proposta, ResultadoCanal, TipoProjeto,
+                       Workshop)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -95,9 +96,13 @@ class HierarquiaAdmin(admin.ModelAdmin):
     list_filter = ("nome", )
 
 
+class InscricaoAdmin(admin.ModelAdmin):
+
+    list_display = ("premio", "projeto", "categoria", "posicao", "quando")
+
+
 class MomentoImportanteAdmin(admin.ModelAdmin):
     list_display = ("nome", "quem", "desc", "quando")
-
 
 
 class PalestraAdmin(admin.ModelAdmin):
@@ -198,6 +203,7 @@ admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(MomentoImportante, MomentoImportanteAdmin)
 admin.site.register(Hierarquia, HierarquiaAdmin)
+admin.site.register(Inscricao, InscricaoAdmin)
 admin.site.register(Projeto, ProjetoAdmin)
 admin.site.register(Proposta, PropostaAdmin)
 admin.site.register(TipoProjeto, TipoProjetoAdmin)

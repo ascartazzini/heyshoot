@@ -1,13 +1,15 @@
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.db.models.base import Model
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from rh.forms import ContatoForm
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Cliente, Clima, Colaborador, Contato, Curso, Feedback,
-                       Folguinha, Fornecedores, Hierarquia, MomentoImportante,
-                       Palestra, Projeto, Promocao, Proposta, ResultadoCanal, TipoProjeto,
+                       Folguinha, Fornecedores, Hierarquia, Inscricao,
+                       MomentoImportante, Palestra, Premiacao, Projeto,
+                       Promocao, Proposta, ResultadoCanal, TipoProjeto,
                        Workshop)
 
 
@@ -183,6 +185,13 @@ class HierarquiaView(ListView):
     model = Hierarquia
 
 
+class InscricaoView(ListView):
+
+    context_object_name = "inscricao"
+    template_name = "inscricoes.html"
+    model = Inscricao
+
+
 class MomentoImportanteView(ListView):
 
     context_object_name = "MomentoImportante"
@@ -195,6 +204,13 @@ class PalestraView(ListView):
     context_object_name = "palestras"
     template_name = "palestras.html"
     model = Palestra
+
+
+class PremiacaoView(ListView):
+
+    context_object_name = "premiacoes"
+    template_name = "premiacoes.html"
+    model = Premiacao
 
 
 class ProjetoView(ListView):
@@ -237,7 +253,7 @@ class ResultadoCanalView(ListView):
 
     context_object_name = "resultadocanal"
     model = ResultadoCanal
-    
+
 
 class TipoProjetoView(ListView):
 
