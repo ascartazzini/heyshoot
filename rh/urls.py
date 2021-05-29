@@ -13,7 +13,7 @@ from rh.views import (BibliotecaView, CanaisProprietariosView,
                       PalestraView, PremiacaoView, ProjetoDetalhesView,
                       ProjetoView, PromocaoView, PropostaDetalhesView,
                       PropostaView, ResultadoCanalView, TipoProjetoView,
-                      WorkshopView)
+                      VisaoView, WorkshopView)
 
 urlpatterns = [
     path("biblioteca/", BibliotecaView.as_view(), name="biblioteca"),
@@ -51,5 +51,6 @@ urlpatterns = [
     path("resultados/", ResultadoCanalView.as_view(), name="resultadoscanais"),
     path("tipo_projeto/", TipoProjetoView.as_view(), name="lista_TipoProjeto"),
     path("workshop/", WorkshopView.as_view(), name="workshop"),
+    path("visao/", VisaoView.as_view(), name="visao"),
 
 ]

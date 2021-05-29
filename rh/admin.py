@@ -9,7 +9,7 @@ from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Curso, Feedback, Ferramenta, Folguinha, Fornecedores,
                        Hierarquia, Inscricao, MomentoImportante, Newsletter,
                        NewsletterTotal, Palestra, Premiacao, Projeto, Promocao,
-                       Proposta, ResultadoCanal, TipoProjeto, Workshop)
+                       Proposta, ResultadoCanal, TipoProjeto, Visao, Workshop)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -214,7 +214,12 @@ class WorkshopAdmin(admin.ModelAdmin):
 
     list_display = ("titulo", "objetivos")
     list_filter = ("titulo", )
-    
+
+
+class VisaoAdmin(admin.ModelAdmin):
+
+    list_display = ("inicio","fim","texto")
+        
 
 
 
@@ -244,3 +249,4 @@ admin.site.register(Premiacao, PremiacaoAdmin)
 admin.site.register(Promocao, PromocaoAdmin)
 admin.site.register(ResultadoCanal, ResultadoCanalAdmin)
 admin.site.register(Workshop, WorkshopAdmin)
+admin.site.register(Visao, VisaoAdmin)

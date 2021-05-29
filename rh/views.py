@@ -10,7 +10,7 @@ from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Curso, Feedback, Ferramenta, Folguinha, Fornecedores,
                        Hierarquia, Inscricao, MomentoImportante, Newsletter,
                        NewsletterTotal, Palestra, Premiacao, Projeto, Promocao,
-                       Proposta, ResultadoCanal, TipoProjeto, Workshop)
+                       Proposta, ResultadoCanal, TipoProjeto, Visao, Workshop)
 
 
 class IndexView(TemplateView):
@@ -294,3 +294,10 @@ class WorkshopView(ListView):
     context_object_name = "workshop"
     template_name = "workshops.html"
     model = Workshop
+
+
+class VisaoView(ListView):
+
+    context_object_name = "visao"
+    template_name = "visao.html"
+    model = Visao

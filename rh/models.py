@@ -450,3 +450,18 @@ class Inscricao(models.Model):
     class Meta:
         verbose_name = "Inscrição"
         verbose_name_plural = "Inscrições"
+
+
+class Visao(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    inicio = DateField("Lançado dia", blank=True, null=True)
+    fim = DateField("Valido até dia", blank=True, null=True)
+    texto = models.TextField("Visão", blank=True, null=True)
+
+    def __str__(self):
+        return "Visão"
+
+    class Meta:
+        verbose_name_plural = "Visão"
