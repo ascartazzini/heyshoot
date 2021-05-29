@@ -17,7 +17,6 @@
                         {{ cp.nome }} <span class="badge badge-danger" style="color: white;">{{ cp.newslettertotal_set.count }} inscrito{{ cp.newslettertotal_set.count|pluralize }}</span>
                     </button>
                 </p>
-                {% for resu in cp.newslettertotal_set.all %}
                 <div id="news-{{ cp.id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#news">
                     <div class="accordion-body" style="margin-bottom: 20px;">
                         <div class="row text-center" style="background-color:rgba(246,203,71); color: white; font-size: 12px; padding: 5px; margin-bottom: 10px;">
@@ -25,13 +24,14 @@
                             <div class="col-md-6"><strong>Base</strong></div>
                         
                         </div>
+                        {% for resu in cp.newslettertotal_set.all %}
                         <div class="row text-muted text-center">
                             <div class="col-md-6"><span class="text-pink">{{ resu.quando|date:"d/m/Y" }}</span></div>
                             <div class="col-md-6">{{ resu.inscritos }}</div>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
-                {% endfor %}
             </div>
             {% endfor %}
         </div>

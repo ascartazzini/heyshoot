@@ -17,7 +17,6 @@
                             {{ atividade.nome|upper }} <span class="badge badge-danger" style="color: white;">{{ atividade.fornecedores_set.count }} Parceiro{{ atividade.fornecedores_set.count|pluralize }}</span>
                         </button>
                     </p>
-                    {% for forne in atividade.fornecedores_set.all %}
                     <div id="menuparceirosfornecedores-{{ atividade.id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#parceirosfornecedores">
                         <div class="accordion-body" style="margin-bottom: 20px;">
                             <div class="row" style="background-color:rgba(246,203,71); color: white; font-size: 12px; padding: 10px; margin-bottom: 10px;">
@@ -26,16 +25,16 @@
                                 <div class="col-md-3"><strong>Quem é o contato</strong></div>
                                 <div class="col-md-3"><strong>Iniciativa Sustentável</strong></div>
                             </div>
+                            {% for forne in atividade.fornecedores_set.all %}
                             <div class="row text-muted">
                                 <div class="col-md-3"><a href="{% url 'detalhes_fornecedores' forne.pk %}" class="text-pink">{{ forne.titulo }}</a></div>
                                 <div class="col-md-3">{{ forne.atividade }}</div>
                                 <div class="col-md-3">{{ forne.oque }}</div>
-                                <div class="col-md-3">{{ forne.iniciativanaobranca|yesno:"Sim,Não" }}
-                                </div>
+                                <div class="col-md-3">{{ forne.iniciativanaobranca|yesno:"Sim,Não" }}</div>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
                 {% endfor %}
             </div>
