@@ -93,6 +93,18 @@ class MomentoImportante(models.Model):
         return self.nome
 
 
+class Newsletter(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updater = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome da base", blank=True, max_length=100, null=True)
+    objetivo = models.TextField("Objetivo da base", blank=True, null=True)
+    inscritos = models.IntegerField("Inscritos", blank=True)
+    
+    def __str__(self):
+        return self.nome
+
+
 class Premiacao(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
