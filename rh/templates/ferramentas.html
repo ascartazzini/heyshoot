@@ -1,0 +1,42 @@
+{% extends 'base_shoot.html' %}
+{% block title %}Ferramentas{% endblock %}
+{% block content %}
+
+<div class="container">
+  
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Nossas ferramentas de trabalho</p>
+
+    <div class="row" style="padding-bottom: 30px; padding-top: 30px;">
+        <div class="col-md-4 coluninha_left">
+            <h5 style="color: #47529c;">Ferramentas contratadas ou free</h5>
+            <p style="margin-top: 20px; color: #47529c;">Aqui um registro dos feedbacks feitos com as pessoas da Shoot. Quando clicar poderia abrir não esse feedback selecionado, mas todos os feedbacks pra essa pessoa que já foram dados</p>
+        </div>
+        <div class="col-md-8 coluninha_direita">
+            
+            <table class="table table-hover text-muted">
+                <thead>
+                  <tr>
+                    <th scope="col">Ferramenta</th>
+                    <th scope="col">Início</th>
+                    <th scope="col">Valor/ano</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Pass</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for fe in ferramentas %}
+                  <tr>
+                    <th scope="row">{{ fe.nome }}</th>
+                    <td>{{ fe.quando|date:"d.m.Y" }}</td>
+                    <td>R$ {{ fe.preco }}</td>
+                    <td>{{ fe.user|default_if_none:"-" }}</td>
+                    <td>{{ fe.senha|default_if_none:"-" }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

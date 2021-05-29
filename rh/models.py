@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import base
 from django.db.models.base import Model
-from django.db.models.fields import DateField, DateTimeField
+from django.db.models.fields import CharField, DateField, DateTimeField
 from django.db.models.fields.related import ForeignKey
 
 
@@ -66,6 +66,21 @@ class Contato(models.Model):
 
     def __str__(self):
         return "%s: %s" % (self.nome, self.email)
+
+
+class Ferramenta(models.Model):
+    
+    created = models.DateTimeField(auto_now_add=True)
+    updater = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome da ferramenta", blank=True, max_length=100, null=True)
+    desc = models.TextField("Descrição", blank=True, null=True)
+    quando = models.DateField("Início da assinatura", blank=True, null=True)
+    preco = models.DecimalField("Investimento anual", blank=True, max_digits=9, decimal_places=2, null=True)
+    user = models.CharField("User", blank=True, null=True, max_length=100)
+    senha = models.CharField("Pass", blank=True, null=True, max_length=100)
+    
+    def __str__(self):
+        return self.nome
 
 
 class Hierarquia(models.Model):
