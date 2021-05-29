@@ -8,7 +8,7 @@ from rh.forms import ContatoForm
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Certificacao, Cliente, Clima, Colaborador, Contato,
                        Curso, Feedback, Folguinha, Fornecedores, Hierarquia,
-                       Inscricao, MomentoImportante, Palestra, Premiacao,
+                       Inscricao, MomentoImportante, Newsletter, NewsletterTotal, Palestra, Premiacao,
                        Projeto, Promocao, Proposta, ResultadoCanal,
                        TipoProjeto, Workshop)
 
@@ -206,6 +206,19 @@ class MomentoImportanteView(ListView):
     model = MomentoImportante
 
 
+class NewsletterView(ListView):
+    
+    context_object_name = "newsletter"
+    template_name = "newsletters.html"
+    model = Newsletter
+
+    
+class NewsletterTotalView(ListView):
+
+    context_object_name = "newslettertotal"
+    model = NewsletterTotal
+
+
 class PalestraView(ListView):
     
     context_object_name = "palestras"
@@ -255,7 +268,7 @@ class PropostaDetalhesView(DetailView):
     template_name = "detalhes_propostas.html"
     model = Proposta
 
-
+    
 class ResultadoCanalView(ListView):
 
     context_object_name = "resultadocanal"

@@ -9,10 +9,10 @@ from rh.views import (BibliotecaView, CanaisProprietariosView,
                       FeedbackDetalhesView, FeedbackView, FolguinhaView,
                       FornecedoresDetalhesView, FornecedoresView,
                       HierarquiaView, IndexView, InscricaoView,
-                      MomentoImportanteView, PalestraView, PremiacaoView,
-                      ProjetoDetalhesView, ProjetoView, PromocaoView,
-                      PropostaDetalhesView, PropostaView, ResultadoCanalView,
-                      TipoProjetoView, WorkshopView)
+                      MomentoImportanteView, NewsletterView, PalestraView,
+                      PremiacaoView, ProjetoDetalhesView, ProjetoView,
+                      PromocaoView, PropostaDetalhesView, PropostaView,
+                      ResultadoCanalView, TipoProjetoView, WorkshopView)
 
 urlpatterns = [
     path("biblioteca/", BibliotecaView.as_view(), name="biblioteca"),
@@ -38,6 +38,7 @@ urlpatterns = [
     path("inscricao/", InscricaoView.as_view(), name = "inscricao"),
     path("", IndexView.as_view(), name="index"),
     path("momentos/", MomentoImportanteView.as_view(), name="MomentoImportante"),
+    path("newsletters/", NewsletterView.as_view(), name="newsletter"),
     path("palestra/", PalestraView.as_view(), name="palestras"),
     path("premiacao/", PremiacaoView.as_view(), name="premiacoes"),
     path("projetos/", ProjetoView.as_view(), name="lista_projeto"),
