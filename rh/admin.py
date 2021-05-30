@@ -7,10 +7,10 @@ from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Certificacao, Cliente, Clima, Colaborador, Contato,
                        Curso, Feedback, Ferramenta, Folguinha, Fornecedores,
-                       Hierarquia, Inscricao, Juridico, MomentoImportante,
-                       Newsletter, NewsletterTotal, Palestra, Premiacao,
-                       Projeto, Promocao, Proposta, ResultadoCanal,
-                       TipoProjeto, Visao, Workshop)
+                       Hierarquia, Impacto, Inscricao, Juridico,
+                       MomentoImportante, Newsletter, NewsletterTotal, Ods,
+                       Palestra, Premiacao, Processo, Projeto, Promocao, Proposta,
+                       ResultadoCanal, TipoProjeto, Visao, Workshop)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -119,6 +119,11 @@ class InscricaoAdmin(admin.ModelAdmin):
     list_display = ("premio", "projeto", "categoria", "posicao", "quando")
 
 
+class ImpactoAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "peso")
+
+
 class JuridicoAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "desc", "prop")
@@ -139,6 +144,17 @@ class NewsletterTotalAdmin(admin.ModelAdmin):
     list_display = ("news", "quando", "inscritos")
 
 
+class OdsAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "thumbnail", "numero", "desc")
+    
+    def thumbnail(self, obj):
+        if obj.selo:
+            return mark_safe('<img src="%s" width=100 height=100 />' % obj.selo.url)
+        return "-"
+    thumbnail.short_description = 'Selo'
+
+
 class PalestraAdmin(admin.ModelAdmin):
 
     form = PalestraForm    
@@ -150,10 +166,15 @@ class PremiacaoAdmin(admin.ModelAdmin):
     list_display = ("nome","desc","periodo","investimento")
 
 
+class ProcessoAdmin(admin.ModelAdmin):
+
+    list_display = ("nome", "ordem")
+
+
 class ProjetoAdmin(admin.ModelAdmin):
 
     form = ProjetoForm
-    list_display = ("nome","numero", "cliente", "lider_shoot", "ativo")
+    list_display = ("nome","numero", "lider_shoot", "ativo")
     list_filter = ("numero", "ativo")
 
 
@@ -182,6 +203,7 @@ class ColaboradorAdmin(admin.ModelAdmin):
             return mark_safe('<img src="%s" width=100 height=100 />' % obj.foto.url)
         return "-"
     thumbnail.short_description = 'Foto'
+
 
 class PromocaoAdmin(admin.ModelAdmin):
 
@@ -233,6 +255,7 @@ admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
 admin.site.register(Biblioteca, BibliotecaAdmin)
 admin.site.register(CanalProprietario, CanalProprietarioAdmin)
 admin.site.register(Certificacao, CertificacaoAdmin)
+admin.site.register(Cliente, ClienteAdmin)
 admin.site.register(Clima, ClimaAdmin)
 admin.site.register(Colaborador, ColaboradorAdmin)
 admin.site.register(Contato, ContatoAdmin)
@@ -241,18 +264,20 @@ admin.site.register(Folguinha, FolguinhaAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Ferramenta, FerramentaAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
-admin.site.register(Cliente, ClienteAdmin)
+admin.site.register(Hierarquia, HierarquiaAdmin)
+admin.site.register(Inscricao, InscricaoAdmin)
+admin.site.register(Impacto, ImpactoAdmin)
+admin.site.register(Juridico, JuridicoAdmin)
 admin.site.register(MomentoImportante, MomentoImportanteAdmin)
 admin.site.register(Newsletter, NewsletterAdmin)
 admin.site.register(NewsletterTotal, NewsletterTotalAdmin)
-admin.site.register(Hierarquia, HierarquiaAdmin)
-admin.site.register(Inscricao, InscricaoAdmin)
-admin.site.register(Juridico, JuridicoAdmin)
+admin.site.register(Ods, OdsAdmin)
 admin.site.register(Projeto, ProjetoAdmin)
 admin.site.register(Proposta, PropostaAdmin)
 admin.site.register(TipoProjeto, TipoProjetoAdmin)
 admin.site.register(Palestra, PalestraAdmin)
 admin.site.register(Premiacao, PremiacaoAdmin)
+admin.site.register(Processo, ProcessoAdmin)
 admin.site.register(Promocao, PromocaoAdmin)
 admin.site.register(ResultadoCanal, ResultadoCanalAdmin)
 admin.site.register(Workshop, WorkshopAdmin)

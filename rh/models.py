@@ -1,3 +1,4 @@
+from os import truncate
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import base
@@ -95,6 +96,20 @@ class Hierarquia(models.Model):
         return self.nome
 
 
+class Impacto(models.Model):
+    
+    created = models.DateTimeField(auto_now_add=True)
+    updater = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome", max_length=100, blank=True)
+    peso = models.IntegerField("Peso", blank=True)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name_plural = "Níveis de Impacto"
+
+
 class MomentoImportante(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
@@ -107,6 +122,24 @@ class MomentoImportante(models.Model):
     def __str__(self):
         return self.nome
 
+
+class Ods(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome da ODS", blank=True, max_length=100, null=True)
+    numero = models.IntegerField("Número", blank=True)
+    selo_x = models.PositiveSmallIntegerField("Selo X", default=0, editable=False)
+    selo_y = models.PositiveSmallIntegerField("Selo Y", default=0, editable=False)
+    selo = models.ImageField(upload_to="ods/selos", height_field="selo_y", width_field="selo_x", max_length=600, blank=True)
+    desc = models.TextField("Descrição da ODS", null=True)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name_plural = "Objetivos de Desenvolvimento Sustentável"
+        
 
 class Newsletter(models.Model):
 
@@ -151,6 +184,20 @@ class Premiacao(models.Model):
     class Meta:
         verbose_name = "Premiação"
         verbose_name_plural = "Premiações"
+
+
+class Processo(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Etapa", blank=True, max_length=100)
+    ordem = models.IntegerField("Ordem", blank=True)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name_plural = "Processos"
 
 
 class ResultadoCanal(models.Model):
@@ -403,15 +450,13 @@ class Projeto(models.Model):
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
     numero = models.ForeignKey(Proposta, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Proposta")
-    # numero = models.IntegerField("Número da Proposta", blank=True)
     data_inicio = models.DateField("Data de Início", blank=True, null=True)
-    cliente = models.ForeignKey(Cliente, null=True, on_delete=models.PROTECT, verbose_name="Cliente")
+    # data_fim = models.DateField("Data de Início", blank=True, null=True)
+    # causa = models.CharField("Causa", max_length=200, blank=True, null=True)
+    # ODS e Nivel de impacto
     lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
     colaboradores = models.ManyToManyField(Colaborador, blank=True)
     resumo = models.TextField("Um breve resumo do projeto", help_text="Este campo é utilizado na apresentação dos detalhes do projeto no nosso site.", blank=True, default='')
-    # DB Index informa o banco de dados para fazer um índice sobre a coluna
-    # na qual será utilizada para fazer consultas. É uma maneira de otimizar
-    # o sistema.
     ativo = models.BooleanField("Está ativo?", db_index=True, default=False)
 
     def __str__(self):
