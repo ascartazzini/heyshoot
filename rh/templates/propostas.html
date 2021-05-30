@@ -1,10 +1,50 @@
 {% extends 'base_shoot.html' %}
 {% block title %}Propostas{% endblock %}
 {% block content %}
-<h1>Propostas</h1>
-<ul>
-    {% for proposta in proposta %}
-    <li><a href="{% url 'detalhes_proposta' proposta.pk %}">{{ proposta.nome|title }}</a> da {{ proposta.cliente }}</li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Nossas propostas realizadas</p>
+</div>
+<div class="container-sm">
+    <div class="row" style="padding-bottom: 30px; padding-top: 30px; background-color: white;">
+        <div class="col-md-12">
+            <p class="text-muted">Aqui nossa graninha</p>
+            <div class="table-responsive-md">
+                <table class="table table-hover text-muted">
+                    <thead>
+                    <tr style="background-color:  #47529c; color: white;">
+                        <th scope="col">Nome</th>
+                        <th scope="col">Número</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Lucro</th>
+                        <th scope="col">Ativismo</th>
+                        <th scope="col">Horas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for pro in proposta %}
+                    <tr>
+                        <td>
+                            {% if pro.urlproposta %}
+                            <a href="http://{{ pro.urlproposta }}" target="_blank" class="text-pink">{{ pro.nome }}</a>
+                            {% else %}
+                            {{ pro.nome }}
+                            {% endif %}
+                        </td>
+                        <td>{{ pro.numero }}</td>
+                        <td>{{ pro.cliente }}</td>
+                        <td>{{ pro.tipoprojeto }}</td>
+                        <td>R$ {{ pro.valor_final }}</td>
+                        <td>{{ pro.lucro }}%</td>
+                        <td>{{ pro.ativismo }}%</td>
+                        <td>{{ pro.horas }}h</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

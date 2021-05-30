@@ -95,9 +95,10 @@ class ProjetoForm(forms.ModelForm):
     class Meta:
 
         model = Projeto
-        fields = ["nome", "numero","lider_shoot", "colaboradores", "resumo", "ativo", "data_inicio"]
+        fields = ["nome", "numero", "lider_shoot", "colaboradores", "resumo", "data_inicio", "data_final", "ativo", "urlasana", "urlbriefing", "urldebriefing", "ods", "causas", "processo", "impacto"]
         widgets = {
             "colaboradores": forms.CheckboxSelectMultiple,
+            "ods": forms.CheckboxSelectMultiple,
         }
 
 

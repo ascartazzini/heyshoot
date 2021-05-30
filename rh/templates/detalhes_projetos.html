@@ -1,16 +1,49 @@
 {% extends 'base_shoot.html' %}
-{% block title %}<h1>{{ projeto.nome|title }}</h1>{% endblock %}
+{% block title %}{{ projeto.nome|title }}{% endblock %}
 {% block content %}
-    <h1>Shoot</h1>
-    <p><strong>Resumo: </strong> {{ projeto.resumo|linebreaks }}</p>
-    <p><strong>Número da proposta: </strong> {{ projeto.numero }}</p>
-    <p><strong>Líder do projeto: </strong> {{ projeto.lider_shoot }}</p>
-    <strong>Colaboradores no projeto: </strong>
-    {% for colaborador in projeto.colaboradores.all %}
-    {{ colaborador.nome|linebreaks }}
-    {% empty %}
-    <p>Não tem colaboradores no projeto</p>
-    {% endfor %}
-    <br>
-    <p><a href="{% url 'lista_projeto' %}">Voltar Para Listagem de Projetos</a> | <a href="{% url 'contato' %}">Contato</a></p>
+<div class="container-sm">
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">
+        {{ projeto.nome }}</p>
+    <div class="row conteudo">
+        <div class="col-lg-12" style="padding-top:10px;margin-top: 30px;">
+            <table class="table text-muted">
+                <tr>
+                    <td colspan="3"><strong>Resumo: </strong> {{ projeto.resumo|linebreaks }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Cliente: </strong>{{ projeto.numero.cliente }}</td>
+                    <td><strong>Líder Shoot: </strong>{{ projeto.lider_shoot }}</td>
+                    <td><strong>Trabalho ativo?</strong> {{ projeto.ativo|yesno:"Sim, Não" }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Data início: </strong>{{ projeto.data_inicio|date:"d.m.Y" }}</td>
+                    <td><strong>Data final: </strong>{{ projeto.data_final|default_if_none:"Em andamento" }}</td>
+                    <td><strong>Nível de impacto: </strong>{{ projeto.impacto }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Equipe de apoio: </strong>
+                        {% for colaborador in projeto.colaboradores.all %}
+                        {{ colaborador.nome|linebreaks }}
+                        {% empty %}
+                        Não tem colaboradores no projeto
+                        {% endfor %}
+                    </td>
+                    <td><strong>Causas: </strong>{{ projeto.causas }}</td>
+                    <td><strong>ODS: </strong>{{ projeto.ods.all|join:", " }}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;"><a href="http://{{ projeto.urlasana }}" target="_blank" class="bi bi-kanban" style="color:black; font-size: 16px;"></a></td>
+                    <td style="text-align: center;"><a href="http://{{ projeto.urlbriefing }}" target="_blank" class="bi bi-file-earmark-binary" style="color:black; font-size: 16px;"></a></td>
+                    <td style="text-align: left;"><a href="http://{{ projeto.urldebriefing }}" target="_blank" class="bi bi-file-earmark-check" style="color:black; font-size: 16px;"></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center" style="text-align: center; margin-top: 80px;">
+        <p class="text-muted"><a href="{% url 'lista_projeto' %}" style="color: rgba(246,203,71)">Projetos </a>
+            <span style="color: white;"> | {{ projeto.nome }}</span>
+        </p>
+    </div>
+</div>
 {% endblock %}

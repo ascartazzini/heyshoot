@@ -2,7 +2,9 @@
       <div class="text-center card-box">
         {% if cliente.logo %}<img src="{{ cliente.logo.url }}" class="img-thumbnail" width="100">{% endif %}
         <div class="card-body">
-          <h5 class="card-title">{{ cliente.nome|title }}</h5>
+          <h5 class="card-title">
+            <a href="{% url 'detalhes_cliente' cliente.pk %}">{{ cliente.nome|title }}</a>
+          </h5>
           <p class="card-text text-muted">
             CNPJ: {{ cliente.cnpj }} <br>
             Razão Social: {{ cliente.razaosocial }}<br>

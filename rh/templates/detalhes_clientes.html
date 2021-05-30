@@ -1,12 +1,91 @@
 {% extends 'base_shoot.html' %}
 {% block title %}{{ cliente.nome|title }}{% endblock %}
 {% block content %}
-    <h1>Shoot</h1>
-    <img src="{{ cliente.logo.url }}" width="100" height="100">
-    <p>Razão Social: {{ cliente.razaosocial }}</p>
-    <p>Nome do contato: {{ cliente.nomecontato }}</p>
-    <p>Email do contato: {{ cliente.emailcontato }}</p>
-    <p>Fone do contato: {{ cliente.fonecontato }}</p>
-    <p>Líder Shoot: {{ cliente.lider_shoot }}</p>
-    <p><a href="{% url 'lista_cliente' %}">Voltar Para Listagem de Clientes</a></p>
+
+<div class="container">
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">{{ cliente.nome }}</p>
+    <div class="row conteudo">
+        <div class="col-lg-4 text-muted" style="padding-top:10px;margin-top: 20px; padding-bottom: 30px; text-align: center;">
+        {% if cliente.logo %}  
+        <img src="{{ cliente.logo.url }}" width="310" height="300" class="img-thumbnail">
+        {% else  %}
+        <img src="/static/images/semfoto.jpg" width="310" height="300" class="img-thumbnail">
+        {% endif  %}</a><br>
+    </div>
+    <div class="col-lg-7" style="padding-top:10px;margin-top: 30px;">
+        <table class="table text-muted">
+        <thead>
+        <tr>
+            <td colspan="2">
+                <span class="text-pink"><strong>{{ cliente.nomecontato }}</strong></span>
+                <td colspan="2">Contato do {{ cliente.lider_shoot }}</td>
+            </td>   
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="1">{{ cliente.fonecontato|default_if_none:"-" }}</td>
+            <td colspan="3">{{ cliente.emailcontato|default_if_none:"-" }}</td>
+        </tr>
+        <tr>
+            <td colspan="1">CNPJ: {{ cliente.cnpj|default_if_none:"-" }}</td>
+            <td colspan="3">Razão Social: {{ cliente.razaosocial|default_if_none:"-" }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Iniciamos a relação dia {{ cliente.inicio }}</td>
+            <td colspan="2">E terminamos {{ cliente.fim }}</td>
+        </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 30px; ">
+    <div class="col-md-7 text-muted" style="padding-top:30px;padding-bottom: 30px; text-align: center; background-color: white;">
+        <table class="table text-muted">
+            <thead>
+            <tr>
+                <td>
+                    <span class="text-pink"><strong>Projetos que fizemos para este cliente</strong></span>
+                </td>   
+            </tr>
+            </thead>
+            <tbody>
+                {% for p in cliente.proposta_set.all %}
+                <tr>
+                    <td class="align-middle">{{ p.projeto_set.all|join:", " }}</td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-5 text-muted" style="padding-top:30px; padding-bottom: 30px; text-align: center; background-color: white;">
+        <table class="table text-muted">
+            <thead>
+            <tr>
+                <td colspan="3">
+                    <span class="text-pink"><strong>Propostas que fizemos para este cliente</strong></span>
+                </td>   
+            </tr>
+            <tr>
+                <td class="align-middle"><strong>Tipo Projeto</strong></td>
+                <td class="align-middle"><strong>Horas</strong></td>
+                <td class="align-middle"><strong>Valor Final</strong></td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for prop in cliente.proposta_set.all %}
+            <tr>
+                <td class="align-middle"><a class="text-pink" href="{% url 'detalhes_proposta' prop.pk %}">{{ prop.tipoprojeto }}</a></td>
+                <td class="align-middle">{{ prop.horas }}</td>
+                <td class="align-middle">R$ {{ prop.valor_final }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center" style="text-align: center; margin-top: 80px;">
+    <p class="text-muted"><a href="{% url 'lista_cliente' %}" style="color: rgba(246,203,71)">Relações Comerciais </a>
+        <span style="color: white;"> | {{ cliente.nome }}</span>
+    </p>
+</div>
 {% endblock %}

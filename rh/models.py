@@ -429,6 +429,7 @@ class Proposta(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
+    urlproposta = models.CharField("URL Proposta", max_length=100, blank=True, null=True)
     numero = models.IntegerField("Número da Proposta", blank=True)
     cliente = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
     tipoprojeto = models.ForeignKey(TipoProjeto, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Tipo")
@@ -450,14 +451,19 @@ class Projeto(models.Model):
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
     numero = models.ForeignKey(Proposta, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Proposta")
-    data_inicio = models.DateField("Data de Início", blank=True, null=True)
-    # data_fim = models.DateField("Data de Início", blank=True, null=True)
-    # causa = models.CharField("Causa", max_length=200, blank=True, null=True)
-    # ODS e Nivel de impacto
-    lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
-    colaboradores = models.ManyToManyField(Colaborador, blank=True)
+    lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder", related_name="lider")
+    colaboradores = models.ManyToManyField(Colaborador, blank=True, verbose_name="Equipe de apoio")
     resumo = models.TextField("Um breve resumo do projeto", help_text="Este campo é utilizado na apresentação dos detalhes do projeto no nosso site.", blank=True, default='')
+    data_inicio = models.DateField("Data de Início", blank=True, null=True)
+    data_final = models.DateField("Data Final", blank=True, null=True)
     ativo = models.BooleanField("Está ativo?", db_index=True, default=False)
+    urlasana = models.CharField("URL do Projeto no Asana", max_length=100, blank=True)
+    urlbriefing = models.CharField("URL do Briefing", max_length=200, blank=True)
+    urldebriefing = models.CharField("URL do Briefing", max_length=200, blank=True)
+    ods = models.ManyToManyField(Ods, blank=True, verbose_name="Ods")
+    causas = models.CharField("Causas", max_length=200, blank=True)
+    processo = models.ForeignKey(Processo, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Etapa do processo")
+    impacto = models.ForeignKey(Impacto, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Impacto do job")
 
     def __str__(self):
         return self.nome

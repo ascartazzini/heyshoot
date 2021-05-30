@@ -1,10 +1,47 @@
 {% extends 'base_shoot.html' %}
 {% block title %}Projetos{% endblock %}
 {% block content %}
-<h1>Projeto{{ projetos|pluralize }}</h1>
-<ul>
-    {% for projeto in projetos %}
-    <li><a href="{% url 'detalhes_projeto' projeto.pk %}">{{ projeto.nome|title }}</a> do {{ projeto.lider_shoot|default_if_none:"(Sem Líder)" }}</li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Nossos projetos comerciais</p>
+</div>
+<div class="container-fluid">
+    <div class="row" style="padding-bottom: 30px; padding-top: 30px; background-color: white;">
+        <div class="col-md-12">
+            <div class="table-responsive-md">
+                <table class="table table-hover text-muted">
+                    <thead>
+                    <tr style="background-color:  #47529c; color: white;">
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Inicio</th>
+                        <th scope="col">Finalizado</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Impacto</th>
+                        <th scope="col">ODS</th>
+                        <th scope="col" style="text-align: center;" colspan="3">Links</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for pro in projetos %}
+                    <tr>
+                        <td>{{ pro.numero.tipoprojeto }}</td>
+                        <th><a href="{% url 'detalhes_projeto' pro.pk %}" class="text-pink">{{ pro.nome }}</a></th>
+                        <td>{{ pro.numero.cliente }}</td>
+                        <td>{{ pro.data_inicio|date:"d.m.Y" }}</td>
+                        <td>{{ pro.ativo|yesno:"Sim,Não" }}</td>
+                        <td>{{ pro.processo }}</td>
+                        <td>{{ pro.impacto }}</td>
+                        <td>{{ pro.ods.all|join:", " }}</td>
+                        <td style="text-align: right;"><a href="http://{{ pro.urlasana }}" target="_blank" class="bi bi-kanban" style="color:black; font-size: 16px;"></a></td>
+                        <td style="text-align: center;"><a href="http://{{ pro.urlbriefing }}" target="_blank" class="bi bi-file-earmark-binary" style="color:black; font-size: 16px;"></a></td>
+                        <td style="text-align: left;"><a href="http://{{ pro.urldebriefing }}" target="_blank" class="bi bi-file-earmark-check" style="color:black; font-size: 16px;"></a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
