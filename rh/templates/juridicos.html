@@ -1,0 +1,38 @@
+{% extends 'base_shoot.html' %}
+{% block title %}Jurídicos{% endblock %}
+{% block content %}
+
+<div class="container">
+  
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Documentos Jurídicos</p>
+
+    <div class="row" style="padding-bottom: 30px; padding-top: 30px;">
+        <div class="col-md-4 coluninha_left">
+            <h5 style="color: #47529c;">Todos documentos jurídicos</h5>
+            <p style="margin-top: 20px; color: #47529c;">Uma lista de documentos jurídicos já feitos</p>
+        </div>
+        <div class="col-md-8 coluninha_direita">
+            
+            <table class="table table-hover text-muted">
+                <thead>
+                  <tr style="background-color:  #47529c; color: white;">
+                    <th scope="col">Nome</th>
+                    <th scope="col">Para que</th>
+                    <th scope="col">Proposta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for ju in juridico %}
+                  <tr>
+                    <th><a href="http://{{ ju.urldoc }}" target="_blank" class="text-pink">{{ ju.nome }}</a></th>
+                    <td>{{ ju.desc }}</td>
+                    <td>{{ ju.prop }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

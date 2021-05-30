@@ -377,12 +377,33 @@ class Palestra(models.Model):
         return self.nome
 
 
-class Projeto(models.Model):
+class Proposta(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
     numero = models.IntegerField("Número da Proposta", blank=True)
+    cliente = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
+    tipoprojeto = models.ForeignKey(TipoProjeto, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Tipo")
+    # Quando for utilizar dinheiro, ou alguma coisa que tenha um número de casas decimais fixas (por exemplo duas)
+    # pode-se utilizar o campo "DecimalField". max_digitas é o tamanho total do campo, e o decimal_places são o número de
+    # casas que o número terá depois da ","
+    valor_final = models.DecimalField("Valor final", max_digits=9, decimal_places=2, blank=True, null=True)
+    lucro = models.IntegerField("Lucro da Shoot", blank=True, null=True)
+    ativismo = models.IntegerField("Quanto pra ativismo", blank=True, null=True)
+    horas = models.IntegerField("Horas vendidas", blank=True, null=True)
+
+    def __str__(self):
+        return self.nome
+
+
+class Projeto(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
+    numero = models.ForeignKey(Proposta, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Proposta")
+    # numero = models.IntegerField("Número da Proposta", blank=True)
     data_inicio = models.DateField("Data de Início", blank=True, null=True)
     cliente = models.ForeignKey(Cliente, null=True, on_delete=models.PROTECT, verbose_name="Cliente")
     lider_shoot = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder Shoot", related_name="lider")
@@ -413,24 +434,20 @@ class Promocao(models.Model):
         verbose_name_plural = "Promoções"
 
 
-class Proposta(models.Model):
+class Juridico(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
-    numero = models.IntegerField("Número da Proposta", blank=True)
-    cliente = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
-    tipoprojeto = models.ForeignKey(TipoProjeto, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Tipo")
-    # Quando for utilizar dinheiro, ou alguma coisa que tenha um número de casas decimais fixas (por exemplo duas)
-    # pode-se utilizar o campo "DecimalField". max_digitas é o tamanho total do campo, e o decimal_places são o número de
-    # casas que o número terá depois da ","
-    valor_final = models.DecimalField("Valor final", max_digits=9, decimal_places=2, blank=True, null=True)
-    lucro = models.IntegerField("Lucro da Shoot", blank=True, null=True)
-    ativismo = models.IntegerField("Quanto pra ativismo", blank=True, null=True)
-    horas = models.IntegerField("Horas vendidas", blank=True, null=True)
+    nome = models.CharField("Nome do documento", max_length=200, blank=True)
+    urldoc = models.CharField("URL do doc", max_length=200, blank=True)
+    desc = models.TextField("Pra que serve", blank=True, null=True)
+    prop = models.ForeignKey(Proposta, null=True, on_delete=models.SET_NULL, verbose_name="Proposta")
 
     def __str__(self):
         return self.nome
+
+    class Meta:
+        verbose_name_plural = "Docs Jurídicos"
 
 
 class Inscricao(models.Model):

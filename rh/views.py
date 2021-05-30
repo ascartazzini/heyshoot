@@ -8,9 +8,10 @@ from rh.forms import ContatoForm
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Certificacao, Cliente, Clima, Colaborador, Contato,
                        Curso, Feedback, Ferramenta, Folguinha, Fornecedores,
-                       Hierarquia, Inscricao, MomentoImportante, Newsletter,
-                       NewsletterTotal, Palestra, Premiacao, Projeto, Promocao,
-                       Proposta, ResultadoCanal, TipoProjeto, Visao, Workshop)
+                       Hierarquia, Inscricao, Juridico, MomentoImportante,
+                       Newsletter, NewsletterTotal, Palestra, Premiacao,
+                       Projeto, Promocao, Proposta, ResultadoCanal,
+                       TipoProjeto, Visao, Workshop)
 
 
 class IndexView(TemplateView):
@@ -204,6 +205,13 @@ class InscricaoView(ListView):
     context_object_name = "inscricao"
     template_name = "inscricoes.html"
     model = Inscricao
+
+
+class JuridicoView(ListView):
+
+    context_object_name = "juridico"
+    template_name = "juridicos.html"
+    model = Juridico
 
 
 class MomentoImportanteView(ListView):
