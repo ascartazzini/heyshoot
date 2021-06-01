@@ -9,11 +9,12 @@ from rh.views import (BibliotecaView, CanaisProprietariosView,
                       FeedbackDetalhesView, FeedbackView, FerramentaView,
                       FolguinhaView, FornecedoresDetalhesView,
                       FornecedoresView, HierarquiaView, IndexView,
-                      InscricaoView, JuridicoView, MomentoImportanteView, NewsletterView,
+                      InscricaoView, JuridicoView, LoginShootView,
+                      LogoutShootView, MomentoImportanteView, NewsletterView,
                       PalestraView, PremiacaoView, ProjetoDetalhesView,
                       ProjetoView, PromocaoView, PropostaDetalhesView,
                       PropostaView, ResultadoCanalView, TipoProjetoView,
-                      VisaoView, WorkshopView, LoginShootView)
+                      VisaoView, WorkshopView)
 
 urlpatterns = [
     path("biblioteca/", BibliotecaView.as_view(), name="biblioteca"),
@@ -54,4 +55,5 @@ urlpatterns = [
     path("workshop/", WorkshopView.as_view(), name="workshop"),
     path("visao/", VisaoView.as_view(), name="visao"),
     path("login/", LoginShootView.as_view(), name="login"),
+    path("logout/", LogoutShootView.as_view(), name="logout"),
 ]

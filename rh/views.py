@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.db.models.base import Model
 from django.urls import reverse_lazy
@@ -330,3 +330,8 @@ class VisaoView(LoginRequiredMixin, TemplateView):
 class LoginShootView(LoginView):
 
     template_name = "login.html"
+
+
+class LogoutShootView(LogoutView):
+
+    next_page = reverse_lazy("juridicos")
