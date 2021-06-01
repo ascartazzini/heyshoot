@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.db.models.base import Model
 from django.urls import reverse_lazy
@@ -306,7 +307,7 @@ class WorkshopView(ListView):
     model = Workshop
 
 
-class VisaoView(TemplateView):
+class VisaoView(LoginRequiredMixin, TemplateView):
 
     template_name = "visao.html"
 
