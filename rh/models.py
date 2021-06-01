@@ -51,14 +51,14 @@ class Certificacao(models.Model):
 
     def __str__(self):
         return self.nome
-    
+
     class Meta:
         verbose_name = "Certificação"
         verbose_name_plural = "Certificações"
 
 
 class Contato(models.Model):
-    
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome", max_length=100)
@@ -70,7 +70,7 @@ class Contato(models.Model):
 
 
 class Ferramenta(models.Model):
-    
+
     created = models.DateTimeField(auto_now_add=True)
     updater = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome da ferramenta", blank=True, max_length=100, null=True)
@@ -79,7 +79,7 @@ class Ferramenta(models.Model):
     preco = models.DecimalField("Investimento anual", blank=True, max_digits=9, decimal_places=2, null=True)
     user = models.CharField("User", blank=True, null=True, max_length=100)
     senha = models.CharField("Pass", blank=True, null=True, max_length=100)
-    
+
     def __str__(self):
         return self.nome
 
@@ -97,7 +97,7 @@ class Hierarquia(models.Model):
 
 
 class Impacto(models.Model):
-    
+
     created = models.DateTimeField(auto_now_add=True)
     updater = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome", max_length=100, blank=True)
@@ -139,7 +139,7 @@ class Ods(models.Model):
 
     class Meta:
         verbose_name_plural = "Objetivos de Desenvolvimento Sustentável"
-        
+
 
 class Newsletter(models.Model):
 
@@ -147,7 +147,7 @@ class Newsletter(models.Model):
     updater = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome da base", blank=True, max_length=100, null=True)
     objetivo = models.TextField("Objetivo da base", blank=True, null=True)
-    
+
     def __str__(self):
         return self.nome
 
@@ -165,7 +165,7 @@ class NewsletterTotal(models.Model):
 
     class Meta:
         verbose_name = "Resultados Newsletter"
-        
+
 
 class Premiacao(models.Model):
 
@@ -239,7 +239,7 @@ class Workshop(models.Model):
 
     def __str__(self):
         return self.titulo
-    
+
     class Meta:
         verbose_name_plural = "Workshops"
 
@@ -413,7 +413,7 @@ class Fornecedores(models.Model):
 
 
 class Palestra(models.Model):
-    
+
     created = models.DateTimeField(auto_now_add=True)
     updater = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome da Palestra", max_length=150, blank=True)
@@ -518,18 +518,3 @@ class Inscricao(models.Model):
     class Meta:
         verbose_name = "Inscrição"
         verbose_name_plural = "Inscrições"
-
-
-class Visao(models.Model):
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    inicio = DateField("Lançado dia", blank=True, null=True)
-    fim = DateField("Valido até dia", blank=True, null=True)
-    texto = models.TextField("Visão", blank=True, null=True)
-
-    def __str__(self):
-        return "Visão"
-
-    class Meta:
-        verbose_name_plural = "Visão"

@@ -9,8 +9,8 @@ from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Curso, Feedback, Ferramenta, Folguinha, Fornecedores,
                        Hierarquia, Impacto, Inscricao, Juridico,
                        MomentoImportante, Newsletter, NewsletterTotal, Ods,
-                       Palestra, Premiacao, Processo, Projeto, Promocao, Proposta,
-                       ResultadoCanal, TipoProjeto, Visao, Workshop)
+                       Palestra, Premiacao, Processo, Projeto, Promocao,
+                       Proposta, ResultadoCanal, TipoProjeto, Workshop)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -39,7 +39,7 @@ class CanalProprietarioAdmin(admin.ModelAdmin):
 class CertificacaoAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "desc", "thumbnail", "preco", "quando")
-    
+
     def thumbnail(self, obj):
         if obj.selo:
             return mark_safe('<img src="%s" width=100 height=100 />' % obj.selo.url)
@@ -61,7 +61,7 @@ class ClienteAdmin(admin.ModelAdmin):
 
 
 class ClimaAdmin(admin.ModelAdmin):
-    
+
     form = ClimaForm
     list_display = ("nome", "desc", "quando")
     list_filter = ("nome", )
@@ -140,14 +140,14 @@ class NewsletterAdmin(admin.ModelAdmin):
 
 
 class NewsletterTotalAdmin(admin.ModelAdmin):
-    
+
     list_display = ("news", "quando", "inscritos")
 
 
 class OdsAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "thumbnail", "numero", "desc")
-    
+
     def thumbnail(self, obj):
         if obj.selo:
             return mark_safe('<img src="%s" width=100 height=100 />' % obj.selo.url)
@@ -157,7 +157,7 @@ class OdsAdmin(admin.ModelAdmin):
 
 class PalestraAdmin(admin.ModelAdmin):
 
-    form = PalestraForm    
+    form = PalestraForm
     list_display = ("nome", "desc")
 
 
@@ -236,19 +236,12 @@ class TipoProjetoAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "descri", "tempo")
     list_filter = ("tempo", )
-    
+
 
 class WorkshopAdmin(admin.ModelAdmin):
 
     list_display = ("titulo", "objetivos")
     list_filter = ("titulo", )
-
-
-class VisaoAdmin(admin.ModelAdmin):
-
-    list_display = ("inicio","fim","texto")
-        
-
 
 
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
@@ -281,4 +274,3 @@ admin.site.register(Processo, ProcessoAdmin)
 admin.site.register(Promocao, PromocaoAdmin)
 admin.site.register(ResultadoCanal, ResultadoCanalAdmin)
 admin.site.register(Workshop, WorkshopAdmin)
-admin.site.register(Visao, VisaoAdmin)

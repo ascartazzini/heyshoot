@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.db.models.base import Model
@@ -11,7 +13,7 @@ from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Hierarquia, Inscricao, Juridico, MomentoImportante,
                        Newsletter, NewsletterTotal, Palestra, Premiacao,
                        Projeto, Promocao, Proposta, ResultadoCanal,
-                       TipoProjeto, Visao, Workshop)
+                       TipoProjeto, Workshop)
 
 
 class IndexView(TemplateView):
@@ -31,7 +33,7 @@ class CanaisProprietariosView(ListView):
     context_object_name = "canaisproprietarios"
     template_name = "canais_shoot.html"
     model = CanalProprietario
-    
+
 
 class CertificacaoView(ListView):
 
@@ -154,14 +156,14 @@ class FeedbackView(ListView):
 
 
 class FeedbackDetalhesView(DetailView):
-    
+
     context_object_name = "feedback"
     template_name = "detalhes_feedback.html"
     model = Feedback
 
 
 class FerramentaView(ListView):
-    
+
     context_object_name = "ferramentas"
     template_name = "ferramentas.html"
     model = Ferramenta
@@ -187,7 +189,7 @@ class FornecedoresView(ListView):
 
 
 class FornecedoresDetalhesView(DetailView):
-    
+
     context_object_name = "fornecedores"
     template_name = "detalhes_fornecedores.html"
     model = Fornecedores
@@ -222,12 +224,12 @@ class MomentoImportanteView(ListView):
 
 
 class NewsletterView(ListView):
-    
+
     context_object_name = "newsletter"
     template_name = "newsletters.html"
     model = Newsletter
 
-    
+
 class NewsletterTotalView(ListView):
 
     context_object_name = "newslettertotal"
@@ -235,7 +237,7 @@ class NewsletterTotalView(ListView):
 
 
 class PalestraView(ListView):
-    
+
     context_object_name = "palestras"
     template_name = "palestras.html"
     model = Palestra
@@ -283,7 +285,7 @@ class PropostaDetalhesView(DetailView):
     template_name = "detalhes_propostas.html"
     model = Proposta
 
-    
+
 class ResultadoCanalView(ListView):
 
     context_object_name = "resultadocanal"
@@ -304,8 +306,20 @@ class WorkshopView(ListView):
     model = Workshop
 
 
-class VisaoView(ListView):
+class VisaoView(TemplateView):
 
-    context_object_name = "visao"
     template_name = "visao.html"
-    model = Visao
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        data_inicio = datetime(2021, 1, 1, 0, 0, 0).date()
+        data_fim = data_inicio + timedelta(days=365 * 5)
+        context["visao"] = {
+            "inicio": data_inicio,
+            "fim": data_fim,
+            "texto": "O Tuli acha que o Xis Porrada Será comprado pelo Raupps Lanches."
+        }
+        numero_dias_total = (data_fim - data_inicio).days
+        numero_que_ja_passou_de_dias = (data_fim - datetime.now().date()).days
+        context["progress_value"] = (numero_dias_total - numero_que_ja_passou_de_dias) / numero_dias_total * 100
+        return context

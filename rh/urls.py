@@ -50,8 +50,7 @@ urlpatterns = [
     path("propostas/", PropostaView.as_view(), name="lista_proposta"),
     path("propostas/<int:pk>/", PropostaDetalhesView.as_view(), name="detalhes_proposta"),
     path("resultados/", ResultadoCanalView.as_view(), name="resultadoscanais"),
-    path("tipo_projeto/", TipoProjetoView.as_view(), name="lista_TipoProjeto"),
+    path("tipo-projeto/", TipoProjetoView.as_view(), name="lista_TipoProjeto"),
     path("workshop/", WorkshopView.as_view(), name="workshop"),
     path("visao/", VisaoView.as_view(), name="visao"),
-
 ]
