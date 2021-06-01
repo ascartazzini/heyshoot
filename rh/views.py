@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.db.models.base import Model
 from django.urls import reverse_lazy
@@ -324,3 +325,8 @@ class VisaoView(LoginRequiredMixin, TemplateView):
         numero_que_ja_passou_de_dias = (data_fim - datetime.now().date()).days
         context["progress_value"] = (numero_dias_total - numero_que_ja_passou_de_dias) / numero_dias_total * 100
         return context
+
+
+class LoginShootView(LoginView):
+
+    template_name = "login.html"
