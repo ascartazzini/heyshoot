@@ -49,25 +49,31 @@ class ClienteView(ListView):
     context_object_name = "clientes"
     template_name = "clientes.html"
     model = Cliente
-    # TODO: Como fazer tudo na mesma view
+    extra_context = {
+        "titulo": "Todos os clientes"
+    }
 
 
 class ClienteAtivosView(ClienteView):
 
-    template_name = "clientes-ativos.html"
+    extra_context = {
+        "titulo": "Clientes Ativos"
+    }
 
     def get_queryset(self):
         queryset =  super().get_queryset()
-        return queryset.filter(projeto__ativo=True)
+        return queryset.filter(proposta__projeto__ativo=True)
 
 
 class ClienteInativosView(ClienteView):
 
-    template_name = "clientes-inativos.html"
+    extra_context = {
+        "titulo": "Clientes Inativos"
+    }
 
     def get_queryset(self):
         queryset =  super().get_queryset()
-        return queryset.filter(projeto__ativo=False)
+        return queryset.filter(proposta__projeto__ativo=False)
 
 
 class ClienteDetalhesView(DetailView):
