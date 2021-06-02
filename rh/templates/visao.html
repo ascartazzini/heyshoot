@@ -11,14 +11,22 @@
         <div class="col-md-8 coluninha_direita" style="padding-bottom: 30px; padding-left: 50px; padding-right: 100px; padding-top: 40px;">
             <p class="text-muted">Visão lançada em <strong> {{ visao.inicio|date:"d.m.Y" }}</strong> e válida até <strong> {{ visao.fim|date:"d.m.Y" }}</strong></p>
             <div class="progress" style="height: 30px;">
-                <div class="progress-bar" role="progressbar" style="width: {{ progress_value|floatformat:"0" }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                  Quantos dias já foram
+                <div class="progress-bar" role="progressbar" style="width: {{ progress_value|floatformat:'0' }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    {{ progress_value|floatformat:"0" }}%
                 </div>
             </div>
-            <br><br>
-            <p>Time Until: {{ visao.fim|timeuntil }}</p>
-            <p>Time Since: {{ visao.inicio|timesince }}</p>
-            <span class="text-muted" style="font-size: 18px;">{{ visao.texto|linebreaksbr }}</span>
+            <br>
+            <p class="text-muted">Ainda falta {{ visao.fim|timeuntil }} | Já passou {{ visao.inicio|timesince }}</p>
+            <figure>
+                <blockquote class="blockquote">
+                  <p class="small">
+                    {{ visao.texto|linebreaksbr }}
+                  </p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                  Artur Scartazzini, Luciano Braga
+                </figcaption>
+              </figure>
         </div>
     </div>
 </div>
