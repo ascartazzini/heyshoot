@@ -20,5 +20,17 @@
         <a href="{% url 'feedback' %}" style="color: rgba(246,203,71)">Feedback </a>
         <span style="color: white;"> | {{ feedback.comquem }}</span>
     </p>
+
+    {% with outros_feedbacks=feedback.comquem.feedback_set.all %}
+    {% if outros_feedbacks %}
+    <ul>
+        {% for f in outros_feedbacks %}
+        {% if f.id != feedback.id %}
+        <li><a href="{% url 'detalhes_feedback' f.id %}">{{ f.id }} - {{ f.quando }}</a></li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 </div>
 {% endblock %}
