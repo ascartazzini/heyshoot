@@ -1,5 +1,6 @@
 
 from django import forms
+from django.forms import widgets
 from validate_docbr import CNPJ, CPF
 
 from rh.models import Cliente, Clima, Colaborador, Contato, Curso, Projeto, Palestra
@@ -16,6 +17,7 @@ class ContatoForm(forms.ModelForm):
             'email': forms.TextInput(attrs={'class':'form-control'}),
             'mensagem': forms.Textarea(attrs={'class':'form-control'}),
         }
+
 
 class ColaboradorForm(forms.ModelForm):
 

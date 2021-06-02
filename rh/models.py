@@ -518,3 +518,22 @@ class Inscricao(models.Model):
     class Meta:
         verbose_name = "Inscrição"
         verbose_name_plural = "Inscrições"
+
+
+
+class FinanceiroTipo(models.Model):
+
+    Tipo = (("e", "Entrada"),
+        ("s", "Saída"))
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    display = models.CharField(max_length=1, choices=Tipo, blank=True, null=True, verbose_name="Tipo")
+    classificacao = models.CharField("Classificação", max_length=200, blank=True)
+
+    def __str__(self):
+        return self.display
+
+    class Meta:
+        verbose_name = "Tipo de conta"
+        verbose_name_plural = "Tipos de contas"
