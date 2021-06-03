@@ -1,0 +1,108 @@
+{% extends 'base_shoot.html' %}
+{% block title %}Nossas Contas{% endblock %}
+{% block content %}
+<div class="container">
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Lucro máximo sem foder ninguém</p>
+</div>
+<div class="container-fluid">
+    <div class="row" style="padding-bottom: 30px; padding-top: 30px; background-color: white; margin-top: 40px;">
+        <div class="col-md-12 text-center">
+            <p class="text-pink">LANÇAMENTOS</p>
+            <div class="table-responsive-md">
+                <table class="table table-hover text-muted">
+                    <thead>
+                    <tr style="background-color:  #47529c; color: white;">
+                        <th scope="col">Data</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Classificação</th>
+                        <th scope="col">Proposta</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Colaborador</th>
+                        <th scope="col">Fornecedor</th>
+                        <th scope="col">Valor</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tudo in contas %}
+                    <tr>
+                        <th><a href="{% url 'detalhes_cliente' tudo.pk %}" class="text-pink">{{ tudo.data|date:"d.m.Y" }}</a></th>
+                        <td>{{ tudo.tipo }}</td>
+                        <td>{{ tudo.categoria }}</td>
+                        <td>{{ tudo.classifica }}</td>
+                        <td>{{ tudo.proposta|default_if_none:"-" }}</td>
+                        <td>{{ tudo.proposta.cliente|default_if_none:"-" }}</td>
+                        <td>{{ tudo.colabo|default_if_none:"-" }}</td>
+                        <td>{{ tudo.outro|default_if_none:"-" }}</td>
+                        <td>{{ tudo.valor }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row" style="padding-bottom: 30px; padding-top: 30px; background-color: white; margin-top: 40px;">
+        <div class="col-md-6 text-center">
+            <p class="text-pink">ENTRADAS</p>
+            <div class="table-responsive-md">
+                <table class="table table-hover text-muted">
+                    <thead>
+                    <tr style="background-color:  #47529c; color: white;">
+                        <th scope="col">Data</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Classificação</th>
+                        <th scope="col">Proposta</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Valor</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entrada in en|dictsortreversed:"data" %}
+                    <tr>
+                        <th><a href="{% url 'detalhes_cliente' entrada.pk %}" class="text-pink">{{ entrada.data|date:"d.m.Y" }}</a></th>
+                        <td>{{ entrada.categoria }}</td>
+                        <td>{{ entrada.classifica }}</td>
+                        <td>{{ entrada.proposta }}</td>
+                        <td>{{ entrada.proposta.cliente }}</td>
+                        <td>{{ entrada.valor }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+            <p class="text-pink">SAÍDAS</p>
+            <div class="table-responsive-md">
+                <table class="table table-hover text-muted">
+                    <thead>
+                    <tr style="background-color:  #47529c; color: white;">
+                        <th scope="col">Data</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Classificação</th>
+                        <th scope="col">Colaborador</th>
+                        <th scope="col">Outro</th>
+                        <th scope="col">R$ Valor</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for saida in sa|dictsortreversed:"data" %}
+                    <tr>
+                        <th><a href="{% url 'detalhes_cliente' saida.pk %}" class="text-pink">{{ saida.data|date:"d.m.Y" }}</a></th>
+                        <td>{{ saida.categoria }}</td>
+                        <td>{{ saida.classifica }}</td>
+                        <td>{{ saida.colabo|default_if_none:"-" }}</td>
+                        <td>{{ saida.outro|default_if_none:"-" }}</td>
+                        <td>R$ {{ saida.valor }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
