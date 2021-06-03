@@ -520,6 +520,7 @@ class Inscricao(models.Model):
         verbose_name_plural = "Inscrições"
 
 
+
 class FinanceiroContaShoot(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
@@ -535,4 +536,54 @@ class FinanceiroContaShoot(models.Model):
     
     class Meta:
         verbose_name = "Financeiro | Conta"
+
+
+
+class FinanceiroTotal(models.Model):
+    
+    entradasaida = (("Entrada", "Entrada"),
+        ("Saida", "Saída"))
+    categoria = (
+        ("Receitas Vendas","Receitas Vendas"),
+        ("Receitas Financeiras","Receitas Financeiras"),
+        ("Despesas Pessoal","Despesas Pessoal"),
+        ("Despesas Financeiras","Despesas Financeiras"),
+        ("Despesas Gerais","Despesas Gerais"),
+        ("Marketing","Marketing"),
+        ("Terceiros","Serviços de Terceiros"),
+        ("Simples Nacional","Simples Nacional"),
+        ("Investimentos","Investimentos")
+    )
+    classificacao = (
+        ("Salário","Salário"),
+        ("Prolabore","Prolabore"),
+        ("Lucro","Lucro"),
+        ("FGTS","FGTS"),
+        ("INSS","INSS"),
+        ("Demissoes","Demissões"),
+        ("Recisoes","Recisões"),
+        ("Beneficios","Beneficios"),
+        ("Mídia","Mídia"),
+        ("Bonus","Bonus")
+    )
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    tipo = models.CharField(max_length=20, choices=entradasaida, blank=True, null=True, verbose_name="Essa conta é")
+    categoria = models.CharField(max_length=20, choices=categoria, blank=True, null=True, verbose_name="Qual categoria")
+    classifica = models.CharField(max_length=20, choices=classificacao, blank=True, null=True, verbose_name="Classificação da conta")
+    proposta = models.ForeignKey(Proposta, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="É sobre alguma proposta?")
+    colabo = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="É pra algum colaborador?")
+    outro = models.CharField("É outro fornecedor", max_length=100, blank=True, null=True)
+    data = models.DateField("Que dia", blank=True, null=True)
+    contashoot = models.ForeignKey(FinanceiroContaShoot, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Qual conta será usada")
+    desc = models.TextField("Alguma descrição", blank=True, null=True)
+    valor = models.DecimalField("Valor", blank=True, max_digits=9, decimal_places=2, null=True)
+
+    def __str__(self):
+        return "%s" % (self.classifica)
+
+    class Meta:
+        verbose_name = "Financeiro"
+
 

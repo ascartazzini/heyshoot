@@ -7,10 +7,10 @@ from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Certificacao, Cliente, Clima, Colaborador, Contato,
                        Curso, Feedback, Ferramenta, FinanceiroContaShoot,
-                       Folguinha, Fornecedores, Hierarquia, Impacto, Inscricao,
-                       Juridico, MomentoImportante, Newsletter,
-                       NewsletterTotal, Ods, Palestra, Premiacao, Processo,
-                       Projeto, Promocao, Proposta, ResultadoCanal,
+                       FinanceiroTotal, Folguinha, Fornecedores, Hierarquia,
+                       Impacto, Inscricao, Juridico, MomentoImportante,
+                       Newsletter, NewsletterTotal, Ods, Palestra, Premiacao,
+                       Processo, Projeto, Promocao, Proposta, ResultadoCanal,
                        TipoProjeto, Workshop)
 
 
@@ -245,38 +245,15 @@ class WorkshopAdmin(admin.ModelAdmin):
     list_filter = ("titulo", )
 
 
-class FinanceiroClassificacaoAdmin(admin.ModelAdmin):
-
-    list_display = ("tipo", "classificacao")
-
-
 class FinanceiroContaShootAdmin(admin.ModelAdmin):
 
     list_display = ("banco", "agencia", "conta", "caixa", "infos")
 
 
-class FinanceiroEntradaAdmin(admin.ModelAdmin):
-
-    list_display = ("grupo","contashoot","cliente","descricao", "valor")
-    list_filter = ("grupo", "cliente")
-
-
-class FinanceiroSaidaAdmin(admin.ModelAdmin):
+class FinanceiroTotalAdmin(admin.ModelAdmin):
     
-    list_display = ("grupo","contashoot","fornecedor","descricao", "valor")
-    list_filter = ("grupo", "fornecedor")
-
-
-class FinanceiroSaidaSalarioAdmin(admin.ModelAdmin):
-    
-    list_display = ("grupo","contashoot","colab","descricao", "valor")
-    list_filter = ("grupo", "colab")
-
-
-class FinanceiroGrupoAdmin(admin.ModelAdmin):
-
-    list_display = ("classifi", "nome")
-
+    list_display = ("tipo","categoria", "classifica", "proposta", "colabo", "outro", "data", "contashoot", "desc", "valor")
+    list_filter = ("tipo", "categoria", "classifica", "colabo", "proposta", "contashoot")
 
 
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
@@ -292,6 +269,7 @@ admin.site.register(Folguinha, FolguinhaAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Ferramenta, FerramentaAdmin)
 admin.site.register(FinanceiroContaShoot, FinanceiroContaShootAdmin)
+admin.site.register(FinanceiroTotal, FinanceiroTotalAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Hierarquia, HierarquiaAdmin)
 admin.site.register(Inscricao, InscricaoAdmin)
