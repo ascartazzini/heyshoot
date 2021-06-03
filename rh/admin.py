@@ -6,11 +6,12 @@ from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       PalestraForm, ProjetoForm)
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Certificacao, Cliente, Clima, Colaborador, Contato,
-                       Curso, Feedback, Ferramenta, FinanceiroContaShoot,
-                       FinanceiroTotal, Folguinha, Fornecedores, Hierarquia,
-                       Impacto, Inscricao, Juridico, MomentoImportante,
-                       Newsletter, NewsletterTotal, Ods, Palestra, Premiacao,
-                       Processo, Projeto, Promocao, Proposta, ResultadoCanal,
+                       Curso, Feedback, Ferramenta, FinanceiroCategoria,
+                       FinanceiroClassi, FinanceiroContaShoot, FinanceiroTotal,
+                       Folguinha, Fornecedores, Hierarquia, Impacto, Inscricao,
+                       Juridico, MomentoImportante, Newsletter,
+                       NewsletterTotal, Ods, Palestra, Premiacao, Processo,
+                       Projeto, Promocao, Proposta, ResultadoCanal,
                        TipoProjeto, Workshop)
 
 
@@ -250,10 +251,21 @@ class FinanceiroContaShootAdmin(admin.ModelAdmin):
     list_display = ("banco", "agencia", "conta", "caixa", "infos")
 
 
+class FinanceiroCategoriaAdmin(admin.ModelAdmin):
+    
+    list_display = ("nome", )
+
+
+class FinanceiroClassiAdmin(admin.ModelAdmin):
+    
+    list_display = ("categoria", "nome")
+    list_filter = ("categoria", )
+    
+
 class FinanceiroTotalAdmin(admin.ModelAdmin):
     
-    list_display = ("tipo","categoria", "classifica", "proposta", "colabo", "outro", "data", "contashoot", "desc", "valor")
-    list_filter = ("tipo", "categoria", "classifica", "colabo", "proposta", "contashoot")
+    list_display = ("tipo","classifica", "proposta", "colabo", "outro", "data", "contashoot", "desc", "valor")
+    list_filter = ("tipo", "classifica", "colabo", "proposta", "contashoot")
 
 
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
@@ -269,6 +281,8 @@ admin.site.register(Folguinha, FolguinhaAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Ferramenta, FerramentaAdmin)
 admin.site.register(FinanceiroContaShoot, FinanceiroContaShootAdmin)
+admin.site.register(FinanceiroCategoria, FinanceiroCategoriaAdmin)
+admin.site.register(FinanceiroClassi, FinanceiroClassiAdmin)
 admin.site.register(FinanceiroTotal, FinanceiroTotalAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Hierarquia, HierarquiaAdmin)

@@ -28,13 +28,13 @@
                     <tr>
                         <th><a href="{% url 'detalhes_cliente' tudo.pk %}" class="text-pink">{{ tudo.data|date:"d.m.Y" }}</a></th>
                         <td>{{ tudo.tipo }}</td>
-                        <td>{{ tudo.categoria }}</td>
+                        <td>{{ tudo.classifica.categoria }}</td>
                         <td>{{ tudo.classifica }}</td>
                         <td>{{ tudo.proposta|default_if_none:"-" }}</td>
-                        <td>{{ tudo.proposta.cliente|default_if_none:"-" }}</td>
+                        <td>{{ tudo.proposta.cliente|default:"-" }}</td>
                         <td>{{ tudo.colabo|default_if_none:"-" }}</td>
                         <td>{{ tudo.outro|default_if_none:"-" }}</td>
-                        <td>{{ tudo.valor }}</td>
+                        <td>R$ {{ tudo.valor }}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -63,11 +63,11 @@
                     {% for entrada in en|dictsortreversed:"data" %}
                     <tr>
                         <th><a href="{% url 'detalhes_cliente' entrada.pk %}" class="text-pink">{{ entrada.data|date:"d.m.Y" }}</a></th>
-                        <td>{{ entrada.categoria }}</td>
+                        <td>{{ entrada.classifica.categoria }}</td>
                         <td>{{ entrada.classifica }}</td>
                         <td>{{ entrada.proposta }}</td>
                         <td>{{ entrada.proposta.cliente }}</td>
-                        <td>{{ entrada.valor }}</td>
+                        <td>R$ {{ entrada.valor }}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -85,14 +85,14 @@
                         <th scope="col">Classificação</th>
                         <th scope="col">Colaborador</th>
                         <th scope="col">Outro</th>
-                        <th scope="col">R$ Valor</th>
+                        <th scope="col">Valor</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for saida in sa|dictsortreversed:"data" %}
                     <tr>
                         <th><a href="{% url 'detalhes_cliente' saida.pk %}" class="text-pink">{{ saida.data|date:"d.m.Y" }}</a></th>
-                        <td>{{ saida.categoria }}</td>
+                        <td>{{ saida.classifica.categoria }}</td>
                         <td>{{ saida.classifica }}</td>
                         <td>{{ saida.colabo|default_if_none:"-" }}</td>
                         <td>{{ saida.outro|default_if_none:"-" }}</td>
