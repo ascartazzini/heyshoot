@@ -521,19 +521,68 @@ class Inscricao(models.Model):
 
 
 
-class FinanceiroTipo(models.Model):
-
-    Tipo = (("e", "Entrada"),
-        ("s", "Saída"))
+class FinanceiroClassificacao(models.Model):
+    
+    entradasaida = (("Entrada", "Entrada"),
+        ("Saida", "Saída"))
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    display = models.CharField(max_length=1, choices=Tipo, blank=True, null=True, verbose_name="Tipo")
+    tipo = models.CharField(max_length=10, choices=entradasaida, blank=True, null=True, verbose_name="Essa conta é")
     classificacao = models.CharField("Classificação", max_length=200, blank=True)
 
     def __str__(self):
-        return self.display
+        return self.classificacao
 
     class Meta:
-        verbose_name = "Tipo de conta"
-        verbose_name_plural = "Tipos de contas"
+        verbose_name = "Financeiro | Classificação"
+        verbose_name_plural = "Financeiro | Classificações"
+
+
+class FinanceiroGrupo(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    classifi = models.ForeignKey(FinanceiroClassificacao, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Classificação")
+    nome = models.CharField("Nome do grupo", max_length=200, blank=True)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name = "Financeiro | Grupo de Conta"
+
+
+class FinanceiroContaShoot(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    banco = models.CharField("Banco", max_length=100, blank=True)
+    conta = models.CharField("Conta", max_length=20, blank=True)
+    agencia = models.CharField("Agência", max_length=100, blank=True)
+    caixa = models.DecimalField("Caixa", blank=True, max_digits=9, decimal_places=2, null=True)
+    infos = models.TextField("Outras infos", blank=True)
+
+    def __str__(self):
+        return self.banco
+    
+    class Meta:
+        verbose_name = "Financeiro | Conta"
+
+
+class FinanceiroEntrada(models.Model):
+
+        created = models.DateTimeField(auto_now_add=True)
+        updated = models.DateTimeField(auto_now=True)
+        grupo = models.ForeignKey(FinanceiroGrupo, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Grupo de Contas")
+        contashoot = models.ForeignKey(FinanceiroContaShoot, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Conta Shoot")
+        documento = models.CharField("URL do documento", max_length=200, blank=True, null=True)
+        cliente = models.ForeignKey(Cliente, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
+        descricao = models.TextField("Descrição", blank=True)
+        valor = models.DecimalField("Valor", blank=True, max_digits=9, decimal_places=2, null=True)
+
+        def __str__(self):
+            return "%s" % (self.grupo)
+
+        class Meta:
+            verbose_name = "Financeiro | Entrada"

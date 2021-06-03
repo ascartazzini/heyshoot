@@ -6,8 +6,9 @@ from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       PalestraForm, ProjetoForm)
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Certificacao, Cliente, Clima, Colaborador, Contato,
-                       Curso, Feedback, Ferramenta, FinanceiroTipo, Folguinha, Fornecedores,
-                       Hierarquia, Impacto, Inscricao, Juridico,
+                       Curso, Feedback, Ferramenta, FinanceiroClassificacao,
+                       FinanceiroContaShoot, FinanceiroGrupo, Folguinha,
+                       Fornecedores, Hierarquia, Impacto, Inscricao, Juridico,
                        MomentoImportante, Newsletter, NewsletterTotal, Ods,
                        Palestra, Premiacao, Processo, Projeto, Promocao,
                        Proposta, ResultadoCanal, TipoProjeto, Workshop)
@@ -244,9 +245,25 @@ class WorkshopAdmin(admin.ModelAdmin):
     list_filter = ("titulo", )
 
 
-class FinanceiroTipoAdmin(admin.ModelAdmin):
+class FinanceiroClassificacaoAdmin(admin.ModelAdmin):
 
-    list_display = ("display", "classificacao")
+    list_display = ("tipo", "classificacao")
+
+
+class FinanceiroContaShootAdmin(admin.ModelAdmin):
+
+    list_display = ("banco", "agencia", "conta", "caixa", "infos")
+
+
+class FinanceiroEntradaAdmin(admin.ModelAdmin):
+
+    list_display = ("grupo","contashoot","cliente","descricao", "valor")
+    list_filter = ("grupo", "cliente")
+
+
+class FinanceiroGrupoAdmin(admin.ModelAdmin):
+
+    list_display = ("classifi", "nome")
 
 
 
@@ -262,7 +279,9 @@ admin.site.register(Curso, CursoAdmin)
 admin.site.register(Folguinha, FolguinhaAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Ferramenta, FerramentaAdmin)
-admin.site.register(FinanceiroTipo, FinanceiroTipoAdmin)
+admin.site.register(FinanceiroClassificacao, FinanceiroClassificacaoAdmin)
+admin.site.register(FinanceiroContaShoot, FinanceiroContaShootAdmin)
+admin.site.register(FinanceiroGrupo, FinanceiroGrupoAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Hierarquia, HierarquiaAdmin)
 admin.site.register(Inscricao, InscricaoAdmin)
