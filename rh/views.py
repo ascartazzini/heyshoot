@@ -11,11 +11,11 @@ from django.views.generic import CreateView, DetailView, ListView, TemplateView
 from rh.forms import ContatoForm
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Certificacao, Cliente, Clima, Colaborador, Contato,
-                       Curso, Feedback, Ferramenta, Folguinha, Fornecedores,
-                       Hierarquia, Inscricao, Juridico, MomentoImportante,
-                       Newsletter, NewsletterTotal, Palestra, Premiacao,
-                       Projeto, Promocao, Proposta, ResultadoCanal,
-                       TipoProjeto, Workshop)
+                       Curso, Feedback, Ferramenta, FinanceiroTotal, Folguinha,
+                       Fornecedores, Hierarquia, Inscricao, Juridico,
+                       MomentoImportante, Newsletter, NewsletterTotal,
+                       Palestra, Premiacao, Projeto, Promocao, Proposta,
+                       ResultadoCanal, TipoProjeto, Workshop)
 
 
 class IndexView(TemplateView):
@@ -175,6 +175,13 @@ class FerramentaView(LoginRequiredMixin, ListView):
     context_object_name = "ferramentas"
     template_name = "ferramentas.html"
     model = Ferramenta
+
+
+class FinanceiroTotalView(LoginRequiredMixin, ListView):
+
+    context_object_name = "contas"
+    template_name = "contas.html"
+    model = FinanceiroTotal
 
 
 class FolguinhaView(LoginRequiredMixin, ListView):
