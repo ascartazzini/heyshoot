@@ -586,3 +586,39 @@ class FinanceiroEntrada(models.Model):
 
         class Meta:
             verbose_name = "Financeiro | Entrada"
+
+
+class FinanceiroSaida(models.Model):
+    
+        created = models.DateTimeField(auto_now_add=True)
+        updated = models.DateTimeField(auto_now=True)
+        grupo = models.ForeignKey(FinanceiroGrupo, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Grupo de Contas")
+        contashoot = models.ForeignKey(FinanceiroContaShoot, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Conta Shoot")
+        documento = models.CharField("URL do documento", max_length=200, blank=True, null=True)
+        fornecedor = models.CharField("Fornecedor", max_length=200, blank=True)
+        descricao = models.TextField("Descrição", blank=True)
+        valor = models.DecimalField("Valor", blank=True, max_digits=9, decimal_places=2, null=True)
+
+        def __str__(self):
+            return "%s" % (self.grupo)
+
+        class Meta:
+            verbose_name = "Financeiro | Saída"
+
+
+class FinanceiroSaidaSalario(models.Model):
+    
+        created = models.DateTimeField(auto_now_add=True)
+        updated = models.DateTimeField(auto_now=True)
+        grupo = models.ForeignKey(FinanceiroGrupo, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Grupo de Contas")
+        contashoot = models.ForeignKey(FinanceiroContaShoot, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Conta Shoot")
+        documento = models.CharField("URL do documento", max_length=200, blank=True, null=True)
+        colab = models.ForeignKey(Colaborador, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Colaborador")
+        descricao = models.TextField("Descrição", blank=True)
+        valor = models.DecimalField("Valor", blank=True, max_digits=9, decimal_places=2, null=True)
+
+        def __str__(self):
+            return "%s" % (self.grupo)
+
+        class Meta:
+            verbose_name = "Financeiro | Salário"

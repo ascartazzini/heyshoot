@@ -7,8 +7,10 @@ from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Certificacao, Cliente, Clima, Colaborador, Contato,
                        Curso, Feedback, Ferramenta, FinanceiroClassificacao,
-                       FinanceiroContaShoot, FinanceiroGrupo, Folguinha,
-                       Fornecedores, Hierarquia, Impacto, Inscricao, Juridico,
+                       FinanceiroContaShoot, FinanceiroEntrada,
+                       FinanceiroGrupo, FinanceiroSaida,
+                       FinanceiroSaidaSalario, Folguinha, Fornecedores,
+                       Hierarquia, Impacto, Inscricao, Juridico,
                        MomentoImportante, Newsletter, NewsletterTotal, Ods,
                        Palestra, Premiacao, Processo, Projeto, Promocao,
                        Proposta, ResultadoCanal, TipoProjeto, Workshop)
@@ -261,6 +263,18 @@ class FinanceiroEntradaAdmin(admin.ModelAdmin):
     list_filter = ("grupo", "cliente")
 
 
+class FinanceiroSaidaAdmin(admin.ModelAdmin):
+    
+    list_display = ("grupo","contashoot","fornecedor","descricao", "valor")
+    list_filter = ("grupo", "fornecedor")
+
+
+class FinanceiroSaidaSalarioAdmin(admin.ModelAdmin):
+    
+    list_display = ("grupo","contashoot","colab","descricao", "valor")
+    list_filter = ("grupo", "colab")
+
+
 class FinanceiroGrupoAdmin(admin.ModelAdmin):
 
     list_display = ("classifi", "nome")
@@ -281,6 +295,9 @@ admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Ferramenta, FerramentaAdmin)
 admin.site.register(FinanceiroClassificacao, FinanceiroClassificacaoAdmin)
 admin.site.register(FinanceiroContaShoot, FinanceiroContaShootAdmin)
+admin.site.register(FinanceiroEntrada, FinanceiroEntradaAdmin)
+admin.site.register(FinanceiroSaida, FinanceiroSaidaAdmin)
+admin.site.register(FinanceiroSaidaSalario, FinanceiroSaidaSalarioAdmin)
 admin.site.register(FinanceiroGrupo, FinanceiroGrupoAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Hierarquia, HierarquiaAdmin)
