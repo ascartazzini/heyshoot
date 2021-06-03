@@ -183,6 +183,12 @@ class FinanceiroTotalView(LoginRequiredMixin, ListView):
     template_name = "contas.html"
     model = FinanceiroTotal
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["sa"] = FinanceiroTotal.objects.filter(tipo="Saida")
+        context["en"] = FinanceiroTotal.objects.filter(tipo="Entrada")
+        return context
+
 
 class FolguinhaView(LoginRequiredMixin, ListView):
 
