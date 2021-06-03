@@ -139,14 +139,12 @@
         <div class="col-md-4 text-pink text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
             <p class="text-pink"><strong>Salários</strong></p>
             <table class="table text-muted">
+                {% for salario in colaborador.financeirototal_set.all|dictsortreversed:"data" %}
                 <tr>
-                    <td>R$ 000000</td>
-                    <td>00.00.0000</td>
+                    <td>{{ salario.data|date:"d/m/Y" }}</td>
+                    <td>R$ {{ salario.valor }}</td>
                 </tr>
-                <tr>
-                    <td>R$ 000000</td>
-                    <td>00.00.0000</td>
-                </tr>
+                {% endfor %}
             </table>
         </div>
     </div>
