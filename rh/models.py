@@ -520,39 +520,6 @@ class Inscricao(models.Model):
         verbose_name_plural = "Inscrições"
 
 
-
-class FinanceiroClassificacao(models.Model):
-    
-    entradasaida = (("Entrada", "Entrada"),
-        ("Saida", "Saída"))
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    tipo = models.CharField(max_length=10, choices=entradasaida, blank=True, null=True, verbose_name="Essa conta é")
-    classificacao = models.CharField("Classificação", max_length=200, blank=True)
-
-    def __str__(self):
-        return self.classificacao
-
-    class Meta:
-        verbose_name = "Financeiro | Classificação"
-        verbose_name_plural = "Financeiro | Classificações"
-
-
-class FinanceiroGrupo(models.Model):
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    classifi = models.ForeignKey(FinanceiroClassificacao, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Classificação")
-    nome = models.CharField("Nome do grupo", max_length=200, blank=True)
-
-    def __str__(self):
-        return self.nome
-
-    class Meta:
-        verbose_name = "Financeiro | Grupo de Conta"
-
-
 class FinanceiroContaShoot(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
@@ -569,56 +536,3 @@ class FinanceiroContaShoot(models.Model):
     class Meta:
         verbose_name = "Financeiro | Conta"
 
-
-class FinanceiroEntrada(models.Model):
-
-        created = models.DateTimeField(auto_now_add=True)
-        updated = models.DateTimeField(auto_now=True)
-        grupo = models.ForeignKey(FinanceiroGrupo, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Grupo de Contas")
-        contashoot = models.ForeignKey(FinanceiroContaShoot, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Conta Shoot")
-        documento = models.CharField("URL do documento", max_length=200, blank=True, null=True)
-        cliente = models.ForeignKey(Cliente, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Cliente")
-        descricao = models.TextField("Descrição", blank=True)
-        valor = models.DecimalField("Valor", blank=True, max_digits=9, decimal_places=2, null=True)
-
-        def __str__(self):
-            return "%s" % (self.grupo)
-
-        class Meta:
-            verbose_name = "Financeiro | Entrada"
-
-
-class FinanceiroSaida(models.Model):
-    
-        created = models.DateTimeField(auto_now_add=True)
-        updated = models.DateTimeField(auto_now=True)
-        grupo = models.ForeignKey(FinanceiroGrupo, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Grupo de Contas")
-        contashoot = models.ForeignKey(FinanceiroContaShoot, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Conta Shoot")
-        documento = models.CharField("URL do documento", max_length=200, blank=True, null=True)
-        fornecedor = models.CharField("Fornecedor", max_length=200, blank=True)
-        descricao = models.TextField("Descrição", blank=True)
-        valor = models.DecimalField("Valor", blank=True, max_digits=9, decimal_places=2, null=True)
-
-        def __str__(self):
-            return "%s" % (self.grupo)
-
-        class Meta:
-            verbose_name = "Financeiro | Saída"
-
-
-class FinanceiroSaidaSalario(models.Model):
-    
-        created = models.DateTimeField(auto_now_add=True)
-        updated = models.DateTimeField(auto_now=True)
-        grupo = models.ForeignKey(FinanceiroGrupo, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Grupo de Contas")
-        contashoot = models.ForeignKey(FinanceiroContaShoot, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Conta Shoot")
-        documento = models.CharField("URL do documento", max_length=200, blank=True, null=True)
-        colab = models.ForeignKey(Colaborador, blank=truncate, null=True, on_delete=models.SET_NULL, verbose_name="Colaborador")
-        descricao = models.TextField("Descrição", blank=True)
-        valor = models.DecimalField("Valor", blank=True, max_digits=9, decimal_places=2, null=True)
-
-        def __str__(self):
-            return "%s" % (self.grupo)
-
-        class Meta:
-            verbose_name = "Financeiro | Salário"

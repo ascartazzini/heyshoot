@@ -6,14 +6,12 @@ from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
                       PalestraForm, ProjetoForm)
 from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
                        Certificacao, Cliente, Clima, Colaborador, Contato,
-                       Curso, Feedback, Ferramenta, FinanceiroClassificacao,
-                       FinanceiroContaShoot, FinanceiroEntrada,
-                       FinanceiroGrupo, FinanceiroSaida,
-                       FinanceiroSaidaSalario, Folguinha, Fornecedores,
-                       Hierarquia, Impacto, Inscricao, Juridico,
-                       MomentoImportante, Newsletter, NewsletterTotal, Ods,
-                       Palestra, Premiacao, Processo, Projeto, Promocao,
-                       Proposta, ResultadoCanal, TipoProjeto, Workshop)
+                       Curso, Feedback, Ferramenta, FinanceiroContaShoot,
+                       Folguinha, Fornecedores, Hierarquia, Impacto, Inscricao,
+                       Juridico, MomentoImportante, Newsletter,
+                       NewsletterTotal, Ods, Palestra, Premiacao, Processo,
+                       Projeto, Promocao, Proposta, ResultadoCanal,
+                       TipoProjeto, Workshop)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
@@ -293,12 +291,7 @@ admin.site.register(Curso, CursoAdmin)
 admin.site.register(Folguinha, FolguinhaAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Ferramenta, FerramentaAdmin)
-admin.site.register(FinanceiroClassificacao, FinanceiroClassificacaoAdmin)
 admin.site.register(FinanceiroContaShoot, FinanceiroContaShootAdmin)
-admin.site.register(FinanceiroEntrada, FinanceiroEntradaAdmin)
-admin.site.register(FinanceiroSaida, FinanceiroSaidaAdmin)
-admin.site.register(FinanceiroSaidaSalario, FinanceiroSaidaSalarioAdmin)
-admin.site.register(FinanceiroGrupo, FinanceiroGrupoAdmin)
 admin.site.register(Fornecedores, FornecedoresAdmin)
 admin.site.register(Hierarquia, HierarquiaAdmin)
 admin.site.register(Inscricao, InscricaoAdmin)
