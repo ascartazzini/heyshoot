@@ -1,9 +1,21 @@
 
 from django import forms
+from django.db.models import fields
 from django.forms import widgets
 from validate_docbr import CNPJ, CPF
 
 from rh.models import Cliente, Clima, Colaborador, Contato, Curso, Projeto, Palestra
+
+
+#class LoginForm(forms.ModelForm):
+#
+#    class Meta:
+#        fields = ["username", "password"]
+#
+#        widgets = {
+#            'username': forms.TextInput(attrs={'class':'form-control'}),
+#            'password': forms.PasswordInput(attrs={'class':'form-control'}),
+#        }
 
 
 class ContatoForm(forms.ModelForm):
