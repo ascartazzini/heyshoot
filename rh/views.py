@@ -9,18 +9,32 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from rh.forms import ContatoForm
-from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
-                       Certificacao, Cliente, Clima, Colaborador, Contato,
-                       Curso, Feedback, Ferramenta, FinanceiroTotal, Folguinha,
-                       Fornecedores, Hierarquia, Inscricao, Juridico,
-                       MomentoImportante, Newsletter, NewsletterTotal,
-                       Palestra, Premiacao, Projeto, Promocao, Proposta,
-                       ResultadoCanal, TipoProjeto, Workshop)
+from rh.models import (Atividadecomercial, Ativismo, Biblioteca,
+                       CanalProprietario, Certificacao, Cliente, Clima,
+                       Colaborador, Contato, Curso, Feedback, Ferramenta,
+                       FinanceiroTotal, Folguinha, Fornecedores, Hierarquia,
+                       Inscricao, Juridico, MomentoImportante, Newsletter,
+                       NewsletterTotal, Palestra, Premiacao, Projeto, Promocao,
+                       Proposta, ResultadoCanal, TipoProjeto, Workshop)
 
 
 class IndexView(TemplateView):
 
     template_name = "index.html"
+
+
+class AtivismoView(LoginRequiredMixin, ListView):
+    
+    context_object_name = "ativismo"
+    template_name = "ativismo.html"
+    model = Ativismo
+
+
+class AtivismoDetalhesView(LoginRequiredMixin, DetailView):
+    
+    context_object_name = "ativismo"
+    template_name = "detalhes_ativismo.html"
+    model = Ativismo
 
 
 class BibliotecaView(LoginRequiredMixin, ListView):

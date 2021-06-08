@@ -3,21 +3,28 @@ from django.contrib.admin.filters import ListFilter
 from django.utils.safestring import mark_safe
 
 from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
-                      PalestraForm, ProjetoForm)
-from rh.models import (Atividadecomercial, Biblioteca, CanalProprietario,
-                       Certificacao, Cliente, Clima, Colaborador, Contato,
-                       Curso, Feedback, Ferramenta, FinanceiroCategoria,
-                       FinanceiroClassi, FinanceiroContaShoot, FinanceiroTotal,
-                       Folguinha, Fornecedores, Hierarquia, Impacto, Inscricao,
-                       Juridico, MomentoImportante, Newsletter,
-                       NewsletterTotal, Ods, Palestra, Premiacao, Processo,
-                       Projeto, Promocao, Proposta, ResultadoCanal,
-                       TipoProjeto, Workshop)
+                      PalestraForm, ProjetoForm, AtivismoForm)
+from rh.models import (Atividadecomercial, Ativismo, Biblioteca,
+                       CanalProprietario, Certificacao, Cliente, Clima,
+                       Colaborador, Contato, Curso, Feedback, Ferramenta,
+                       FinanceiroCategoria, FinanceiroClassi,
+                       FinanceiroContaShoot, FinanceiroTotal, Folguinha,
+                       Fornecedores, Hierarquia, Impacto, Inscricao, Juridico,
+                       MomentoImportante, Newsletter, NewsletterTotal, Ods,
+                       Palestra, Premiacao, Processo, Projeto, Promocao,
+                       Proposta, ResultadoCanal, TipoProjeto, Workshop)
 
 
 class AtividadecomercialAdmin(admin.ModelAdmin):
 
     list_display = ("nome", "desc")
+
+
+class AtivismoAdmin(admin.ModelAdmin):
+    
+    form = AtivismoForm
+    list_display = ("nome", "liders", "ativo")
+    list_filter = ("ativo", )
 
 
 class BibliotecaAdmin(admin.ModelAdmin):
@@ -268,6 +275,7 @@ class FinanceiroTotalAdmin(admin.ModelAdmin):
     list_filter = ("tipo", "classifica", "colabo", "proposta", "contashoot")
 
 
+admin.site.register(Ativismo, AtivismoAdmin)
 admin.site.register(Atividadecomercial, AtividadecomercialAdmin)
 admin.site.register(Biblioteca, BibliotecaAdmin)
 admin.site.register(CanalProprietario, CanalProprietarioAdmin)

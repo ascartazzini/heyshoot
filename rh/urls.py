@@ -2,8 +2,9 @@ from django.conf.urls import include, url
 from django.contrib.auth.decorators import login_required
 from django.urls import path
 
-from rh.views import (BibliotecaView, CanaisProprietariosView,
-                      CertificacaoView, ClienteAtivosView, ClienteDetalhesView,
+from rh.views import (AtivismoDetalhesView, AtivismoView, BibliotecaView,
+                      CanaisProprietariosView, CertificacaoView,
+                      ClienteAtivosView, ClienteDetalhesView,
                       ClienteInativosView, ClienteView, ClimaDetalhesView,
                       ClimaView, ColaboradoresDetalhesView, ColaboradoresView,
                       ContatoView, CursoDetalhesView, CursoView,
@@ -18,6 +19,8 @@ from rh.views import (BibliotecaView, CanaisProprietariosView,
                       TipoProjetoView, VisaoView, WorkshopView)
 
 urlpatterns = [
+    path("ativismo/", AtivismoView.as_view(), name="ativismo"),
+    path("ativismo/<int:pk>/", AtivismoDetalhesView.as_view(), name="detalhes_ativismo"),
     path("biblioteca/", BibliotecaView.as_view(), name="biblioteca"),
     path("canais/", CanaisProprietariosView.as_view(), name ="canaisproprietarios"),
     path("certificacoes/", CertificacaoView.as_view(), name ="certificacoes"),

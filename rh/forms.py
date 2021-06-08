@@ -4,8 +4,8 @@ from django.db.models import fields
 from django.forms import widgets
 from validate_docbr import CNPJ, CPF
 
-from rh.models import Cliente, Clima, Colaborador, Contato, Curso, Projeto, Palestra
-
+from rh.models import (Ativismo, Cliente, Clima, Colaborador, Contato, Curso,
+                       Palestra, Projeto)
 
 #class LoginForm(forms.ModelForm):
 #
@@ -16,6 +16,47 @@ from rh.models import Cliente, Clima, Colaborador, Contato, Curso, Projeto, Pale
 #            'username': forms.TextInput(attrs={'class':'form-control'}),
 #            'password': forms.PasswordInput(attrs={'class':'form-control'}),
 #        }
+
+
+class AtivismoForm(forms.ModelForm):
+    
+    def clean_nome(self):
+        nome = self.cleaned_data.get('nome')
+        caracteres_nao_permitidos = '!"#$%&\'()*+/:;<=>?@[\\]^_`{|}~'
+        for c in caracteres_nao_permitidos:
+            if c in nome:
+                raise forms.ValidationError("O campo nome não pode ter o caracter '%s'!" % c)
+        nomes = nome.split()
+        if len(nomes) == 1:
+            raise forms.ValidationError("O campo nome tem que ter nome e sobrenome!")
+        return nome
+
+    # Este método será executado sempre que ele terminar todas as validações extras do formulário (neste caso, clean_nome),
+    # e depois vai chamar essa função. Utiliza-se para validar dois ou mais campos ao mesmo tempo.
+    def clean(self):
+        # Primeiro, buscamos todos os campos já validados pela super classe
+        cleaned_data = super().clean()
+        # Agora, buscamos o campo onde está definido quem é o líder
+        liders = cleaned_data.get("liders")
+        # Buscamos também, todos os colaboradores selecionados no formulário
+        colaboradores = cleaned_data.get("colaboradores")
+        # Caso tenha sido informado o líder
+        if liders:
+            # E agora caso o líder esteja na lista dos colaboradores.
+            if liders in colaboradores:
+                # O primeiro parâmetro, é o campo o erro será informado
+                self.add_error("liders", "Se a pessoa é líder, ela não pode estar na lista de colaboradores.")
+                self.add_error("colaboradores", "O Tuli mandou dizer que o %s (%s) não pode estar aqui." % (liders.cpf, liders.nome))
+        return cleaned_data
+
+    class Meta:
+
+        model = Ativismo
+        fields = ["nome", "liders", "colaboradores", "resumo", "data_inicio", "data_final", "ativo", "urlasana", "urlbriefing", "ods", "causas", "processo", "impacto"]
+        widgets = {
+            "colaboradores": forms.CheckboxSelectMultiple,
+            "ods": forms.CheckboxSelectMultiple,
+        }
 
 
 class ContatoForm(forms.ModelForm):

@@ -84,6 +84,51 @@ class Ferramenta(models.Model):
         return self.nome
 
 
+class FinanceiroContaShoot(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    banco = models.CharField("Banco", max_length=100, blank=True)
+    conta = models.CharField("Conta", max_length=20, blank=True)
+    agencia = models.CharField("Agência", max_length=100, blank=True)
+    caixa = models.DecimalField("Caixa", blank=True, max_digits=9, decimal_places=2, null=True)
+    infos = models.TextField("Outras infos", blank=True)
+
+    def __str__(self):
+        return self.banco
+    
+    class Meta:
+        verbose_name = "Financeiro | Conta"
+
+
+class FinanceiroCategoria(models.Model):
+    
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Categoria", max_length=100, blank=True)
+
+    def __str__(self):
+        return self.nome
+    
+    class Meta:
+        verbose_name = "Financeiro | Categoria"
+
+
+class FinanceiroClassi(models.Model):
+    
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Classificação", max_length=100, blank=True)
+    categoria = models.ForeignKey(FinanceiroCategoria, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Categoria")
+
+    def __str__(self):
+        return self.nome
+    
+    class Meta:
+        verbose_name = "Financeiro | Classificação"
+
+
+
 class Hierarquia(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
@@ -521,50 +566,6 @@ class Inscricao(models.Model):
 
 
 
-class FinanceiroContaShoot(models.Model):
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    banco = models.CharField("Banco", max_length=100, blank=True)
-    conta = models.CharField("Conta", max_length=20, blank=True)
-    agencia = models.CharField("Agência", max_length=100, blank=True)
-    caixa = models.DecimalField("Caixa", blank=True, max_digits=9, decimal_places=2, null=True)
-    infos = models.TextField("Outras infos", blank=True)
-
-    def __str__(self):
-        return self.banco
-    
-    class Meta:
-        verbose_name = "Financeiro | Conta"
-
-
-class FinanceiroCategoria(models.Model):
-    
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Categoria", max_length=100, blank=True)
-
-    def __str__(self):
-        return self.nome
-    
-    class Meta:
-        verbose_name = "Financeiro | Categoria"
-
-
-class FinanceiroClassi(models.Model):
-    
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    nome = models.CharField("Classificação", max_length=100, blank=True)
-    categoria = models.ForeignKey(FinanceiroCategoria, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Categoria")
-
-    def __str__(self):
-        return self.nome
-    
-    class Meta:
-        verbose_name = "Financeiro | Classificação"
-
-
 class FinanceiroTotal(models.Model):
     
     entradasaida = (("Entrada", "Entrada"),
@@ -590,3 +591,24 @@ class FinanceiroTotal(models.Model):
         verbose_name = "Financeiro"
 
 
+
+class Ativismo(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    nome = models.CharField("Nome do Projeto", max_length=100, blank=True)
+    liders = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Líder", related_name="lidershoot")
+    colaboradores = models.ManyToManyField(Colaborador, blank=True, verbose_name="Equipe de apoio")
+    resumo = models.TextField("Um breve resumo do projeto", help_text="Este campo é utilizado na apresentação dos detalhes do projeto no nosso site.", blank=True, default='')
+    data_inicio = models.DateField("Data de Início", blank=True, null=True)
+    data_final = models.DateField("Data Final", blank=True, null=True)
+    ativo = models.BooleanField("Está ativo?", db_index=True, default=False)
+    urlasana = models.CharField("URL do Projeto no Asana", max_length=100, blank=True)
+    urlbriefing = models.CharField("URL do Briefing", max_length=200, blank=True)
+    ods = models.ManyToManyField(Ods, blank=True, verbose_name="Ods")
+    causas = models.CharField("Causas", max_length=200, blank=True)
+    processo = models.ForeignKey(Processo, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Etapa do processo")
+    impacto = models.ForeignKey(Impacto, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Impacto do job")
+
+    def __str__(self):
+        return self.nome

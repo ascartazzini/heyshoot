@@ -1,0 +1,49 @@
+{% extends 'base_shoot.html' %}
+{% block title %}{{ ativismo.nome|title }}{% endblock %}
+{% block content %}
+<div class="container-sm">
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">
+        {{ ativismo.nome }}</p>
+    <div class="row conteudo">
+        <div class="col-lg-12" style="padding-top:10px;margin-top: 30px;">
+            <table class="table text-muted">
+                <tr>
+                    <td colspan="3"><strong>Resumo: </strong> {{ ativismo.resumo|linebreaks }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Líder Shoot: </strong>{{ ativismo.liders }}</td>
+                    <td><strong>Trabalho ativo?</strong> {{ ativismo.ativo|yesno:"Sim, Não" }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Data início: </strong>{{ ativismo.data_inicio|date:"d.m.Y" }}</td>
+                    <td><strong>Data final: </strong>{{ ativismo.data_final|default_if_none:"Em andamento" }}</td>
+                    <td><strong>Nível de impacto: </strong>{{ ativismo.impacto }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Equipe de apoio: </strong>
+                        {% for colaborador in ativismo.colaboradores.all %}
+                        {{ colaborador.nome|linebreaks }}
+                        {% empty %}
+                        Não tem colaboradores no projeto
+                        {% endfor %}
+                    </td>
+                    <td><strong>Causas: </strong>{{ ativismo.causas }}</td>
+                    <td><strong>ODS: </strong>{{ ativismo.ods.all|join:", " }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: center;">
+                        <a href="http://{{ ativismo.urlasana }}" target="_blank" class="bi bi-kanban" style="color:black; font-size: 16px;"></a>
+                        <a href="http://{{ ativismo.urlbriefing }}" target="_blank" class="bi bi-file-earmark-binary" style="color:black; font-size: 16px;"></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center" style="text-align: center; margin-top: 80px;">
+        <p class="text-muted"><a href="{% url 'ativismo' %}" style="color: rgba(246,203,71)">Ativismo </a>
+            <span style="color: white;"> | {{ ativismo.nome }}</span>
+        </p>
+    </div>
+</div>
+{% endblock %}
