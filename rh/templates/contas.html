@@ -26,7 +26,7 @@
                     <tbody>
                     {% for tudo in contas %}
                     <tr>
-                        <th><a href="{% url 'detalhes_cliente' tudo.pk %}" class="text-pink">{{ tudo.data|date:"d.m.Y" }}</a></th>
+                        <th><a href="{% url 'contas' tudo.pk %}" class="text-pink">{{ tudo.data|date:"d.m.Y" }}</a></th>
                         <td>{{ tudo.tipo }}</td>
                         <td>{{ tudo.classifica.categoria }}</td>
                         <td>{{ tudo.classifica }}</td>
@@ -62,7 +62,7 @@
                     <tbody>
                     {% for entrada in en|dictsortreversed:"data" %}
                     <tr>
-                        <th><a href="{% url 'detalhes_cliente' entrada.pk %}" class="text-pink">{{ entrada.data|date:"d.m.Y" }}</a></th>
+                        <th><a href="{% url 'contas' entrada.pk %}" class="text-pink">{{ entrada.data|date:"d.m.Y" }}</a></th>
                         <td>{{ entrada.classifica.categoria }}</td>
                         <td>{{ entrada.classifica }}</td>
                         <td>{{ entrada.proposta }}</td>
@@ -91,7 +91,7 @@
                     <tbody>
                     {% for saida in sa|dictsortreversed:"data" %}
                     <tr>
-                        <th><a href="{% url 'detalhes_cliente' saida.pk %}" class="text-pink">{{ saida.data|date:"d.m.Y" }}</a></th>
+                        <th><a href="{% url 'contas' saida.pk %}" class="text-pink">{{ saida.data|date:"d.m.Y" }}</a></th>
                         <td>{{ saida.classifica.categoria }}</td>
                         <td>{{ saida.classifica }}</td>
                         <td>{{ saida.colabo|default_if_none:"-" }}</td>

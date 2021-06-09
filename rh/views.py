@@ -204,6 +204,13 @@ class FinanceiroTotalView(LoginRequiredMixin, ListView):
         return context
 
 
+class FinanceiroDetalhesView(LoginRequiredMixin, DetailView):
+    
+    context_object_name = "contas"
+    template_name = "detalhes_contas.html"
+    model = FinanceiroTotal
+
+
 class FolguinhaView(LoginRequiredMixin, ListView):
 
     context_object_name = "folguinha"
