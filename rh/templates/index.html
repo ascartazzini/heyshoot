@@ -120,24 +120,18 @@
                         <table class="table text-muted table-hover">
                             <tr>
                                 <th scope="col">Data</th>
+                                <th scope="col">Classificação</th>
                                 <th scope="col">Tipo</th>
                                 <th scope="col">Valor</th>
                               </tr>
+                              {% for fin in financeiro|dictsortreversed:"data" %}
                               <tr>
-                                <td>00.00.0000</td>
-                                <td>Entrada</td>
-                                <td>R$ 1000</td>
+                                <td>{{ fin.data|date:"d.m" }}</td>
+                                <td><a href="{% url 'contas' fin.pk %}" class="text-pink">{{ fin.classifica }}</a></td>
+                                <td>{{ fin.tipo }}</td>
+                                <td>R$ {{ fin.valor }}</td>
                               </tr>
-                              <tr>
-                                <td>00.00.0000</td>
-                                <td>Entrada</td>
-                                <td>R$ 1000</td>
-                              </tr>
-                              <tr>
-                                <td>00.00.0000</td>
-                                <td>Entrada</td>
-                                <td>R$ 1000</td>
-                              </tr>
+                              {% endfor %}
                         </table>
                     </div>
                 </div>
@@ -154,7 +148,7 @@
                 Atuação em causas
             </div>
             <div class="row justify-content-center">
-                <h1 style="font-size:4em">13</h1>
+                <h1 style="font-size:4em">{{ totalpro }}</h1>
             </div>
             <div class="row justify-content-center" style="padding-bottom: 30px;">
                 <span class="text-muted">projetos para Cidades Para Pessoas</span>

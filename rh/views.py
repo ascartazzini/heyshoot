@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
+from django.db.models import Count
 from django.db.models.base import Model
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
@@ -29,6 +30,7 @@ class IndexView(TemplateView):
         context["clientes"] = Cliente.objects.all()
         context["ferramentas"] = Ferramenta.objects.all()
         context["momentos"] = MomentoImportante.objects.all()
+        context["financeiro"] = FinanceiroTotal.objects.all()
         return context
 
 

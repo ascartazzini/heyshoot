@@ -23,7 +23,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for pro in proposta %}
+                    {% for pro in proposta|dictsort:"numero" %}
                     <tr>
                         <td>
                             {% if pro.urlproposta %}
