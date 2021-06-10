@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-8 coluninha_direita">
             <ul class="timeline" style="padding-right: 20px;">
-                {% for promo in promocao %}
+                {% for promo in promocao|dictsortreversed:"quando" %}
                 <li class="text-muted" style="text-align: left;">
                     {{ promo.quem }}
                     <p class="float-right">{{ promo.quando }}</p>    

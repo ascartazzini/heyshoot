@@ -322,6 +322,7 @@ class Colaborador(models.Model):
     linkedin = models.CharField("Linkedin", max_length=100, blank=True)
     facebook = models.CharField("Facebook", max_length=100, blank=True)
     entrounashoot = models.DateField("Entrou na Shoot que dia", blank=True, null=True)
+    saiushoot = models.DateField("Saiu da Shoot dia", blank=True, null=True)
     desligado = models.BooleanField("Não trampa mais aqui?", default=False, db_index=True)
 
     def __str__(self):
@@ -504,7 +505,7 @@ class Projeto(models.Model):
     ativo = models.BooleanField("Está ativo?", db_index=True, default=False)
     urlasana = models.CharField("URL do Projeto no Asana", max_length=100, blank=True)
     urlbriefing = models.CharField("URL do Briefing", max_length=200, blank=True)
-    urldebriefing = models.CharField("URL do Briefing", max_length=200, blank=True)
+    urldebriefing = models.CharField("URL do Debriefing", max_length=200, blank=True)
     ods = models.ManyToManyField(Ods, blank=True, verbose_name="Ods")
     causas = models.CharField("Causas", max_length=200, blank=True)
     processo = models.ForeignKey(Processo, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Etapa do processo")

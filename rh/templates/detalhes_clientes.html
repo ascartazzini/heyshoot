@@ -40,25 +40,35 @@
 </div>
 
 <div class="row" style="margin-top: 30px; ">
-    <div class="col-md-7 text-muted" style="padding-top:30px;padding-bottom: 30px; text-align: center; background-color: white;">
-        <table class="table text-muted">
+    <div class="col-md-8 text-muted" style="padding-top:30px;padding-bottom: 30px;background-color: white;">
+        <table class="table text-muted table-hover">
             <thead>
             <tr>
                 <td>
                     <span class="text-pink"><strong>Projetos</strong></span>
                 </td>   
+                <td>
+                    <span class="text-pink"><strong>Impacto</strong></span>
+                </td>   
+                <td>
+                    <span class="text-pink"><strong>Lider</strong></span>
+                </td>   
             </tr>
             </thead>
             <tbody>
                 {% for p in cliente.proposta_set.all %}
+                    {% for pra in p.projeto_set.all %}
                 <tr>
-                    <td class="align-middle">{{ p.projeto_set.all|join:", " }}</td>
+                    <td class="align-middle"><a href="{% url 'detalhes_projeto' pra.pk %}" class="text-pink">{{ pra.nome }}</a></td>
+                    <td class="align-middle">{{ pra.impacto }}</td>
+                    <td class="align-middle">{{ pra.lider_shoot }}</td>
                 </tr>
+                    {% endfor %}
                 {% endfor %}
         </table>
     </div>
-    <div class="col-md-5 text-muted" style="padding-top:30px; padding-bottom: 30px; text-align: center; background-color: white;">
-        <table class="table text-muted">
+    <div class="col-md-4 text-muted" style="padding-top:30px; padding-bottom: 30px; background-color: white;">
+        <table class="table text-muted table-hover">
             <thead>
             <tr>
                 <td colspan="3">

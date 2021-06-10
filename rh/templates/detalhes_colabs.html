@@ -13,16 +13,28 @@
         <table class="table text-muted" style="margin-top: 10px;">
             <tr>
                 <td class="align-middle" style="border: 0;">
-                    <a href="#" class="fa fa-linkedin col-2"></a>
-                    <a href="#" class="fa fa-envelope col-2"></a>
-                    <a href="#" class="fa fa-facebook col-2"></a>
-                    <a href="#" class="fa fa-instagram col-2"></a>
+                    {% if colaborador.linkedin %}
+                    <a href="https://www.linkedin.com/in/{{ colaborador.linkedin }}" class="fa fa-linkedin col-2" target="_blank"></a>
+                    {% endif %}
+                    {% if colaborador.emailpessoal %}
+                    <a href="mailto://{{ colaborador.emailpessoal }}" class="fa fa-envelope col-2" target="_blank"></a>
+                    {% endif %}
+                    {% if colaborador.facebook %}
+                    <a href="http://www.facebook.com/{{ colaborador.facebook }}" class="fa fa-facebook col-2" target="_blank"></a>
+                    {% endif %}
+                    {% if colaborador.instagram %}
+                    <a href=" http://www.instagram.com/{{ colaborador.instagram }}" class="fa fa-instagram col-2" target="_blank"></a>
+                    {% endif %}
                 </td>
             </tr>
             <tr>
                 <td class="align-middle" style="border: 0;">
+                    {% if colaborador.saiushoot %}
+                    Saiu da Shoot dia {{ colaborador.saiushoot|date:"d.m.Y" }}
+                    {% else %}
                     Atualmente é {{ colaborador.funcaodobrother }} <br>
                     e recebe R$ {{ colaborador.salario }} mensais
+                    {% endif %}
                 </td>
             </tr>
         </table>
@@ -41,12 +53,20 @@
             <td colspan="4">{{ colaborador.bio }}</td>
         </tr>
         <tr>
+            {% if colaborador.cpffile %}
             <td colspan="1"><a href="{{ colaborador.cpffile }}">CPF {{ colaborador.cpf|default_if_none:"-" }}</a></td>
+            {% else %}  
+            <td colspan="1">CPF {{ colaborador.cpf|default_if_none:"-" }}</td>
+            {% endif %}  
+            {% if colaborador.rfgile %}
             <td colspan="3"><a href="{{ colaborador.rgfile }}">RG {{ colaborador.errege|default_if_none:"-" }}</a></td>
+            {% else %}  
+            <td colspan="3">RG {{ colaborador.errege|default_if_none:"-" }}</td>
+            {% endif %}  
         </tr>
         <tr>
-            <td colspan="1">{{ colaborador.endereco }}</td>
-            <td colspan="3">{{ colaborador.cidade }}/{{ colaborador.estado }} - {{ colaborador.pais }}</td>
+            <td colspan="1">{{ colaborador.endereco|default_if_none:"-" }}</td>
+            <td colspan="3">{{ colaborador.cidade|default_if_none:"-" }}/{{ colaborador.estado|default_if_none:"-" }} - {{ colaborador.pais|default_if_none:"-" }}</td>
         </tr>
         <tr>
             <td colspan="1">Bairro {{ colaborador.bairro|default_if_none:"-" }}</td>
@@ -95,13 +115,16 @@
                     <p class="text-pink" style="margin-top:10px"><strong>Cursos realizados</strong></p>
                 </div>
             </div>
-            <table class="table text-muted">
+            <table class="table text-muted table-hover">
             {% for cursos in colaborador.curso_set.all|dictsortreversed:"quando" %}
             <tr>
                 <td class="align-middle">{{ cursos.quando|default_if_none:"-"|date:"d/m/Y" }}</td>
                 <td class="align-middle">{{ cursos.qual }}</td>
                 <td class="align-middle">R$ {{ cursos.verba }}</td>
             </tr>
+            {% empty %}
+            <br>
+            <span class="text-muted">Ainda não fez curso nenhum</span>
             {% endfor %}
             </table>
         </div>
@@ -111,26 +134,38 @@
                     <p class="text-pink" style="margin-top:10px"><strong>Folgas e Férias</strong></p>
                 </div>
             </div>
-            <table class="table text-muted">
-                {% for folg in colaborador.folguinha_set.all|dictsortreversed:"fim" %}
+            <table class="table text-muted table-hover">
+                {% for folg in colaborador.folguinha_set.all|dictsortreversed:"fim"|slice:":5" %}
                 <tr>
                     <td class="align-middle">De {{ folg.inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
                     <td class="align-middle">Até {{ folg.fim|default_if_none:"-"|date:"d/m/Y" }}</td>
                 </tr>
+                {% empty %}
+                <br>
+                <span class="text-muted">Ainda não tirou férias</span>
                 {% endfor %}
             </table>
         </div>
     </div>
     <div class="row conteudo">
-        <div class="col-md-8 text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
-            <p class="text-pink"><strong>Projetos que liderou</strong></p>    
-            <table class="table text-muted">
+        <div class="col-md-8" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
+            <p class="text-pink text-center"><strong>Envolvida nos projetos</strong></p>    
+            <table class="table text-muted table-hover">
                 <tbody>
-                    {% for projeto in colaborador.lider.all|dictsortreversed:"data_inicio" %}
+                    {% for projeto in colaborador.projeto_set.all|dictsortreversed:"data_inicio"|slice:":10" %}
                     <tr>
+                        <td class="align-middle"><a href="{% url 'detalhes_projeto' projeto.pk %}" class="text-pink">{{ projeto.nome }}</a></td>
+                        <td class="align-middle">{{ projeto.numero.cliente }}</td>
+                        <td class="align-middle">{{ projeto.impacto }}</td>
                         <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
-                        <td class="align-middle">{{ projeto.nome }}</td>
-                        <td class="align-middle">{{ projeto.cliente|default_if_none:"-" }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% for projeto in colaborador.lider.all|dictsortreversed:"data_inicio"|slice:":10" %}
+                    <tr>
+                        <td class="align-middle"><a href="{% url 'detalhes_projeto' projeto.pk %}" class="text-pink">{{ projeto.nome }}</a></td>
+                        <td class="align-middle">{{ projeto.numero.cliente }}</td>
+                        <td class="align-middle">{{ projeto.impacto }}</td>
+                        <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -138,8 +173,8 @@
         </div>
         <div class="col-md-4 text-pink text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
             <p class="text-pink"><strong>Salários</strong></p>
-            <table class="table text-muted">
-                {% for salario in colaborador.financeirototal_set.all|dictsortreversed:"data" %}
+            <table class="table text-muted table-hover">
+                {% for salario in colaborador.financeirototal_set.all|dictsortreversed:"data"|slice:":5" %}
                 <tr>
                     <td>{{ salario.data|date:"d/m/Y" }}</td>
                     <td>R$ {{ salario.valor }}</td>

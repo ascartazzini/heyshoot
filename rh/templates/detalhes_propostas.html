@@ -9,11 +9,13 @@
             <table class="table text-muted">
                 <tr>
                     <td><strong>Cliente: </strong>{{ proposta.cliente }}</td>
-                    <td><strong>Número da Proposta: </strong>{{ proposta.numero }}</td>
+                    <td><strong>Número da Proposta: </strong>
+                    <a href="http://{{ proposta.urlproposta }}" target="_blank" class="text-pink">{{ proposta.numero }}</a>
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>Valor final: </strong>R$ {{ proposta.valor_final }}</td>
-                    <td><strong>Lucro da Shoot: </strong>{{ proposta.lucro }}</td>
+                    <td><strong>Lucro da Shoot: </strong>{{ proposta.lucro }}%</td>
                 </tr>
                 <tr>
                     <td><strong>Horas vendidas: </strong>{{ proposta.horas }}</td>

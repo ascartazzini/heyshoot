@@ -30,7 +30,7 @@ class AtivismoAdmin(admin.ModelAdmin):
 class BibliotecaAdmin(admin.ModelAdmin):
 
     list_display = ("titulo", "recomendado", "autor", "thumbnail")
-    list_filter = ("titulo", )
+    list_filter = ("recomendado", )
 
     def thumbnail(self, obj):
         if obj.imagem:

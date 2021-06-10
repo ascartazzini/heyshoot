@@ -21,16 +21,18 @@
                     <td><strong>Nível de impacto: </strong>{{ projeto.impacto }}</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td><strong>Causas: </strong>{{ projeto.causas }}</td>
+                    <td colspan="2"><strong>ODS: </strong>{{ projeto.ods.all|join:", " }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">
                         <strong>Equipe de apoio: </strong>
                         {% for colaborador in projeto.colaboradores.all %}
-                        {{ colaborador.nome|linebreaks }}
+                        <a href="{% url 'detalhes_colaborador' colaborador.pk %}" class="text-pink">- {{ colaborador.nome }}</a>
                         {% empty %}
                         Não tem colaboradores no projeto
                         {% endfor %}
                     </td>
-                    <td><strong>Causas: </strong>{{ projeto.causas }}</td>
-                    <td><strong>ODS: </strong>{{ projeto.ods.all|join:", " }}</td>
                 </tr>
                 <tr>
                     <td style="text-align: right;"><a href="http://{{ projeto.urlasana }}" target="_blank" class="bi bi-kanban" style="color:black; font-size: 16px;"></a></td>

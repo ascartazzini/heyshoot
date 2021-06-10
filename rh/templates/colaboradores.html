@@ -8,7 +8,7 @@
   <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">As pessoas da Shoot</p>
 
   <div class="row" style="margin-top: 30px;">
-  {% for colaborador in colaboradores %}
+  {% for colaborador in colaboradores|dictsortreversed:"entrounashoot" %}
     <div class="col-lg-4">
       <div class="text-center card-box">
           <div class="member-card pt-2 pb-2">
@@ -26,7 +26,14 @@
               <span class="title">{% if colaborador.cidade %}
                 Atualmente vive em  {{ colaborador.cidade }}/{{ colaborador.estado }} {% endif  %}
               </span>
-              <p><span class="text-pink">Entrou na Shoot dia {{ colaborador.entrounashoot|date:"d/m/Y" }}</span></p>
+              <p><span class="text-pink">
+                {% if colaborador.saiushoot %}
+                Entrou na Shoot dia {{ colaborador.entrounashoot|date:"d/m/Y" }} <br>
+                e saiu dia {{ colaborador.saiushoot|date:"d/m/Y" }}
+                {% else %}
+                Entrou na Shoot dia {{ colaborador.entrounashoot|date:"d/m/Y" }}
+                {% endif %}
+              </span></p>
             </div>
 
             <ul class="social-links list-inline">
