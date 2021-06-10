@@ -22,6 +22,15 @@ class IndexView(TemplateView):
 
     template_name = "index.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["colaborador"] = Colaborador.objects.all()
+        context["biblioteca"] = Biblioteca.objects.order_by('?')[0]
+        context["clientes"] = Cliente.objects.all()
+        context["ferramentas"] = Ferramenta.objects.all()
+        context["momentos"] = MomentoImportante.objects.all()
+        return context
+
 
 class AtivismoView(LoginRequiredMixin, ListView):
     

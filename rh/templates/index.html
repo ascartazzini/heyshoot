@@ -9,16 +9,17 @@
             <div class="row text-pink justify-content-center tituloindex">
                Próxima celebração!
             </div>
+            {% for colab in colaborador|dictsortreversed:"data_nascimento"|slice:":1" %}
             <div class="row justify-content-center">
-                <img src="/media/colaboradores/fotos/1610046982408.jpg" width="100" class="rounded-circle img-thumbnail" alt="EU"> <br>
+                <img src="{{ colab.foto.url }}" width="100" class="rounded-circle img-thumbnail" alt="EU"> <br>
             </div>
-            <div class="row justify-content-center text-center text-muted" style="padding-bottom: 20px; margin-top: 10px;">
-                É a Francine Ramos,<br>no dia 00.00.0000 <br><br>
-                Falta 00 dias!
+            <div class="row justify-content-center text-center text-muted" style="padding-bottom: 5px; margin-top: 20px;">
+                Aniversário <br> {{ colab.nome }},<br>no dia {{ colab.data_nascimento|date:"d.m" }} <br><br>
             </div>
             <div class="row text-center text-muted justify-content-center" style="padding-bottom: 20px;">
-                <a href="#" class="btn btn-warning" style="font-size: 11px;">Ver mais</a>
+                <a href="{% url 'detalhes_colaborador' colab.pk %}" class="btn btn-warning" style="font-size: 11px;">Ver mais</a>
             </div>
+            {% endfor %}
         </div>
         <div class="col-md-8 card shadow" style="margin-left: 30px; ">
             <div class="row text-pink justify-content-center tituloindex">
@@ -37,21 +38,16 @@
             <div class="row">
                 <div class="col">
                     <div class="text-center card-box">
-                        <img src="/media/bibilioteca/imagens/41rBOE-soML._SX362_BO1204203200_.jpg" class="img-thumbnail" width="200">
+                        <img src="{{ biblioteca.imagem.url }}" class="img-thumbnail" width="170">
                         <div class="card-body">
-                            <h5 class="card-title">{{ bibli.titulo|title }}</h5>
-                            <span class="text-muted"><i>De quem é: {{ bibli.autor }}</i></span><br><br>
+                            <h5 class="card-title">{{ biblioteca.titulo|title }}</h5>
+                            <span class="text-muted"><i>De quem é: {{ biblioteca.autor }}</i></span><br><br>
                             <p class="card-text text-muted">
                             <strong>Porque você deveria ler?</strong><br>
-                                {{ bibli.desc }}
+                                {{ biblioteca.desc }}
                             </p>
                         </div>
-                        <div class="card-footer">
-                            <small class="text-muted">
-                                Recomendado por {{ bibli.recomendado }}
-                            </small>
-                        </div>
-                        <a href="#" class="btn btn-warning" style="font-size: 11px; margin-top: 20px;">Ver mais</a>
+                        <a href="{% url 'biblioteca' %}" class="btn btn-warning" style="font-size: 11px;">Ver mais</a>
                     </div>
                 </div>
             </div>
@@ -61,56 +57,16 @@
                 Clientes ativos
             </div>
             <div class="row justify-content-center">
+                {% for cli in clientes %}
                 <div class="col-sm-3 text-center" style="margin-right: 10px; margin-left: 10px;">
-                    <a href="#">
-                        <img src="/media/clientes/logos/81794824_2709232479123620_1148099832586436608_n.png" width="130" style="margin-top: 20px;" class="rounded-circle img-thumbnail" alt="EU"> <br>
+                    <a href="{% url 'detalhes_cliente' cli.pk %}">
+                        <img src="{{ cli.logo.url }}" width="130" style="margin-top: 20px;" class="img-thumbnail" alt="EU"> <br>
                     </a>
                 </div>
-                <div class="col-sm-3 text-center" style="margin-right: 10px; margin-left: 10px;">
-                    <a href="#">
-                        <img src="/media/clientes/logos/guarida_transparent.png" width="130" style="margin-top: 20px;" class="rounded-circle img-thumbnail" alt="EU"> <br>
-                    </a>
-                </div>
-                <div class="col-sm-3 text-center" style="margin-right: 10px; margin-left: 10px;">
-                    <a href="#">
-                        <img src="/media/clientes/logos/81794824_2709232479123620_1148099832586436608_n.png" width="130" style="margin-top: 20px;" class="rounded-circle img-thumbnail" alt="EU"> <br>
-                    </a>
-                </div>
-                
-                <div class="col-sm-3 text-center" style="margin-right: 10px; margin-left: 10px;">
-                    <a href="#">
-                        <img src="/media/clientes/logos/guarida_transparent.png" width="130" style="margin-top: 20px;" class="rounded-circle img-thumbnail" alt="EU"> <br>
-                    </a>
-                </div>
-                <div class="col-sm-3 text-center" style="margin-right: 10px; margin-left: 10px;">
-                    <a href="#">
-                        <img src="/media/clientes/logos/81794824_2709232479123620_1148099832586436608_n.png" width="130" style="margin-top: 20px;" class="rounded-circle img-thumbnail" alt="EU"> <br>
-                    </a>
-                </div>
-                <div class="col-sm-3 text-center" style="margin-right: 10px; margin-left: 10px;">
-                    <a href="#">
-                        <img src="/media/clientes/logos/guarida_transparent.png" width="130" style="margin-top: 20px;" class="rounded-circle img-thumbnail" alt="EU"> <br>
-                    </a>
-                </div>
-
-                <div class="col-sm-3 text-center" style="margin-right: 10px; margin-left: 10px;">
-                    <a href="#">
-                        <img src="/media/clientes/logos/81794824_2709232479123620_1148099832586436608_n.png" width="130" style="margin-top: 20px;" class="rounded-circle img-thumbnail" alt="EU"> <br>
-                    </a>
-                </div>
-                <div class="col-sm-3 text-center" style="margin-right: 10px; margin-left: 10px;">
-                    <a href="#">
-                        <img src="/media/clientes/logos/guarida_transparent.png" width="130" style="margin-top: 20px;" class="rounded-circle img-thumbnail" alt="EU"> <br>
-                    </a>
-                </div>
-                <div class="col-sm-3 text-center" style="margin-right: 10px; margin-left: 10px;">
-                    <a href="#">
-                        <img src="/media/clientes/logos/81794824_2709232479123620_1148099832586436608_n.png" width="130" style="margin-top: 20px;" class="rounded-circle img-thumbnail" alt="EU"> <br>
-                    </a>
-                </div>
+                {% endfor %}
             </div>
             <div class="row text-center text-muted justify-content-center" style="padding-top: 20px; margin-top: 20px; padding-bottom: 20px;">
-                <a href="#" class="btn btn-warning" style="font-size: 11px;">Ver todos</a>
+                <a href="{% url 'lista_cliente' %}" class="btn btn-warning" style="font-size: 11px;">Ver todos</a>
             </div>
             
         </div>
@@ -128,56 +84,13 @@
                     <th scope="col">User</th>
                     <th scope="col">Pass</th>
                   </tr>
+                  {% for ferra in ferramentas %}
                   <tr>
-                    <td>Freepik</td>
-                    <td>luciano@heyshoot.cc</td>
-                    <td>Shoot2015</td>
+                    <td>{{ ferra.nome }}</td>
+                    <td>{{ ferra.user }}</td>
+                    <td>{{ ferra.senha }}</td>
                   </tr>
-                  <tr>
-                    <td>Freepik</td>
-                    <td>luciano@heyshoot.cc</td>
-                    <td>Shoot2015</td>
-                  </tr>
-                  <tr>
-                    <td>Freepik</td>
-                    <td>luciano@heyshoot.cc</td>
-                    <td>Shoot2015</td>
-                  </tr>
-                  <tr>
-                    <td>Freepik</td>
-                    <td>luciano@heyshoot.cc</td>
-                    <td>Shoot2015</td>
-                  </tr>
-                  <tr>
-                    <td>Freepik</td>
-                    <td>luciano@heyshoot.cc</td>
-                    <td>Shoot2015</td>
-                  </tr>
-                  <tr>
-                    <td>Freepik</td>
-                    <td>luciano@heyshoot.cc</td>
-                    <td>Shoot2015</td>
-                  </tr>
-                  <tr>
-                    <td>Freepik</td>
-                    <td>luciano@heyshoot.cc</td>
-                    <td>Shoot2015</td>
-                  </tr>
-                  <tr>
-                    <td>Freepik</td>
-                    <td>luciano@heyshoot.cc</td>
-                    <td>Shoot2015</td>
-                  </tr>
-                  <tr>
-                    <td>Freepik</td>
-                    <td>luciano@heyshoot.cc</td>
-                    <td>Shoot2015</td>
-                  </tr>
-                  <tr>
-                    <td>Freepik</td>
-                    <td>luciano@heyshoot.cc</td>
-                    <td>Shoot2015</td>
-                  </tr>
+                  {% endfor %}
               </table>
             </div>
         </div>
@@ -188,21 +101,13 @@
                         Datas importantes
                     </div>
                     <ul class="timeline" style="padding-right: 20px;">
+                        {% for momento in momentos %}
                         <li class="text-muted" style="text-align: left;">
-                            Nome do Momento | Pessoa
-                            <p class="float-right">00.00.0000</p>    
-                            <p>Descrição do momento</p>
+                            {{ momento.nome }} | {{ momento.quem }}
+                            <p class="float-right">{{ momento.quando|date:"d.m.Y" }}</p>    
+                            <p>{{ momento.desc }}</p>
                         </li>
-                        <li class="text-muted" style="text-align: left;">
-                            Nome do Momento | Pessoa
-                            <p class="float-right">00.00.0000</p>    
-                            <p>Descrição do momento</p>
-                        </li>
-                        <li class="text-muted" style="text-align: left;">
-                            Nome do Momento | Pessoa
-                            <p class="float-right">00.00.0000</p>    
-                            <p>Descrição do momento</p>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
