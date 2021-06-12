@@ -14,7 +14,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>Valor final: </strong>R$ {{ proposta.valor_final }}</td>
+                    <td><strong>Valor final: </strong>R$ {{ proposta.valor_final|floatformat:"2g" }}</td>
                     <td><strong>Lucro da Shoot: </strong>{{ proposta.lucro }}%</td>
                 </tr>
                 <tr>

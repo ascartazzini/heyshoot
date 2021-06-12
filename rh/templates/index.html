@@ -60,7 +60,7 @@
                 {% for cli in clientes %}
                 <div class="col-sm-3 text-center" style="margin-right: 10px; margin-left: 10px;">
                     <a href="{% url 'detalhes_cliente' cli.pk %}">
-                        <img src="{{ cli.logo.url }}" width="130" style="margin-top: 20px;" class="img-thumbnail" alt="EU"> <br>
+                        <img src="{{ cli.logo.url }}" width="180" style="margin-top: 20px;" class="img-thumbnail" alt="EU"> <br>
                     </a>
                 </div>
                 {% endfor %}
@@ -129,7 +129,7 @@
                                 <td>{{ fin.data|date:"d.m" }}</td>
                                 <td><a href="{% url 'contas' fin.pk %}" class="text-pink">{{ fin.classifica }}</a></td>
                                 <td>{{ fin.tipo }}</td>
-                                <td>R$ {{ fin.valor }}</td>
+                                <td>R$ {{ fin.valor|floatformat:"2g" }}</td>
                               </tr>
                               {% endfor %}
                         </table>
@@ -145,13 +145,12 @@
 
         <div class="col-md-5 card shadow" style="background-color: white; margin-left: 30px;">
             <div class="row text-pink justify-content-center tituloindex">
-                Atuação em causas
+                Quantos projetos já realizamos esse ano
             </div>
             <div class="row justify-content-center">
-                <h1 style="font-size:4em">{{ totalpro }}</h1>
-            </div>
-            <div class="row justify-content-center" style="padding-bottom: 30px;">
-                <span class="text-muted">projetos para Cidades Para Pessoas</span>
+                <h1 style="font-size:5em">
+                    {{ projeto.count }}
+                </h1>
             </div>
         </div>
         <div class="col-md-6 card shadow" style="margin-left: 30px;background-color: white; ">
@@ -159,9 +158,9 @@
                 ODS mais contempladas
             </div>
             <div class="row justify-content-center" style="margin-top: 10px;">
-                <img src="/media/ods/selos/Captura_de_Tela_2021-05-30_as_11.40.15.png" class="rounded" width="100" alt="Nome" style="margin-left: 5px; margin-right: 5px;">
-                <img src="/media/ods/selos/Captura_de_Tela_2021-05-30_as_11.40.15.png" class="rounded" width="100" alt="Nome" style="margin-left: 5px; margin-right: 5px;">
-                <img src="/media/ods/selos/Captura_de_Tela_2021-05-30_as_11.40.15.png" class="rounded" width="100" alt="Nome" style="margin-left: 5px; margin-right: 5px;">
+                
+                
+                
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@
           <td>Quem fez o curso foi {{ cursos.paraquem }}</td>
         </tr>
         <tr>
-          <td>R$ {{ cursos.verba }}</td>
+          <td>R$ {{ cursos.verba|floatformat:"2g" }}</td>
         </tr>
       </table>
     </div>

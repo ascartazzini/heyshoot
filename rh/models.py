@@ -411,7 +411,7 @@ class Feedback(models.Model):
     updated = models.DateField(auto_now=True)
     quando = models.DateField("Quando", blank=True, null=True)
     comquem = models.ForeignKey(Colaborador, blank=True, null=True, on_delete=models.SET_NULL, verbose_name="Com quem" )
-    analise = models.TextField("Análise feita", max_length=200, blank=True)
+    analise = models.TextField("Análise feita", blank=True)
 
     def __str__(self):
         return "%s" % (self.comquem)

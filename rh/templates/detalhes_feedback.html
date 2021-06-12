@@ -8,13 +8,13 @@
             <h4 class="text-center">{{ feedback.quando }}</h4>
             <table class="table text-muted text-center">
                 <tr>
-                    <td>{{ feedback.analise }}</td>
+                    <td>{{ feedback.analise|linebreaks }}</td>
                 </tr>
             </table>
         </div>
     </div>
 
-    {% with outros_feedbacks=feedback.comquem.feedback_set.all %}
+    {% with outros_feedbacks=feedback.comquem.feedback_set.all|dictsortreversed:"quando" %}
         {% if outros_feedbacks %}
         <div class="row conteudo">
             <div class="col-lg-12" style="padding-top:10px;margin-top: 30px;">
@@ -23,7 +23,7 @@
                     <h4 class="text-center">{{ f.quando }}</h4>
                     <table class="table text-muted text-center">
                         <tr>
-                            <td>{{ f.analise }}</td>
+                            <td>{{ f.analise|linebreaks }}</td>
                         </tr>
                     </table>
                     {% endif %}

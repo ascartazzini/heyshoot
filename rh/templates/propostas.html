@@ -35,7 +35,7 @@
                         <td>{{ pro.numero }}</td>
                         <td>{{ pro.cliente }}</td>
                         <td>{{ pro.tipoprojeto }}</td>
-                        <td>R$ {{ pro.valor_final }}</td>
+                        <td>R$ {{ pro.valor_final|floatformat:"2g" }}</td>
                         <td>{{ pro.lucro }}%</td>
                         <td>{{ pro.ativismo }}%</td>
                         <td>{{ pro.horas }}h</td>

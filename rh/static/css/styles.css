@@ -2,14 +2,14 @@
 /* Folha de Estilos           ========== */
 /* By Artur Scartazzini       ========== */
 
-body{
+html, body{
     background-color:#47519c;
     /*background-image:url("/static/images/bg.png");*/
 	background: rgb(71,81,155);
 	background: linear-gradient(180deg, rgba(71,81,155,1) 0%, rgba(92,107,215,1) 49%, rgba(71,81,155,1) 100%);
-    height: 100vh;
+    height: 100%;
 	margin: 0;
-	min-height: 100vh;
+	min-height: 100%;
 	padding: 0;
 	width: 100%;
 }

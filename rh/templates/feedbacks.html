@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-8 coluninha_direita">
             <ul class="timeline" style="padding-right: 20px;">
-                {% for feed in feedback %}
+                {% for feed in feedback|dictsortreversed:"quando" %}
                 <li class="text-muted" style="text-align: left;">
                     <a href="{% url 'detalhes_feedback' feed.pk %}">{{ feed.comquem }}</a>
                     <p class="float-right">{{ feed.quando }}</p>    

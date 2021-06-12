@@ -177,7 +177,7 @@
                 {% for salario in colaborador.financeirototal_set.all|dictsortreversed:"data"|slice:":5" %}
                 <tr>
                     <td>{{ salario.data|date:"d/m/Y" }}</td>
-                    <td>R$ {{ salario.valor }}</td>
+                    <td>R$ {{ salario.valor|floatformat:"2g" }}</td>
                 </tr>
                 {% endfor %}
             </table>

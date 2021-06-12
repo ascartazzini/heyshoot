@@ -28,7 +28,7 @@
                   <tr>
                     <th scope="row">{{ fe.nome }}</th>
                     <td>{{ fe.quando|date:"d.m.Y" }}</td>
-                    <td>R$ {{ fe.preco }}</td>
+                    <td>R$ {{ fe.preco|floatformat:"2g" }}</td>
                     <td>{{ fe.user|default_if_none:"-" }}</td>
                     <td>{{ fe.senha|default_if_none:"-" }}</td>
                   </tr>

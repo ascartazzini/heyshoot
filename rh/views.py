@@ -15,7 +15,7 @@ from rh.models import (Atividadecomercial, Ativismo, Biblioteca,
                        Colaborador, Contato, Curso, Feedback, Ferramenta,
                        FinanceiroTotal, Folguinha, Fornecedores, Hierarquia,
                        Inscricao, Juridico, MomentoImportante, Newsletter,
-                       NewsletterTotal, Palestra, Premiacao, Projeto, Promocao,
+                       NewsletterTotal, Ods, Palestra, Premiacao, Projeto, Promocao,
                        Proposta, ResultadoCanal, TipoProjeto, Workshop)
 
 
@@ -31,6 +31,8 @@ class IndexView(TemplateView):
         context["ferramentas"] = Ferramenta.objects.all()
         context["momentos"] = MomentoImportante.objects.all()
         context["financeiro"] = FinanceiroTotal.objects.all()
+        context["projeto"] = Projeto.objects.all()
+        context["ods"] = Ods.objects.all()
         return context
 
 

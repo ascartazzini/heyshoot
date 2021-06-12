@@ -34,7 +34,7 @@
                         <td>{{ tudo.proposta.cliente|default:"-" }}</td>
                         <td>{{ tudo.colabo|default_if_none:"-" }}</td>
                         <td>{{ tudo.outro|default_if_none:"-" }}</td>
-                        <td>R$ {{ tudo.valor }}</td>
+                        <td>R$ {{ tudo.valor|floatformat:"2g" }}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -67,7 +67,7 @@
                         <td>{{ entrada.classifica }}</td>
                         <td>{{ entrada.proposta }}</td>
                         <td>{{ entrada.proposta.cliente }}</td>
-                        <td>R$ {{ entrada.valor }}</td>
+                        <td>R$ {{ entrada.valor|floatformat:"2g" }}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -96,7 +96,7 @@
                         <td>{{ saida.classifica }}</td>
                         <td>{{ saida.colabo|default_if_none:"-" }}</td>
                         <td>{{ saida.outro|default_if_none:"-" }}</td>
-                        <td>R$ {{ saida.valor }}</td>
+                        <td>R$ {{ saida.valor|floatformat:"2g" }}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
