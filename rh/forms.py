@@ -173,7 +173,7 @@ class PalestraForm(forms.ModelForm):
     class Meta:
 
         model = Palestra
-        fields = ["nome", "desc", "quem"]
+        fields = ["nome", "publico", "quem", "cache", "quando"]
         widgets = {
             "quem": forms.CheckboxSelectMultiple,
         }

@@ -167,7 +167,7 @@ class OdsAdmin(admin.ModelAdmin):
 class PalestraAdmin(admin.ModelAdmin):
 
     form = PalestraForm
-    list_display = ("nome", "desc")
+    list_display = ("nome", "publico", "quando")
 
 
 class PremiacaoAdmin(admin.ModelAdmin):

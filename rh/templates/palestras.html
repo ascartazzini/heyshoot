@@ -8,16 +8,16 @@
 
     <div class="row" style="padding-bottom: 30px; padding-top: 30px;">
         <div class="col-md-4 coluninha_left">
-            <h5 style="color: #47529c;">Nosso jeito de se papagaiar</h5>
-            <p style="margin-top: 20px; color: #47529c;">Aqui uma lista de conteúdos que criamos para inspirar. Criatividade, empreendedorismo, causas, marcas</p>
+            <h5 style="color: #47529c;">Quem, onde e para quantas pessoas</h5>
+            <p style="margin-top: 20px; color: #47529c;">Aqui a lista de palestras datas para sabermos para quantas pessoas estamos falando</p>
         </div>
         <div class="col-md-8 coluninha_direita">
-            {% for pale in palestras %}
-            <h5 style="color: #47529c; font-size: 38px; font-family: Tusker; text-transform: uppercase;">{{ pale.nome }}</h5>
+            {% for pale in palestras|dictsortreversed:"quando" %}
+            <h5 style="color: #47529c; font-size: 24px;">{{ pale.nome }}</h5>
             <span class="text-muted"> 
-                <strong>Sobre o que é:</strong><br>
-                {{ pale.desc }} <br><br>
-                <strong>Quem dá essa palestra:</strong><br>
+                {{ pale.quando }} <br>
+                Cachê pago: R$ {{ pale.cache }} <br><br>
+                <strong>Quem deu essa palestra:</strong><br>
                 {{ pale.quem.all|join:", " }}
             </span>
             <hr>

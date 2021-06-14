@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import base
 from django.db.models.base import Model
-from django.db.models.fields import CharField, DateField, DateTimeField
+from django.db.models.fields import CharField, DateField, DateTimeField, IntegerField
 from django.db.models.fields.related import ForeignKey
 
 
@@ -463,8 +463,10 @@ class Palestra(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updater = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome da Palestra", max_length=150, blank=True)
-    desc = models.TextField("Descrição da palestra", blank=True)
-    quem = models.ManyToManyField(Colaborador, blank=True, verbose_name="Quem é capaz de dar essa palestra")
+    quem = models.ManyToManyField(Colaborador, blank=True, verbose_name="Quem palestrou")
+    cache = models.DecimalField("Cachê", max_digits=9, decimal_places=2, blank=True, null=True)
+    publico = models.IntegerField("Público", blank=True, null=True)
+    quando = models.DateField("Quando", blank=True, null=True)
 
     def __str__(self):
         return self.nome

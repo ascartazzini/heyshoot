@@ -152,7 +152,7 @@
             <p class="text-pink text-center"><strong>Envolvida nos projetos</strong></p>    
             <table class="table text-muted table-hover">
                 <tbody>
-                    {% for projeto in colaborador.projeto_set.all|dictsortreversed:"data_inicio"|slice:":10" %}
+                    {% for projeto in colaborador.projeto_set.all|dictsortreversed:"data_inicio" %}
                     <tr>
                         <td class="align-middle"><a href="{% url 'detalhes_projeto' projeto.pk %}" class="text-pink">{{ projeto.nome }}</a></td>
                         <td class="align-middle">{{ projeto.numero.cliente }}</td>
@@ -160,7 +160,7 @@
                         <td class="align-middle">{{ projeto.data_inicio|default_if_none:"-"|date:"d/m/Y" }}</td>
                     </tr>
                     {% endfor %}
-                    {% for projeto in colaborador.lider.all|dictsortreversed:"data_inicio"|slice:":10" %}
+                    {% for projeto in colaborador.lider.all|dictsortreversed:"data_inicio" %}
                     <tr>
                         <td class="align-middle"><a href="{% url 'detalhes_projeto' projeto.pk %}" class="text-pink">{{ projeto.nome }}</a></td>
                         <td class="align-middle">{{ projeto.numero.cliente }}</td>
