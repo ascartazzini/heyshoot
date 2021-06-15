@@ -25,7 +25,8 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["colaborador"] = Colaborador.objects.all()
+        hoje = datetime.now().date()
+        context["proximo_aniversariante"] = Colaborador.objects.filter(data_nascimento__day__gte=hoje.day, data_nascimento__month__gte=hoje.month).order_by("data_nascimento__month", "data_nascimento__day").first()
         context["biblioteca"] = Biblioteca.objects.order_by('?')[0]
         context["clientes"] = Cliente.objects.all()
         context["ferramentas"] = Ferramenta.objects.all()
@@ -37,14 +38,14 @@ class IndexView(TemplateView):
 
 
 class AtivismoView(LoginRequiredMixin, ListView):
-    
+
     context_object_name = "ativismo"
     template_name = "ativismo.html"
     model = Ativismo
 
 
 class AtivismoDetalhesView(LoginRequiredMixin, DetailView):
-    
+
     context_object_name = "ativismo"
     template_name = "detalhes_ativismo.html"
     model = Ativismo
@@ -218,7 +219,7 @@ class FinanceiroTotalView(LoginRequiredMixin, ListView):
 
 
 class FinanceiroDetalhesView(LoginRequiredMixin, DetailView):
-    
+
     context_object_name = "contas"
     template_name = "detalhes_contas.html"
     model = FinanceiroTotal
