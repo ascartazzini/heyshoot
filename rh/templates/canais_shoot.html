@@ -22,16 +22,16 @@
                         <div class="row justify-content-center" style="margin-bottom: 10px;">
                             <span class="text-muted">{{ cp.objetivo }}</span>
                         </div>
-                        <div class="row" style="background-color:rgba(246,203,71); color: white; font-size: 12px; padding: 5px; margin-bottom: 10px;">
+                        <div class="row text-center" style="background-color:rgba(246,203,71); color: white; font-size: 12px; padding: 5px; margin-bottom: 10px;">
                             <div class="col-md-4"><strong>Dia</strong></div>
                             <div class="col-md-4"><strong>Base</strong></div>
                             <div class="col-md-4"><strong>Engajamento</strong></div>
                         </div>
                         {% for resu in cp.resultadocanal_set.all %}
-                        <div class="row text-muted">
-                            <div class="col-md-4"><span class="text-pink">{{ resu.quando|date:"d/m/Y" }}</span></div>
+                        <div class="row text-muted text-center">
+                            <div class="col-md-4"><span class="text-pink">{{ resu.quando|date:"d/m" }}</span></div>
                             <div class="col-md-4">{{ resu.base }}</div>
-                            <div class="col-md-4">{{ resu.engajamento }}</div>
+                            <div class="col-md-4">{{ resu.engajamento|default_if_none:"Não registrado" }}</div>
                         </div>
                         {% endfor %}
                         <div class="row justify-content-center" style="margin-bottom: 20px; padding-top: 10px; margin-top: 20px; border-top: 1px dotted #47519b;">
