@@ -101,7 +101,7 @@
                         Datas importantes
                     </div>
                     <ul class="timeline" style="padding-right: 20px;">
-                        {% for momento in momentos|dictsort:"quando" %}
+                        {% for momento in momentos %}
                         <li class="text-muted" style="text-align: left;">
                             {{ momento.nome }} | {{ momento.quem }}
                             <p class="float-right">{{ momento.quando|date:"d.m" }}</p>

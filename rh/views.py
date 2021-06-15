@@ -30,7 +30,7 @@ class IndexView(TemplateView):
         context["biblioteca"] = Biblioteca.objects.order_by('?')[0]
         context["clientes"] = Cliente.objects.all()
         context["ferramentas"] = Ferramenta.objects.all()
-        context["momentos"] = MomentoImportante.objects.all()
+        context["momentos"] = MomentoImportante.objects.filter(quando__gte=hoje).order_by("quando")
         context["financeiro"] = FinanceiroTotal.objects.all()
         context["projeto"] = Projeto.objects.all()
         context["ods"] = Ods.objects.all()
