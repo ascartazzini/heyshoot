@@ -9,17 +9,17 @@
             <div class="row text-pink justify-content-center tituloindex">
                Próxima celebração!
             </div>
-            {% for colab in colaborador|dictsortreversed:"data_nascimento"|slice:":1" %}
+            {% if proximo_aniversariante %}
             <div class="row justify-content-center">
-                <img src="{{ colab.foto.url }}" width="100" class="rounded-circle img-thumbnail" alt="EU"> <br>
+                <img src="{{ proximo_aniversariante.foto.url }}" width="100" class="rounded-circle img-thumbnail" alt="EU"> <br>
             </div>
             <div class="row justify-content-center text-center text-muted" style="padding-bottom: 5px; margin-top: 20px;">
-                Aniversário <br> {{ colab.nome }},<br>no dia {{ colab.data_nascimento|date:"d.m" }} <br><br>
+                Aniversário <br> {{ proximo_aniversariante.nome }},<br>no dia {{ proximo_aniversariante.data_nascimento|date:"d.m" }} <br><br>
             </div>
             <div class="row text-center text-muted justify-content-center" style="padding-bottom: 20px;">
-                <a href="{% url 'detalhes_colaborador' colab.pk %}" class="btn btn-warning" style="font-size: 11px;">Ver mais</a>
+                <a href="{% url 'detalhes_colaborador' proximo_aniversariante.pk %}" class="btn btn-warning" style="font-size: 11px;">Ver mais</a>
             </div>
-            {% endfor %}
+            {% endif %}
         </div>
         <div class="col-md-8 card shadow" style="margin-left: 30px; ">
             <div class="row text-pink justify-content-center tituloindex">
@@ -68,7 +68,7 @@
             <div class="row text-center text-muted justify-content-center" style="padding-top: 20px; margin-top: 20px; padding-bottom: 20px;">
                 <a href="{% url 'lista_cliente' %}" class="btn btn-warning" style="font-size: 11px;">Ver todos</a>
             </div>
-            
+
         </div>
     </div>
 
@@ -104,7 +104,7 @@
                         {% for momento in momentos|dictsort:"quando" %}
                         <li class="text-muted" style="text-align: left;">
                             {{ momento.nome }} | {{ momento.quem }}
-                            <p class="float-right">{{ momento.quando|date:"d.m" }}</p>    
+                            <p class="float-right">{{ momento.quando|date:"d.m" }}</p>
                             <p>{{ momento.desc }}</p>
                         </li>
                         {% endfor %}
@@ -154,10 +154,10 @@
         <div class="col-md-6 card shadow" style="margin-left: 30px;background-color: white; ">
             <div class="row text-pink justify-content-center tituloindex">
                 ODS mais contempladas
-                
+
             </div>
             <div class="row justify-content-center" style="margin-top: 10px;">
-                hahah      
+                hahah
             </div>
         </div>
     </div>
