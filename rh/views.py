@@ -5,7 +5,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.db.models import Count
-from django.db.models.base import Model
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
@@ -33,7 +32,7 @@ class IndexView(TemplateView):
         context["momentos"] = MomentoImportante.objects.filter(quando__gte=hoje).order_by("quando")
         context["financeiro"] = FinanceiroTotal.objects.all()
         context["projeto"] = Projeto.objects.all()
-        context["ods"] = Ods.objects.all()
+        context["ods"] = Ods.objects.annotate(total_projetos=Count("projeto")).exclude(total_projetos=0).order_by('-total_projetos')
         return context
 
 

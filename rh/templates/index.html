@@ -154,10 +154,11 @@
         <div class="col-md-6 card shadow" style="margin-left: 30px;background-color: white; ">
             <div class="row text-pink justify-content-center tituloindex">
                 ODS mais contempladas
-
             </div>
             <div class="row justify-content-center" style="margin-top: 10px;">
-                hahah
+                {% for o in ods %}
+                {{ o.nome }} ({{ o.total_projetos }}){% if not forloop.last %},{% else %}.{% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
