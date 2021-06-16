@@ -1,5 +1,7 @@
 from django.contrib import admin, messages
-from django.contrib.admin.filters import ListFilter
+from django.db.models import Count
+from django.db.models.query import QuerySet
+from django.http.request import HttpRequest
 from django.utils.safestring import mark_safe
 
 from rh.forms import (ClienteForm, ClimaForm, ColaboradorForm, CursoForm,
@@ -155,13 +157,21 @@ class NewsletterTotalAdmin(admin.ModelAdmin):
 
 class OdsAdmin(admin.ModelAdmin):
 
-    list_display = ("thumbnail", "nome", "desc")
+    list_display = ("thumbnail", "nome", "desc", "numero_projetos")
 
     def thumbnail(self, obj):
         if obj.selo:
             return mark_safe('<img src="%s" width=100 height=100 />' % obj.selo.url)
         return "-"
     thumbnail.short_description = 'Selo'
+
+    def numero_projetos(self, obj):
+        return obj.total_projetos
+    numero_projetos.short_description = 'Número de Projetos'
+    numero_projetos.admin_order_field = "total_projetos"
+
+    def get_queryset(self, request: HttpRequest) -> QuerySet:
+        return super().get_queryset(request).annotate(total_projetos=Count("projeto"))
 
 
 class PalestraAdmin(admin.ModelAdmin):
