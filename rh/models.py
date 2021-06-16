@@ -96,26 +96,26 @@ class FinanceiroContaShoot(models.Model):
 
     def __str__(self):
         return self.banco
-    
+
     class Meta:
         verbose_name = "Financeiro | Conta"
 
 
 class FinanceiroCategoria(models.Model):
-    
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Categoria", max_length=100, blank=True)
 
     def __str__(self):
         return self.nome
-    
+
     class Meta:
         verbose_name = "Financeiro | Categoria"
 
 
 class FinanceiroClassi(models.Model):
-    
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     nome = models.CharField("Classificação", max_length=100, blank=True)
@@ -123,7 +123,7 @@ class FinanceiroClassi(models.Model):
 
     def __str__(self):
         return self.nome
-    
+
     class Meta:
         verbose_name = "Financeiro | Classificação"
 
@@ -180,7 +180,7 @@ class Ods(models.Model):
     desc = models.TextField("Descrição da ODS", null=True)
 
     def __str__(self):
-        return self.nome
+        return f'{ self.numero } - { self.nome }'
 
     class Meta:
         verbose_name_plural = "Objetivos de Desenvolvimento Sustentável"
@@ -570,7 +570,7 @@ class Inscricao(models.Model):
 
 
 class FinanceiroTotal(models.Model):
-    
+
     entradasaida = (("Entrada", "Entrada"),
         ("Saida", "Saída"))
 
