@@ -21,7 +21,7 @@ class AtividadecomercialAdmin(admin.ModelAdmin):
 
 
 class AtivismoAdmin(admin.ModelAdmin):
-    
+
     form = AtivismoForm
     list_display = ("nome", "liders", "ativo")
     list_filter = ("ativo", )
@@ -155,7 +155,7 @@ class NewsletterTotalAdmin(admin.ModelAdmin):
 
 class OdsAdmin(admin.ModelAdmin):
 
-    list_display = ("nome", "thumbnail", "numero", "desc")
+    list_display = ("thumbnail", "nome", "desc")
 
     def thumbnail(self, obj):
         if obj.selo:
@@ -259,18 +259,18 @@ class FinanceiroContaShootAdmin(admin.ModelAdmin):
 
 
 class FinanceiroCategoriaAdmin(admin.ModelAdmin):
-    
+
     list_display = ("nome", )
 
 
 class FinanceiroClassiAdmin(admin.ModelAdmin):
-    
+
     list_display = ("categoria", "nome")
     list_filter = ("categoria", )
-    
+
 
 class FinanceiroTotalAdmin(admin.ModelAdmin):
-    
+
     list_display = ("tipo","classifica", "proposta", "colabo", "outro", "data", "contashoot", "desc", "valor")
     list_filter = ("tipo", "classifica", "colabo", "proposta", "contashoot")
 

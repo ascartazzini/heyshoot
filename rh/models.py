@@ -184,6 +184,7 @@ class Ods(models.Model):
 
     class Meta:
         verbose_name_plural = "Objetivos de Desenvolvimento Sustentável"
+        ordering = ["numero", ]
 
 
 class Newsletter(models.Model):
