@@ -27,6 +27,12 @@
         <tr>
             <td>{{ contas.colabo }}</td>
             <td>R$ {{ contas.valor|floatformat:"2g" }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                {{ contas.desc }}
+            </td>
+        </tr>
         </tbody>
         </table>
     </div>
