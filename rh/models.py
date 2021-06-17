@@ -75,8 +75,6 @@ class Ferramenta(models.Model):
     updater = models.DateTimeField(auto_now=True)
     nome = models.CharField("Nome da ferramenta", blank=True, max_length=100, null=True)
     desc = models.TextField("Descrição", blank=True, null=True)
-    quando = models.DateField("Início da assinatura", blank=True, null=True)
-    preco = models.DecimalField("Investimento anual", blank=True, max_digits=9, decimal_places=2, null=True)
     user = models.CharField("User", blank=True, null=True, max_length=100)
     senha = models.CharField("Pass", blank=True, null=True, max_length=100)
 
@@ -541,7 +539,7 @@ class Juridico(models.Model):
     nome = models.CharField("Nome do documento", max_length=200, blank=True)
     urldoc = models.CharField("URL do doc", max_length=200, blank=True)
     desc = models.TextField("Pra que serve", blank=True, null=True)
-    prop = models.ForeignKey(Proposta, null=True, on_delete=models.SET_NULL, verbose_name="Proposta")
+    prop = models.ForeignKey(Proposta, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Proposta")
 
     def __str__(self):
         return self.nome

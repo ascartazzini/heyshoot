@@ -4,22 +4,34 @@
 <div class="container">
     <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Premiações</p>
     <div class="row" style="padding-top: 30px;">
-        <div class="col-md-4 coluninha_left">
+        <div class="col-md-3 coluninha_left">
             <h5 style="color: #47529c;">Uma lista que vale a pena</h5>
             <p style="margin-top: 20px; color: #47529c;">Aqui a gente coloca uma lista de premiações que a gente curtiria participar</p>
             <a href="{% url 'inscricao' %}" type="button" class="btn btn-sm btn-success btn-rounded" style="margin-top: 20px;">Prêmios que já nos inscrevemos</a>
         </div>
-        <div class="col-md-8 coluninha_direita" style="padding-bottom: 30px;">
-            {% for pre in premiacoes %}
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center"><strong>{{ pre.nome }}</strong>
-                <span style="color: white; font-size: 10px;" class="badge bg-primary rounded-pill">{{ pre.periodo }}</span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted" style="border: 0;">{{ pre.desc }}</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted" style="border: 0;">Categorias que poderíamos inscrever:<br>{{ pre.categorias }}</li>
-                <li class="list-group-item d-flex justify-content-between align-items-center text-muted" style="border: 0;">- O investimento médio pra inscrever é de R$ {{ pre.investimento|floatformat:"2g" }}</li>
-            </ul>
-            <hr>
-            {% endfor %}
+        <div class="col-md-9 coluninha_direita" style="padding-bottom: 30px;">
+           
+            <table class="table table-hover text-muted">
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Categorias</th>
+                    <th scope="col">Período</th>
+                    <th scope="col">Investimento</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for pre in premiacoes %}
+                  <tr>
+                    <td><a href="{{ pre.site }}" target="_blank" class="text-pink">{{ pre.nome }}</a></td>
+                    <td>{{ pre.categorias }}</td>
+                    <td>{{ pre.periodo }}</td>
+                    <td>{{ pre.investimento|default_if_none:"nem ideia" }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+          
         </div>
     </div>
 </div>

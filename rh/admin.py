@@ -102,8 +102,8 @@ class FeedbackAdmin(admin.ModelAdmin):
 
 class FerramentaAdmin(admin.ModelAdmin):
 
-    list_display = ("nome","quando", "preco", "user", "senha")
-    list_filter = ("preco", "nome")
+    list_display = ("nome", "user", "senha", "desc")
+    list_filter = ("nome", )
 
 
 class FolguinhaAdmin(admin.ModelAdmin):
