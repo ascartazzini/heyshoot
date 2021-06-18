@@ -174,7 +174,7 @@
         <div class="col-md-4 text-pink text-center" style="padding-top: 50px; padding-bottom: 20px; background-color: white;">
             <p class="text-pink"><strong>Salários</strong></p>
             <table class="table text-muted table-hover">
-                {% for salario in colaborador.financeirototal_set.all|dictsortreversed:"data"|slice:":5" %}
+                {% for salario in colaborador.financeirototal_set.all|dictsortreversed:"data" %}
                 <tr>
                     <td>{{ salario.data|date:"d/m/Y" }}</td>
                     <td>R$ {{ salario.valor|floatformat:"2g" }}</td>

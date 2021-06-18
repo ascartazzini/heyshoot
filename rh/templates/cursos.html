@@ -17,7 +17,7 @@
                 <li class="text-muted" style="text-align: left;">
                     <a href="{% url 'lista_curso' cu.pk %}">{{ cu.qual }}</a>
                     <p class="float-right">{{ cu.quando }}</p>    
-                    <p>O {{ cu.paraquem }} fez o curso que custou R$ {{ cu.verba }}  </p>
+                    <p>{{ cu.paraquem }} fez o curso que custou R$ {{ cu.verba }}  </p>
                 </li>
                 {% endfor %}         
             </ul>

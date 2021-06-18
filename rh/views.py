@@ -12,7 +12,7 @@ from rh.forms import ContatoForm
 from rh.models import (Atividadecomercial, Ativismo, Biblioteca,
                        CanalProprietario, Certificacao, Cliente, Clima,
                        Colaborador, Contato, Curso, Feedback, Ferramenta,
-                       FinanceiroTotal, Folguinha, Fornecedores, Hierarquia,
+                       FinanceiroTotal, Folguinha, Fornecedores, Hierarquia, Impacto,
                        Inscricao, Juridico, MomentoImportante, Newsletter,
                        NewsletterTotal, Ods, Palestra, Premiacao, Projeto, Promocao,
                        Proposta, ResultadoCanal, TipoProjeto, Workshop)
@@ -32,6 +32,7 @@ class IndexView(TemplateView):
         context["momentos"] = MomentoImportante.objects.filter(quando__gte=hoje).order_by("quando")
         context["financeiro"] = FinanceiroTotal.objects.all()
         context["projeto"] = Projeto.objects.all()
+        context["impacto"] = Impacto.objects.annotate(total_impacto=Count("projeto"))
         context["ods"] = Ods.objects.annotate(total_projetos=Count("projeto")).exclude(total_projetos=0).order_by('-total_projetos')
         return context
 
