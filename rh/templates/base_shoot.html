@@ -190,19 +190,18 @@
 
 <!-- BLOCO PRINCIPAL -->
 {% block content %}{% endblock %}
-
-
-    
 <!-- AQUI OS JAVASCRIPT -->
         <script>
         var ctx = document.getElementById('myChart').getContext('2d');
+        //var vfinal = document.getElementById('valorfinal');
+        //var cfinal = document.getElementById('camposfinal');
         var myChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+                labels: {{ impacto_label|safe }},
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2],
+                    data: {{ impacto_values|safe }},
                     backgroundColor: [
                         'rgba(255, 99, 132)',
                         'rgba(54, 162, 235)',

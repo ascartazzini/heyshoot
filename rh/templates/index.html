@@ -82,9 +82,6 @@
                     Impacto dos projetos
                  </div>
                  <canvas id="myChart"></canvas>
-                 {% for im in impacto %}
-                 {{ im.nome }}: {{ im.total_impacto }} <br>
-                 {% endfor %}
             </div>
         </div>
     </div>
@@ -164,16 +161,18 @@
                     <table class="table text-muted table-hover">
                         <tr>
                             <th scope="col">Data</th>
-                            <th scope="col">Classificação</th>
                             <th scope="col">Tipo</th>
+                            <th scope="col">Classificação</th>
                             <th scope="col">Valor</th>
+                            <th scope="col">Descrição</th>
                           </tr>
                           {% for fin in financeiro|dictsortreversed:"data"|slice:10 %}
                           <tr>
                             <td>{{ fin.data|date:"d.m" }}</td>
-                            <td><a href="{% url 'contas' fin.pk %}" class="text-pink">{{ fin.classifica }}</a></td>
                             <td>{{ fin.tipo }}</td>
+                            <td><a href="{% url 'contas' fin.pk %}" class="text-pink">{{ fin.classifica }}</a></td>
                             <td>R$ {{ fin.valor|floatformat:"2g" }}</td>
+                            <td>{{ fin.colabo }}</td>
                           </tr>
                           {% endfor %}
                     </table>

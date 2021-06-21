@@ -32,7 +32,13 @@ class IndexView(TemplateView):
         context["momentos"] = MomentoImportante.objects.filter(quando__gte=hoje).order_by("quando")
         context["financeiro"] = FinanceiroTotal.objects.all()
         context["projeto"] = Projeto.objects.all()
-        context["impacto"] = Impacto.objects.annotate(total_impacto=Count("projeto"))
+        #context["impacto"] = Impacto.objects.annotate(total_impacto=Count("projeto"))
+
+        query_impacto = Impacto.objects.annotate(total_impacto=Count("projeto"))
+        context["impacto_label"] = [str(i.nome) for i in query_impacto]
+        context["impacto_values"] = [str(i.total_impacto) for i in query_impacto] 
+
+
         context["ods"] = Ods.objects.annotate(total_projetos=Count("projeto")).exclude(total_projetos=0).order_by('-total_projetos')
         return context
 
