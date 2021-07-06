@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -137,3 +138,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 LOGIN_REDIRECT_URL="/"
+
+if not os.path.exists(os.path.join(BASE_DIR, 'shoottheshit', 'local.py')):
+    raise Exception("Couldn't import the local configuration file!")
+else:
+    # noinspection PyUnresolvedReferences
+    from shoottheshit.local import *
