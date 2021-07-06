@@ -3,3 +3,5 @@ env/*
 media/
 .vscode/*
 db.sqlite3
+conf/*
+fabfile.py
