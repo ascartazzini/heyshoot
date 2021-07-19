@@ -28,6 +28,24 @@ padding-bottom: 20px;
 	border-bottom: 1px dotted gray;
 }
 
+/* ===================================== */
+/* Filtro na tabel            ========== */
+/* ===================================== */
+
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px; 
+  color:#ccc;
+}
+
 
 /* ===================================== */
 /* Form Login                 ========== */

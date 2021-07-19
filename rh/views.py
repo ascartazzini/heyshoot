@@ -4,7 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
+from django.core.paginator import Paginator
 from django.db.models import Count
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
@@ -12,10 +14,11 @@ from rh.forms import ContatoForm
 from rh.models import (Atividadecomercial, Ativismo, Biblioteca,
                        CanalProprietario, Certificacao, Cliente, Clima,
                        Colaborador, Contato, Curso, Feedback, Ferramenta,
-                       FinanceiroTotal, Folguinha, Fornecedores, Hierarquia, Impacto,
-                       Inscricao, Juridico, MomentoImportante, Newsletter,
-                       NewsletterTotal, Ods, Palestra, Premiacao, Projeto, Promocao,
-                       Proposta, ResultadoCanal, TipoProjeto, Workshop)
+                       FinanceiroTotal, Folguinha, Fornecedores, Hierarquia,
+                       Impacto, Inscricao, Juridico, MomentoImportante,
+                       Newsletter, NewsletterTotal, Ods, Palestra, Premiacao,
+                       Projeto, Promocao, Proposta, ResultadoCanal,
+                       TipoProjeto, Workshop)
 
 
 class IndexView(TemplateView):
@@ -216,12 +219,16 @@ class FinanceiroTotalView(LoginRequiredMixin, ListView):
     context_object_name = "contas"
     template_name = "contas.html"
     model = FinanceiroTotal
+    #paginate_by = 35
+    #queryset = FinanceiroTotal.objects.all().order_by("-data")
+
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["sa"] = FinanceiroTotal.objects.filter(tipo="Saida")
-        context["en"] = FinanceiroTotal.objects.filter(tipo="Entrada")
-        return context
+       context = super().get_context_data(**kwargs)
+       context["sa"] = FinanceiroTotal.objects.filter(tipo="Saida")
+       context["en"] = FinanceiroTotal.objects.filter(tipo="Entrada")
+
+       return context
 
 
 class FinanceiroDetalhesView(LoginRequiredMixin, DetailView):

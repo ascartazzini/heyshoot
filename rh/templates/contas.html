@@ -4,12 +4,19 @@
 <div class="container">
     <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Lucro máximo sem foder ninguém</p>
 </div>
+
 <div class="container-fluid">
     <div class="row" style="padding-bottom: 30px; padding-top: 30px; background-color: white; margin-top: 40px;">
         <div class="col-md-12 text-center">
             <p class="text-pink">LANÇAMENTOS</p>
+
+            <div class="form-group pull-center">
+                <input type="text" class="search form-control" placeholder="O que você está procurando nessa página?">
+            </div>
+            <span class="counter pull-center"></span>
+
             <div class="table-responsive-md">
-                <table class="table table-hover text-muted">
+                <table class="table table-hover results text-muted">
                     <thead>
                     <tr style="background-color:  #47529c; color: white;">
                         <th scope="col">Data</th>
@@ -24,6 +31,9 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <tr class="warning no-result">
+                        <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                    </tr>
                     {% for tudo in contas %}
                     <tr>
                         <th><a href="{% url 'contas' tudo.pk %}" class="text-pink">{{ tudo.data|date:"d.m.Y" }}</a></th>
@@ -40,69 +50,37 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div>   
     </div>
-</div>
-<div class="container-fluid">
-    <div class="row" style="padding-bottom: 30px; padding-top: 30px; background-color: white; margin-top: 40px;">
-        <div class="col-md-6 text-center">
-            <p class="text-pink">ENTRADAS</p>
-            <div class="table-responsive-md">
-                <table class="table table-hover text-muted">
-                    <thead>
-                    <tr style="background-color:  #47529c; color: white;">
-                        <th scope="col">Data</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Classificação</th>
-                        <th scope="col">Proposta</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Valor</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for entrada in en|dictsortreversed:"data" %}
-                    <tr>
-                        <th><a href="{% url 'contas' entrada.pk %}" class="text-pink">{{ entrada.data|date:"d.m.Y" }}</a></th>
-                        <td>{{ entrada.classifica.categoria }}</td>
-                        <td>{{ entrada.classifica }}</td>
-                        <td>{{ entrada.proposta }}</td>
-                        <td>{{ entrada.proposta.cliente }}</td>
-                        <td>R$ {{ entrada.valor|floatformat:"2g" }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col-md-6 text-center">
-            <p class="text-pink">SAÍDAS</p>
-            <div class="table-responsive-md">
-                <table class="table table-hover text-muted">
-                    <thead>
-                    <tr style="background-color:  #47529c; color: white;">
-                        <th scope="col">Data</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Classificação</th>
-                        <th scope="col">Colaborador</th>
-                        <th scope="col">Outro</th>
-                        <th scope="col">Valor</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for saida in sa|dictsortreversed:"data" %}
-                    <tr>
-                        <th><a href="{% url 'contas' saida.pk %}" class="text-pink">{{ saida.data|date:"d.m.Y" }}</a></th>
-                        <td>{{ saida.classifica.categoria }}</td>
-                        <td>{{ saida.classifica }}</td>
-                        <td>{{ saida.colabo|default_if_none:"-" }}</td>
-                        <td>{{ saida.outro|default_if_none:"-" }}</td>
-                        <td>R$ {{ saida.valor|floatformat:"2g" }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <div class="row" style="justify-content: center; margin-top: 30px;">
+        {% if is_paginated %}
+        <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" aria-disabled="true">&laquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link disabled" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
+        </li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+            <li class="page-item active" aria-current="page">
+                <span class="page-link">{{ i }}</span>
+            </li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="page-item disabled"><span>&raquo;</span></li>
+        {% endif %}
+        </ul>
+        {% endif %}
+
     </div>
 </div>
 {% endblock %}
