@@ -17,18 +17,18 @@
                         <div class="accordion-body" style="margin-bottom: 20px;">
                             <div class="row" style="background-color:rgba(246,203,71); color: white; font-size: 12px; padding: 10px; margin-bottom: 10px;">
                                 <div class="col-md-3"><strong>Nome do parceiro</strong></div>
-                                <div class="col-md-4"><strong>Email</strong></div>
-                                <div class="col-md-3"><strong>Quem é o contato</strong></div>
-                                <div class="col-md-1"><strong>Não-branca</strong></div>
-                                <div class="col-md-1"><strong>Sustentável</strong></div>
+                                <div class="col-md-3"><strong>Email</strong></div>
+                                <div class="col-md-2"><strong>Quem é o contato</strong></div>
+                                <div class="col-md-2"><strong>Não-branca</strong></div>
+                                <div class="col-md-2"><strong>Sustentável</strong></div>
                             </div>
                             {% for forne in atividade.fornecedores_set.all %}
                             <div class="row text-muted">
                                 <div class="col-md-3"><a href="{% url 'detalhes_fornecedores' forne.pk %}" class="text-pink">{{ forne.titulo }}</a></div>
                                 <div class="col-md-3">{{ forne.email }}</div>
-                                <div class="col-md-4">{{ forne.oque }}</div>
-                                <div class="col-md-1">{{ forne.iniciativanaobranca|yesno:"Sim, Não" }}</div>
-                                <div class="col-md-1">{{ forne.iniciativasustentavel|yesno:"Sim, Não" }}</div>
+                                <div class="col-md-2">{{ forne.oque }}</div>
+                                <div class="col-md-2">{{ forne.iniciativanaobranca|yesno:"Sim, Não" }}</div>
+                                <div class="col-md-2">{{ forne.iniciativasustentavel|yesno:"Sim, Não" }}</div>
                             </div>
                             {% endfor %}
                         </div>
