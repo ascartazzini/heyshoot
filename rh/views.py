@@ -21,7 +21,7 @@ from rh.models import (Atividadecomercial, Ativismo, Biblioteca,
                        TipoProjeto, Workshop)
 
 
-class IndexView(TemplateView):
+class IndexView(LoginRequiredMixin, TemplateView):
 
     template_name = "index.html"
 
