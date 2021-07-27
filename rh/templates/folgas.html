@@ -8,12 +8,16 @@
 
     <div class="row" style="padding-bottom: 30px; padding-top: 30px;">
         <div class="col-md-4 coluninha_left">
-            <h5 style="color: #47529c;">Geral tem o direito de descansar</h5>
-            <p style="margin-top: 20px; color: #47529c;">Aqui um registro de folgas e férias das pessoas da Shoot.</p>
+            <h5 style="color: #47529c;">Todos temos direito ao descanso</h5>
+            <p style="margin-top: 20px; color: #47529c;">Ao lado fica um registro de folgas e férias das pessoas da Shoot. A ideia é que essa visualização nos ajude a encaixar as férias de todo mundo daqui em diante.</p>
+        
+            <br><br>
+            <button type="button" class="btn btn-primary">Pedir férias</button>
+        
         </div>
         <div class="col-md-8 coluninha_direita">
             <ul class="timeline" style="padding-right: 20px;">
-                {% for fol in folguinha %}
+                {% for fol in folguinha|dictsortreversed:"inicio" %}
                 <li class="text-muted" style="text-align: left;">
                     {{ fol.quem }}
                     <p class="float-right">{{ fol.inicio }} até {{ fol.fim }}</p>    

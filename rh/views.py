@@ -291,6 +291,11 @@ class MomentoImportanteView(LoginRequiredMixin, ListView):
     template_name = "momentos.html"
     model = MomentoImportante
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["momentos"] = MomentoImportante.objects.order_by("quando")
+        return context
+
 
 class NewsletterView(LoginRequiredMixin, ListView):
 

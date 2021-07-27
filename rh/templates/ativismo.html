@@ -3,8 +3,14 @@
 {% block content %}
 <div class="container">
     <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Nossos projetos ativistas</p>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-12">
+          <p style="color: white; font-size: 14px;">Vamos visualizar nossos projetos de ativismo</p>
+        </div>
+    </div>
 </div>
-<div class="container">
+
+<div class="container-fluid">
     <div class="row card" style="padding-bottom: 30px; padding-top: 30px; background-color: white;">
         <div class="col-md-12">
             <div class="table-responsive-md">
@@ -17,7 +23,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Impacto</th>
                         <th scope="col">ODS</th>
-                        <th scope="col" style="text-align: center;" colspan="3">Links</th>
+                        <th scope="col" style="text-align: center;" colspan="2">Atalhos</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,8 +35,8 @@
                         <td>{{ pro.processo }}</td>
                         <td>{{ pro.impacto }}</td>
                         <td>{{ pro.ods.all|join:", " }}</td>
-                        <td style="text-align: right;"><a href="http://{{ pro.urlasana }}" target="_blank" class="bi bi-kanban" style="color:black; font-size: 16px;"></a></td>
-                        <td style="text-align: center;"><a href="http://{{ pro.urlbriefing }}" target="_blank" class="bi bi-file-earmark-binary" style="color:black; font-size: 16px;"></a></td>
+                        <td style="text-align: right;"><a href="http://{{ pro.urlasana }}" target="_blank" class="bi bi-kanban-fill" style="color:black; font-size: 16px;"></a></td>
+                        <td style="text-align: center;"><a href="http://{{ pro.urlbriefing }}" target="_blank" class="bi bi-file-earmark-word-fill" style="color:black; font-size: 16px;"></a></td>
                     </tr>
                     {% endfor %}
                     </tbody>

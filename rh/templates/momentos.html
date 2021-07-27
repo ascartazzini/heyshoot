@@ -13,12 +13,12 @@
         </div>
         <div class="col-md-8 coluninha_direita">
             <ul class="timeline" style="padding-right: 20px;">
-                {% for mome in MomentoImportante %}
-                <li class="text-muted" style="text-align: left;">
-                    {{ mome.nome }} | {{ mome.quem }}
-                    <p class="float-right">{{ mome.quando }}</p>    
-                    <p>{{ mome.desc }}</p>
-                </li>
+                {% for momento in momentos %}
+                    <li class="text-muted" style="text-align: left;">
+                        {{ momento.nome }} | {{ momento.quem }}
+                        <p class="float-right">{{ momento.quando|date:"d.m" }}</p>
+                        <p>{{ momento.desc }}</p>
+                    </li>
                 {% endfor %}
                 
             </ul>

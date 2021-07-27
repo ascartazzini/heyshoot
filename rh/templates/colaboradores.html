@@ -7,7 +7,16 @@
   
   <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">As pessoas da Shoot</p>
 
-  <div class="row" style="margin-top: 30px;">
+  <div class="row">
+    <div class="col-12">
+      
+      <p style="color: white; font-size: 14px;">Aqui a gente pode visualizar o perfil de todo mundo que tá ou esteve com a gente desde o princípio. <br>
+      <em>Encontrou algum erro e quer corrigir ou gostaria de sugerir mudanças? Deixa registrado no canal do sistema no Slack #sistemashoot</em></p>
+
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
   {% for colaborador in colaboradores|dictsortreversed:"entrounashoot" %}
     <div class="col-lg-4">
       <div class="text-center card-box">

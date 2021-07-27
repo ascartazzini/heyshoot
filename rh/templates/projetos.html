@@ -3,8 +3,13 @@
 {% block content %}
 <div class="container">
     <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Nossos projetos comerciais</p>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-12">
+          <p style="color: white; font-size: 14px;">Listadinho todos projetos que fizemos</p>
+        </div>
+    </div>
 </div>
-<div class="container card">
+<div class="container-fluid card">
     <div class="row" style="padding-bottom: 30px; padding-top: 30px; background-color: white;">
         <div class="col-md-12">
             <div class="table-responsive-md">
@@ -17,7 +22,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Impacto</th>
                         <th scope="col">ODS</th>
-                        <th scope="col" style="text-align: center;" colspan="3">Links</th>
+                        <th scope="col" style="text-align: center;" colspan="3">Atalhos</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -37,17 +42,17 @@
                         </td>
                         <td style="text-align: right;">
                             {% if pro.urlasana %}
-                            <a href="http://{{ pro.urlasana }}" target="_blank" class="bi bi-kanban" style="color:black; font-size: 16px;"></a>
+                            <a href="http://{{ pro.urlasana }}" target="_blank" class="bi bi-kanban-fill" style="color:black; font-size: 16px;"></a>
                             {% endif %}
                         </td>
                         <td style="text-align: center;">
                             {% if pro.urlbriefing %}
-                            <a href="http://{{ pro.urlbriefing }}" target="_blank" class="bi bi-file-earmark-binary" style="color:black; font-size: 16px;"></a>
+                            <a href="http://{{ pro.urlbriefing }}" target="_blank" class="bi bi-file-earmark-word-fill" style="color:black; font-size: 16px;"></a>
                             {% endif %}
                         </td>
                         <td style="text-align: left;">
                             {% if pro.urldebriefing %}
-                            <a href="http://{{ pro.urldebriefing }}" target="_blank" class="bi bi-file-earmark-check" style="color:black; font-size: 16px;"></a>
+                            <a href="http://{{ pro.urldebriefing }}" target="_blank" class="bi bi-check-square-fill" style="color:black; font-size: 16px;"></a>
                             {% endif %}
                         </td>
                     </tr>
