@@ -85,7 +85,11 @@ class CanaisProprietariosView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["resultado"] = ResultadoCanal.objects.order_by('quando').last()
+        context["resultado_ig"] = ResultadoCanal.objects.filter(canal=1).last()
+        context["resultado_linkedin"] = ResultadoCanal.objects.filter(canal=2).last()
+        context["resultado_news"] = ResultadoCanal.objects.filter(canal=3).last()
+        context["resultado_youtube"] = ResultadoCanal.objects.filter(canal=4).last()
+        context["resultado_site"] = ResultadoCanal.objects.filter(canal=8).last()
         return context
 
 
@@ -317,6 +321,13 @@ class NewsletterView(LoginRequiredMixin, ListView):
     context_object_name = "newsletter"
     template_name = "newsletters.html"
     model = Newsletter
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["resultado_mail1"] = NewsletterTotal.objects.filter(news=1).last()
+        context["resultado_mail2"] = NewsletterTotal.objects.filter(news=2).last()
+        context["resultado_mail3"] = NewsletterTotal.objects.filter(news=3).last()
+        return context
 
 
 class NewsletterTotalView(LoginRequiredMixin, ListView):
