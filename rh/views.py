@@ -41,6 +41,16 @@ class IndexView(LoginRequiredMixin, TemplateView):
         context["impacto_label"] = [str(i.nome) for i in query_impacto]
         context["impacto_values"] = [str(i.total_impacto) for i in query_impacto] 
 
+        data_inicio = datetime(2021, 1, 1, 0, 0, 0).date()
+        data_fim = data_inicio + timedelta(days=365 * 5)
+        context["visao"] = {
+            "inicio": data_inicio,
+            "fim": data_fim,
+            "texto": "Vamos ser referência na entrega de impacto social positivo dentro dos mais variados tipos de projeto. Ainda seremos uma empresa de nicho, com uma equipe enxuta e altamente qualificada. Seremos reconhecidos pela forma positiva com que nos relacionamos com as pessoas da empresa, sendo um lugar com baixíssima rotatividade e alto fomento ao crescimento profissional. Nossa atuação será consolidada nos maiores centros brasileiros e também na Europa, com presença constante em premiações ligadas à criatividade para impacto social positivo. Possuiremos diversas certificações ligadas à responsabilidade social e sustentabilidade e teremos sempre uma alta preocupação com sustentabilidade na relação com fornecedores e clientes."
+        }
+        numero_dias_total = (data_fim - data_inicio).days
+        numero_que_ja_passou_de_dias = (data_fim - datetime.now().date()).days
+        context["progress_value"] = (numero_dias_total - numero_que_ja_passou_de_dias) / numero_dias_total * 100
 
         context["ods"] = Ods.objects.annotate(total_projetos=Count("projeto")).exclude(total_projetos=0).order_by('-total_projetos')
         return context
@@ -72,6 +82,11 @@ class CanaisProprietariosView(LoginRequiredMixin, ListView):
     context_object_name = "canaisproprietarios"
     template_name = "canais_shoot.html"
     model = CanalProprietario
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["resultado"] = ResultadoCanal.objects.order_by('quando').last()
+        return context
 
 
 class CertificacaoView(LoginRequiredMixin, ListView):
