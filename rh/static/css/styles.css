@@ -48,6 +48,25 @@ padding-bottom: 20px;
 
 
 /* ===================================== */
+/* Filtro na tabela projetos  ========== */
+/* ===================================== */
+
+.resultados tr[visible='false'],
+.no-resultados{
+  display:none;
+}
+
+.resultados tr[visible='true']{
+  display:table-row;
+}
+
+.contador{
+  padding:8px; 
+  color:#ccc;
+}
+
+
+/* ===================================== */
 /* Form Login                 ========== */
 /* ===================================== */
 

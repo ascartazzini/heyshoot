@@ -37,7 +37,7 @@ $(document).on('click','.js-menu_toggle.opened',function(e){
 });
 
 
-//AQUI O FILTRO DA TABELA
+//AQUI O FILTRO DA TABELA DE CONTAS
 $(document).ready(function() {
 	$(".search").keyup(function () {
 	  var searchTerm = $(".search").val();
@@ -62,5 +62,34 @@ $(document).ready(function() {
   
 	if(jobCount == '0') {$('.no-result').show();}
 	  else {$('.no-result').hide();}
+			});
+  });
+
+
+//AQUI O FILTRO DA TABELA DE PROJETOS
+$(document).ready(function() {
+	$(".search").keyup(function () {
+	  var searchTerm = $(".search").val();
+	  var listItem = $('.resultados tbody').children('tr');
+	  var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+	  
+	$.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+		  return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+	  }
+	});
+	  
+	$(".resultados tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
+	  $(this).attr('visible','false');
+	});
+  
+	$(".resultados tbody tr:containsi('" + searchSplit + "')").each(function(e){
+	  $(this).attr('visible','true');
+	});
+  
+	var jobCount = $('.resultados tbody tr[visible="true"]').length;
+	  $('.contador').text(jobCount + ' item');
+  
+	if(jobCount == '0') {$('.no-resultados').show();}
+	  else {$('.no-resultados').hide();}
 			});
   });
