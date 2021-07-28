@@ -58,8 +58,44 @@
         <div class="col-lg-4">
             <div class="card-box">
                 <div class="row text-pink justify-content-center tituloindex">
-                    Biblioteca
-                 </div>
+                    Números dos nossos canais
+                </div>
+                <table class="table table-sm table-borderless text-muted">
+                    <tr>
+                        <td>{{ resultado_mail1.news }} </td>
+                        <td>{{ resultado_mail1.inscritos }} inscritos</td>
+                    </tr>
+                    <tr>
+                        <td>{{ resultado_mail2.news }} </td>
+                        <td>{{ resultado_mail2.inscritos }} inscritos </td>
+                    </tr>
+                    <tr>
+                        <td>{{ resultado_mail3.news }} </td>
+                        <td>{{ resultado_mail3.inscritos }} inscritos </td>
+                    </tr>
+                    <tr>
+                        <td>{{ resultado_ig.canal }}</td>
+                        <td>{{ resultado_ig.base }} seguidores</td>
+                    </tr>
+                    <tr>
+                        <td>{{ resultado_linkedin.canal }}</td>
+                        <td>{{ resultado_linkedin.base }} seguidores</td>
+                    </tr>
+                    <tr>
+                        <td>{{ resultado_youtube.canal }}</td>
+                        <td>{{ resultado_youtube.base }} inscritos</td>
+                    </tr>
+                    <tr>
+                        <td>{{ resultado_news.canal }}</td>
+                        <td>{{ resultado_news.base }} seguidores</td>
+                    </tr>
+                    <tr>
+                        <td>{{ resultado_site.canal }}</td>
+                        <td>{{ resultado_site.base }} visitantes</td>
+                    </tr>
+                </table>
+                <!--
+                BIBLIOTECA
                 <div class="row justify-content-center">
                     <img src="{{ biblioteca.imagem.url }}" width="80" class="img-thumbnail" alt="{{ biblioteca.titulo }}"> <br>
                 </div>
@@ -70,6 +106,7 @@
                 <div class="row text-center text-muted justify-content-center">
                     <a href="{% url 'biblioteca' %}" class="btn btn-warning" style="font-size: 11px;">Ver mais</a>
                 </div>
+                -->
             </div>
         </div>
     </div>

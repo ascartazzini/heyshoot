@@ -53,6 +53,17 @@ class IndexView(LoginRequiredMixin, TemplateView):
         context["progress_value"] = (numero_dias_total - numero_que_ja_passou_de_dias) / numero_dias_total * 100
 
         context["ods"] = Ods.objects.annotate(total_projetos=Count("projeto")).exclude(total_projetos=0).order_by('-total_projetos')
+
+        context["resultado_mail1"] = NewsletterTotal.objects.filter(news=1).last()
+        context["resultado_mail2"] = NewsletterTotal.objects.filter(news=2).last()
+        context["resultado_mail3"] = NewsletterTotal.objects.filter(news=3).last()
+
+        context["resultado_ig"] = ResultadoCanal.objects.filter(canal=1).last()
+        context["resultado_linkedin"] = ResultadoCanal.objects.filter(canal=2).last()
+        context["resultado_news"] = ResultadoCanal.objects.filter(canal=3).last()
+        context["resultado_youtube"] = ResultadoCanal.objects.filter(canal=4).last()
+        context["resultado_site"] = ResultadoCanal.objects.filter(canal=8).last()
+
         return context
 
 
