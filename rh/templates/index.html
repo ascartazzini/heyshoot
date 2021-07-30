@@ -14,6 +14,7 @@
             {{ visao.texto|linebreaksbr }} <br><br>
             - Artur Scartazzini, Luciano Braga
             </p>
+            <p class="text-muted text-center">Visão lançada em <strong> {{ visao.inicio|date:"d.m.Y" }}</strong> e válida até <strong> {{ visao.fim|date:"d.m.Y" }}</strong></p>
           </div>
         </div>
     </div>
@@ -195,7 +196,7 @@
                     Datas importantes
                 </div>
                 <ul class="timeline" style="padding-right: 20px;">
-                    {% for momento in momentos %}
+                    {% for momento in momentos|slice:11 %}
                     <li class="text-muted" style="text-align: left;">
                         {{ momento.nome }} | {{ momento.quem }}
                         <p class="float-right">{{ momento.quando|date:"d.m" }}</p>

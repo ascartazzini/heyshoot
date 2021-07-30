@@ -17,7 +17,7 @@
   </div>
 
   <div class="row" style="margin-top: 20px;">
-  {% for colaborador in colaboradores|dictsortreversed:"entrounashoot" %}
+  {% for colaborador in naoativos|dictsortreversed:"entrounashoot" %}
     <div class="col-lg-4">
       <div class="text-center card-box">
           <div class="member-card pt-2 pb-2">
@@ -64,7 +64,59 @@
         </div>
       </div>
       <!-- end col -->
-      {% endfor %}
+  {% endfor %}
+</div>
+<p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Ex Shooters</p>
+<div class="row" style="margin-top: 20px;">
+  {% for colaborador in ativos|dictsortreversed:"entrounashoot" %}
+    <div class="col-lg-4">
+      <div class="text-center card-box">
+          <div class="member-card pt-2 pb-2">
+            <div class="thumb-lg member-thumb mx-auto">
+              <a href="{% url 'detalhes_colaborador' colaborador.pk %}">
+              {% if colaborador.foto %}
+              <img src="{{ colaborador.foto.url }}" class="rounded-circle img-thumbnail" alt="{{ colaborador.nome }}">
+              {% else  %}
+              <img src="../static/images/semfoto.jpg" class="rounded-circle img-thumbnail" alt="{{ colaborador.nome }}">
+              {% endif  %}</a>
+            </div>
+            <div class="">
+              <h4 style="margin-top: 20px;">{{ colaborador.nome }}</h4>
+              <p class="text-muted">{{ colaborador.funcaodobrother }}</p>
+              <span class="title">{% if colaborador.cidade %}
+                Atualmente vive em  {{ colaborador.cidade }}/{{ colaborador.estado }} {% endif  %}
+              </span>
+              <p><span class="text-pink">
+                {% if colaborador.saiushoot %}
+                Entrou na Shoot dia {{ colaborador.entrounashoot|date:"d/m/Y" }} <br>
+                e saiu dia {{ colaborador.saiushoot|date:"d/m/Y" }}
+                {% else %}
+                Entrou na Shoot dia {{ colaborador.entrounashoot|date:"d/m/Y" }}
+                {% endif %}
+              </span></p>
+            </div>
+
+            <ul class="social-links list-inline">
+              {% if colaborador.instagram %}
+              <li class="list-inline-item"><a target="_blank" title="Instagram do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="http://www.instagram.com/{{ colaborador.instagram }}" data-original-title="Instagram"><i class="fa fa-instagram"></i></a></li>
+              {% endif  %}
+              {% if colaborador.facebook %}
+              <li class="list-inline-item"><a target="_blank" title="Facebook do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="http://www.facebook.com/{{ colaborador.facebook }}" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+              {% endif  %}
+              {% if colaborador.emailpessoal %}
+              <li class="list-inline-item"><a target="_blank" title="Email do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="mailto:{{ colaborador.emailpessoal }}" data-original-title="Email"><i class="fa fa-envelope"></i></a></li>
+              {% endif  %}
+              {% if colaborador.linkedin %}
+              <li class="list-inline-item"><a target="_blank" title="Linkedin do {{ colaborador.nome }}" data-placement="top" data-toggle="tooltip" class="tooltips" href="https://www.linkedin.com/in/{{ colaborador.linkedin }}" data-original-title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+              {% endif  %}
+            </ul>
+
+          </div>
+        </div>
+      </div>
+      <!-- end col -->
+  {% endfor %}
+
     </div>
   <!-- end row -->
   </div>

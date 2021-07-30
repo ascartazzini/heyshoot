@@ -170,6 +170,12 @@ class ColaboradoresView(LoginRequiredMixin, ListView):
     template_name = "colaboradores.html"
     model = Colaborador
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["ativos"] = Colaborador.objects.filter(desligado=True).all()
+        context["naoativos"] = Colaborador.objects.filter(desligado=False).all()
+        return context
+
 
 class ColaboradoresDetalhesView(LoginRequiredMixin, DetailView):
 

@@ -35,9 +35,22 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right;"><a href="http://{{ projeto.urlasana }}" target="_blank" class="bi bi-kanban" style="color:black; font-size: 16px;"></a></td>
-                    <td style="text-align: center;"><a href="http://{{ projeto.urlbriefing }}" target="_blank" class="bi bi-file-earmark-binary" style="color:black; font-size: 16px;"></a></td>
-                    <td style="text-align: left;"><a href="http://{{ projeto.urldebriefing }}" target="_blank" class="bi bi-file-earmark-check" style="color:black; font-size: 16px;"></a></td>
+                    
+                    <td style="text-align: right;">
+                        {% if projeto.urlasana %}
+                        Asana: <a href="http://{{ projeto.urlasana }}" target="_blank" class="bi bi-kanban-fill" style="color:black; font-size: 16px;"></a>
+                        {% endif %}
+                    </td>
+                    <td style="text-align: center;">
+                        {% if projeto.urlbriefing %}
+                        Briefing: <a href="http://{{ projeto.urlbriefing }}" target="_blank" class="bi bi-file-earmark-word-fill" style="color:black; font-size: 16px;"></a>
+                        {% endif %}
+                    </td>
+                    <td style="text-align: left;">
+                        {% if projeto.urldebriefing %}
+                        Debriefing: <a href="http://{{ projeto.urldebriefing }}" target="_blank" class="bi bi-check-square-fill" style="color:black; font-size: 16px;"></a>
+                        {% endif %}
+                    </td>
                 </tr>
             </table>
         </div>

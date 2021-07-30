@@ -2,7 +2,7 @@
 {% block title %}Nossas Contas{% endblock %}
 {% block content %}
 <div class="container">
-    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Lucro máximo sem foder ninguém</p>
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Tudo que entra e sai de grana</p>
     <div class="row" style="margin-bottom: 20px;">
         <div class="col-12">
           <p style="color: white; font-size: 14px;">Todos nossos lançamentos listados</p>
@@ -36,7 +36,7 @@
                     <tr class="warning no-result">
                         <td colspan="4"><i class="fa fa-warning"></i> No result</td>
                     </tr>
-                    {% for tudo in contas %}
+                    {% for tudo in contas|dictsortreversed:"data" %}
                     <tr>
                         <th><a href="{% url 'contas' tudo.pk %}" class="text-pink">{{ tudo.data|date:"d.m.Y" }}</a></th>
                         <td>{{ tudo.tipo }}</td>

@@ -53,6 +53,9 @@
                 <td>
                     <span class="text-pink"><strong>Lider</strong></span>
                 </td>   
+                <td>
+                    <span class="text-pink"><strong>Proposta</strong></span>
+                </td>   
             </tr>
             </thead>
             <tbody>
@@ -62,6 +65,7 @@
                     <td class="align-middle"><a href="{% url 'detalhes_projeto' pra.pk %}" class="text-pink">{{ pra.nome }}</a></td>
                     <td class="align-middle">{{ pra.impacto }}</td>
                     <td class="align-middle">{{ pra.lider_shoot }}</td>
+                    <td class="align-middle">{{ pra.numero.numero }}</td>
                 </tr>
                     {% endfor %}
                 {% endfor %}
@@ -71,12 +75,13 @@
         <table class="table text-muted table-hover">
             <thead>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <span class="text-pink"><strong>Propostas</strong></span>
                 </td>   
             </tr>
             <tr>
-                <td class="align-middle"><strong>Tipo Projeto</strong></td>
+                <td class="align-middle"><strong>Número</strong></td>
+                <td class="align-middle"><strong>Tipo</strong></td>
                 <td class="align-middle"><strong>Horas</strong></td>
                 <td class="align-middle"><strong>Valor Final</strong></td>
             </tr>
@@ -84,6 +89,7 @@
             <tbody>
             {% for prop in cliente.proposta_set.all %}
             <tr>
+                <td class="align-middle">{{ prop.numero }}</td>
                 <td class="align-middle"><a class="text-pink" href="{% url 'detalhes_proposta' prop.pk %}">{{ prop.tipoprojeto }}</a></td>
                 <td class="align-middle">{{ prop.horas }}</td>
                 <td class="align-middle">R$ {{ prop.valor_final|floatformat:"2g" }}</td>
