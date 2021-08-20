@@ -2,79 +2,70 @@
 {% block title %}Canais Proprietários da Shoot{% endblock %}
 {% block content %}
 <div class="container">
-<p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Canais Proprietários</p>
-<div class="row" style="padding-bottom: 30px; padding-top: 30px;">
-    <div class="col-md-4 coluninha_left">
-        <h5 style="color: #47529c;">Nossos canais e resultados</h5>
-        <p style="margin-top: 20px; color: #47529c;">Apresentando os números dos nossos canais. </p>
+    <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Canais Proprietários</p>
 
-        <div class="row">
-            <div class="col-12">
-                <i class="bi bi-instagram" style="color: #47529c;"></i>
-                <span style="color: #47529c; font-size: 13px;">{{ resultado_ig.canal }} | {{ resultado_ig.base }} seguidores</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <i class="bi bi-linkedin" style="color: #47529c;"></i>
-                <span style="color: #47529c; font-size: 13px;">{{ resultado_linkedin.canal }} | {{ resultado_linkedin.base }} seguidores</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <i class="bi bi-newspaper" style="color: #47529c;"></i>
-                <span style="color: #47529c; font-size: 13px;">{{ resultado_news.canal }} | {{ resultado_news.base }} inscritos</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <i class="bi bi-youtube" style="color: #47529c;"></i>
-                <span style="color: #47529c; font-size: 13px;">{{ resultado_youtube.canal }} | {{ resultado_youtube.base }} inscritos</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <i class="bi bi-house-door" style="color: #47529c;"></i>
-                <span style="color: #47529c; font-size: 13px;">{{ resultado_site.canal }} | {{ resultado_site.base }}</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-8 coluninha_direita">
-        <div class="accordion" id="canaisprpri">
-            {% for cp in canaisproprietarios %}
-            <div class="accordion-item">
-                <p class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menuresultados-{{ cp.id }}" aria-expanded="false" aria-controls="menuresultados-{{ cp.id }}">
-                        {{ cp.nome }} <span class="badge badge-danger" style="color: white;">{{ cp.resultadocanal_set.count }} resultado{{ cp.resultadocanal_set.count|pluralize }}</span>
-                    </button>
-                </p>
-                <div id="menuresultados-{{ cp.id }}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#canaisprpri">
-                    <div class="accordion-body" style="margin-bottom: 20px;">
-                        <div class="row justify-content-center" style="margin-bottom: 10px;">
-                            <span class="text-muted">{{ cp.objetivo }}</span>
-                        </div>
-                        <div class="row text-center" style="background-color:rgba(246,203,71); color: white; font-size: 12px; padding: 5px; margin-bottom: 10px;">
-                            <div class="col-md-4"><strong>Dia</strong></div>
-                            <div class="col-md-4"><strong>Base</strong></div>
-                            <div class="col-md-4"><strong>Engajamento</strong></div>
-                        </div>
-                        {% for resu in cp.resultadocanal_set.all %}
-                        <div class="row text-muted text-center">
-                            <div class="col-md-4"><span class="text-pink">{{ resu.quando|date:"d/m" }}</span></div>
-                            <div class="col-md-4">{{ resu.base }}</div>
-                            <div class="col-md-4">{{ resu.engajamento|default_if_none:"Não registrado" }}</div>
-                        </div>
+    <div class="row">
+
+
+     
+        
+        {% for cp in canaisproprietarios %}
+        <div class="col-lg-4">
+            <div class="card-box text-center">
+                <h3 class="tituloindex text-center text-pink">
+                    {{ cp.nome }}
+                </h3>
+                <p class="text-muted" style="padding-top: 10px;">{{ cp.objetivo|default_if_none:"-" }}</p>
+                <table class="table table-hover table-sm text-muted" style="margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Dia</th>
+                            <th scope="col">Base</th>
+                            <th scope="col">Engajamento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for resu in cp.resultadocanal_set.all|dictsortreversed:"quando" %}
+                        <tr>
+                            <td>{{ resu.quando|date:"d/m" }}</td>
+                            <td>{{ resu.base }}</td>
+                            <td>{{ resu.engajamento|default_if_none:"Não registrado" }}</td>
+                        </tr>
                         {% endfor %}
-                        <div class="row justify-content-center" style="margin-bottom: 20px; padding-top: 10px; margin-top: 20px; border-top: 1px dotted #47519b;">
-                            <a href="http://{{ cp.link }}" target="_blank" class="text-pink">{{ cp.link }}</a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+                    </tbody>
+                </table>
             </div>
-            
         </div>
+        {% endfor %}
+        
+        {% for mail in news %}
+        <div class="col-lg-4">
+            <div class="card-box text-center">
+                <h3 class="tituloindex text-center text-pink">
+                    {{ mail.nome }}
+                </h3>
+                <table class="table table-hover table-sm text-muted" style="margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Dia</th>
+                            <th scope="col">Base</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in mail.newslettertotal_set.all|dictsortreversed:"quando" %}
+                        <tr>
+                            <td>{{ result.quando|date:"d/m" }}</td>
+                            <td>{{ result.inscritos }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+
+        
     </div>
-</div>
+
 </div>
 {% endblock %}

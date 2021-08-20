@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
-from django.db.models import Count
+from django.db.models import Count, base
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
@@ -93,16 +93,11 @@ class CanaisProprietariosView(LoginRequiredMixin, ListView):
     context_object_name = "canaisproprietarios"
     template_name = "canais_shoot.html"
     model = CanalProprietario
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["resultado_ig"] = ResultadoCanal.objects.filter(canal=1).last()
-        context["resultado_linkedin"] = ResultadoCanal.objects.filter(canal=2).last()
-        context["resultado_news"] = ResultadoCanal.objects.filter(canal=3).last()
-        context["resultado_youtube"] = ResultadoCanal.objects.filter(canal=4).last()
-        context["resultado_site"] = ResultadoCanal.objects.filter(canal=8).last()
+        context["news"] = Newsletter.objects.all()
         return context
-
 
 class CertificacaoView(LoginRequiredMixin, ListView):
 
