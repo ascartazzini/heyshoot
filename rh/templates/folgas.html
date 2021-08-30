@@ -3,8 +3,25 @@
 {% block content %}
 
 <div class="container">
-    
+
     <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Férias e folgas registradas</p>
+
+    <table>
+        <thead>
+            <th>
+                <td>Nome</td>
+                <td>Número de Dias Disponíveis</td>
+            </th>
+        </thead>
+        <tbody>
+            {% for colaborador in colaboradores %}
+            <tr>
+                <td>{{ colaborador.nome }}</td>
+                <td>{{ colaborador.get_numero_dias_ferias_disponiveis }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     <div class="row" style="padding-bottom: 30px; padding-top: 30px;">
         <div class="col-md-4 coluninha_left">
@@ -15,14 +32,14 @@
                 <br><br>
                 Em breve iremos criar um placar com as suas férias válidas :)
             </p>
-        
+
         </div>
         <div class="col-md-8 coluninha_direita">
             <ul class="timeline" style="padding-right: 20px;">
                 {% for fol in folguinha|dictsortreversed:"inicio" %}
                 <li class="text-muted" style="text-align: left;">
                     {{ fol.quem }}
-                    <p class="float-right">{{ fol.inicio }} até {{ fol.fim }}</p>    
+                    <p class="float-right">{{ fol.inicio }} até {{ fol.fim }}</p>
                 </li>
                 {% endfor %}
             </ul>

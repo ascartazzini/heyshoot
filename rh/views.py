@@ -39,7 +39,7 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
         query_impacto = Impacto.objects.annotate(total_impacto=Count("projeto"))
         context["impacto_label"] = [str(i.nome) for i in query_impacto]
-        context["impacto_values"] = [str(i.total_impacto) for i in query_impacto] 
+        context["impacto_values"] = [str(i.total_impacto) for i in query_impacto]
 
         data_inicio = datetime(2021, 1, 1, 0, 0, 0).date()
         data_fim = data_inicio + timedelta(days=365 * 5)
@@ -93,7 +93,7 @@ class CanaisProprietariosView(LoginRequiredMixin, ListView):
     context_object_name = "canaisproprietarios"
     template_name = "canais_shoot.html"
     model = CanalProprietario
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["news"] = Newsletter.objects.all()
@@ -274,6 +274,11 @@ class FolguinhaView(LoginRequiredMixin, ListView):
     context_object_name = "folguinha"
     template_name = "folgas.html"
     model = Folguinha
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["colaboradores"] = Colaborador.objects.filter(desligado=False)
+        return context
 
 
 class FornecedoresView(LoginRequiredMixin, ListView):
