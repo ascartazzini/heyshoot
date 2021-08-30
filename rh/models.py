@@ -331,11 +331,15 @@ class Colaborador(models.Model):
     def get_numero_dias_ferias_disponiveis(self):
         """Retorna o número de dias disponíveis para férias para o coloraborador."""
         if self.entrounashoot:
+            numero_dias_folga = 0
+            for folguinha in self.folguinha_set.all():
+                # Somando o dia porque o colaborador só volta no outro dia ao trabalho.
+                numero_dias_folga += (folguinha.fim - folguinha.inicio).days + 1
             # Primeiro calculamos a data atual menos a data de entrada na shoot
             numero_dias_trabalhados = (datetime.now().date() - self.entrounashoot).days
             # Número de dias trabalhados / número de dias no ano * 30
             numero_dias_disponiveis = int(numero_dias_trabalhados / 365) * 30
-            return numero_dias_disponiveis
+            return numero_dias_disponiveis - numero_dias_folga
         return 0
 
     class Meta:
