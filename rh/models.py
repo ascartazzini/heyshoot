@@ -1,4 +1,5 @@
 from os import truncate
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import base
@@ -326,6 +327,16 @@ class Colaborador(models.Model):
 
     def __str__(self):
         return self.nome
+
+    def get_numero_dias_ferias_disponiveis(self):
+        """Retorna o número de dias disponíveis para férias para o coloraborador."""
+        if self.entrounashoot:
+            # Primeiro calculamos a data atual menos a data de entrada na shoot
+            numero_dias_trabalhados = (datetime.now().date() - self.entrounashoot).days
+            # Número de dias trabalhados / número de dias no ano * 30
+            numero_dias_disponiveis = int(numero_dias_trabalhados / 365) * 30
+            return numero_dias_disponiveis
+        return 0
 
     class Meta:
         verbose_name_plural = "Colaboradores"
