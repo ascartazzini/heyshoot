@@ -6,22 +6,25 @@
 
     <p class="titulo" style="color: white; text-transform: uppercase; font-size: 60px; margin-top: 50px;">Férias e folgas registradas</p>
 
-    <table>
-        <thead>
-            <th>
-                <td>Nome</td>
-                <td>Número de Dias Disponíveis</td>
-            </th>
-        </thead>
-        <tbody>
-            {% for colaborador in colaboradores %}
-            <tr>
-                <td>{{ colaborador.nome }}</td>
-                <td>{{ colaborador.get_numero_dias_ferias_disponiveis }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="row card-box text-muted text-center justify-content-center" style="margin-bottom: 20px;">
+        <p class="titulo" style="color: black; text-transform: uppercase; font-size: 40px;">Placar de dias disponíveis</p>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Dias ainda disponíveis</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for colaborador in colaboradores %}
+                <tr>
+                    <td>{{ colaborador.nome }}</td>
+                    <td>{{ colaborador.get_numero_dias_ferias_disponiveis }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
 
     <div class="row" style="padding-bottom: 30px; padding-top: 30px;">
         <div class="col-md-4 coluninha_left">
@@ -36,7 +39,7 @@
         </div>
         <div class="col-md-8 coluninha_direita">
             <ul class="timeline" style="padding-right: 20px;">
-                {% for fol in folguinha|dictsortreversed:"inicio" %}
+                {% for fol in folg|dictsortreversed:"inicio" %}
                 <li class="text-muted" style="text-align: left;">
                     {{ fol.quem }}
                     <p class="float-right">{{ fol.inicio }} até {{ fol.fim }}</p>
@@ -45,6 +48,11 @@
             </ul>
         </div>
     </div>
+
+
+
 </div>
+
+
 
 {% endblock %}

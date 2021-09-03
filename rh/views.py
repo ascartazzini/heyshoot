@@ -278,6 +278,7 @@ class FolguinhaView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["colaboradores"] = Colaborador.objects.filter(desligado=False)
+        context['folg'] = Folguinha.objects.filter(inicio__year='2021')
         return context
 
 
