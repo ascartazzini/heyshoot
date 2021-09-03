@@ -194,7 +194,7 @@ class ProjetoAdmin(admin.ModelAdmin):
 
     form = ProjetoForm
     list_display = ("nome", "numero", "lider_shoot", "ativo")
-    list_filter = ("numero", "ativo")
+    list_filter = ("processo", "ativo", "numero")
 
 
 class ProjetoInlineAdmin(admin.TabularInline):
